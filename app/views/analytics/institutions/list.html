@@ -1,0 +1,25 @@
+<div id="institutions" class="row" kt-animate-panel child="hpanel">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>机构列表</h5>
+            </div>
+            <div class="panel-body clfix">
+                <div class="ov-h">
+                    <div class="row">
+                        <!-- <div class="col-md-12 pb10 pt10 bd-b text-primary-dark">
+                            <div class="checkbox checkbox-success ml2">
+                                <input id="filterVisibleAsset" type="checkbox" ng-model="shared.status" ng-true-value="'released'" ng-false-value="0" ng-change="stateChanged()">
+                                <label for="filterVisibleAsset" class="f12">
+                                    只显示可交易资产
+                                </label>
+                            </div>
+                        </div> -->
+                        <div ui-view class="col-md-12"></div>
+                    </div>
+                    <pagination total-items="shared.totalItems" items-per-page="shared.per_page" ng-change="pageChanged()" max-size="shared.maxSize" ng-model="shared.page" class="pagination-sm fr"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

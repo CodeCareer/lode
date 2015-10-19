@@ -1,0 +1,135 @@
+/*#asset .download-pdf {
+    position: absolute;
+    top: 63px;
+    right: 20px;
+    z-index: 9;
+}
+
+.asset-detail-body {
+    .salesmen-row {
+        .salesmen-name {
+            padding-right: 0;
+        } 
+        .salesmen-contact{
+            padding: 0;
+        }
+    }
+    @media (max-width: 991px) {
+        .col-md-4, .col-md-12, .col-md-3, .col-md-6,.col-md-8,.col-md-2,.col-md-10 {
+            &.bd-r-d {
+                border-width: 0;
+            }
+        }
+        .salesmen-row {
+            .salesmen-name, 
+            .salesmen-contact{
+                padding: 0 15px;
+            }
+        }
+    }
+}
+
+.asset-detail-head {
+    .asset-name {
+        float: left;
+    }
+    .asset-identifier {
+        float: left;
+    }
+    .asset-time {
+        text-align: right;
+    }
+    @media (max-width: 768px) {
+        .asset-name {
+            float: none;
+        }
+        .asset-identifier {
+            float: none;
+        }
+        .asset-time {
+            text-align: left;
+        }
+    }
+}
+
+.asset-detail-salesmen {
+    overflow: hidden;
+    @media (min-width: 992px) {
+        position: absolute;
+        right: 15px;
+        left: 15px;
+        max-height: 90px;
+    }
+    @media (max-width: 991px) {
+        position: initial;
+    }
+    // transition: width .3s, max-height .3s;
+    &:hover {
+        @media (min-width: 992px) {
+            // left: auto;
+            // right: 15px;
+            cursor: pointer;
+            max-height: 300px;
+            // width: 350px;
+        }
+        @media (max-width: 1180px) and (min-width:992px) {
+            cursor: pointer;
+            left: auto;
+            right: 15px;
+            max-height: 300px;
+            width: 350px;
+        }
+    }
+}*/
+.content-header{
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    background-color: white;
+}
+#analytics-view {
+    position: relative;
+    padding-bottom: 80px;
+}
+#footer-analytics {
+    // display: block!important;
+    background-color: @color-1;
+    z-index: 1;
+    font-size: 12px;
+    color: @color-3;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    // .kexin-certificate {
+    //     img {
+    //         height: 27px;
+    //     }
+    // }
+    .footer-nav {
+        span.item {
+            color: @color-3;
+        }
+        a,
+        span.item {
+            position: relative;
+            padding: 0 8px;
+            color: @color-3;
+            &:hover {
+                color: @color-green;
+            }
+            // &:after {
+            //     content: '';
+            //     position: relative;
+            //     // top: 1px;
+            //     height: .9em;
+            //     border-left: 1px solid @color-3;
+            //     right: -6px;
+            // }
+            &.last {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}

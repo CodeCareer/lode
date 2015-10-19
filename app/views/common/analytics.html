@@ -1,0 +1,16 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/analytics_header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/analytics_navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" oc-lazy-load="['common/directives/kt-platform-directive.js']">
+    <div kt-loading-status height="64" width="64"></div>
+    <div class="content" kt-platform-init>
+        <div ui-view autoscroll="false"></div>
+    </div>
+
+</div>
+<!-- footer -->
+<div id="footer-analytics" onload="this.style.display = 'block'" style="display:none;" ng-include="'views/common/analytics_footer.html'"></div>

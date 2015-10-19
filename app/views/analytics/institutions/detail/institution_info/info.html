@@ -1,0 +1,84 @@
+<div class="row mt30" kt-animate-panel child="hpanel">
+    <div class="col-md-12 table-responsive" ng-if="institution">
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>机构信息</h5>
+            </div>
+            <div class="panel-body clfix pr ov-h">
+                <table class="table table-striped">
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">注册机构名称：</th>
+                        <td ng-bind="::institution.name"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">注册会员类别：</th>
+                        <td ng-bind="::institution.leaguers | ktJoin:'，'"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">注册机构类别：</th>
+                        <td ng-bind="::institution.type"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">注册资质类别：</th>
+                        <td ng-bind="::institution.qualifications | ktJoin:'，'"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">联系地址：</th>
+                        <td ng-bind="::institution.address"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">邮政编码：</th>
+                        <td ng-bind="::institution.zip_code"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">授权经办人信息：</th>
+                        <td>
+                            <table class="table m-b-none table-striped">
+                                <tr>
+                                    <th width="150" class="b-t-none text-right fn text-primary-dark">姓名：</th>
+                                    <td class="b-t-none" ng-bind="::institution.operator.name"></td>
+                                </tr>
+                                <tr>
+                                    <th width="150" class="text-right fn text-primary-dark">部门：</th>
+                                    <td ng-bind="::institution.operator.department"></td>
+                                </tr>
+                                <tr>
+                                    <th width="150" class="text-right fn text-primary-dark">办公电话：</th>
+                                    <td ng-bind="::institution.operator.landline"></td>
+                                </tr>
+                                <tr>
+                                    <th width="150" class="text-right fn text-primary-dark">手机：</th>
+                                    <td ng-bind="::institution.operator.mobile"></td>
+                                </tr>
+                                <tr>
+                                    <th width="150" class="text-right fn text-primary-dark">电子邮箱：</th>
+                                    <td ng-bind="::institution.operator.email"></td>
+                                </tr>
+                                <tr>
+                                    <th width="150" class="text-right fn text-primary-dark">传真：</th>
+                                    <td ng-bind="::institution.operator.fax"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--             <div class="panel-body clfix pr ov-h text-center">
+                    <hr>
+                    <div class="f20">服务热线：<a class="vm" href="tel:010-84554188">010-84554188</a></div>
+                    <div class="small silver mt5">如有问题，请与我们联系</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="col-md-12" ng-if="!institution">
+        <div class="hpanel">
+            <div class="panel-body text-center text-primary">
+                <div ng-if="!isLoading()">
+                    <i class="pe-7s-attention f20 mr5"></i>
+                    <span class="f16">没有相关机构信息！</span>
+                </div>
+                <div kt-loading-status height="64" width="64"></div>
+            </div>
+        </div>
+    </div>
+</div>

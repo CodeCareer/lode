@@ -1,0 +1,28 @@
+{
+    "institution": {
+        "name": "开通金融",
+        "address": "背景",
+        "bank": "农行",
+        "bank_account": "1111111111111111",
+        "code": "123123",
+        "zip_code": "100000",
+        "leaguers": ["合作会员"],
+        "qualifications": ["项目推介类资质"],
+        "type": "互联网金融平台",
+        "operator": {
+            "name": "授权经办人信息",
+            "department": "授权经办人信息",
+            "landline": "0101234567",
+            "mobile": "15210569227",
+            "email": "15210569227@163.com",
+            "fax": "0101234567"
+        },
+        "contact": {
+            "name": "紧急联系人信息",
+            "mobile": "15210569227",
+            "email": "15210569227@163.com",
+            "introducer": "紧急联系人信息",
+            "introduced": "否"
+        }
+    }
+}
