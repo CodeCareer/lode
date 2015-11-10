@@ -52,7 +52,7 @@ module.exports = {
 
     injector: {
         files: ['tasks/injector.js'],
-        tasks: ['injector:indexCommon', 'injector:indexApp']
+        tasks: ['injector:indexCommoncss', 'injector:indexCommonjs',  'injector:indexAppcss', 'injector:indexAppjs']
     },
 
     livereload: {

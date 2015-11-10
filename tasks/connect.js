@@ -4,12 +4,12 @@ var appConfig = {
     app: 'app',
     dist: 'dist'
 }
-var server = 'http://dev-op-fame.ktjr.com'
-// var server = 'http://10.132.1.145:3000'
+// var server = 'http://dev-lode.ktjr.com'
+var server = 'http://10.132.1.113:3000'
 // var server = 'http://op-fame.ktjr.com'
 var modRewriteUri = [
     // '^/mock_data/v\d{1,}/([^?]*).*$ /mock_data/$1 [L]',
-    '^/(api/v\\d{1,}/.*)$ ' + server + '/$1 [P]',
+    '^/(ajax/api/v\\d{1,}/.*)$ ' + server + '/$1 [P]',
     '^/(uploads/.*)$ ' + server + '/$1 [P]',
     '^/(.(?!\\.))*$ /index.html [L]',
     // '^/seallogo.dll.*$ /mock_data/seallogo.dll'

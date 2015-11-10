@@ -5,16 +5,5 @@
         "type": "理财",
         "directive_rate":"5",
         "name": "机构1"
-    }, {
-        "id": "2",
-        "type": "理财",
-        "directive_rate":"5",
-        "name": "机构2"
-        
-    }, {
-        "id": "3",
-        "type": "理财",
-        "directive_rate":"5",
-        "name": "机构3"
     }]
 }

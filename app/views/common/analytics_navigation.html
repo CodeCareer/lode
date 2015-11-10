@@ -9,17 +9,14 @@
                 <div id="side-menu-dropdown" class="dropdown-menu animated fadeIn m-t-xs">
                     <ul>
                         <li ng-class="{'active': $state.includes('analytics.dashboard') || $state.includes('analytics.institutions.list.**') || $state.includes('analytics.account')}"><a ui-sref="analytics.dashboard" title="全部机构">全部机构</a></li>
-
                         <li ng-class="{'active': $state.includes('analytics.institution.**', {id: item.id})}" ng-repeat="item in ::institutions">
                             <a ng-click="goto(item.id)" title="{{::item.name}}" ng-bind="::item.name"></a>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- 单个机构时候的主菜单 -->
     <ul ng-show="$state.includes('analytics.institution.**')" class="nav detail-name" id="side-menu">
         <li ui-sref-active="active">
@@ -28,9 +25,6 @@
                     <i class="icon-lode mr10 vm">&#xe803;</i>总览
                 </span>
             </a>
-            <!-- <ul class="nav nav-second-level" ng-class="{in: $state.includes('platform.assets')}">
-                <li ui-sref-active="active"><a ui-sref="platform.assets.list.table">资产列表</a></li>
-            </ul> -->
         </li>
         <li ng-class="{active: $state.includes('analytics.institution.assetFeature.**')}">
             <a href="javascript:;" ng-click="updateMenu('assetFeatureIsCollapsed')">
@@ -45,15 +39,15 @@
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.institution.assetFeature.amount({id: institutionID})">额度</a>
                 </li>
-                <li ui-sref-active="active">
+                <!-- <li ui-sref-active="active">
                     <a ui-sref="analytics.institution.assetFeature.type({id: institutionID})">类型</a>
                 </li>
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.institution.assetFeature.location({id: institutionID})">地理</a>
-                </li>
+                </li> -->
             </ul>
-        </li> 
-        <li ng-class="{active: $state.includes('analytics.institution.usersFeature.**')}">
+        </li>
+        <!-- <li ng-class="{active: $state.includes('analytics.institution.usersFeature.**')}">
             <a href="javascript:;" ng-click="updateMenu('usersFeatureIsCollapsed')">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm">&#xe804;</i>人群特征
@@ -70,8 +64,7 @@
                     <a ui-sref="analytics.institution.usersFeature.income({id: institutionID})">收入</a>
                 </li>
             </ul>
-            
-        </li>
+        </li> -->
         <li ng-class="{active: $state.includes('analytics.institution.overdueAnalytics.**')}">
             <a href="javascript:;" ng-click="updateMenu('overdueAnalyticsIsCollapsed')">
                 <span class="nav-label">
@@ -79,7 +72,6 @@
                 </span>
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.overdueAnalyticsIsCollapsed" ng-class="{in: !menu.overdueAnalyticsIsCollapsed}">
-                
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.institution.overdueAnalytics.overdueRate({id: institutionID})">逾期率</a>
                 </li>
@@ -94,11 +86,9 @@
                     <i class="icon-lode mr10 vm">&#xe802;</i>机构信息
                 </span>
             </a>
-            
         </li>
     </ul>
     <!-- 单个机构时候的主菜单 -->
-
     <!-- 全部机构时候的主菜单 -->
     <ul ng-show="$state.includes('analytics.dashboard') || $state.includes('analytics.institutions.list.**') || $state.includes('analytics.account')" class="nav main-name" id="side-menu">
         <li ui-sref-active="active">
@@ -107,18 +97,14 @@
                     <i class="icon-lode mr10 vm">&#xe80a;</i>总体数据
                 </span>
             </a>
-            <!-- <ul class="nav nav-second-level" ng-class="{in: $state.includes('platform.assets')}">
-                <li ui-sref-active="active"><a ui-sref="platform.assets.list.table">资产列表</a></li>
-            </ul> -->
         </li>
-        <li ui-sref-active="active">
+        <!-- <li ui-sref-active="active">
             <a ui-sref="analytics.institutions.list.table">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm-a">&#xe80b;</i>机构列表
                 </span>
             </a>
-            <!-- <a ui-sref="platform.myorders.list.table"><span class="nav-label">我的预约</span></a> -->
-        </li>
+        </li> -->
         <li ng-class="{'active': $state.includes('analytics.account.**')}">
             <a ui-sref="analytics.account.accountset">
                 <span class="nav-label">

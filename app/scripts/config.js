@@ -60,13 +60,13 @@
         //mock data 
         apiMockProvider.config({
             mockDataPath: '/mock_data',
-            apiPath: '/api',
+            apiPath: '/ajax/api',
             // disable: true //关闭api mock
         });
 
-        //default redirect to home index
-        $urlRouterProvider.when('', 'analytics/dashboard'); // for hashbang mode
-        $urlRouterProvider.when('/', 'analytics/dashboard'); // for html5mode
+        //默认跳转页面
+        $urlRouterProvider.when('', '/analytics/dashboard'); // for hashbang mode
+        $urlRouterProvider.when('/', '/analytics/dashboard'); // for html5mode
         $urlRouterProvider.otherwise('/error/404');
 
         var resolveFactory = function(deps, resolve) {
@@ -122,7 +122,7 @@
                 }
             })
             // multi named view不支持局部刷新view， 所以使用nested view 的方式实现刷新局部刷新
-            .state('analytics.institutions.list', {
+            /*.state('analytics.institutions.list', {
                 abstract: true,
                 url: '',
                 templateUrl: 'views/analytics/institutions/list.html',
@@ -141,10 +141,10 @@
                     breadcrumb: false,
                     pageTitle: '机构列表'
                 },
-            })
+            })*/
             // 以下是单个机构统计页面
             .state('analytics.institution', { //单个机构的抽象页面
-                url: '/institutions/:id',
+                url: '/institutions/:id?date_from&date_to',
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
@@ -175,7 +175,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-timelimit-ctrl.js']),
                 controller: 'ktAssetFeatureTimelimitCtrl',
                 data: {
-                    pageTitle: '资产特征 | 期限',
+                    pageTitle: '资产特征-期限',
                 }
             })
             .state('analytics.institution.assetFeature.amount', {
@@ -184,16 +184,16 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-amount-ctrl.js']),
                 controller: 'ktAssetFeatureAmountCtrl',
                 data: {
-                    pageTitle: '资产特征 | 额度',
+                    pageTitle: '资产特征-额度',
                 }
             })
-            .state('analytics.institution.assetFeature.type', {
+            /*.state('analytics.institution.assetFeature.type', {
                 url: '/type',
                 templateUrl: 'views/analytics/institutions/detail/asset_feature/type.html',
                 resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-type-ctrl.js']),
                 controller: 'ktAssetFeatureTypeCtrl',
                 data: {
-                    pageTitle: '资产特征 | 类型',
+                    pageTitle: '资产特征-类型',
                 }
             })
             .state('analytics.institution.assetFeature.location', {
@@ -202,7 +202,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-location-ctrl.js']),
                 controller: 'ktAssetFeatureLocationCtrl',
                 data: {
-                    pageTitle: '资产特征 | 地理',
+                    pageTitle: '资产特征-地理',
                 }
             })
             .state('analytics.institution.usersFeature', { //单个机构的用户特抽象页面
@@ -219,7 +219,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-gender-ctrl.js']),
                 controller: 'ktUsersFeatureGenderCtrl',
                 data: {
-                    pageTitle: '人群特征 | 期限',
+                    pageTitle: '人群特征-期限',
                 }
             })
             .state('analytics.institution.usersFeature.age', {
@@ -228,7 +228,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-age-ctrl.js']),
                 controller: 'ktUsersFeatureAgeCtrl',
                 data: {
-                    pageTitle: '人群特征 | 额度',
+                    pageTitle: '人群特征-额度',
                 }
             })
             .state('analytics.institution.usersFeature.income', {
@@ -237,15 +237,15 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-income-ctrl.js']),
                 controller: 'ktUsersFeatureIncomeCtrl',
                 data: {
-                    pageTitle: '人群特征 | 类型',
+                    pageTitle: '人群特征-类型',
                 }
-            })
+            })*/
             .state('analytics.institution.overdueAnalytics', { //单个机构的用户特抽象页面
                 url: '/overdue_analytics',
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
-                    pageTitle: '预期分析',
+                    pageTitle: '逾期分析',
                 }
             })
             .state('analytics.institution.overdueAnalytics.overdueRate', {
@@ -254,7 +254,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/overdue_analytics/kt-overdue-rate-ctrl.js']),
                 controller: 'ktOverdueAnalyticsOverdueRateCtrl',
                 data: {
-                    pageTitle: '预期分析 | 期限',
+                    pageTitle: '逾期分析-期限',
                 }
             })
             .state('analytics.institution.overdueAnalytics.migrateRate', {
@@ -263,7 +263,7 @@
                 resolve: resolveFactory(['scripts/controllers/institutions/overdue_analytics/kt-migrate-rate-ctrl.js']),
                 controller: 'ktOverdueAnalyticsMigrateRateCtrl',
                 data: {
-                    pageTitle: '预期分析 | 额度',
+                    pageTitle: '逾期分析-额度',
                 }
             })
             .state('analytics.institution.institutionInfo', { //单个机构的用户特抽象页面
@@ -343,7 +343,7 @@
                     pageTitle: '入会'
                 }
             })
-            /*.state('account.confirm', {
+            .state('account.confirm', {
                 url: '/confirm',
                 templateUrl: 'views/confirm.html',
                 resolve: resolveFactory(['scripts/controllers/account/kt-login-confirm-ctrl.js']),
@@ -355,7 +355,7 @@
                 data: {
                     pageTitle: '信息确认'
                 }
-            })*/
+            })
             /**
              * 错误页面
              */
@@ -424,8 +424,8 @@
             }
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                //权限控制，需要登录才能访问的页面逻辑，
-                //首页获取user的逻辑不要尝试在这里解决，放到路由的resolve里面解决，否则很容易造成死循环，注意这个坑
+                // 权限控制，需要登录才能访问的页面逻辑，
+                // 首页获取user的逻辑不要尝试在这里解决，放到路由的resolve里面解决，否则很容易造成死循环，注意这个坑
                 var permit = toState.data.permit
                 var search = $location.search()
 
@@ -436,7 +436,7 @@
 
                 // 登录限制
                 if (!$rootScope.user && permit && $.inArray('login', permit) > -1) {
-                    event.preventDefault();
+                    // event.preventDefault(); //此处禁止事件冒泡会导致ui-rooter 死循环
                     ktSessionUserService.get().then(function(user) {
                         $rootScope.user = user
                         if (!user) {
@@ -452,7 +452,7 @@
             })
 
             $rootScope.$on('$stateChangeError', function() {
-                console.log(arguments[5])
+                // console.log(arguments[5])
                 $state.go('error.404');
             });
 

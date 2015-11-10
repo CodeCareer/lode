@@ -8,7 +8,7 @@
 
     //user service
     .factory('ktUserService', function($resource, ktApiVersion) {
-        return $resource('/api/' + ktApiVersion + '/users')
+        return $resource('/ajax/api/' + ktApiVersion + '/users')
     })
 
     //获取user信息
@@ -46,14 +46,14 @@
 
     //user session service
     .factory('ktLoginService', function($resource, ktApiVersion) {
-        return $resource('/api/' + ktApiVersion + '/sessions/:confirm', {
+        return $resource('/ajax/api/' + ktApiVersion + '/sessions/:confirm', {
             confirm: '@confirm'
         })
     })
 
     //institutions service
     .factory('ktInstitutionService', function($resource, ktApiVersion) {
-        return $resource('/api/' + ktApiVersion + '/institutions')
+        return $resource('/ajax/api/' + ktApiVersion + '/institutions')
     })
 
 })();

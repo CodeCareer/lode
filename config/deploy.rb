@@ -16,7 +16,7 @@ if ENV['stage'].nil?
 end
 
 set :common_repository, 'git@github.kaitongamc.com:Kaitong/kt-frontend-common.git'
-set :repository, 'git@github.kaitongamc.com:Kaitong/kt-fame-frontend.git'
+set :repository, 'git@github.kaitongamc.com:Kaitong/kt-lode-frontend.git'
 # set :branch, 'master'
 
 load File.expand_path("../deploy/#{ENV['stage']}.rb", __FILE__)

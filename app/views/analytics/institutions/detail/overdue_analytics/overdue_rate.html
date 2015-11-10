@@ -2,9 +2,9 @@
     <div class="col-lg-12 ">
         <div class="content-header clfix">
             <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'lastMonth'">上月</label>
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'last3Month'">过去三月</label>
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'last6Month'">过去六月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">过去三月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">过去六月</label>
                 <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
             </div>
         </div>
@@ -20,13 +20,13 @@
                             <i class="icon-lode">&#xe808;</i>
                         </label>
                     </div>
-                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="icon-lode">&#xe807;</i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
-            <div class="panel-body clfix pr ov-h">
-                <div class="chart-table" ng-show="overdueRateChart.radioDataShowType == 'chart'" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                <div class="chart-table" ng-show="overdueRateChart.radioDataShowType == 'chart'">
                     <div class="chart-table-heading clfix">
                         <div class="checkbox-group clfix">
 	                        <div class="checkbox">
@@ -46,7 +46,7 @@
 	                    </div>
                     </div>
                     <div class="chart-table-body" >
-                        <div id="overdueRateChart" kt-echart chart-options="overdueRateChart.chartOptions" chart-id="overdueRateChart" style="height:400px;">
+                        <div id="overdueRateChart" kt-echart chart-options="overdueRateChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -56,32 +56,13 @@
                             <thead>
                                 <tr class="text-left">
                                     <th>指标</th>
-                                    <th>1月</th>
-                                    <th>2月</th>
-                                    <th>3月</th>
-                                    <th>4月</th>
-                                    <th>5月</th>
-                                    <th>6月</th>
+                                    <th ng-repeat="date in data.dates" ng-bind="date"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right">
-                                    <th class="text-left">逾期率</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                                <tr class="text-right">
-                                    <th class="text-left">不良率</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
+                                <tr class="text-right" ng-repeat="trend in data.overdue_trends">
+                                    <th class="text-left" ng-bind="trend.name"></th>
+                                    <td ng-repeat="value in trend.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
                                 </tr>
                             </tbody>
                         </table>
@@ -89,9 +70,9 @@
                 </div>
             </div>
         </div>
-        <div class="hpanel">
+        <!--<div class="hpanel">
             <div class="panel-heading clfix">
-                <h5>逾期率-产品类型</h5>
+            <h5><span ng-bind="overdueRateProductChart.chartDimension"></span>-产品类型</h5>
                 <div class="actions fr">
                     <div class="btn-group btn-group-sm">
                         <label class="btn btn-dark" ng-model="overdueRateProductChart.radioDataShowType" uib-btn-radio="'chart'">
@@ -101,13 +82,13 @@
                             <i class="icon-lode">&#xe808;</i>
                         </label>
                     </div>
-                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                    <!~~ <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="icon-lode">&#xe807;</i>
-                    </a>
+                    </a> ~~>
                 </div>
             </div>
-            <div class="panel-body clfix pr ov-h">
-                <div class="chart-table" ng-show="overdueRateProductChart.radioDataShowType == 'chart'">
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                <div class="chart-table" >
                     <div class="chart-table-heading clfix">
                         <div class="dropdown fl" dropdown>
                             <div dropdown-toggle class="dropdown-toggle cp">
@@ -121,69 +102,50 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-table-body" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                    <div class="chart-table-body" ng-show="overdueRateProductChart.radioDataShowType == 'chart'">
                         <div kt-echart chart-options="overdueRateProductChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
-                </div>
-                <div class="chart-table" ng-show="overdueRateProductChart.radioDataShowType == 'table'">
-                    <div class="table-responsive table-body">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr class="text-left">
-                                    <th>产品</th>
-                                    <th>1月</th>
-                                    <th>2月</th>
-                                    <th>3月</th>
-                                    <th>4月</th>
-                                    <th>5月</th>
-                                    <th>6月</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-right">
-                                    <th class="text-left">产品1</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                                <tr class="text-right">
-                                    <th class="text-left">产品2</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="chart-table-body" ng-show="overdueRateProductChart.radioDataShowType == 'table'">
+                        <div class="table-responsive table-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>产品类型</th>
+                                        <th ng-repeat="date in ::data.dates" ng-bind="::date"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-right" ng-repeat="product in data.products">
+                                        <th class="text-left" ng-bind="::product.name"></th>
+                                        <td ng-repeat="value in product.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="hpanel">
+        </div>-->
+        <!--<div class="hpanel">
             <div class="panel-heading clfix">
-                <h5>逾期率-地理位置</h5>
+            <h5><span ng-bind="overdueRateLocationChart.chartDimension"></span>-地理位置</h5>
                 <div class="actions fr">
-                    <div class="btn-group btn-group-sm">
+                    <!~~<div class="btn-group btn-group-sm">
                         <label class="btn btn-dark" ng-model="overdueRateLocationChart.radioDataShowType" uib-btn-radio="'chart'">
                             <i class="icon-lode">&#xe806;</i>
                         </label>
                         <label class="btn btn-dark" ng-model="overdueRateLocationChart.radioDataShowType" uib-btn-radio="'table'">
                             <i class="icon-lode">&#xe808;</i>
                         </label>
-                    </div>
+                    </div>~~>
                     <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="icon-lode">&#xe807;</i>
                     </a>
                 </div>
             </div>
             <div class="panel-body clfix pr ov-h">
-                <div class="chart-table" ng-show="overdueRateLocationChart.radioDataShowType == 'chart'">
+                <!~~<div class="chart-table" ng-show="overdueRateLocationChart.radioDataShowType == 'chart'">
                     <div class="chart-table-heading clfix">
                         <div class="dropdown fl" dropdown>
                             <div dropdown-toggle class="dropdown-toggle cp">
@@ -201,45 +163,41 @@
                         <div kt-echart chart-options="overdueRateLocationChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
-                </div>
-                <div class="chart-table" ng-show="overdueRateLocationChart.radioDataShowType == 'table'">
-                    <div class="table-responsive table-body">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr class="text-left">
-                                    <th>省份/城市</th>
-                                    <th>1月</th>
-                                    <th>2月</th>
-                                    <th>3月</th>
-                                    <th>4月</th>
-                                    <th>5月</th>
-                                    <th>6月</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-right">
-                                    <th class="text-left">北京</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                                <tr class="text-right">
-                                    <th class="text-left">上海</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                </div>~~>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="dropdown fl" dropdown>
+                            <div dropdown-toggle class="dropdown-toggle cp">
+                                <span ng-bind="overdueRateLocationChart.chartDimension || '逾期率'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                            </div>
+                            <div class="dropdown-menu animated fadeIn m-t-xs">
+                                <ul>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '逾期率'}"><a ng-click="overdueRateLocationChart.chartDimension = '逾期率'" title="机构1">逾期率</a></li>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '不良率'}"><a ng-click="overdueRateLocationChart.chartDimension = '不良率'" title="机构2">不良率</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-table-body" ng-show="overdueRateLocationChart.radioDataShowType == 'table'">
+                        <div class="table-responsive table-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>省份/城市</th>
+                                        <th ng-repeat="date in data.dates" ng-bind="date"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-right" ng-repeat="location in data.locations">
+                                        <th class="text-left" ng-bind="location.name"></th>
+                                        <td ng-repeat="value in location.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

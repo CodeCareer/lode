@@ -45,7 +45,7 @@ module.exports = {
                 dot: true,
                 cwd: 'app/common/fonts',
                 src: ['lode/fonts/*.*'],
-                dest: '<%= kt.dist %>/fonts/lode'
+                dest: '<%= kt.dist %>/fonts'
             }, {
                 expand: true,
                 dot: true,

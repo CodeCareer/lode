@@ -2,13 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        /*.controller('ktInstitutionsCtrl', function($scope, $stateParams, ktInstitutionsService) {
-
-
-            ktInstitutionsService.get(function(data) {
-                $scope.institutions = data.ininstitutions
-            })
-        })*/
+        
         .controller('ktInstitutionsCtrl', function($scope, $location, $stateParams) {
             
             $scope.$emit('activeInstitutionChange', {id: $stateParams.id})

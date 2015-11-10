@@ -9,40 +9,39 @@
             <div class="panel-body clfix pr ov-h">
                 <div class="dashboard-table">
                     <div class="row">
-                        <div class="td col-md-2 text-center">
+                        <div class="td col-md-1-5 text-center">
                             <h6>累计成交金额</h6>
-                            <div class="f16 mt20 fb">
-                                1000,000万
+                            <div class="f16 mt20 fb" ng-bind="summary[0] | ktNumberLocate">
                             </div>
                         </div>
-                        <div class="td col-md-2 text-center">
+                        <div class="td col-md-1-5 text-center">
                             <h6>剩余贷款金额</h6>
-                            <div class="f16 mt20 fb">
-                                1000,000万
+                            <div class="f16 mt20 fb" ng-bind="summary[1] | ktNumberLocate">
+                                
                             </div>
                         </div>
-                        <div class="td col-md-2 text-center">
+                        <div class="td col-md-1-5 text-center">
                             <h6>累计成交笔数</h6>
-                            <div class="f16 mt20 fb">
-                                1000
+                            <div class="f16 mt20 fb" ng-bind="summary[2] | number:0">
+                                
                             </div>
                         </div>
-                        <div class="td col-md-2 text-center">
+                        <div class="td col-md-1-5 text-center">
                             <h6>剩余贷款笔数</h6>
-                            <div class="f16 mt20 fb">
+                            <div class="f16 mt20 fb" ng-bind="summary[3] | number:0">
                                 1000
                             </div>
                         </div>
-                        <div class="td col-md-2 text-center">
+                        <!-- <div class="td col-md-1-5 text-center">
                             <h6>合作机构数</h6>
-                            <div class="f16 mt20 fb">
+                            <div class="f16 mt20 fb" ng-bind="summary[4] | number:0">
                                 100
                             </div>
-                        </div>
-                        <div class="td col-md-2 text-center">
+                        </div> -->
+                        <div class="col-md-1-5 text-center">
                             <h6>整体逾期率</h6>
-                            <div class="f16 mt20 fb">
-                                10%
+                            <div class="f16 mt20 fb" ng-bind="((summary[4] * 100) | number:2)+ '%'">
+                                
                             </div>
                         </div>
                     </div>
@@ -55,17 +54,17 @@
                 <div class="actions fr">
                     <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
                         <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'all'">全部</label>
-                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="false" show-shortcuts="false">自然月</label>
+                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="false" show-shortcuts="false">任意</label>
                     </div>
                 </div>
             </div>
             <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
-                <div class="chart-table">
+                <!-- <div class="chart-table">
                     <div class="chart-table-heading clfix">
                         <div class="f14 pl10">按贷款类型分</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="typesChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -74,16 +73,16 @@
                         <div class="f14 pl10">按机构来源分</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="institutionsChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="chart-table">
                     <div class="chart-table-heading clfix">
                         <div class="f14 pl10">按贷款期限来分</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="timelimitsChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -92,16 +91,16 @@
                         <div class="f14 pl10">按单笔贷款额度分</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="amountsChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
-                <div class="chart-table">
+                <!-- <div class="chart-table">
                     <div class="chart-table-heading clfix">
                         <div class="f14 pl10">贷款地理来源top10</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="locationsChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -111,7 +110,7 @@
                         </div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="gendersChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -120,10 +119,10 @@
                         <div class="f14 pl10">贷款人年龄分布</div>
                     </div>
                     <div class="chart-table-body">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                        <div kt-echart chart-options="agesChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

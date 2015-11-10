@@ -4,7 +4,8 @@
     angular.module('kt.lode')
         .controller('ktAnalyticsCtrl', function($scope, $state, ktInstitutionsService) {
 
-            $scope.institutionID = $state.params.id
+            // 初始化从路由获取id
+            $scope.institutionID = $state.params.id 
 
             // 获取当前机构名称
             function getInstitutionName() {
@@ -20,7 +21,7 @@
                 $scope.activeInstitution = getInstitutionName()
             })
 
-            // 切换不同的路由，更新当前机构ID
+            // 切换不同的路由，更新当前机构ID，每个页面级controller会fire这个事件，保证路由的同步
             $scope.$on('activeInstitutionChange', function(e, data) {
                 $scope.institutionID = data.id
                 $scope.activeInstitution = getInstitutionName()

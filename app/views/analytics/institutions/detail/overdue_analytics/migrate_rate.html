@@ -2,9 +2,9 @@
     <div class="col-lg-12 ">
         <div class="content-header clfix">
             <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'lastMonth'">上月</label>
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'last3Month'">过去三月</label>
-                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'last6Month'">过去六月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">过去三月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">过去六月</label>
                 <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
             </div>
         </div>
@@ -20,52 +20,52 @@
                             <i class="icon-lode">&#xe808;</i>
                         </label>
                     </div>
-                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="icon-lode">&#xe807;</i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
-            <div class="panel-body clfix pr ov-h">
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
                 <div class="chart-table" ng-show="migrateRateChart.radioDataShowType == 'chart'">
                     <div class="chart-table-heading clfix">
                         <div class="checkbox-group clfix">
 	                        <div class="checkbox">
-                                <input id="cm1" type="checkbox" ng-model="migrateRateChart.cm1">
+                                <input id="cm1" kt-echart-legend chart-id="migrateRateChart" name="C-M1" type="checkbox" ng-model="migrateRateChart.cm1">
                                 <label for="cm1">
                                     C-M1
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[0]}};"></div>
                             </div>
                             <div class="checkbox">
-                                <input id="m1m2" type="checkbox" ng-model="migrateRateChart.m1m2">
+                                <input id="m1m2" kt-echart-legend chart-id="migrateRateChart" name="M1-M2" type="checkbox" ng-model="migrateRateChart.m1m2">
                                 <label for="m1m2">
                                     M1-M2
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[1]}};"></div>
                             </div>
                             <div class="checkbox">
-                                <input id="m2m3" type="checkbox" ng-model="migrateRateChart.m2m3">
+                                <input id="m2m3" kt-echart-legend chart-id="migrateRateChart" name="M2-M3" type="checkbox" ng-model="migrateRateChart.m2m3">
                                 <label for="m2m3">
                                     M2-M3
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[2]}};"></div>
                             </div>
                             <div class="checkbox">
-                                <input id="m3m4" type="checkbox" ng-model="migrateRateChart.m3m4">
+                                <input id="m3m4" kt-echart-legend chart-id="migrateRateChart" name="M3-M4" type="checkbox" ng-model="migrateRateChart.m3m4">
                                 <label for="m3m4">
                                   	M3-M4 
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[3]}};"></div>
                             </div>
                             <div class="checkbox">
-                                <input id="m4m5" type="checkbox" ng-model="migrateRateChart.m4m5">
+                                <input id="m4m5" kt-echart-legend chart-id="migrateRateChart" name="M4-M5" type="checkbox" ng-model="migrateRateChart.m4m5">
                                 <label for="m4m5">
                                    	M4-M5 
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[4]}};"></div>
                             </div>
                             <div class="checkbox">
-                                <input id="m5m6" type="checkbox" ng-model="migrateRateChart.m5m6">
+                                <input id="m5m6" kt-echart-legend chart-id="migrateRateChart" name="M5-M6" type="checkbox" ng-model="migrateRateChart.m5m6">
                                 <label for="m5m6">
                                    	M5-M6 
                                 </label>
@@ -73,8 +73,8 @@
                             </div>
 	                    </div>
                     </div>
-                    <div class="chart-table-body" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
-                        <div kt-echart chart-options="{}" style="height:400px;">
+                    <div class="chart-table-body">
+                        <div kt-echart id="migrateRateChart" chart-options="migrateRateChart.chartOptions" style="height:400px;">
                         </div>
                     </div>
                 </div>
@@ -84,32 +84,13 @@
                             <thead>
                                 <tr class="text-left">
                                     <th>指标</th>
-                                    <th>1月</th>
-                                    <th>2月</th>
-                                    <th>3月</th>
-                                    <th>4月</th>
-                                    <th>5月</th>
-                                    <th>6月</th>
+                                    <th ng-repeat="date in data.dates" ng-bind="date"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right">
-                                    <th class="text-left">逾期率</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                </tr>
-                                <tr class="text-right">
-                                    <th class="text-left">不良率</th>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
-                                    <td>2020</td>
+                                <tr class="text-right" ng-repeat="item in data.migration_trends">
+                                    <th class="text-left" ng-bind="item.name"></th>
+                                    <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
                                 </tr>
                             </tbody>
                         </table>

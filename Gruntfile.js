@@ -73,8 +73,10 @@ module.exports = function(grunt) {
         'svg_sprite',
         'svgmin',
         'babel',
-        'injector:indexCommon',
-        'injector:indexApp',
+        'injector:indexCommoncss',
+        'injector:indexCommonjs',
+        'injector:indexAppcss',
+        'injector:indexAppjs',
         // 'copy:styles',
         'connect:livereload',
         'watch'
@@ -88,8 +90,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'injector:indexCommon',
-        'injector:indexApp',
+        'injector:indexCommoncss',
+        'injector:indexCommonjs',
+        'injector:indexAppcss',
+        'injector:indexAppjs',
         'responsive_images',
         'sprite',
         'less:production',

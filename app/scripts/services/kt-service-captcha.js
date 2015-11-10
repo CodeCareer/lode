@@ -7,7 +7,7 @@
     angular.module('kt.lode')
 
     .factory('ktCaptchaService', function($resource, ktApiVersion) {
-        return $resource('/api/' + ktApiVersion + '/users/captcha')
+        return $resource('/ajax/api/' + ktApiVersion + '/users/captcha')
     })
 
 })();

@@ -2,7 +2,7 @@
     <div class="col-md-12 table-responsive" ng-if="institution">
         <div class="hpanel">
             <div class="panel-heading clfix">
-                <h5>机构信息</h5>
+                <h5>基本信息</h5>
             </div>
             <div class="panel-body clfix pr ov-h">
                 <table class="table table-striped">
@@ -68,6 +68,27 @@
                     <div class="f20">服务热线：<a class="vm" href="tel:010-84554188">010-84554188</a></div>
                     <div class="small silver mt5">如有问题，请与我们联系</div>
             </div> -->
+        </div>
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>尽调报告</h5>
+            </div>
+            <div class="panel-body clfix pr ov-h">
+                <table class="table table-striped">
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">报告1：</th>
+                        <td ng-bind="::institution.name"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">报告1：</th>
+                        <td ng-bind="::institution.leaguers | ktJoin:'，'"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">报告1：</th>
+                        <td ng-bind="::institution.type"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="col-md-12" ng-if="!institution">

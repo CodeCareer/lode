@@ -19,8 +19,8 @@ module.exports = {
     baseUrl: {
         options: {
             patterns: [{
-                match: /href="http:\/\/dev\.ktjr\.com:9000\/"/g,
-                replacement: 'href="https://www.ktjr.com"'
+                match: /href="http:\/\/dev\.ktjr\.com:8000\/"/g,
+                replacement: 'href="https://lode.ktjr.com"'
             }, {
                 match: /\/mock_data\/seallogo\.dll/g,
                 replacement: '//kxlogo.knet.cn/seallogo.dll'
@@ -36,8 +36,8 @@ module.exports = {
     fontsUrl: {
         options: {
             patterns: [{
-                match: /\.\.\/(\.\.\/[^\/]+)\/fonts\/([^.]*?\.(?:eot|svg|ttf|woff))/g,
-                replacement: '$1/$2'
+                match: /\.\.\/\.\.\/([^\/]+\/fonts\/[^.]*?\.(?:eot|svg|ttf|woff))/g,
+                replacement: '../fonts/$1'
             }]
         },
         files: [{

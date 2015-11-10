@@ -48,7 +48,7 @@ module.exports.tasks = {
         },
         fonts: {
             src: [
-                '<%= kt.dist %>/fonts/kt/**/*.*'
+                '<%= kt.dist %>/fonts/lode/**/*.*'
             ],
             // dist: '.tmp'
         },
