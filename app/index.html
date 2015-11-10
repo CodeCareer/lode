@@ -125,7 +125,6 @@
     <!-- injectorApp:css -->
     <link rel="stylesheet" href="common/fonts/lode/css/style.css"/>
     <link rel="stylesheet" href="styles/style.css"/>
-    <link rel="stylesheet" href="styles/analytics.css"/>
     <!-- endinjector -->
     <!-- endbuild -->
 </head>
@@ -156,7 +155,7 @@
     <!-- injectorAssetMap:js -->
     <!-- endinjector -->
 
-    <!-- build:js(.) scripts/vendor.js -->
+    <!-- build:js({.,app}) scripts/vendor.js -->
     <!-- injectorCommon:js -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
@@ -180,11 +179,12 @@
     <script src="bower_components/numeral/min/languages/chs.min.js"></script>
     <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
     <script src="bower_components/angular-apimock/dist/angular-apimock.min.js"></script>
-    <script src="app/common/libs/jquery-date-range-picker.js"></script>
-    <script src="app/common/libs/requestAnimationFrame.js"></script>
-    <script src="app/common/libs/echarts.js"></script>
+    <script src="common/libs/jquery-date-range-picker.js"></script>
+    <script src="common/libs/requestAnimationFrame.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->
+    
+    <script src="common/libs/echarts.js"></script>
     
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <!-- injectorApp:js -->

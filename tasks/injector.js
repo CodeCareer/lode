@@ -29,7 +29,7 @@ var commonScripts = [
     // "bower_components/echarts/build/dist/echarts.js",
     "app/common/libs/jquery-date-range-picker.js",
     "app/common/libs/requestAnimationFrame.js",
-    "app/common/libs/echarts.js",
+    // "app/common/libs/echarts.js",
 ];
 
 var appScripts = [
@@ -74,7 +74,7 @@ var commonCss = [ // injector 会自动校验文件路径是否存在，所以�
 var appCss = [
     "app/common/fonts/lode/css/style.css",
     ".tmp/styles/style.css",
-    ".tmp/styles/analytics.css",
+    // ".tmp/styles/analytics.css",
 ];
 
 module.exports = {
@@ -120,7 +120,7 @@ module.exports = {
         options: {
             starttag: '<!-- injectorCommon:js -->',
             transform: function(filepath) {
-                return '<script src="' + filepath + '"></script>'
+                return '<script src="' + filepath.replace('app/', '') + '"></script>'
             }
         },
         files: {

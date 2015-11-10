@@ -43,7 +43,7 @@ module.exports = {
             '.tmp/styles/style.css': 'app/less/style.less',
             '.tmp/styles/bootstrap-custom-lode.css': 'app/less/bootstrap.less',
             'app/less/theme/v1/icon_img.css': 'app/less/theme/v1/icon_img.less',
-            '.tmp/styles/analytics.css': 'app/less/analytics.less',
+            'dist/styles/analytics.css': 'app/less/analytics.less',
             // expand: true,
             // cwd: '<%= kt.app %>',
             // src: ['less/portal.less', 'less/platform.less', 'common/directives/**/*.less', 'scripts/directives/**/*.less'],

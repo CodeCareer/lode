@@ -90,14 +90,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'injector:indexCommoncss',
-        'injector:indexCommonjs',
-        'injector:indexAppcss',
-        'injector:indexAppjs',
         'responsive_images',
         'sprite',
         'less:production',
         'font-spider:app',
+        'injector:indexCommoncss',
+        'injector:indexCommonjs',
+        'injector:indexAppcss',
+        'injector:indexAppjs',
 
         'replace:svgfont',
         'svg_sprite',
