@@ -105,7 +105,7 @@ module.exports = {
         options: {
             starttag: '<!-- injectorCommon:css -->',
             transform: function(filepath) {
-                return '<link rel="stylesheet" href="' + filepath.replace(/\.tmp\/|app\//g, '') + '">'
+                return '<link rel="stylesheet" href="' + filepath.replace(/\.tmp\/|app\//g, '') + '"/>'
             }
         },
         files: {
@@ -127,7 +127,7 @@ module.exports = {
             'app/index.html': commonScripts,
         }
     },
-    
+
     /**
      * index页面，应用 css注入
      */
@@ -135,7 +135,7 @@ module.exports = {
         options: {
             starttag: '<!-- injectorApp:css -->',
             transform: function(filepath) {
-                return '<link rel="stylesheet" href="' + filepath.replace(/\.tmp\/|app\//g, '') + '">'
+                return '<link rel="stylesheet" href="' + filepath.replace(/\.tmp\/|app\//g, '') + '"/>'
             }
         },
         files: {
