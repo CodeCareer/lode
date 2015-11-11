@@ -74,7 +74,7 @@ var commonCss = [ // injector 会自动校验文件路径是否存在，所以�
 var appCss = [
     "app/common/fonts/lode/css/style.css",
     ".tmp/styles/style.css",
-    // ".tmp/styles/analytics.css",
+    ".tmp/styles/analytics.css",
 ];
 
 module.exports = {

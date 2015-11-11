@@ -97,7 +97,7 @@
                     permit: ['login'],
                     specialClass: 'fixed-sidebar analytics-page'
                 },
-                resolve: resolveFactory(['styles/analytics.css', 'scripts/controllers/kt-analytics-ctrl.js']),
+                resolve: resolveFactory(['scripts/controllers/kt-analytics-ctrl.js']),
                 controller: 'ktAnalyticsCtrl'
             })
             // 总体数据
