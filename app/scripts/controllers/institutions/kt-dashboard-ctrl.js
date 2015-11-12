@@ -52,7 +52,11 @@
                 }
             })
 
-            var chartOptions = {}
+            var chartOptions = {
+                tooltip: {
+                    valueType: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
+                }
+            }
 
             function getData() {
                 var date_from, date_to, datePeriod
@@ -118,7 +122,7 @@
                             return v
                         })
                     })
-                    
+
                     $scope.amountsChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
                             data: _.pluck(data.rem_prncp_by_amnt, 'name')
@@ -136,56 +140,56 @@
                         })
                     })
 
-                   /* $scope.locationsChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.pluck(data.locations, 'name')
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: data.dates
-                        }],
+                    /* $scope.locationsChart.chartOptions = $.extend(true, {}, chartOptions, {
+                         legend: {
+                             data: _.pluck(data.locations, 'name')
+                         },
+                         xAxis: [{
+                             type: 'category',
+                             data: data.dates
+                         }],
 
-                        series: _.map(data.locations, function(v) {
-                            v.type = 'bar'
-                            v.stack = "按地理位置"
-                            v.barWidth = 40
-                            return v
-                        })
-                    })
+                         series: _.map(data.locations, function(v) {
+                             v.type = 'bar'
+                             v.stack = "按地理位置"
+                             v.barWidth = 40
+                             return v
+                         })
+                     })
 
-                    $scope.gendersChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.pluck(data.genders, 'name')
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: data.dates
-                        }],
+                     $scope.gendersChart.chartOptions = $.extend(true, {}, chartOptions, {
+                         legend: {
+                             data: _.pluck(data.genders, 'name')
+                         },
+                         xAxis: [{
+                             type: 'category',
+                             data: data.dates
+                         }],
 
-                        series: _.map(data.genders, function(v) {
-                            v.type = 'bar'
-                            v.stack = "按性别"
-                            v.barWidth = 40
-                            return v
-                        })
-                    })
+                         series: _.map(data.genders, function(v) {
+                             v.type = 'bar'
+                             v.stack = "按性别"
+                             v.barWidth = 40
+                             return v
+                         })
+                     })
 
-                    $scope.agesChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.pluck(data.ages, 'name')
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: data.dates
-                        }],
+                     $scope.agesChart.chartOptions = $.extend(true, {}, chartOptions, {
+                         legend: {
+                             data: _.pluck(data.ages, 'name')
+                         },
+                         xAxis: [{
+                             type: 'category',
+                             data: data.dates
+                         }],
 
-                        series: _.map(data.ages, function(v) {
-                            v.type = 'bar'
-                            v.stack = "按年龄"
-                            v.barWidth = 40
-                            return v
-                        })
-                    })*/
+                         series: _.map(data.ages, function(v) {
+                             v.type = 'bar'
+                             v.stack = "按年龄"
+                             v.barWidth = 40
+                             return v
+                         })
+                     })*/
                 })
             }
 

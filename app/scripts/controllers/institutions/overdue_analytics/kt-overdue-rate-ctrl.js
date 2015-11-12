@@ -50,7 +50,7 @@
                     axisPointer: {
                         type: 'line',
                     },
-                    percentValue: true //自定义属性，tooltip标示，决定是否显示百分比数值
+                    valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                 },
                 yAxis: [{
                     type: 'value',

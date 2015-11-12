@@ -37,7 +37,11 @@
                 }
             })
 
-            var chartOptions = {}
+            var chartOptions = {
+                tooltip: {
+                    valueType: 'rmb'
+                }
+            }
 
             function getData() {
                 var date_from, date_to, datePeriod

@@ -58,28 +58,28 @@
 
                 chartOptions = suffix === '_percent' ? {
                     tooltip: {
-                        percentValue: true //自定义属性，tooltip标示，决定是否显示百分比数值
+                        valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
                     yAxis: [{
                         max: 1,
                         min: 0,
-                        axisLabel: {
+                        /*axisLabel: {
                             formatter: function(value) {
                                 return (value * 100).toFixed(0) + '%'
                             }
-                        }
+                        }*/
                     }]
                 } : {
                     tooltip: {
-                        percentValue: false
+                        valueType: 'rmb'
                     },
-                    yAxis: [{
+                    /*yAxis: [{
                         axisLabel: {
                             formatter: function(value) {
                                 return value
                             }
                         }
-                    }]
+                    }]*/
                 }
 
                 return prefix + suffix
