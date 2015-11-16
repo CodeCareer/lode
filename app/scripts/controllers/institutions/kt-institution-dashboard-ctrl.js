@@ -8,6 +8,8 @@
                 id: $stateParams.id
             })
 
+            $scope.Math = window.Math;
+
             var params = $location.search() || {}
 
             ktDateHelper.initPeriod($scope, params)

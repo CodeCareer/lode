@@ -46,8 +46,8 @@
                                 <tr class="text-right" ng-repeat="trend in data.total_trends">
                                     <th class="text-left" ng-bind="trend.name"></th>
                                     <td ng-repeat="value in trend.data track by $index">
-                                        <span ng-if="trend.name.indexOf('增长') === -1" ng-bind="value | ktNumberLocate"></span>
-                                        <span ng-if="trend.name.indexOf('增长') > -1" ng-bind="(value * 100 | number:2) + '%'"></span>
+                                        <span ng-if="trend.name.indexOf('增长') === -1" ng-bind="Math.abs(value) | ktNumberLocate"></span>
+                                        <span ng-if="trend.name.indexOf('增长') > -1" ng-bind="(Math.abs(value) * 100 | number:2) + '%'"></span>
                                     </td> 
                                 </tr>
                             </tbody>
@@ -94,8 +94,8 @@
                                 <tr class="text-right" ng-repeat="trend in data.increment_trends">
                                     <th class="text-left" ng-bind="trend.name"></th>
                                     <td ng-repeat="value in trend.data track by $index">
-                                        <span ng-if="trend.name.indexOf('增长') === -1" ng-bind="value | ktNumberLocate"></span>
-                                        <span ng-if="trend.name.indexOf('增长') > -1" ng-bind="(value * 100 | number:2) + '%'"></span>
+                                        <span ng-if="trend.name.indexOf('增长') === -1" ng-bind="Math.abs(value) | ktNumberLocate"></span>
+                                        <span ng-if="trend.name.indexOf('增长') > -1" ng-bind="(Math.abs(value) * 100 | number:2) + '%'"></span>
                                     </td> 
                                 </tr>
                             </tbody>
