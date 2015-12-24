@@ -1,0 +1,64 @@
+<div class="inmodal">
+    <!-- <div class="color-line"></div> -->
+    <div class="modal-header">
+        <h4 class="modal-title">审批规则</h4>
+        <!-- <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small> -->
+    </div>
+    <div class="modal-body ov-h">
+        <form name="approveBorrowerForm" class="form-horizontal" method="post" id="approveBorrowerForm" ng-submit="submitForm()">
+            <div class="form-group col-lg-12">
+                <div class="checkbox checkbox-success">
+                    <input id="checkAll" type="checkbox" ng-model="checkAll" ng-change="checkAllToggle(value)">
+                    <label class="f14" for="checkAll">
+                        全部
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-lg-12">
+                <div class="col-sm-10">
+                    <div class="checkbox checkbox-success">
+                        <input id="blacklist" type="checkbox" ng-model="filterByBlacklist"  ng-change="checkListChange()">
+                        <label class="f14" for="blacklist">黑名单过滤
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 control-label">
+                    <a class="tu" ng-click="gotoBlacklist()">管理</a>
+                </div>
+            </div>
+            <div ng-repeat="item in ::items" class="form-group col-lg-12">
+                <div class="col-sm-10">
+                    <div class="checkbox checkbox-success">
+                        <input id="{{ debtorID +'_' + item.id}}" type="checkbox" checklist-model="selected.items" checklist-value="item.id" checklist-change="checkListChange()">
+                        <label class="f14" for="{{debtorID + '_' + item.id}}" ng-bind="::(item.name + '：' + item.condition + '，' + item.result)">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 control-label">
+                    <a class="tu" ng-click="gotoRule()">编辑</a>
+                </div>
+            </div>
+            <div class="form-group col-lg-12">
+                <div class="col-sm-12">
+                    <a class="tu" ng-click="gotoRule()">添加新规则</a>
+                </div>
+            </div>
+            <div class="form-group col-lg-12">
+                <div class="text-center">
+                    <div kt-loading-status height="32" width="32"></div>
+                </div>
+                <div class="text-danger bd-t-s pt10" ng-show="!!error">
+                    <i class="fa fa-frown-o fb mr5"></i>
+                    <span ng-bind="error"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-navy-blue btn-sm" ng-click="ok()" ng-disabled="pendingRequests">确定</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel($event)">取消</button>
+        <!--         <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+        <button type="button" class="btn btn-navy-blue" ng-click="ok()">确定</button>
+ -->
+    </div>
+</div>

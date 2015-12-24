@@ -1,0 +1,149 @@
+<div class="row mt30" kt-animate-panel child="hpanel">
+    <div class="col-md-12 table-responsive">
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5 ng-if="project.projectID !== 'new'">编辑项目-<span ng-bind="::project.name"></span></h5>
+                <h5 ng-if="project.projectID === 'new'">添加项目</h5>
+            </div>
+            <div class="panel-body clfix pr ov-h">
+                <div class="form-body clfix">
+                    <div class="col-md-8 col-md-offset-2" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
+                        <form name="projectForm" class="form-horizontal" method="post" id="projectForm" ng-submit="submitForm()">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.name.$invalid && projectForm.name.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>项目名称</label>
+                                <div class="col-md-9">
+                                    <input placeholder="项目名称" type="text" required="required" ng-model="project.name" id="" class="form-control" name="name">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.name.$dirty && projectForm.name.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入项目名称</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.desc.$invalid && projectForm.desc.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>项目简介</label>
+                                <div class="col-md-9">
+                                    <textarea placeholder="项目简介" type="text" required="required" ng-model="project.desc" id="" class="form-control" name="desc"></textarea>
+                                    <div class="mt5 text-danger" ng-messages="projectForm.desc.$dirty && projectForm.desc.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入项目简介</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.start_at.$invalid && projectForm.start_at.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>开始时间</label>
+                                <div class="col-md-9">
+                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="开始时间" type="text" required="required" ng-model="project.start_at" id="" class="form-control" name="start_at">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.start_at.$dirty && projectForm.start_at.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入开始时间</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.end_at.$invalid && projectForm.end_at.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>终止时间</label>
+                                <div class="col-md-9">
+                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="终止时间" type="text" required="required" ng-model="project.end_at" id="" class="form-control" name="end_at">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.end_at.$dirty && projectForm.end_at.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入终止时间</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.loan_aid_inst.$invalid && projectForm.loan_aid_inst.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>助贷机构</label>
+                                <div class="col-md-9">
+                                    <input placeholder="助贷机构" type="text" required="required" ng-model="project.loan_aid_inst" id="" class="form-control" name="loan_aid_inst">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.loan_aid_inst.$dirty && projectForm.loan_aid_inst.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入助贷机构</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.credit_amount.$invalid && projectForm.credit_amount.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>总授信额度</label>
+                                <div class="col-md-9">
+                                    <input placeholder="总授信额度" type="text" required="required" ng-model="project.credit_amount" id="" class="form-control" name="credit_amount">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.credit_amount.$dirty && projectForm.credit_amount.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入总授信额度</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.warranty_gold.$invalid && projectForm.warranty_gold.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>质保金</label>
+                                <div class="col-md-9">
+                                    <input placeholder="质保金" type="text" required="required" ng-model="project.warranty_gold" id="" class="form-control" name="warranty_gold">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.warranty_gold.$dirty && projectForm.warranty_gold.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入质保金</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.risk_provision.$invalid && projectForm.risk_provision.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>风险准备金</label>
+                                <div class="col-md-9">
+                                    <input placeholder="风险准备金" type="text" required="required" ng-model="project.risk_provision" id="" class="form-control" name="risk_provision">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.risk_provision.$dirty && projectForm.risk_provision.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入风险准备金</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.retained_profit_rate.$invalid && projectForm.retained_profit_rate.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>利润留存率</label>
+                                <div class="col-md-9">
+                                    <input placeholder="利润留存率" type="text" required="required" ng-model="project.retained_profit_rate" id="" class="form-control" name="retained_profit_rate">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.retained_profit_rate.$dirty && projectForm.retained_profit_rate.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入利润留存率</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.cash_deposit.$invalid && projectForm.cash_deposit.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>保证金</label>
+                                <div class="col-md-9">
+                                    <input placeholder="保证金" type="text" required="required" ng-model="project.cash_deposit" id="" class="form-control" name="cash_deposit">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.cash_deposit.$dirty && projectForm.cash_deposit.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入保证金</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.premium_rate.$invalid && projectForm.premium_rate.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>保费费率</label>
+                                <div class="col-md-9">
+                                    <!-- <div class="input-group"> -->
+                                    <input placeholder="保费费率" type="text" required="required" ng-model="project.premium_rate" id="" class="form-control" name="premium_rate">
+                                    <!-- <span class="input-group-addon">%</span> -->
+                                    <!-- </div> -->
+                                    <div class="mt5 text-danger" ng-messages="projectForm.premium_rate.$dirty && projectForm.premium_rate.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入保费费率</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.counter_guarantee.$invalid && projectForm.counter_guarantee.$dirty}">
+                                <label class="text-primary-dark col-md-3 control-label"><span class="ml5 f14 text-danger">*</span>反担保</label>
+                                <div class="col-md-9">
+                                    <textarea placeholder="反担保" type="text" required="required" ng-model="project.counter_guarantee" id="" class="form-control" name="counter_guarantee"></textarea>
+                                    <div class="mt5 text-danger" ng-messages="projectForm.counter_guarantee.$dirty && projectForm.counter_guarantee.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入反担保</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="text-center">
+                                    <div kt-loading-status height="32" width="32"></div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-3">
+                                    <button class="btn btn-navy-blue" ng-disabled="projectForm.$invalid || pendingRequests">保存更改</button>
+                                    <button class="btn btn-default" ng-click="cancel($event)">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-md-12" ng-if="!project">
+        <div class="hpanel">
+            <div class="panel-body text-center text-primary">
+                <div ng-if="!isLoading()">
+                    <i class="pe-7s-attention f20 mr5"></i>
+                    <span class="f16">没有相关机构信息！</span>
+                </div>
+                <div kt-loading-status height="64" width="64"></div>
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,62 @@
+{
+	"totalItems": 3,
+	"summary": {
+		"amount": 100000,
+		"pri_int_amount": 100000,
+		"repay_principle": 100000,
+		"repay_interest": 1000,
+		"ahead_principle": 10000,
+		"overdue_total_amount": 10000,
+		"overdue_total_fine": 100
+	},
+    "bill": {
+        "number": "15XEF0201",
+        "status": "initial",
+        "type": "system",
+        "name": "15信而富01",
+        "stage": 1,
+        "approve_at": "2015-02-28",
+        "repay_at": "2015-02-28",
+        "id": "15XEF0201",
+        "repayments": [{
+            "repay_at": "2015-03-09",
+            "bank_account": "622260 0000 0000 0001",
+            "name": "张三",
+            "identity_num": "110220198711270891",
+            "status": "ahead",
+            "repay_principle": 100000,
+            "repay_interest": 1000,
+            "ahead_principle": 100000,
+            "ahead_compensation": 100,
+            "overdue_total_amount": 1000,
+            "overdue_total_fine": 100,
+            "service_fees": 100
+        }, {
+            "repay_at": "2015-04-09",
+            "bank_account": "622260 0000 0000 0001",
+            "name": "李四",
+            "identity_num": "110220198711270891",
+            "status": "normal",
+            "repay_principle": 100000,
+            "repay_interest": 1000,
+            "ahead_principle": 100000,
+            "ahead_compensation": 100,
+            "overdue_total_amount": 1000,
+            "overdue_total_fine": 100,
+            "service_fees": 100
+        }, {
+            "repay_at": "2015-05-09",
+            "bank_account": "622260 0000 0000 0001",
+            "name": "王二",
+            "identity_num": "110220198711270891",
+            "status": "overdue",
+            "repay_principle": 100000,
+            "repay_interest": 3000,
+            "ahead_principle": 300000,
+            "ahead_compensation": 300,
+            "overdue_total_amount": 1000,
+            "overdue_total_fine": 100,
+            "service_fees": 100
+        }]
+    }
+}

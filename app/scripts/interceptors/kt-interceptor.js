@@ -48,6 +48,7 @@
                 //apimock 替换为get方式
                 if (search.apimock) {
                     req.method = 'GET'
+                    $.extend(req.params, req.data) //替换为url参数
                 }
 
                 //数据接口缓存处理
@@ -69,7 +70,7 @@
                 // 获取分页信息
                 if (headers['content-type'] && headers['content-type'].indexOf('application/json') > -1) {
                     /*jshint -W030 */
-                    angular.isObject(res.data) && (res.data.totalItems = headers['x-total'] || headers['X-Total'] || 0)
+                    angular.isObject(res.data) && !res.data.totalItems  && (res.data.totalItems = headers['x-total'] || headers['X-Total'] || 0)
                 }
                 return res
             },

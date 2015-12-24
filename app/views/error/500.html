@@ -1,18 +1,17 @@
-<div class="pull-left m">
-    <a ng-click="back()" class="btn btn-navy-blue">返回</a>
-</div>
 <div class="container">
-	<div class="row  mt80">
-		<div class="col-sm-4 col-sm-offset-2">
-			<div class="pl80">
-			    <i class="pe-7s-way text-success big-icon"></i>
-			    <h1>500</h1>
-			    <strong>服务器故障</strong>
-			    <p>
-			        抱歉！服务器故障！
-			    </p>
-			    <a ui-sref="analytics.dashboard" class="btn btn-sm btn-success">返回首页</a>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-detail">
+                <h1>500</h1>
+                <strong>:( 页面无法访问</strong>
+                <p>
+                    抱歉，您请求的页面无法访问。请刷新或稍后重试!
+                </p>
+                <div class="buttons" kt-ripple-button>
+                    <a ui-sref="analytics.reports.dashboard" class="btn btn-silver mr10">返回首页</a>
+                    <a ng-click="back()" class="btn btn-yellow">刷新</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

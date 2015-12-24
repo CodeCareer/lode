@@ -1,0 +1,45 @@
+<div class="chart-table">
+    <div class="table-responsive table-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="text-left">
+                    <th>子项目</th>
+                    <th>批次</th>
+                    <th>提交时间</th>
+                    <th>借款人数</th>
+                    <th>通过人数</th>
+                    <th>审批状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-right" ng-repeat="debtor in debtors">
+                    <th class="text-left" ng-bind="::debtor.name"></th>
+                    <td ng-bind="::debtor.number"></td>
+                    <td ng-bind="::debtor.create_at"></td>
+                    <td ng-bind="::debtor.apply_amount"></td>
+                    <td ng-bind="::debtor.pass_amount"></td>
+                    <td>
+                        <span ng-if="::debtor.status === 'initial'">
+                            <i class="glyphicon glyphicon-ok done-color mr5"></i>已完成
+                        </span>
+                        <span ng-if="::debtor.status !== 'initial'">
+                            <i class="glyphicon glyphicon-time initial-color mr5"></i>未开始
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <a class="tu" ui-sref="analytics.project.debtors.detail.list.table({number: debtor.number})">
+                            <span ng-bind="debtor.status == 'initial' ? '审批' : '查看'"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="(!debtors.length || !debtors) && !isLoading()">
+                    <td colspan="7" class="text-info text-center">
+                        <i class="pe-7s-attention f20 mr5"></i>
+                        <span class="f16">没有数据！</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

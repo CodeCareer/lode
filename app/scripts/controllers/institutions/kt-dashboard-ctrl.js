@@ -5,7 +5,7 @@
         .controller('ktDashboardCtrl', function($scope, $stateParams, ktReportService, ktDateHelper) {
 
             $scope.$emit('activeInstitutionChange', {
-                id: $stateParams.id
+                projectID: $stateParams.projectID
             })
 
             $scope.radioPeriod = 'all'

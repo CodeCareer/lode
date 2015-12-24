@@ -5,7 +5,7 @@
         
         .controller('ktInstitutionsCtrl', function($scope, $location, $stateParams) {
             
-            $scope.$emit('activeInstitutionChange', {id: $stateParams.id})
+            $scope.$emit('activeInstitutionChange', {projectID: $stateParams.projectID})
             $scope.shared = {}
 
             $scope.pageChanged = function() {

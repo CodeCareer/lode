@@ -1,0 +1,20 @@
+{
+    "totalItems": 2,
+    "debtors": [{
+        "id": "1",
+        "apply_amount": 10000,
+        "pass_amount": 10000,
+        "create_at": "2015-02-12",
+        "status": "initial",
+        "number": "15XEF0201",
+        "name": "15信而富01"
+    },{
+        "id": "2",
+        "apply_amount": 10000,
+        "pass_amount": 10000,
+        "create_at": "2015-02-12",
+        "status": "done",
+        "number": "15XEF0202",
+        "name": "15信而富02"
+    }]
+}

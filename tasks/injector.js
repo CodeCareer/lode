@@ -10,7 +10,7 @@ var commonScripts = [
     "bower_components/angular-messages/angular-messages.min.js",
     "bower_components/angular-ui-router/release/angular-ui-router.min.js",
     "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-    // "bower_components/checklist-model/checklist-model.js",
+    "bower_components/checklist-model/checklist-model.js",
     "bower_components/angular-resource/angular-resource.js",
     "bower_components/angular-notify/dist/angular-notify.min.js",
     "bower_components/angular-cache/dist/angular-cache.js",
@@ -56,8 +56,10 @@ var appScripts = [
     "app/scripts/services/kt-service-account.js",
     "app/scripts/services/kt-service-captcha.js",
     "app/scripts/services/kt-service-institutions.js",
+    "app/scripts/services/kt-service-projects.js",
     "app/scripts/filters/kt-filter-institutions.js",
     "app/scripts/helpers/kt-date-helps.js",
+    "app/scripts/helpers/kt-common-helps.js",
     "app/scripts/interceptors/kt-interceptor.js",
 ];
 

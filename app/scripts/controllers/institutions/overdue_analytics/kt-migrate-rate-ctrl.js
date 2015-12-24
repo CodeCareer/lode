@@ -5,7 +5,7 @@
         .controller('ktOverdueAnalyticsMigrateRateCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
 
             $scope.$emit('activeInstitutionChange', {
-                id: $stateParams.id
+                projectID: $stateParams.projectID
             })
 
             var params = $location.search() || {}
@@ -62,7 +62,7 @@
                 date_to = datePeriod[1]
 
                 ktReportService.get($.extend({
-                    id: $stateParams.id,
+                    projectID: $stateParams.projectID,
                     type: 'migrate_rate',
                     date_from: date_from,
                     date_to: date_to

@@ -1,0 +1,49 @@
+{
+    "totalItems": 3,
+    "number": "15XEF0201",
+    "status": "done",
+    "name": "15信而富01",
+    "submit_at": "2015-02-28",
+    "id": "15XEF0201",
+    "summary": ["2015-03-09", 1000000, 100],
+    "borrowers": [{
+        "create_at": "2015-02-12",
+        "name": "张三",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0001",
+        "bank_info": "中国人民银行",
+        "amount": 100000,
+        "product_num": "XYZ001",
+        "duration": 180,
+        "value_at": "2015-03-15",
+        "result": "approved",
+        "description": "备注",
+        "repayment_first_at": "2015-04-03"
+    },{
+        "create_at": "2015-02-12",
+        "name": "王二",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0002",
+        "bank_info": "中国人民银行",
+        "amount": 200000,
+        "product_num": "XYZ001",
+        "duration": 250,
+        "value_at": "2015-03-15",
+        "result": "approved",
+        "description": "备注",
+        "repayment_first_at": "2015-04-03"
+    },{
+        "create_at": "2015-02-12",
+        "name": "李四",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0003",
+        "bank_info": "中国人民银行",
+        "amount": 300000,
+        "product_num": "XYZ001",
+        "duration": 360,
+        "value_at": "2015-03-15",
+        "result": "rejected",
+        "description": "这里是失败原因",
+        "repayment_first_at": "2015-04-03"
+    }]
+}

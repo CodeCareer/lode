@@ -11,8 +11,8 @@ module.exports = {
                     'styles/img/*.*',
                     'images/**/*.*',
                     'common/libs/echarts.js',
-                    '{common, scripts}/directives/**/*.{jpg,png,jpeg,gif,svg,html}', //common目录用于异步加载
-                    // 'scripts/rdirectives/**/*.{jpg,png,jpeg,gif,svg,html}', //script目录下得diretive 用来异步加载
+                    'common/directives/**/*.{jpg,png,jpeg,gif,svg,html}', //common目录用于异步加载
+                    'scripts/rdirectives/**/*.{jpg,png,jpeg,gif,svg,html}', //script目录下得diretive 用来异步加载
                     '!images/slice/**/*.*',
                     'mock_data/**/*.json'
                 ],
@@ -74,6 +74,11 @@ module.exports = {
             cwd: 'bower_components/bootstrap/dist',
             dest: '.tmp',
             src: ['fonts/*.*']
+        }, { //用于开发环境
+            expand: true,
+            cwd: '<%= kt.app %>/common',
+            src: ['images/**/*.*'], 
+            dest: '.tmp'
         }]
 
     }

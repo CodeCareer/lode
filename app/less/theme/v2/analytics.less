@@ -1,97 +1,113 @@
-/*#asset .download-pdf {
-    position: absolute;
-    top: 63px;
-    right: 20px;
-    z-index: 9;
-}
-
-.asset-detail-body {
-    .salesmen-row {
-        .salesmen-name {
-            padding-right: 0;
-        } 
-        .salesmen-contact{
-            padding: 0;
-        }
-    }
-    @media (max-width: 991px) {
-        .col-md-4, .col-md-12, .col-md-3, .col-md-6,.col-md-8,.col-md-2,.col-md-10 {
-            &.bd-r-d {
-                border-width: 0;
-            }
-        }
-        .salesmen-row {
-            .salesmen-name, 
-            .salesmen-contact{
-                padding: 0 15px;
-            }
-        }
-    }
-}
-
-.asset-detail-head {
-    .asset-name {
-        float: left;
-    }
-    .asset-identifier {
-        float: left;
-    }
-    .asset-time {
-        text-align: right;
-    }
-    @media (max-width: 768px) {
-        .asset-name {
-            float: none;
-        }
-        .asset-identifier {
-            float: none;
-        }
-        .asset-time {
-            text-align: left;
-        }
-    }
-}
-
-.asset-detail-salesmen {
-    overflow: hidden;
-    @media (min-width: 992px) {
-        position: absolute;
-        right: 15px;
-        left: 15px;
-        max-height: 90px;
-    }
-    @media (max-width: 991px) {
-        position: initial;
-    }
-    // transition: width .3s, max-height .3s;
-    &:hover {
-        @media (min-width: 992px) {
-            // left: auto;
-            // right: 15px;
-            cursor: pointer;
-            max-height: 300px;
-            // width: 350px;
-        }
-        @media (max-width: 1180px) and (min-width:992px) {
-            cursor: pointer;
-            left: auto;
-            right: 15px;
-            max-height: 300px;
-            width: 350px;
-        }
-    }
-}*/
-.content-header{
+.content-header {
     margin-bottom: 10px;
     padding: 12px 14px;
     background-color: white;
 }
+
+.done-color,
+.approved-color {
+    color: #46bf55;
+}
+
+.initial-color {
+    color: #bec6d7;
+}
+
+.rejected-color {
+    color: @color-red;
+}
+
+.warn-color {
+    color: @color-orange;
+}
+
 #analytics-view {
     position: relative;
     padding-bottom: 80px;
 }
+
+.hpanel {
+    &.hpanel-card {
+        .panel-body {
+            border-top: 1px solid #edf0f5;
+        }
+    }
+}
+
+.card-list {
+    .card {
+        width: 50%;
+        float: left;
+        &:nth-of-type(2n-1) {
+            padding-right: 5px;
+        }
+        &:nth-of-type(2n) {
+            padding-left: 5px;
+        }
+    }
+    .input {
+        padding: 0 5px;
+        border-radius: 3px;
+        border: 0;
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .card-heading {
+        height: 50px;
+        line-height: 50px;
+        color: #9094b0;
+        input {
+            height: 25px;
+            line-height: 25px;
+            background: #edf0f5;
+            width: 140px;
+            color: #8e8e8e;
+        }
+    }
+    .card-body {
+        background: white;
+        color: #696c84;
+        .line {
+            padding: 10px;
+            .item {
+                float: left;
+            }
+            .left {
+                width: 40%;
+            }
+            .right {
+                width: 60%;
+            }
+        }
+        h5 {
+            padding-left: 10px;
+            font-size: 15px;
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #cfd6e4;
+        }
+        select {
+            color: #696c84;
+            height: 28px;
+            line-height: 28px;
+            width: auto;
+            display: inline-block;
+            // margin: 0 5px;
+        }
+        input {
+            color: #696c84;
+            // margin: 0 5px;
+            height: 28px;
+            line-height: 28px;
+            background: #edf0f5;
+            width: 80px;
+        }
+    }
+}
+
 #footer-analytics {
-    // display: block!important;
     background-color: @color-1;
     z-index: 1;
     font-size: 12px;
@@ -100,11 +116,6 @@
     bottom: 0;
     right: 0;
     left: 0;
-    // .kexin-certificate {
-    //     img {
-    //         height: 27px;
-    //     }
-    // }
     .footer-nav {
         span.item {
             color: @color-3;
@@ -117,14 +128,6 @@
             &:hover {
                 color: @color-green;
             }
-            // &:after {
-            //     content: '';
-            //     position: relative;
-            //     // top: 1px;
-            //     height: .9em;
-            //     border-left: 1px solid @color-3;
-            //     right: -6px;
-            // }
             &.last {
                 &:after {
                     display: none;

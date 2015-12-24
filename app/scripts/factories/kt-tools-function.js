@@ -18,8 +18,8 @@
                     if (res.token) {
                         $window.localStorage.token = res.token
 
-                        var redirectState = $rootScope.previousState || 'home.index'
-                        if (redirectState.indexOf('platform.') === -1) redirectState = 'analytics.dashboard'
+                        var redirectState = $rootScope.previousState || 'analytics.reports.dashboard'
+                        if (redirectState.indexOf('analytics.') === -1) redirectState = 'analytics.reports.dashboard'
 
                         var params = $rootScope.previousStateParams || {}
                         $state.go(redirectState, params)

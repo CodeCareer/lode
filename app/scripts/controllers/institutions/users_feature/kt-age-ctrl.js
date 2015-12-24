@@ -4,7 +4,9 @@
     angular.module('kt.lode')
         .controller('ktUsersFeatureAgeCtrl', function($scope, $stateParams, ktInstitutionsService) {
 
-            $scope.$emit('activeInstitutionChange', {id: $stateParams.id})
+            $scope.$emit('activeInstitutionChange', {
+                projectID: $stateParams.projectID
+            })
 
             $scope.radioPeriod = 'lastMonth'
             $scope.radioPeriodCustom = 'custom'

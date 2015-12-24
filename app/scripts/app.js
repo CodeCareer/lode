@@ -16,6 +16,7 @@
         'angulartics.baidu',
         'angulartics.google.analytics',
         'ipCookie',
+        'checklist-model',
         'oc.lazyLoad',
         'angular-cache',
         'kt.common',

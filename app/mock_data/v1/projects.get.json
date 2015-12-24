@@ -1,0 +1,14 @@
+{
+    "totalItems": 1,
+    "projects": [{
+        "id": "1",
+        "amount": 1000000,
+        "total_invest": 10000,
+        "remain_amount": 10000,
+        "total_deal": 10000,
+        "overdue_rate": 0.10,
+        "bad_rate": 0.08,
+        "total_revenue": 10000,
+        "name": "信而富"
+    }]
+}

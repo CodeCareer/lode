@@ -1,18 +1,16 @@
-<div class="color-line"></div>
-<div class="pull-left m">
-    <a ng-click="back()" class="btn btn-navy-blue">返回</a>
-</div>
 <div class="container">
-    <div class="row  mt80">
-        <div class="col-sm-4 col-sm-offset-2">
-            <div class="pl80">
-                <i class="pe-7s-way text-success big-icon"></i>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-detail">
                 <h1>404</h1>
-                <strong>页面未找到</strong>
+                <strong>:( 页面未找到</strong>
                 <p>
                     抱歉，您请求的页面不存在。请检查请求地址是否有误!
                 </p>
-                <a ui-sref="analytics.dashboard" class="btn btn-sm btn-success">返回首页</a>
+                <div class="buttons" kt-ripple-button>
+                    <a ui-sref="analytics.reports.dashboard" class="btn btn-silver">返回首页</a>
+                    <a ng-click="back()" class="btn btn-yellow">返回</a>
+                </div>
             </div>
         </div>
     </div>

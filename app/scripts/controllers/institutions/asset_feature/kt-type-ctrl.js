@@ -5,7 +5,7 @@
         .controller('ktAssetFeatureTypeCtrl', function($scope, $stateParams,  ktReportService, ktDateHelper) {
 
             $scope.$emit('activeInstitutionChange', {
-                id: $stateParams.id
+                projectID: $stateParams.projectID
             })
 
             $scope.radioPeriod = 'lastMonth'
@@ -104,7 +104,7 @@
                 date_to = datePeriod[1]
 
                 ktReportService.get({
-                    id: $stateParams.id,
+                    projectID: $stateParams.projectID,
                     type: 'asset_feature_type',
                     date_from: date_from,
                     date_to: date_to

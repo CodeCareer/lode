@@ -1,0 +1,38 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>项目名称</th>
+            <th>项目金额（授信额）</th>
+            <th>累计期初投放额</th>
+            <th>责任余额</th>
+            <th>累计成交金额</th>
+            <th>逾期率（0，180）</th>
+            <th>不良率（0，90）</th>
+            <th>总收益</th>
+            <th>详情</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="project in projects">
+            <th class="text-left">
+                <a class="tu" ui-sref="analytics.project.dashboard({id: project.id})" ng-bind="::project.name"></a>
+            </th>
+            <td ng-bind="::project.amount | ktNumberLocate"></td>
+            <td ng-bind="::project.total_invest | ktNumberLocate"></td>
+            <td ng-bind="::project.remain_amount | ktNumberLocate"></td>
+            <td ng-bind="::project.total_deal | ktNumberLocate"></td>
+            <td ng-bind="::(project.overdue_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::(project.bad_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::project.total_revenue | ktNumberLocate"></td>
+            <td class="text-center">
+                <a class="tu" ui-sref="analytics.project.dashboard({id: project.id})">查看</a>
+            </td>
+        </tr>
+        <tr ng-if="(!projects.length || !projects) && !isLoading()">
+            <td colspan="9" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

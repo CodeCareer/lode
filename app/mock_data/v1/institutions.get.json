@@ -1,9 +1,14 @@
 {
-    "totalItems": 30,
+    "totalItems": 2,
     "institutions": [{
         "id": "1",
         "type": "理财",
         "directive_rate":"5",
         "name": "机构1"
+    },{
+        "id": "2",
+        "type": "理财",
+        "directive_rate":"5",
+        "name": "机构2"
     }]
 }

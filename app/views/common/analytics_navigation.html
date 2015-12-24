@@ -4,12 +4,12 @@
             <!-- <span class="text-primary-dark font-small-bold" ng-bind="'您好，' + user.name"></span> -->
             <div class="dropdown" dropdown dropdown-append-to-body>
                 <div dropdown-toggle class="dropdown-toggle white">
-                    <span ng-bind="activeInstitution || '全部机构'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                    <span ng-bind="activeProject || '全部项目'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
                 </div>
                 <div id="side-menu-dropdown" class="dropdown-menu animated fadeIn m-t-xs">
                     <ul>
-                        <li ng-class="{'active': $state.includes('analytics.dashboard') || $state.includes('analytics.institutions.list.**') || $state.includes('analytics.account')}"><a ui-sref="analytics.dashboard" title="全部机构">全部机构</a></li>
-                        <li ng-class="{'active': $state.includes('analytics.institution.**', {id: item.id})}" ng-repeat="item in ::institutions">
+                        <li ng-class="{'active': $state.includes('analytics.reports.**') || $state.includes('analytics.projects.list.**')}"><a ui-sref="analytics.reports.dashboard" title="全部项目">全部项目</a></li>
+                        <li ng-class="{'active': $state.includes('analytics.project.**', {id: item.id})}" ng-repeat="item in ::projects">
                             <a ng-click="goto(item.id)" title="{{::item.name}}" ng-bind="::item.name"></a>
                         </li>
                     </ul>
@@ -17,37 +17,106 @@
             </div>
         </div>
     </div>
-    <!-- 单个机构时候的主菜单 -->
-    <ul ng-show="$state.includes('analytics.institution.**')" class="nav detail-name" id="side-menu">
+    <!-- 单个项目时候的主菜单 -->
+    <ul ng-show="$state.includes('analytics.project.**')" class="nav detail-name" id="side-menu">
         <li ui-sref-active="active">
-            <a ui-sref="analytics.institution.dashboard">
-                <span class="nav-label">
-                    <i class="icon-lode mr10 vm">&#xe803;</i>总览
+            <a ui-sref="analytics.project.dashboard">
+                <span class="nav-label" ng-click="updateMenu('dashboardIsCollapsed')">
+                    <i class="icon-lode icon-calc mr10 vm"></i>数据总览
                 </span>
             </a>
         </li>
-        <li ng-class="{active: $state.includes('analytics.institution.assetFeature.**')}">
-            <a href="javascript:;" ng-click="updateMenu('assetFeatureIsCollapsed')">
+        <li ng-class="{active: $state.includes('analytics.project.debtors.**')}">
+            <a href="javascript:;" ng-click="updateMenu('debtorsIsCollapsed')">
                 <span class="nav-label">
-                    <i class="icon-lode mr10 vm">&#xe800;</i>资产特征
+                    <i class="icon-lode icon-approve mr10 vm"></i>借款人审批
                 </span>
             </a>
-            <ul class="nav nav-second-level" uib-collapse="menu.assetFeatureIsCollapsed" ng-class="{in: !menu.assetFeatureIsCollapsed}">
-                <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.assetFeature.timelimit({id: institutionID})">期限</a>
+            <ul class="nav nav-second-level" uib-collapse="menu.debtorsIsCollapsed" ng-class="{in: !menu.debtorsIsCollapsed}">
+                <li ng-class="{active: $state.includes('analytics.project.debtors.list.**') || $state.includes('analytics.project.debtors.detail.**')}">
+                    <a ui-sref="analytics.project.debtors.list.table">借款人列表</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.assetFeature.amount({id: institutionID})">额度</a>
-                </li>
-                <!-- <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.assetFeature.type({id: institutionID})">类型</a>
-                </li>
+                    <a ui-sref="analytics.project.rules">规则设置</a>
+                </li> 
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.assetFeature.location({id: institutionID})">地理</a>
-                </li> -->
+                    <a ui-sref="analytics.project.blacklist.list.table">黑名单管理</a>
+                </li>
             </ul>
         </li>
-        <!-- <li ng-class="{active: $state.includes('analytics.institution.usersFeature.**')}">
+        <li ng-class="{active: $state.includes('analytics.project.loanPlans.**')}">
+            <a ui-sref="analytics.project.loanPlans.list.table">
+                <span class="nav-label" ng-click="updateMenu('loanPlansIsCollapsed')">
+                    <i class="icon-lode icon-loan mr10 vm"></i>放款管理
+                </span>
+            </a>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.repayments.**')}">
+            <a ui-sref="analytics.project.repayments.list.table">
+                <span class="nav-label" ng-click="updateMenu('repaymentsIsCollapsed')">
+                    <i class="icon-lode icon-list mr10 vm"></i>还款管理
+                </span>
+            </a>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.finance.**')}">
+            <a href="javascript:;" ng-click="updateMenu('financeIsCollapsed')">
+                <span class="nav-label">
+                    <i class="icon-lode icon-finance mr10 vm"></i>财务管理
+                </span>
+            </a>
+            <ul class="nav nav-second-level" uib-collapse="menu.financeIsCollapsed" ng-class="{in: !menu.financeIsCollapsed}">
+                <li ng-class="{active: $state.includes('analytics.project.finance.billList.**') || $state.includes('analytics.project.finance.billDetail.**')}">
+                    <a ui-sref="analytics.project.finance.billList.table">还款对账</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.paymentClear">回款清算</a>
+                </li> 
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.otherIncome.table">其他收益</a>
+                </li>
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.cashFlowMonitor')}">
+            <a ui-sref="analytics.project.cashFlowMonitor">
+                <span class="nav-label" ng-click="updateMenu('cashFlowMonitorIsCollapsed')">
+                    <i class="icon-lode icon-look mr10 vm"></i>现金流监控
+                </span>
+            </a>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.asset.**')}">
+            <a href="javascript:;" ng-click="updateMenu('assetPerformanceIsCollapsed')">
+                <span class="nav-label">
+                    <i class="icon-lode icon-report mr10 vm"></i>资产表现
+                </span>
+            </a>
+            <ul class="nav nav-second-level" uib-collapse="menu.assetPerformanceIsCollapsed" ng-class="{in: !menu.assetPerformanceIsCollapsed}">
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.asset.feature">资产特征</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.asset.users">人群特征</a>
+                </li> 
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.asset.overdue">逾期分析</a>
+                </li>
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.settings.**')}">
+            <a href="javascript:;" ng-click="updateMenu('settingsIsCollapsed')">
+                <span class="nav-label">
+                    <i class="icon-lode icon-set mr10 vm"></i>项目设置
+                </span>
+            </a>
+            <ul class="nav nav-second-level" uib-collapse="menu.settingsIsCollapsed" ng-class="{in: !menu.settingsIsCollapsed}">
+                <li ng-class="{active: $state.includes('analytics.project.settings.info') || $state.includes('analytics.project.settings.edit') || $state.includes('analytics.project.settings.add')}" >
+                    <a ui-sref="analytics.project.settings.info">基本信息</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.settings.subProject.list.table">子项目管理</a>
+                </li> 
+            </ul>
+        </li>
+        <!-- <li ng-class="{active: $state.includes('analytics.project.usersFeature.**')}">
             <a href="javascript:;" ng-click="updateMenu('usersFeatureIsCollapsed')">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm">&#xe804;</i>人群特征
@@ -55,17 +124,17 @@
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.usersFeatureIsCollapsed" ng-class="{in: !menu.usersFeatureIsCollapsed}">
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.usersFeature.gender({id: institutionID})">性别</a>
+                    <a ui-sref="analytics.project.usersFeature.gender">性别</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.usersFeature.age({id: institutionID})">年龄</a>
+                    <a ui-sref="analytics.project.usersFeature.age({id: projectID})">年龄</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.usersFeature.income({id: institutionID})">收入</a>
+                    <a ui-sref="analytics.project.usersFeature.income({id: projectID})">收入</a>
                 </li>
             </ul>
         </li> -->
-        <li ng-class="{active: $state.includes('analytics.institution.overdueAnalytics.**')}">
+        <!-- <li ng-class="{active: $state.includes('analytics.project.overdueAnalytics.**')}">
             <a href="javascript:;" ng-click="updateMenu('overdueAnalyticsIsCollapsed')">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm">&#xe801;</i>逾期分析
@@ -73,45 +142,65 @@
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.overdueAnalyticsIsCollapsed" ng-class="{in: !menu.overdueAnalyticsIsCollapsed}">
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.overdueAnalytics.overdueRate({id: institutionID})">逾期率</a>
+                    <a ui-sref="analytics.project.overdueAnalytics.overdueRate({id: projectID})">逾期率</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.institution.overdueAnalytics.migrateRate({id: institutionID})">迁徙率</a>
+                    <a ui-sref="analytics.project.overdueAnalytics.migrateRate({id: projectID})">迁徙率</a>
                 </li>
             </ul>
         </li>
-        <li ui-sref-active="active" ng-click="updateMenu('institutionInfoIsCollapsed')">
-            <a ui-sref="analytics.institution.institutionInfo.info({id: institutionID})">
+        <li ui-sref-active="active" ng-click="updateMenu('projectInfoIsCollapsed')">
+            <a ui-sref="analytics.project.projectInfo.info({id: projectID})">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm">&#xe802;</i>机构信息
                 </span>
             </a>
-        </li>
+        </li> -->
     </ul>
-    <!-- 单个机构时候的主菜单 -->
-    <!-- 全部机构时候的主菜单 -->
-    <ul ng-show="$state.includes('analytics.dashboard') || $state.includes('analytics.institutions.list.**') || $state.includes('analytics.account')" class="nav main-name" id="side-menu">
-        <li ui-sref-active="active">
+    
+    <!-- 单个项目时候的主菜单 -->
+    <!-- 全部项目时候的主菜单 -->
+    <ul ng-show="$state.includes('analytics.reports.**') || $state.includes('analytics.projects.**')" class="nav main-name" id="side-menu">
+        <!-- <li ui-sref-active="active">
             <a ui-sref="analytics.dashboard">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm">&#xe80a;</i>总体数据
                 </span>
             </a>
-        </li>
-        <!-- <li ui-sref-active="active">
-            <a ui-sref="analytics.institutions.list.table">
+        </li> -->
+        <li ng-class="{active: $state.includes('analytics.reports.**')}">
+            <a href="javascript:;" ng-click="updateSummaryMenu('reportsIsCollapsed')">
                 <span class="nav-label">
-                    <i class="icon-lode mr10 vm-a">&#xe80b;</i>机构列表
+                    <i class="icon-lode icon-calc mr10 vm"></i>数据报表
                 </span>
             </a>
-        </li> -->
-        <li ng-class="{'active': $state.includes('analytics.account.**')}">
+            <ul class="nav nav-second-level" uib-collapse="summaryMenu.reportsIsCollapsed" ng-class="{in: !summaryMenu.reportsIsCollapsed}">
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.reports.dashboard">总览</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.reports.assetFeature">资产特征</a>
+                </li>
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.projects.list.**') || $state.includes('analytics.projects.add')}">
+            <a ui-sref="analytics.projects.list.table">
+                <span class="nav-label" ng-click="updateSummaryMenu('projectsIsCollapsed')">
+                    <i class="icon-lode icon-institutions mr10 vm-a"></i>项目列表
+                </span>
+            </a>
+        </li>
+        <!-- <li ng-class="{'active': $state.includes('analytics.account.**')}">
             <a ui-sref="analytics.account.accountset">
                 <span class="nav-label">
                     <i class="icon-lode mr10 vm-a">&#xe80c;</i>账户设置
                 </span>
             </a>
-        </li>
+        </li> -->
     </ul>
-    <!-- 全部机构时候的主菜单 -->
+    <!-- 全部项目时候的主菜单 -->
+
+    <div class="buttons text-center mt20" ng-show="$state.includes('analytics.project.**')">
+        <a ui-sref="analytics.project.settings.add" class="btn btn-dark btn-sm">添加项目</a>
+    </div>
 </div>

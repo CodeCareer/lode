@@ -1,0 +1,228 @@
+<div class="row" kt-animate-panel child="hpanel">
+    <div class="col-lg-12 ">
+        <!-- <div class="content-header clfix">
+            <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">过去三月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">过去六月</label>
+                <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
+            </div>
+        </div> -->
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>现金流监控</h5>
+                <div class="dropdown fl ml25" dropdown>
+                    <div dropdown-toggle class="dropdown-toggle cp">
+                        <span ng-bind="activeInstitutionName"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                    </div>
+                    <div class="dropdown-menu animated fadeIn m-t-xs">
+                        <ul>
+                            <li ng-repeat="inst in institutions" ng-class="{active: params.subprojectID == inst.id}">
+                                <a ng-click="insitutionChange(inst.id, inst.name)" title="inst.name" ng-bind="inst.name">机构1</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="actions fr">
+                    <div class="btn-group btn-group-sm">
+                        <label class="btn btn-dark" ng-model="cashFlowChart.radioDataShowType" uib-btn-radio="'table'">
+                            <i class="icon-lode">&#xe808;</i>
+                        </label>
+                        <label class="btn btn-dark" ng-model="cashFlowChart.radioDataShowType" uib-btn-radio="'chart'">
+                            <i class="icon-lode">&#xe806;</i>
+                        </label>
+                    </div>
+                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="icon-lode">&#xe807;</i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                <div class="chart-table" ng-show="cashFlowChart.radioDataShowType == 'chart'">
+                    <div class="chart-table-heading clfix">
+                        <div class="checkbox-group clfix">
+                            <div class="checkbox">
+                                <input id="planRepayment" kt-echart-legend chart-id="cashFlowChart" name="计划还款金额" type="checkbox" ng-model="cashFlowChart.planRepaymentTab">
+                                <label for="planRepayment">
+                                    计划还款
+                                </label>
+                                <div class="color-icon" style="background-color:{{chartColors[0]}};"></div>
+                            </div>
+                            <div class="checkbox">
+                                <input id="realRepayment" kt-echart-legend chart-id="cashFlowChart" name="实际还款金额" type="checkbox" ng-model="cashFlowChart.realRepaymentTab">
+                                <label for="realRepayment">
+                                    实际还款
+                                </label>
+                                <div class="color-icon" style="background-color:{{chartColors[1]}};"></div>
+                            </div>
+                            <div class="checkbox">
+                                <input id="agreeCashFlow" kt-echart-legend chart-id="cashFlowChart" name="约定兑付现金流" type="checkbox" ng-model="cashFlowChart.agreeCashFlowTab">
+                                <label for="agreeCashFlow">
+                                    约定兑付现金流
+                                </label>
+                                <div class="color-icon" style="background-color:{{chartColors[2]}};"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div id="cashFlowChart" kt-echart chart-options="cashFlowChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table" ng-show="cashFlowChart.radioDataShowType == 'table'">
+                    <div class="table-responsive table-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr class="text-left">
+                                    <th>月份</th>
+                                    <th>还款期数</th>
+                                    <th>计划还款金额</th>
+                                    <th>实际还款金额</th>
+                                    <th>预定对付现金流</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-right" ng-repeat="item in data.results">
+                                    <th class="text-left" ng-bind="item.date"></th>
+                                    <td ng-bind="item.stage"></td>
+                                    <td ng-bind="item.plan_rpmnt_amnt | ktNumberLocate"></td>
+                                    <td ng-bind="item.real_rpmnt_amnt | ktNumberLocate"></td>
+                                    <td ng-bind="item.agree_cash_flow | ktNumberLocate"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="hpanel">
+            <div class="panel-heading clfix">
+            <h5><span ng-bind="overdueRateProductChart.chartDimension"></span>-产品类型</h5>
+                <div class="actions fr">
+                    <div class="btn-group btn-group-sm">
+                        <label class="btn btn-dark" ng-model="overdueRateProductChart.radioDataShowType" uib-btn-radio="'chart'">
+                            <i class="icon-lode">&#xe806;</i>
+                        </label>
+                        <label class="btn btn-dark" ng-model="overdueRateProductChart.radioDataShowType" uib-btn-radio="'table'">
+                            <i class="icon-lode">&#xe808;</i>
+                        </label>
+                    </div>
+                    <!~~ <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="icon-lode">&#xe807;</i>
+                    </a> ~~>
+                </div>
+            </div>
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                <div class="chart-table" >
+                    <div class="chart-table-heading clfix">
+                        <div class="dropdown fl" dropdown>
+                            <div dropdown-toggle class="dropdown-toggle cp">
+                                <span ng-bind="overdueRateProductChart.chartDimension || '逾期率'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                            </div>
+                            <div class="dropdown-menu animated fadeIn m-t-xs">
+                                <ul>
+                                    <li ng-class="{active: overdueRateProductChart.chartDimension == '逾期率'}"><a ng-click="overdueRateProductChart.chartDimension = '逾期率'" title="机构1">逾期率</a></li>
+                                    <li ng-class="{active: overdueRateProductChart.chartDimension == '不良率'}"><a ng-click="overdueRateProductChart.chartDimension = '不良率'" title="机构2">不良率</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-table-body" ng-show="overdueRateProductChart.radioDataShowType == 'chart'">
+                        <div kt-echart chart-options="overdueRateProductChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                    <div class="chart-table-body" ng-show="overdueRateProductChart.radioDataShowType == 'table'">
+                        <div class="table-responsive table-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>产品类型</th>
+                                        <th ng-repeat="date in ::data.dates" ng-bind="::date"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-right" ng-repeat="product in data.products">
+                                        <th class="text-left" ng-bind="::product.name"></th>
+                                        <td ng-repeat="value in product.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="hpanel">
+            <div class="panel-heading clfix">
+            <h5><span ng-bind="overdueRateLocationChart.chartDimension"></span>-地理位置</h5>
+                <div class="actions fr">
+                    <!~~<div class="btn-group btn-group-sm">
+                        <label class="btn btn-dark" ng-model="overdueRateLocationChart.radioDataShowType" uib-btn-radio="'chart'">
+                            <i class="icon-lode">&#xe806;</i>
+                        </label>
+                        <label class="btn btn-dark" ng-model="overdueRateLocationChart.radioDataShowType" uib-btn-radio="'table'">
+                            <i class="icon-lode">&#xe808;</i>
+                        </label>
+                    </div>~~>
+                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="icon-lode">&#xe807;</i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body clfix pr ov-h">
+                <!~~<div class="chart-table" ng-show="overdueRateLocationChart.radioDataShowType == 'chart'">
+                    <div class="chart-table-heading clfix">
+                        <div class="dropdown fl" dropdown>
+                            <div dropdown-toggle class="dropdown-toggle cp">
+                                <span ng-bind="overdueRateLocationChart.chartDimension || '逾期率'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                            </div>
+                            <div class="dropdown-menu animated fadeIn m-t-xs">
+                                <ul>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '逾期率'}"><a ng-click="overdueRateLocationChart.chartDimension = '逾期率'" title="机构1">逾期率</a></li>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '不良率'}"><a ng-click="overdueRateLocationChart.chartDimension = '不良率'" title="机构2">不良率</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-table-body" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                        <div kt-echart chart-options="overdueRateLocationChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>~~>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="dropdown fl" dropdown>
+                            <div dropdown-toggle class="dropdown-toggle cp">
+                                <span ng-bind="overdueRateLocationChart.chartDimension || '逾期率'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                            </div>
+                            <div class="dropdown-menu animated fadeIn m-t-xs">
+                                <ul>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '逾期率'}"><a ng-click="overdueRateLocationChart.chartDimension = '逾期率'" title="机构1">逾期率</a></li>
+                                    <li ng-class="{active: overdueRateLocationChart.chartDimension == '不良率'}"><a ng-click="overdueRateLocationChart.chartDimension = '不良率'" title="机构2">不良率</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-table-body" ng-show="overdueRateLocationChart.radioDataShowType == 'table'">
+                        <div class="table-responsive table-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>省份/城市</th>
+                                        <th ng-repeat="date in data.dates" ng-bind="date"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-right" ng-repeat="location in data.locations">
+                                        <th class="text-left" ng-bind="location.name"></th>
+                                        <td ng-repeat="value in location.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>

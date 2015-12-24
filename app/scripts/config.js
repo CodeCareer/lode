@@ -65,8 +65,8 @@
         });
 
         //默认跳转页面
-        $urlRouterProvider.when('', '/analytics/dashboard'); // for hashbang mode
-        $urlRouterProvider.when('/', '/analytics/dashboard'); // for html5mode
+        $urlRouterProvider.when('', '/analytics/reports/dashboard'); // for hashbang mode
+        $urlRouterProvider.when('/', '/analytics/reports/dashboard'); // for html5mode
         $urlRouterProvider.otherwise('/error/404');
 
         var resolveFactory = function(deps, resolve) {
@@ -100,68 +100,497 @@
                 resolve: resolveFactory(['scripts/controllers/kt-analytics-ctrl.js']),
                 controller: 'ktAnalyticsCtrl'
             })
-            // 总体数据
-            .state('analytics.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'views/analytics/dashboard.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/kt-dashboard-ctrl.js']),
-                controller: 'ktDashboardCtrl',
+            // 总体数据报表
+            .state('analytics.reports', {
+                abstract: true,
+                url: '/reports',
+                template: '<ui-view/>',
                 data: {
-                    pageTitle: '总体数据',
+                    pageTitle: '数据报表',
                 }
             })
-            // 机构列表
-            .state('analytics.institutions', {
+            // 数据报表-总览
+            .state('analytics.reports.dashboard', {
+                url: '/dashboard',
+                templateUrl: 'views/analytics/dashboard.html',
+                resolve: resolveFactory(['scripts/controllers/projects/kt-dashboard-ctrl.js']),
+                controller: 'ktDashboardCtrl',
+                data: {
+                    pageTitle: '数据报表-总览',
+                }
+            })
+            // 数据报表-资产特征
+            .state('analytics.reports.assetFeature', {
+                url: '/asset_feature',
+                templateUrl: 'views/analytics/asset_feature.html',
+                resolve: resolveFactory(['scripts/controllers/projects/kt-asset-feature-ctrl.js']),
+                controller: 'ktAssetFeatureCtrl',
+                data: {
+                    pageTitle: '数据报表-资产特征',
+                }
+            })
+            // 项目列表
+            .state('analytics.projects', {
                 abstract: true,
-                url: '/institutions',
+                url: '/projects',
                 template: '<ui-view/>',
                 data: {
                     breadcrumb: true,
-                    breadcrumbState: 'analytics.institutions.list.table',
-                    pageTitle: '机构列表'
+                    breadcrumbState: 'analytics.projects.list.table',
+                    pageTitle: '项目列表'
                 }
             })
             // multi named view不支持局部刷新view， 所以使用nested view 的方式实现刷新局部刷新
-            /*.state('analytics.institutions.list', {
+            .state('analytics.projects.list', {
                 abstract: true,
                 url: '',
-                templateUrl: 'views/analytics/institutions/list.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/kt-institutions-ctrl.js']),
-                controller: 'ktInstitutionsCtrl',
+                templateUrl: 'views/analytics/projects/list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/kt-projects-ctrl.js']),
+                controller: 'ktProjectsCtrl',
                 data: {
                     breadcrumb: false, //重载父view data
-                    pageTitle: '机构列表'
-                },
+                    pageTitle: '项目列表'
+                }
             })
-            .state('analytics.institutions.list.table', {
+            .state('analytics.projects.list.table', {
                 url: '?page&status&per_page',
-                templateUrl: 'views/analytics/institutions/list_table.html',
-                controller: 'ktInstitutionsTableCtrl',
+                templateUrl: 'views/analytics/projects/list_table.html',
+                controller: 'ktProjectsTableCtrl',
                 data: {
                     breadcrumb: false,
-                    pageTitle: '机构列表'
-                },
-            })*/
-            // 以下是单个机构统计页面
-            .state('analytics.institution', { //单个机构的抽象页面
-                url: '/institutions/:id?date_from&date_to',
+                    pageTitle: '项目列表'
+                }
+            })
+            .state('analytics.projects.add', {
+                url: '/add',
+                templateUrl: 'views/analytics/projects/detail/settings/project_form.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-add-ctrl.js']),
+                controller: 'ktProjectAddCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '添加项目'
+                }
+            })
+            // 以下是单个项目统计页面
+            .state('analytics.project', { //单个项目的抽象页面
+                url: '/projects/:projectID',
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
-                    pageTitle: '机构详情',
+                    pageTitle: '项目详情',
                     specialClass: 'fixed-sidebar analytics-page analytics-detail',
                 }
             })
-            .state('analytics.institution.dashboard', {
+            .state('analytics.project.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'views/analytics/institutions/dashboard.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/kt-institution-dashboard-ctrl.js']),
-                controller: 'ktInstitutionDashboardCtrl',
+                templateUrl: 'views/analytics/projects/dashboard.html',
+                resolve: resolveFactory(['scripts/controllers/projects/kt-project-dashboard-ctrl.js']),
+                controller: 'ktProjectDashboardCtrl',
                 data: {
-                    pageTitle: '机构总览',
+                    pageTitle: '项目总览',
                 }
             })
-            .state('analytics.institution.assetFeature', { //单个机构的资产特抽象页面
+
+            .state('analytics.project.debtors', {
+                abstract: true,
+                url: '/debtors',
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '借款人审批',
+                }
+            })
+            // 借款人审批
+            .state('analytics.project.debtors.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/debtors/list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-debtors-ctrl.js']),
+                controller: 'ktDebtorsCtrl',
+                data: {
+                    pageTitle: '借款人审批',
+                }
+            })
+            .state('analytics.project.debtors.list.table', {
+                url: '?page&per_page',
+                templateUrl: 'views/analytics/projects/detail/debtors/list_table.html',
+                controller: 'ktDebtorsTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '借款人审批-列表'
+                },
+            })
+            .state('analytics.project.debtors.detail', {
+                url: '/:number',
+                abstract: true,
+                template: '<ui-view/>',
+                // templateUrl: 'views/analytics/projects/detail/debtors/list_table.html',
+                // controller: 'ktDebtorsTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '借款人审批-详情'
+                },
+            })
+            .state('analytics.project.debtors.detail.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/debtors/detail/list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-debtor-ctrl.js']),
+                controller: 'ktDebtorCtrl',
+                data: {
+                    pageTitle: '借款人审批-详情',
+                }
+            })
+            .state('analytics.project.debtors.detail.list.table', {
+                url: '?status&page&per_page',
+                templateUrl: 'views/analytics/projects/detail/debtors/detail/list_table.html',
+                controller: 'ktDebtorTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '借款人审批-详情'
+                },
+            })
+            // 审批规则设置
+            .state('analytics.project.rules', {
+                url: '/rules',
+                templateUrl: 'views/analytics/projects/detail/debtors/rules.html',
+                resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-rules-ctrl.js']),
+                controller: 'ktRulesCtrl',
+                data: {
+                    pageTitle: '借款人审批-规则设置',
+                }
+            })
+            // 审批规则-黑名单
+            .state('analytics.project.blacklist', {
+                abstract: true,
+                url: '/blacklist',
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '借款人审批-黑名单',
+                }
+            })
+            .state('analytics.project.blacklist.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/debtors/blacklist_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-blacklist-ctrl.js']),
+                controller: 'ktBlacklistCtrl',
+                data: {
+                    pageTitle: '借款人审批-黑名单',
+                }
+            })
+            .state('analytics.project.blacklist.list.table', {
+                url: '?page&per_page',
+                templateUrl: 'views/analytics/projects/detail/debtors/blacklist_table.html',
+                controller: 'ktBlacklistTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '借款人审批-黑名单'
+                },
+            })
+
+            // 放款管理
+            .state('analytics.project.loanPlans', {
+                abstract: true,
+                url: '/loan_plans',
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '放款管理',
+                }
+            })
+            .state('analytics.project.loanPlans.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-ctrl.js']),
+                controller: 'ktLoanPlansCtrl',
+                data: {
+                    pageTitle: '放款管理',
+                }
+            })
+            .state('analytics.project.loanPlans.list.table', {
+                url: '?status&page&per_page',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/list_table.html',
+                controller: 'ktLoanPlansTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '放款管理-列表'
+                }
+            })
+            .state('analytics.project.loanPlans.detail', {
+                url: '/:number',
+                abstract: true,
+                template: '<ui-view/>',
+                // templateUrl: 'views/analytics/projects/detail/loan_plans/detail_layout.html',
+                // resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlan-ctrl.js']),
+                // controller: 'ktLoanPlanCtrl',
+                data: {
+                    pageTitle: '放款管理-摘要',
+                }
+            })
+            .state('analytics.project.loanPlans.detail.summary', {
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/detail.html',
+                resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlan-ctrl.js']),
+                controller: 'ktLoanPlanCtrl',
+                data: {
+                    pageTitle: '放款管理-摘要',
+                }
+            })
+            .state('analytics.project.loanPlans.detail.plans', {
+                url: '/plans',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/plans_list.html',
+                resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-plans-ctrl.js']),
+                controller: 'ktLoanPlansPlansCtrl',
+                data: {
+                    pageTitle: '放款管理-放款计划明细',
+                }
+            })
+            .state('analytics.project.loanPlans.detail.results', {
+                url: '/results',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/results_list.html',
+                resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-results-ctrl.js']),
+                controller: 'ktLoanPlansResultsCtrl',
+                data: {
+                    pageTitle: '放款管理-放款结果明细',
+                }
+            })
+            .state('analytics.project.loanPlans.detail.repayments', {
+                url: '/repayments',
+                templateUrl: 'views/analytics/projects/detail/loan_plans/repayments_list.html',
+                resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-repayments-ctrl.js']),
+                controller: 'ktLoanPlansRepaymentsCtrl',
+                data: {
+                    pageTitle: '放款管理-放款结果明细',
+                }
+            })
+            // 还款管理
+            .state('analytics.project.repayments', {
+                abstract: true,
+                url: '/repayments',
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '还款管理',
+                }
+            })
+            .state('analytics.project.repayments.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/repayments/list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/repayments/kt-repayments-ctrl.js']),
+                controller: 'ktRepaymentsCtrl',
+                data: {
+                    pageTitle: '还款管理-还款清单列表',
+                }
+            })
+            .state('analytics.project.repayments.list.table', {
+                url: '?sub_project_id&page&per_page',
+                templateUrl: 'views/analytics/projects/detail/repayments/list_table.html',
+                controller: 'ktRepaymentsTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '还款管理-还款清单列表'
+                }
+            })
+            .state('analytics.project.repayments.detail', {
+                url: '/:number',
+                templateUrl: 'views/analytics/projects/detail/repayments/detail.html',
+                resolve: resolveFactory(['scripts/controllers/projects/repayments/kt-repayment-ctrl.js']),
+                controller: 'ktRepaymentCtrl',
+                data: {
+                    pageTitle: '还款管理-还款账单明细',
+                }
+            })
+            // 财务管理
+            .state('analytics.project.finance', {
+                abstract: true,
+                url: '/finance',
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '财务管理',
+                }
+            })
+            .state('analytics.project.finance.billList', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/finance/bill_list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/finance/kt-bills-ctrl.js']),
+                controller: 'ktBillsCtrl',
+                data: {
+                    pageTitle: '还款对账-还款账单列表',
+                }
+            })
+            .state('analytics.project.finance.billList.table', {
+                url: '?sub_project_id&page&per_page&type&number',
+                templateUrl: 'views/analytics/projects/detail/finance/bill_list_table.html',
+                controller: 'ktBillsTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '还款对账-还款账单列表'
+                }
+            })
+            .state('analytics.project.finance.billDetail', {
+                url: '/:billID',
+                templateUrl: 'views/analytics/projects/detail/finance/bill_detail.html',
+                resolve: resolveFactory(['scripts/controllers/projects/finance/kt-bill-ctrl.js']),
+                controller: 'ktBillCtrl',
+                data: {
+                    pageTitle: '还款对账-还款账单明细',
+                }
+            })
+            .state('analytics.project.paymentClear', {
+                url: '/payment_clear',
+                templateUrl: 'views/analytics/projects/detail/finance/payment_clear.html',
+                resolve: resolveFactory(['scripts/controllers/projects/finance/kt-paymentClear-ctrl.js']),
+                controller: 'ktPaymentClearCtrl',
+                data: {
+                    pageTitle: '回款清算',
+                }
+            })
+            .state('analytics.project.otherIncome', {
+                url: '/other_income',
+                abstract: true,
+                templateUrl: 'views/analytics/projects/detail/finance/other_income_list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/finance/kt-otherIncomes-ctrl.js']),
+                controller: 'ktOtherIncomesCtrl',
+                data: {
+                    pageTitle: '其他收益',
+                }
+            })
+            .state('analytics.project.otherIncome.table', {
+                url: '?page&per_page',
+                templateUrl: 'views/analytics/projects/detail/finance/other_income_list_table.html',
+                controller: 'ktOtherIncomesTableCtrl',
+                data: {
+                    pageTitle: '其他收益',
+                }
+            })
+            // 现金流监控
+            .state('analytics.project.cashFlowMonitor', {
+                url: '/cash_flow_monitor?subproject_id',
+                templateUrl: 'views/analytics/projects/detail/cash_flow_monitor/detail.html',
+                resolve: resolveFactory(['scripts/controllers/projects/cash_flow_monitor/kt-cashFlowMonitor-ctrl.js']),
+                controller: 'ktCashFlowMonitorCtrl',
+                data: {
+                    pageTitle: '现金流监控',
+                }
+            })
+            .state('analytics.project.asset', { //单个项目的资产特抽象页面
+                url: '/asset?date_from&date_to',
+                abstract: true,
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '资产表现',
+                }
+            })
+            .state('analytics.project.asset.feature', {
+                url: '/feature',
+                templateUrl: 'views/analytics/projects/detail/asset/feature.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset/kt-feature-ctrl.js']),
+                controller: 'ktAssetFeatureCtrl',
+                data: {
+                    pageTitle: '资产表现-资产特征',
+                }
+            })
+            .state('analytics.project.asset.users', {
+                url: '/users',
+                templateUrl: 'views/analytics/projects/detail/asset/users.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset/kt-users-ctrl.js']),
+                controller: 'ktUserFeatureCtrl',
+                data: {
+                    pageTitle: '资产表现-人群特征',
+                }
+            })
+            .state('analytics.project.asset.overdue', {
+                url: '/overdue',
+                templateUrl: 'views/analytics/projects/detail/asset/overdue.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset/kt-overdue-ctrl.js']),
+                controller: 'ktOverdueCtrl',
+                data: {
+                    pageTitle: '资产表现-逾期分析',
+                }
+            })
+            // 项目设置
+            .state('analytics.project.settings', { //单个项目的资产特抽象页面
+                url: '/settings',
+                abstract: true,
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '项目设置',
+                }
+            })
+            .state('analytics.project.settings.info', {
+                url: '/info',
+                templateUrl: 'views/analytics/projects/detail/settings/info.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-info-ctrl.js']),
+                controller: 'ktProjectInfoCtrl',
+                data: {
+                    pageTitle: '项目设置-基本信息',
+                }
+            })
+            .state('analytics.project.settings.edit', {
+                url: '/edit',
+                templateUrl: 'views/analytics/projects/detail/settings/project_form.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-edit-ctrl.js']),
+                controller: 'ktProjectEditCtrl',
+                data: {
+                    pageTitle: '项目设置-编辑信息',
+                }
+            })
+            .state('analytics.project.settings.add', {
+                url: '/add',
+                templateUrl: 'views/analytics/projects/detail/settings/project_form.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-add-ctrl.js']),
+                controller: 'ktProjectAddCtrl',
+                data: {
+                    pageTitle: '项目设置-添加项目',
+                }
+            })
+            .state('analytics.project.settings.subProject', {
+                url: '/subprojects',
+                abstract: true,
+                template: '<ui-view/>',
+                data: {
+                    pageTitle: '项目设置',
+                }
+            })
+            .state('analytics.project.settings.subProject.list', {
+                abstract: true,
+                url: '',
+                templateUrl: 'views/analytics/projects/detail/settings/subproject_list_layout.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subprojects-ctrl.js']),
+                controller: 'ktSubProjectsCtrl',
+                data: {
+                    pageTitle: '项目设置-子项目列表',
+                }
+            })
+            .state('analytics.project.settings.subProject.list.table', {
+                url: '?page&per_page',
+                templateUrl: 'views/analytics/projects/detail/settings/subproject_list_table.html',
+                controller: 'ktSubProjectsTableCtrl',
+                data: {
+                    breadcrumb: false,
+                    pageTitle: '项目设置-子项目列表'
+                }
+            })
+            .state('analytics.project.settings.subProject.add', {
+                url: '/subprojects/add',
+                templateUrl: 'views/analytics/projects/detail/settings/subproject_form.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subproject-add-ctrl.js']),
+                controller: 'ktSubProjectAddCtrl',
+                data: {
+                    pageTitle: '项目设置-添加子项目',
+                }
+            })
+            .state('analytics.project.settings.subProject.edit', {
+                url: '/subprojects/:subProjectID/edit',
+                templateUrl: 'views/analytics/projects/detail/settings/subproject_form.html',
+                resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subproject-edit-ctrl.js']),
+                controller: 'ktSubProjectEditCtrl',
+                data: {
+                    pageTitle: '项目设置-编辑子项目',
+                }
+            })
+            /*.state('analytics.project.assetFeature', { //单个项目的资产特抽象页面
                 url: '/asset_feature',
                 abstract: true,
                 template: '<ui-view/>',
@@ -169,43 +598,43 @@
                     pageTitle: '资产特征',
                 }
             })
-            .state('analytics.institution.assetFeature.timelimit', {
+            .state('analytics.project.assetFeature.timelimit', {
                 url: '/timelimit',
-                templateUrl: 'views/analytics/institutions/detail/asset_feature/time_limit.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-timelimit-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/asset_feature/time_limit.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset_feature/kt-timelimit-ctrl.js']),
                 controller: 'ktAssetFeatureTimelimitCtrl',
                 data: {
                     pageTitle: '资产特征-期限',
                 }
             })
-            .state('analytics.institution.assetFeature.amount', {
+            .state('analytics.project.assetFeature.amount', {
                 url: '/amount',
-                templateUrl: 'views/analytics/institutions/detail/asset_feature/amount.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-amount-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/asset_feature/amount.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset_feature/kt-amount-ctrl.js']),
                 controller: 'ktAssetFeatureAmountCtrl',
                 data: {
                     pageTitle: '资产特征-额度',
                 }
-            })
-            /*.state('analytics.institution.assetFeature.type', {
+            })*/
+            /*.state('analytics.project.assetFeature.type', {
                 url: '/type',
-                templateUrl: 'views/analytics/institutions/detail/asset_feature/type.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-type-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/asset_feature/type.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset_feature/kt-type-ctrl.js']),
                 controller: 'ktAssetFeatureTypeCtrl',
                 data: {
                     pageTitle: '资产特征-类型',
                 }
             })
-            .state('analytics.institution.assetFeature.location', {
+            .state('analytics.project.assetFeature.location', {
                 url: '/location',
-                templateUrl: 'views/analytics/institutions/detail/asset_feature/location.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/asset_feature/kt-location-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/asset_feature/location.html',
+                resolve: resolveFactory(['scripts/controllers/projects/asset_feature/kt-location-ctrl.js']),
                 controller: 'ktAssetFeatureLocationCtrl',
                 data: {
                     pageTitle: '资产特征-地理',
                 }
             })
-            .state('analytics.institution.usersFeature', { //单个机构的用户特抽象页面
+            .state('analytics.project.usersFeature', { //单个项目的用户特抽象页面
                 url: '/users_feature',
                 abstract: true,
                 template: '<ui-view/>',
@@ -213,34 +642,34 @@
                     pageTitle: '人群特征',
                 }
             })
-            .state('analytics.institution.usersFeature.gender', {
+            .state('analytics.project.usersFeature.gender', {
                 url: '/gender',
-                templateUrl: 'views/analytics/institutions/detail/users_feature/gender.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-gender-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/users_feature/gender.html',
+                resolve: resolveFactory(['scripts/controllers/projects/users_feature/kt-gender-ctrl.js']),
                 controller: 'ktUsersFeatureGenderCtrl',
                 data: {
                     pageTitle: '人群特征-期限',
                 }
             })
-            .state('analytics.institution.usersFeature.age', {
+            .state('analytics.project.usersFeature.age', {
                 url: '/age',
-                templateUrl: 'views/analytics/institutions/detail/users_feature/age.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-age-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/users_feature/age.html',
+                resolve: resolveFactory(['scripts/controllers/projects/users_feature/kt-age-ctrl.js']),
                 controller: 'ktUsersFeatureAgeCtrl',
                 data: {
                     pageTitle: '人群特征-额度',
                 }
             })
-            .state('analytics.institution.usersFeature.income', {
+            .state('analytics.project.usersFeature.income', {
                 url: '/income',
-                templateUrl: 'views/analytics/institutions/detail/users_feature/income.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/users_feature/kt-income-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/users_feature/income.html',
+                resolve: resolveFactory(['scripts/controllers/projects/users_feature/kt-income-ctrl.js']),
                 controller: 'ktUsersFeatureIncomeCtrl',
                 data: {
                     pageTitle: '人群特征-类型',
                 }
             })*/
-            .state('analytics.institution.overdueAnalytics', { //单个机构的用户特抽象页面
+            .state('analytics.project.overdueAnalytics', { //单个项目的用户特抽象页面
                 url: '/overdue_analytics',
                 abstract: true,
                 template: '<ui-view/>',
@@ -248,42 +677,42 @@
                     pageTitle: '逾期分析',
                 }
             })
-            .state('analytics.institution.overdueAnalytics.overdueRate', {
+            .state('analytics.project.overdueAnalytics.overdueRate', {
                 url: '/overdue_rate',
-                templateUrl: 'views/analytics/institutions/detail/overdue_analytics/overdue_rate.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/overdue_analytics/kt-overdue-rate-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/overdue_analytics/overdue_rate.html',
+                resolve: resolveFactory(['scripts/controllers/projects/overdue_analytics/kt-overdue-rate-ctrl.js']),
                 controller: 'ktOverdueAnalyticsOverdueRateCtrl',
                 data: {
                     pageTitle: '逾期分析-期限',
                 }
             })
-            .state('analytics.institution.overdueAnalytics.migrateRate', {
+            .state('analytics.project.overdueAnalytics.migrateRate', {
                 url: '/migrate_rate',
-                templateUrl: 'views/analytics/institutions/detail/overdue_analytics/migrate_rate.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/overdue_analytics/kt-migrate-rate-ctrl.js']),
+                templateUrl: 'views/analytics/projects/detail/overdue_analytics/migrate_rate.html',
+                resolve: resolveFactory(['scripts/controllers/projects/overdue_analytics/kt-migrate-rate-ctrl.js']),
                 controller: 'ktOverdueAnalyticsMigrateRateCtrl',
                 data: {
                     pageTitle: '逾期分析-额度',
                 }
             })
-            .state('analytics.institution.institutionInfo', { //单个机构的用户特抽象页面
-                url: '/institution_info',
+            .state('analytics.project.projectInfo', { //单个项目的用户特抽象页面
+                url: '/project_info',
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
                     pageTitle: '机构信息',
                 }
             })
-            .state('analytics.institution.institutionInfo.info', {
+            .state('analytics.project.projectInfo.info', {
                 url: '/info',
-                templateUrl: 'views/analytics/institutions/detail/institution_info/info.html',
-                resolve: resolveFactory(['scripts/controllers/institutions/institution_info/kt-info-ctrl.js']),
-                controller: 'ktInstitutionInfoInfoCtrl',
+                templateUrl: 'views/analytics/projects/detail/project_info/info.html',
+                resolve: resolveFactory(['scripts/controllers/projects/project_info/kt-info-ctrl.js']),
+                controller: 'ktProjectInfoInfoCtrl',
                 data: {
                     pageTitle: '机构信息',
                 }
             })
-            
+
 
         /**
          * 账户相关，包括平台内的账户信息、设置以及登录、注册等
@@ -298,10 +727,10 @@
                     pageTitle: '我的账户',
                 }
             })
-            /*.state('analytics.account.institution', {
-                url: '/institution',
-                templateUrl: 'views/analytics/account/institution.html',
-                controller: 'ktInstitutionCtrl',
+            /*.state('analytics.account.project', {
+                url: '/project',
+                templateUrl: 'views/analytics/account/project.html',
+                controller: 'ktProjectCtrl',
                 data: {
                     breadcrumb: false,
                     pageTitle: '机构信息',
@@ -361,11 +790,12 @@
              */
             .state('error', {
                 abstract: true,
-                url: '/error',
+                url: '/error?apimock',
                 templateUrl: 'views/common/empty.html',
                 // resolve: resolveFactory(['styles/portal.css']),
                 data: {
                     pageTitle: '错误',
+                    specialClass: 'error-page'
                 }
             })
             .state('error.404', {

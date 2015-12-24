@@ -1,0 +1,20 @@
+{
+    "totalItems": 2,
+    "other_incomes": [{
+        "id": "1",
+        "create_at": "2015-02-12",
+        "desc": "",
+        "type": "other",
+        "origin": "其他来源",
+        "amount": 10000,
+        "name": "浮动收益"
+    },{
+        "id": "2",
+        "create_at": "2015-02-12",
+        "desc": "",
+        "type": "other",
+        "origin": "其他来源",
+        "amount": 10000,
+        "name": "其他收益"
+    }]
+}

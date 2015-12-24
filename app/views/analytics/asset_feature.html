@@ -1,0 +1,97 @@
+<div class="row" kt-animate-panel child="hpanel" effect="zoomIn" delay="0.1">
+    <div class="col-lg-12 ">
+        <!-- <div class="content-header clfix">
+        </div> -->
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>资产特征</h5>
+                <div class="dropdown fl ml25" dropdown>
+                    <div dropdown-toggle class="dropdown-toggle cp">
+                        <span ng-bind="institutionName || '机构1'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                    </div>
+                    <div class="dropdown-menu animated fadeIn m-t-xs">
+                        <ul>
+                            <li ng-repeat="inst in institutions" ng-class="{active: institutionName == inst.name}"><a ng-click="insitutionChange(inst.id, inst.name)" title="inst.name" ng-bind="inst.name">机构1</a></li>
+                            <!-- <li ng-class="{active: institutionName == inst.name}"><a ng-click="institutionName = inst.name" title="Top5" ng-bind="inst.name"></a></li>
+                            <li ng-class="{active: institutionName == inst.name}"><a ng-click="institutionName = inst.name" title="Top10" ng-bind="inst.name"></a></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="actions fr">
+                    <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
+                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'all'">全部</label>
+                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="false" show-shortcuts="false">任意</label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">按贷款期限来分</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="timelimitsChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">按单笔贷款额度分</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="amountsChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">按贷款类型分</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="typesChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">按机构来源分</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="institutionsChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">贷款地理来源top10</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="locationsChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">贷款人性别分布
+                        </div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="gendersChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table">
+                    <div class="chart-table-heading clfix">
+                        <div class="f14 pl10">贷款人年龄分布</div>
+                    </div>
+                    <div class="chart-table-body">
+                        <div kt-echart chart-options="agesChart.chartOptions" style="height:400px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

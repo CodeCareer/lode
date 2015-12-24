@@ -1,0 +1,18 @@
+{
+    "totalItems": 2,
+    "loan_plans": [{
+        "id": "1",
+        "loan_amount": 10000,
+        "create_at": "2015-02-12",
+        "status": "initial",
+        "number": "15XEF0201",
+        "name": "15信而富01"
+    },{
+        "id": "2",
+        "loan_amount": 10000,
+        "create_at": "2015-02-12",
+        "status": "done",
+        "number": "15XEF0202",
+        "name": "15信而富02"
+    }]
+}

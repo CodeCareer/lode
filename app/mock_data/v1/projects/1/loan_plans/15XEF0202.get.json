@@ -1,0 +1,35 @@
+{
+    "totalItems": 3,
+    "number": "15XEF0201",
+    "status": "done",
+    "name": "15信而富01",
+    "approve_at": "2015-02-28",
+    "id": "15XEF0201",
+    "summary": ["2015-03-09", 1000000, 100, 10],
+    "repayments": [{
+        "repay_at": "2015-03-09",
+        "stage": 1,
+        "amount": 100000,
+        "repay_service": 1000,
+        "repay_interest": 1000,
+        "cash_amount": 100000,
+        "differ_amount": 1000
+    }, {
+        "repay_at": "2015-04-09",
+        "stage": 2,
+        "amount": 200000,
+        "repay_service": 2000,
+        "repay_interest": 1000,
+        "cash_amount": 100000,
+        "differ_amount": 1000
+    }, {
+        "repay_at": "2015-05-09",
+        "stage": 3,
+        "amount": 300000,
+        "repay_service": 3000,
+        "repay_interest": 3000,
+        "cash_amount": 300000,
+        "differ_amount": 1000
+    }]
+
+}

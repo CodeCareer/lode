@@ -5,7 +5,7 @@
         .controller('ktInstitutionDashboardCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
 
             $scope.$emit('activeInstitutionChange', {
-                id: $stateParams.id
+                projectID: $stateParams.projectID
             })
 
             $scope.Math = window.Math;
@@ -53,7 +53,7 @@
                 date_to = datePeriod[1]
 
                 ktReportService.get($.extend({
-                    id: $stateParams.id,
+                    projectID: $stateParams.projectID,
                     type: 'total',
                     date_from: date_from,
                     date_to: date_to
