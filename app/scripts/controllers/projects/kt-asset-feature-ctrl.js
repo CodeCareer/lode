@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureCtrl', function($scope, $stateParams, ktReportService, ktDateHelper) {
+        .controller('ktAssetFeatureCtrl', function($scope, $stateParams, ktReportService, ktInstitutionsService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -10,34 +10,18 @@
 
             $scope.radioPeriod = 'all'
             $scope.radioPeriodCustom = 'custom'
-            
-            $scope.institutions = [{
-                id: 1,
-                name: '机构1',
-            },{
-                id: 2,
-                name: '机构2',
-            }]
-            $scope.institutionName = $scope.institutions[0].name
-            $scope.insitutionChange = function (id, name) {
+
+            $scope.institutions = []        
+            $scope.insitutionChange = function(id, name) {
                 $scope.institutionName = name
-                // to do update view
+                getData(id)
             }
 
-            ktReportService.get({
-                type: 'total'
-            }, function(data) {
-                $.extend($scope, data)
-                // $scope.summary = data.summary
+            ktInstitutionsService.get(function (data) {
+                $scope.institutions = data.institutions
+                $scope.institutionName = $scope.institutions[0].name
+                getData($scope.institutions[0].id)
             })
-
-            // $scope.typesChart = {
-            //     chartOptions: {}
-            // }
-
-            // $scope.institutionsChart = {
-            //     chartOptions: {}
-            // }
 
             $scope.timelimitsChart = {
                 chartOptions: {}
@@ -71,7 +55,7 @@
                 }
             }
 
-            function getData() {
+            function getData(instID) {
                 var date_from, date_to, datePeriod
                 datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
                 datePeriod = datePeriod.split('~')
@@ -80,44 +64,11 @@
 
                 ktReportService.get({
                     type: 'asset_features',
+                    instID: instID,
                     date_from: date_from,
                     date_to: date_to
                 }, function(data) {
                     $scope.data = data
-
-                    /*$scope.typesChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.pluck(data.types, 'name')
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: data.dates
-                        }],
-
-                        series: _.map(data.types, function(v) {
-                            v.type = 'bar'
-                            v.stack = "按类型"
-                            v.barWidth = 40
-                            return v
-                        })
-                    })
-
-                    $scope.institutionsChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.pluck(data.institutions, 'name')
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: data.dates
-                        }],
-
-                        series: _.map(data.institutions, function(v) {
-                            v.type = 'bar'
-                            v.stack = "按机构"
-                            v.barWidth = 40
-                            return v
-                        })
-                    })*/
 
                     $scope.timelimitsChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
@@ -153,61 +104,61 @@
                         })
                     })
 
-                     $scope.locationsChart.chartOptions = $.extend(true, {}, chartOptions, {
-                         legend: {
-                             data: _.pluck(data.rem_prncp_by_loc, 'name')
-                         },
-                         xAxis: [{
-                             type: 'category',
-                             data: data.dates
-                         }],
+                    $scope.locationsChart.chartOptions = $.extend(true, {}, chartOptions, {
+                        legend: {
+                            data: _.pluck(data.rem_prncp_by_loc, 'name')
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: data.dates
+                        }],
 
-                         series: _.map(data.rem_prncp_by_loc, function(v) {
-                             v.type = 'bar'
-                             v.stack = "按地理位置"
-                             v.barWidth = 40
-                             return v
-                         })
-                     })
+                        series: _.map(data.rem_prncp_by_loc, function(v) {
+                            v.type = 'bar'
+                            v.stack = "按地理位置"
+                            v.barWidth = 40
+                            return v
+                        })
+                    })
 
-                     $scope.gendersChart.chartOptions = $.extend(true, {}, chartOptions, {
-                         legend: {
-                             data: _.pluck(data.rem_prncp_by_gender, 'name')
-                         },
-                         xAxis: [{
-                             type: 'category',
-                             data: data.dates
-                         }],
+                    $scope.gendersChart.chartOptions = $.extend(true, {}, chartOptions, {
+                        legend: {
+                            data: _.pluck(data.rem_prncp_by_gender, 'name')
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: data.dates
+                        }],
 
-                         series: _.map(data.rem_prncp_by_gender, function(v) {
-                             v.type = 'bar'
-                             v.stack = "按性别"
-                             v.barWidth = 40
-                             return v
-                         })
-                     })
+                        series: _.map(data.rem_prncp_by_gender, function(v) {
+                            v.type = 'bar'
+                            v.stack = "按性别"
+                            v.barWidth = 40
+                            return v
+                        })
+                    })
 
-                     $scope.agesChart.chartOptions = $.extend(true, {}, chartOptions, {
-                         legend: {
-                             data: _.pluck(data.rem_prncp_by_age, 'name')
-                         },
-                         xAxis: [{
-                             type: 'category',
-                             data: data.dates
-                         }],
+                    $scope.agesChart.chartOptions = $.extend(true, {}, chartOptions, {
+                        legend: {
+                            data: _.pluck(data.rem_prncp_by_age, 'name')
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: data.dates
+                        }],
 
-                         series: _.map(data.rem_prncp_by_age, function(v) {
-                             v.type = 'bar'
-                             v.stack = "按年龄"
-                             v.barWidth = 40
-                             return v
-                         })
-                     })
+                        series: _.map(data.rem_prncp_by_age, function(v) {
+                            v.type = 'bar'
+                            v.stack = "按年龄"
+                            v.barWidth = 40
+                            return v
+                        })
+                    })
                 })
             }
 
             // 初始加载数据
-            getData()
+            // getData()
 
         })
 })();

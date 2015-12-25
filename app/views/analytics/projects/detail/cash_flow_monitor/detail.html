@@ -13,12 +13,12 @@
                 <h5>现金流监控</h5>
                 <div class="dropdown fl ml25" dropdown>
                     <div dropdown-toggle class="dropdown-toggle cp">
-                        <span ng-bind="activeInstitutionName"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                        <span ng-bind="getSubProjectName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
                     </div>
                     <div class="dropdown-menu animated fadeIn m-t-xs">
                         <ul>
-                            <li ng-repeat="inst in institutions" ng-class="{active: params.subprojectID == inst.id}">
-                                <a ng-click="insitutionChange(inst.id, inst.name)" title="inst.name" ng-bind="inst.name">机构1</a>
+                            <li ng-repeat="subProject in subProjects" ng-class="{active: params.sub_project_id == subProject.id}">
+                                <a ng-click="subProjectChange(subProject.id, subProject.name)" title="subProject.name" ng-bind="subProject.name"></a>
                             </li>
                         </ul>
                     </div>
@@ -33,7 +33,7 @@
                         </label>
                     </div>
                     <a class="download-data f18 ml5 pr10 pl10 va-2">
-                        <i class="icon-lode">&#xe807;</i>
+                        <i class="glyphicon glyphicon-download-alt"></i>
                     </a>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         </label>
                     </div>
                     <!~~ <a class="download-data f18 ml5 pr10 pl10 va-2">
-                        <i class="icon-lode">&#xe807;</i>
+                        <i class="glyphicon glyphicon-download-alt"></i>
                     </a> ~~>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                         </label>
                     </div>~~>
                     <a class="download-data f18 ml5 pr10 pl10 va-2">
-                        <i class="icon-lode">&#xe807;</i>
+                        <i class="glyphicon glyphicon-download-alt"></i>
                     </a>
                 </div>
             </div>

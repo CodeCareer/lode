@@ -45,7 +45,7 @@
                         switch (status) {
                             case 'initial':
                                 return '<i class="glyphicon glyphicon-time initial-color mr5"></i>' + st.name;
-                            case 'approved': 
+                            case 'approved':
                             case 'done':
                             case 'normal':
                                 return '<i class="glyphicon glyphicon-ok approved-color mr5"></i>' + st.name;
@@ -59,6 +59,49 @@
                                 return '<i class="glyphicon glyphicon-question-sign warn-color mr5"></i>' + '未知';
                         }
                         // return st.name || '未知'
+                    }
+                },
+                getSubProjectName: function($scope) {
+                    return function(id) {
+                        var subProject = _.find($scope.subProjects, function(v) {
+                            return v.id === (id || $scope.params.sub_project_id)
+                        }) || {}
+                        return $scope.params.sub_project_id ? subProject.name : '全部'
+                    }
+                },
+                getOwnFunds: function() {
+                    return {
+                        radioDataShowType: 'all', // all ,single
+                        fieldNames: [
+                            '自有资金投放额',
+                            '累计成交金额',
+                            '未收回自有资金投放额',
+                            '逾期率',
+                            '不良率',
+                            '预期收益',
+                            '总收益',
+                            '已兑付收益',
+                            '其他收入',
+                            '浮动收益'
+                        ],
+                        fieldNameTips: ['', '', '', '0，180', '90，180', '约定收益率', '', '', '融资顾问费、评审费等', '']
+                    }
+                },
+                getGuaranteeLoan: function() {
+                    return {
+                        radioDataShowType: 'all', // all ,single
+                        fieldNames: [
+                            '担保责任额',
+                            '累计成交金额',
+                            '担保责任余额',
+                            '逾期率',
+                            '不良率',
+                            '总收益',
+                            '担保费',
+                            '其他收入',
+                            '浮动收益'
+                        ],
+                        fieldNameTips: ['', '', '', '0，180', '90，180', '', '费率', '', '']
                     }
                 }
             }

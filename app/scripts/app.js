@@ -11,6 +11,7 @@
         'ngSanitize',
         'ngMessages',
         'ngAnimate',
+        'cgNotify',
         'apiMock',
         'angulartics',
         'angulartics.baidu',

@@ -31,19 +31,19 @@
         $scope.statusList = [{
             name: '全部',
             value: 'all'
-        },{
+        }, {
             name: '未审批',
             value: 'initial'
-        },{
+        }, {
             name: '已通过',
             value: 'approved'
-        },{
+        }, {
             name: '已拒绝',
             value: 'rejected'
         }]
 
         $scope.getStatusName = function(status) {
-            var st = _.find($scope.statusList, function (v) {
+            var st = _.find($scope.statusList, function(v) {
                 return v.value === (status || $scope.params.status)
             }) || {}
             return st.name || '未知'
@@ -65,8 +65,8 @@
                         return number
                     }
                 },*/
-                controller: function($scope, $state, $uibModalInstance, ktDebtorsService) {
-                    $scope.items = [{
+                controller: function($scope, $timeout, $state, $stateParams, $uibModalInstance, ktDebtorsService, ktRulesService) {
+                    $scope.rules = [{
                         id: '1',
                         name: '规则1',
                         condition: '借款人年龄小于20',
@@ -83,20 +83,35 @@
                         result: '通过'
                     }]
 
+                    ktRulesService.get({
+                        projectID: projectID
+                    }, function(data) {
+                        var conMaps = _.object(_.pluck(data.conditions, 'value'), _.pluck(data.conditions, 'name'))
+                        var resMaps = _.object(_.pluck(data.results, 'value'), _.pluck(data.results, 'name'))
+                        var fieldsMap = _.object(_.pluck(data.fields, 'value'), _.pluck(data.fields, 'name'))
+                        _.each(data.rules, function(vr) {
+                            vr.condition_des = '借款人' + fieldsMap[vr.field] + conMaps[vr.condition] + vr.value
+                            vr.result_des = resMaps[vr.result]
+                        })
+                        $scope.rules = data.rules
+                    })
+
                     $scope.selected = {}
-                    $scope.selected.items = _.pluck($scope.items, 'id')
+                    $scope.selected.rules = _.pluck($scope.rules, 'id')
                     $scope.number = number
 
                     $scope.checkAll = true
                     $scope.filterByBlacklist = true
 
                     $scope.checkAllToggle = function() {
-                        $scope.filterByBlacklist = $scope.checkAll ? true :false;
-                        $scope.selected.items = $scope.checkAll ? _.pluck($scope.items, 'id') : [];
+                        $scope.filterByBlacklist = $scope.checkAll ? true : false;
+                        $scope.selected.rules = $scope.checkAll ? _.pluck($scope.rules, 'id') : [];
                     }
 
                     $scope.checkListChange = function() {
-                        $scope.checkAll = $scope.selected.items.length === $scope.items.length && $scope.filterByBlacklist === true 
+                        $timeout(function() {
+                            $scope.checkAll = $scope.selected.rules.length === $scope.rules.length && $scope.filterByBlacklist === true
+                        }, 10)
                     }
 
                     $scope.ok = function() {
@@ -106,7 +121,7 @@
                             projectID: projectID,
                             number: $scope.number,
                             by_bl: $scope.filterByBlacklist,
-                            rules: $scope.selected.items
+                            rules: $scope.selected.rules
                         }, function(data) {
                             $uibModalInstance.close(data);
                         }, function(data) {
@@ -125,7 +140,7 @@
                         })
                     }
 
-                    $scope.gotoBlacklist = function () {
+                    $scope.gotoBlacklist = function() {
                         $uibModalInstance.dismiss('cancel');
                         $state.go('analytics.project.blacklist.list.table', {
                             projectID: projectID
@@ -138,9 +153,9 @@
             modalInstance.result.then(function(data) {
                 if (data.result)
                     $scope.debtor.status = 'done'
-                    $.each($scope.debtor.borrowers, function(i, e) {
-                        e.status = data.result[i]
-                    })
+                $.each($scope.debtor.borrowers, function(i, e) {
+                    e.status = data.result[i]
+                })
             })
         }
 
@@ -150,22 +165,22 @@
         // $scope.debtor;
         // $scope.params.maxSize = 5
 
-        
+
         // $scope.getStatusName($location.search().borrower_status)
-            // $.extend($scope, ktProjectsHelper)
+        // $.extend($scope, ktProjectsHelper)
 
         $scope.params.projectID = $stateParams.projectID
         $scope.params.number = $stateParams.number
 
         var search = $location.search()
         $.extend($scope.params, search)
-        /*$scope.goDetail = function($event, projectId) {
-            $event.stopPropagation()
-            $event.preventDefault()
-            $state.go('analytics.project.dashboard', {
-                id: projectId
-            })
-        }*/
+            /*$scope.goDetail = function($event, projectId) {
+                $event.stopPropagation()
+                $event.preventDefault()
+                $state.go('analytics.project.dashboard', {
+                    id: projectId
+                })
+            }*/
 
         ktDebtorsService.get($scope.params, function(data) {
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);

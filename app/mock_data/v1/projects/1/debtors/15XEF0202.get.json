@@ -17,7 +17,7 @@
             "attachments_url": "https://www.ktjr.com",
             "description": "这里是备注信息",
             "create_at": "2015-02-12",
-            "status": "initial",
+            "status": "approved",
             "identity_num": "110220198809092010",
             "name": "张三"
         }, {
@@ -36,7 +36,7 @@
             "name": "李四"
         }, {
             "id": "2",
-            "age": 23,
+            "age": 19,
             "gender": "男",
             "pass_amount": 10000,
             "job_industry": "自由职业",

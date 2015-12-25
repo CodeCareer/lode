@@ -7,7 +7,7 @@
             <div class="panel-body clfix pr ov-h mt10">
                 <div class="card-list">
                     <div class="card" ng-repeat="rule in rules">
-                        <form name="form1" class="form-horizontal" method="post" id="form1" ng-submit="submitForm()">
+                        <form name="form_{{$index}}" class="form-horizontal" method="post" id="form_{{$index}}">
                             <div class="card-heading">
                                 <label>规则名称</label>
                                 <input class="input ml10" autofocus required="required" ng-model="rule.name">
@@ -33,7 +33,7 @@
                                         </select>
                                     </div>
                                     <div class="item right text-right">
-                                        <a class="btn btn-sm btn-dark" ng-click="save($index, rule.id)">保存</a>
+                                        <a class="btn btn-sm btn-dark" ng-click="save($event, $index, rule.id)">保存</a>
                                         <a class="btn btn-sm btn-gray" ng-click="remove($index, rule.id)">删除</a>
                                     </div>
                                 </div>

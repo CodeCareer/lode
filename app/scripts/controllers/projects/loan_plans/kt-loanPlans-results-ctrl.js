@@ -41,7 +41,7 @@
 
             $scope.getStatusName = function(status) {
                 var statusObj = _.find($scope.statusList, function(v) {
-                    return v.value === status || $scope.params.status
+                    return v.value === (status || $scope.params.status)
                 }) || {}
                 return statusObj.name || '未知'
             }

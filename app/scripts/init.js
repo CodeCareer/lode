@@ -11,7 +11,20 @@ $(document).ready(function() {
         var ieReg = /MSIE\s*\d{1,2}\.\d+|rv:\d{1,2}\.\d+/;
         return !!ua.match(ieReg);
     }
-    $('html').toggleClass('ie', isIe());
+
+    function isSafari () {
+        return /constructor/i.test(window.HTMLElement);
+    }
+
+    function detectmob() {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $('html').toggleClass('ie', isIe()).toggleClass('safari', isSafari()).toggleClass('mobile', detectmob());
 
     //加载的时候禁止鼠标中轮滚动和移动设备上得触摸事件
     $(window).on('mousewheel touchstart', function(e) {

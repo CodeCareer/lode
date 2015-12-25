@@ -20,13 +20,27 @@
         }
     })
 
+    // 机构
+    .factory('ktInstitutionsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/institutions', {
+            projects: '@projects',
+            projectID: '@projectID',
+        })
+    }, {
+        'get': {
+            method: 'GET',
+            cache: false
+        }
+    })
+
 
     // 统计
     .factory('ktReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/reports/:type/:subProjectID', {
+        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/reports/:type/:subProjectID/:instID', {
             projectID: '@projectID',
             type: '@type',
-            subProjectID: '@subProjectID'
+            subProjectID: '@subProjectID',
+            instID: '@instID'
         })
     }, {
         'get': {
@@ -50,8 +64,9 @@
 
     // 借款人审批-规则
     .factory('ktRulesService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/rules', {
+        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/rules/:ruleID', {
             projectID: '@projectID',
+            ruleID: '@ruleID'
         })
     }, {
         'get': {

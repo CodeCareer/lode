@@ -12,51 +12,51 @@
                     <table class="table table-striped">
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">项目名称</th>
-                            <td ng-bind="::project.name"></td>
+                            <td class="text-left" ng-bind="::project.name"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">项目简介</th>
-                            <td ng-bind="::project.desc"></td>
+                            <td class="text-left" ng-bind="::project.desc"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">开始时间</th>
-                            <td ng-bind="::project.start_at"></td>
+                            <td class="text-left" ng-bind="::project.start_at"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">终止时间</th>
-                            <td ng-bind="::project.end_at"></td>
+                            <td class="text-left" ng-bind="::project.end_at"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">助贷机构</th>
-                            <td ng-bind="::project.loan_aid_inst"></td>
+                            <td class="text-left" ng-bind="::project.loan_aid_inst"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">总授信额度</th>
-                            <td ng-bind="::project.credit_amount | ktNumberLocate"></td>
+                            <td class="text-left" ng-bind="::project.credit_amount | ktNumberLocate"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">质保金</th>
-                            <td ng-bind="::project.warranty_gold | ktNumberLocate"></td>
+                            <td class="text-left" ng-bind="::project.warranty_gold | ktNumberLocate"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">风险准备金</th>
-                            <td ng-bind="::project.risk_provision | ktNumberLocate"></td>
+                            <td class="text-left" ng-bind="::project.risk_provision | ktNumberLocate"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">利润留存率</th>
-                            <td ng-bind="::(project.retained_profit_rate*100 | number:2) + '%'"></td>
+                            <td class="text-left" ng-bind="(project.retained_profit_rate*100 | number:2) + '%'"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">保证金</th>
-                            <td ng-bind="::project.cash_deposit | ktNumberLocate"></td>
+                            <td class="text-left" ng-bind="::project.cash_deposit | ktNumberLocate"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">保费费率</th>
-                            <td ng-bind="::(project.premium_rate*100 | number:2) + '%'"></td>
+                            <td class="text-left" ng-bind="(project.premium_rate*100 | number:2) + '%'"></td>
                         </tr>
                         <tr>
                             <th width="150" class="text-right fn text-primary-dark">反担保</th>
-                            <td ng-bind="::project.counter_guarantee"></td>
+                            <td class="text-left" ng-bind="::project.counter_guarantee"></td>
                         </tr>
                     </table>
                 </div>

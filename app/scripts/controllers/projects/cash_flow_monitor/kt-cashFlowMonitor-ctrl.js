@@ -2,28 +2,41 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktCashFlowMonitorCtrl', function($scope, $location, $stateParams, ktReportService, ktInstitutionsService, ktDateHelper) {
+        .controller('ktCashFlowMonitorCtrl', function($scope, $location, $stateParams, ktReportService, ktProjectsService, ktDataHelper) {
 
             $scope.$emit('activeInstitutionChange', {
                 projectID: $stateParams.projectID
             })
+
             $scope.params = $.extend({
                 projectID: $stateParams.projectID,
                 type: 'cash_flow',
+                sub_project_id: 'all'
                 // subProjectID: $scope.params.subProjectID || null
                 // date_from: date_from,
                 // date_to: date_to
             }, $location.search())
 
-            $scope.institutions = []
-            $scope.insitutionChange = function(id, name) {
-                $scope.activeInstitutionName = name
-                $scope.params.subProjectID = id
+            $scope.getSubProjectName = ktDataHelper.getSubProjectName($scope)
+
+            $scope.subProjectChange = function(id) {
+                $scope.params.sub_project_id = id
+                $scope.params.subProjectID = id !== 'all' ? id: null 
                 getData()
             }
 
+            ktProjectsService.get({
+                projectID: $stateParams.projectID,
+                subProject: 'sub_projects'
+            }, function(data) {
+                $scope.subProjects = data.sub_projects
+                $scope.subProjects.unshift({
+                    id: 'all',
+                    name: '全部'
+                })
+                getData()
+            })
 
-            // ktDateHelper.initPeriod($scope, params)
             $scope.data = {}
 
             $scope.cashFlowChart = {
@@ -63,12 +76,12 @@
                 }
             })*/
 
-            ktInstitutionsService.get(function(data) {
+            /*ktInstitutionsService.get(function(data) {
                 $scope.institutions = data.institutions
                 $scope.activeInstitutionName = data.institutions[0].name
                 $scope.params.subProjectID = data.institutions[0].id
                 getData()
-            })
+            })*/
 
             function getData() {
                 // var date_from, date_to, datePeriod
@@ -93,7 +106,7 @@
                                 name: '计划还款金额',
                                 data: _.pluck(data.results, 'plan_rpmnt_amnt'),
                                 type: 'line',
-                                smooth: true,
+                                smooth: false,
                                 itemStyle: {
                                     normal: {
                                         areaStyle: {

@@ -58,7 +58,7 @@
                 </span>
             </a>
         </li>
-        <li ng-class="{active: $state.includes('analytics.project.finance.**')}">
+        <li ng-class="{active: $state.includes('analytics.project.finance.**') || $state.includes('analytics.project.paymentClear.**') || $state.includes('analytics.project.otherIncome.table')}">
             <a href="javascript:;" ng-click="updateMenu('financeIsCollapsed')">
                 <span class="nav-label">
                     <i class="icon-lode icon-finance mr10 vm"></i>财务管理
@@ -68,9 +68,9 @@
                 <li ng-class="{active: $state.includes('analytics.project.finance.billList.**') || $state.includes('analytics.project.finance.billDetail.**')}">
                     <a ui-sref="analytics.project.finance.billList.table">还款对账</a>
                 </li>
-                <li ui-sref-active="active">
+                <!-- <li ui-sref-active="active">
                     <a ui-sref="analytics.project.paymentClear">回款清算</a>
-                </li> 
+                </li> --> 
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.project.otherIncome.table">其他收益</a>
                 </li>

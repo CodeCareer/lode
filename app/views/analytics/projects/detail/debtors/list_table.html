@@ -21,10 +21,10 @@
                     <td ng-bind="::debtor.pass_amount"></td>
                     <td>
                         <span ng-if="::debtor.status === 'initial'">
-                            <i class="glyphicon glyphicon-ok done-color mr5"></i>已完成
+                            <i class="glyphicon glyphicon-time initial-color mr5"></i>未开始
                         </span>
                         <span ng-if="::debtor.status !== 'initial'">
-                            <i class="glyphicon glyphicon-time initial-color mr5"></i>未开始
+                            <i class="glyphicon glyphicon-ok done-color mr5"></i>已完成
                         </span>
                     </td>
                     <td class="text-center">

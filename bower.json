@@ -44,7 +44,8 @@
     "oclazyload": "~1.0.4",
     "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
     "sweetalert": "https://github.com/t4t5/sweetalert.git#~1.1.0",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-notify": "~2.5.0"
   },
   "resolutions": {
     "jquery": "~2.1.3",

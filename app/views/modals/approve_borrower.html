@@ -26,11 +26,11 @@
                     <a class="tu" ng-click="gotoBlacklist()">管理</a>
                 </div>
             </div>
-            <div ng-repeat="item in ::items" class="form-group col-lg-12">
+            <div ng-repeat="rule in rules" class="form-group col-lg-12">
                 <div class="col-sm-10">
                     <div class="checkbox checkbox-success">
-                        <input id="{{ debtorID +'_' + item.id}}" type="checkbox" checklist-model="selected.items" checklist-value="item.id" checklist-change="checkListChange()">
-                        <label class="f14" for="{{debtorID + '_' + item.id}}" ng-bind="::(item.name + '：' + item.condition + '，' + item.result)">
+                        <input id="{{ debtorID +'_' + rule.id}}" type="checkbox" checklist-model="selected.rules" checklist-value="rule.id" checklist-change="checkListChange()">
+                        <label class="f14" for="{{debtorID + '_' + rule.id}}" ng-bind="::(rule.name + '：' + rule.condition_des + '，' + rule.result_des)">
                         </label>
                     </div>
                 </div>

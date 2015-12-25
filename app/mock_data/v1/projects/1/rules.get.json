@@ -5,7 +5,7 @@
         "value": "reject"
     }, {
         "name": "通过",
-        "value": "pass"
+        "value": "approved"
     }],
     "fields": [{
         "name": "年龄",
@@ -45,7 +45,7 @@
         "field": "salary",
         "condition": "gt",
         "value": 10000,
-        "result": "pass",
+        "result": "approved",
         "name": "规则2"
     }]
 }

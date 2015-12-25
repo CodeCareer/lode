@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAnalyticsCtrl', function($scope, $state, ktProjectsService) {
+        .controller('ktAnalyticsCtrl', function($scope, $rootScope, $state, ktProjectsService) {
 
             // 初始化从路由获取id
             $scope.projectID = $state.params.id
@@ -50,13 +50,21 @@
                 // projectInfoIsCollapsed: !$state.includes('analytics.project.projectInfo.**'),
             }
 
-            // 保证在当前路由切换项目
+            // 保证在子项目内当前路由切换项目
             $scope.goto = function(id) {
                 var stateName = $state.includes('analytics.project.**') ? $state.current.name : 'analytics.project.dashboard'
+
                 $state.go(stateName, {
                     projectID: id
                 })
             }
+
+            // 全部项目汇总页面 默认展开菜单
+            $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
+                if (toState.name === 'analytics.reports.dashboard') { 
+                    $scope.summaryMenu.reportsIsCollapsed = false 
+                }
+            });
 
             // 更新菜单状态，保持只展开一个子菜单
             $scope.updateSummaryMenu = function(collapseName) {

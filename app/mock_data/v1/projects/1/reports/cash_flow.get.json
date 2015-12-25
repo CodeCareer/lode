@@ -1,0 +1,33 @@
+{
+    "results": [{
+        "stage": 1,
+        "date": "2015-03-02",
+        "plan_rpmnt_amnt": 20000,
+        "real_rpmnt_amnt": 3000,
+        "agree_cash_flow": 2000
+    }, {
+        "stage": 2,
+        "date": "2015-04-02",
+        "plan_rpmnt_amnt": 2000,
+        "real_rpmnt_amnt": 6000,
+        "agree_cash_flow": 5000
+    }, {
+        "stage": 3,
+        "date": "2015-05-02",
+        "plan_rpmnt_amnt": 200000,
+        "real_rpmnt_amnt": 200000,
+        "agree_cash_flow": 500000
+    }, {
+        "stage": 4,
+        "date": "2015-06-02",
+        "plan_rpmnt_amnt": 20000,
+        "real_rpmnt_amnt": 80000,
+        "agree_cash_flow": 30000
+    }, {
+        "stage": 5,
+        "date": "2015-07-02",
+        "plan_rpmnt_amnt": 400,
+        "real_rpmnt_amnt": 1000,
+        "agree_cash_flow": 600
+    }]
+}
