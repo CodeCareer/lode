@@ -21,10 +21,12 @@ module.exports = {
             patterns: [{
                 match: /href="http:\/\/dev\.ktjr\.com:8000\/"/g,
                 replacement: 'href="https://lode.ktjr.com"'
-            }, {
+            }
+            /*, {
                 match: /\/mock_data\/seallogo\.dll/g,
                 replacement: '//kxlogo.knet.cn/seallogo.dll'
-            }]
+            }*/
+            ]
         },
         files: [{
             expand: true,

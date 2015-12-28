@@ -84,7 +84,7 @@
         $stateProvider
 
         /**
-         *  小微贷统计平台 
+         *  开通小贷平台 
          */
             .state('analytics', {
                 url: '/analytics?apimock', //父view的设置，通过ui-sref的跳转会将参数带到子view
@@ -92,8 +92,8 @@
                 templateUrl: 'views/common/analytics.html',
                 data: {
                     breadcrumb: true,
-                    breadcrumbState: 'analytics.dashboard',
-                    pageTitle: '首页',
+                    breadcrumbState: 'analytics.reports.dashboard',
+                    pageTitle: '开通小贷平台',
                     permit: ['login'],
                     specialClass: 'fixed-sidebar analytics-page'
                 },
@@ -106,6 +106,8 @@
                 url: '/reports',
                 template: '<ui-view/>',
                 data: {
+                    // breadcrumb: true,
+                    // breadcrumbTitle: '数据报表',
                     pageTitle: '数据报表',
                 }
             })
@@ -116,6 +118,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/kt-dashboard-ctrl.js']),
                 controller: 'ktDashboardCtrl',
                 data: {
+                    // breadcrumb: true,
+                    breadcrumbTitle: '总览',
                     pageTitle: '数据报表-总览',
                 }
             })
@@ -126,6 +130,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/kt-asset-feature-ctrl.js']),
                 controller: 'ktAssetFeatureCtrl',
                 data: {
+                    // breadcrumb: true,
+                    breadcrumbTitle: '资产特征',
                     pageTitle: '数据报表-资产特征',
                 }
             })
@@ -167,7 +173,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-add-ctrl.js']),
                 controller: 'ktProjectAddCtrl',
                 data: {
-                    breadcrumb: false,
+                    breadcrumb: true,
                     pageTitle: '添加项目'
                 }
             })
@@ -176,7 +182,12 @@
                 url: '/projects/:projectID',
                 abstract: true,
                 template: '<ui-view/>',
+                // resolve: resolveFactory(['scripts/controllers/projects/kt-project-ctrl.js']), //已放到 kt-analytics.js 替代
+                // controller: 'ktPrjectCtrl',
                 data: {
+                    breadcrumb: true,
+                    // breadcrumbTitle: '资产特征',
+                    breadcrumbState: 'analytics.project.dashboard',
                     pageTitle: '项目详情',
                     specialClass: 'fixed-sidebar analytics-page analytics-detail',
                 }
@@ -187,7 +198,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/kt-project-dashboard-ctrl.js']),
                 controller: 'ktProjectDashboardCtrl',
                 data: {
-                    pageTitle: '项目总览',
+                    pageTitle: '数据总览',
                 }
             })
 
@@ -197,6 +208,7 @@
                 template: '<ui-view/>',
                 data: {
                     pageTitle: '借款人审批',
+                    breadcrumbState: 'analytics.project.debtors.list.table'
                 }
             })
             // 借款人审批
@@ -207,6 +219,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-debtors-ctrl.js']),
                 controller: 'ktDebtorsCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '借款人审批',
                 }
             })
@@ -215,8 +228,9 @@
                 templateUrl: 'views/analytics/projects/detail/debtors/list_table.html',
                 controller: 'ktDebtorsTableCtrl',
                 data: {
-                    breadcrumb: false,
-                    pageTitle: '借款人审批-列表'
+                    breadcrumb: true,
+                    breadcrumbTitle: '借款人列表',
+                    pageTitle: '借款人审批-借款人列表'
                 },
             })
             .state('analytics.project.debtors.detail', {
@@ -226,8 +240,9 @@
                 // templateUrl: 'views/analytics/projects/detail/debtors/list_table.html',
                 // controller: 'ktDebtorsTableCtrl',
                 data: {
-                    breadcrumb: false,
-                    pageTitle: '借款人审批-详情'
+                    breadcrumb: true,
+                    breadcrumbTitle: '借款人详情',
+                    pageTitle: '借款人审批-借款人详情'
                 },
             })
             .state('analytics.project.debtors.detail.list', {
@@ -237,7 +252,9 @@
                 resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-debtor-ctrl.js']),
                 controller: 'ktDebtorCtrl',
                 data: {
-                    pageTitle: '借款人审批-详情',
+                    breadcrumb: false,
+                    // breadcrumbTitle: '借款人详情',
+                    pageTitle: '借款人审批-借款人详情',
                 }
             })
             .state('analytics.project.debtors.detail.list.table', {
@@ -246,44 +263,50 @@
                 controller: 'ktDebtorTableCtrl',
                 data: {
                     breadcrumb: false,
-                    pageTitle: '借款人审批-详情'
+                    pageTitle: '借款人审批-借款人详情'
                 },
             })
             // 审批规则设置
-            .state('analytics.project.rules', {
-                url: '/rules',
+            .state('analytics.project.debtors.rules', {
+                url: '/rules/list',
                 templateUrl: 'views/analytics/projects/detail/debtors/rules.html',
                 resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-rules-ctrl.js']),
                 controller: 'ktRulesCtrl',
                 data: {
+                    breadcrumbTitle: '规则设置',
                     pageTitle: '借款人审批-规则设置',
                 }
             })
             // 审批规则-黑名单
-            .state('analytics.project.blacklist', {
+            .state('analytics.project.debtors.blacklist', {
                 abstract: true,
-                url: '/blacklist',
+                url: '/blacklist/list',
                 template: '<ui-view/>',
                 data: {
+                    breadcrumb: true,
+                    breadcrumbState: 'analytics.project.blacklist.list.table',
+                    breadcrumbTitle: '黑名单管理',
                     pageTitle: '借款人审批-黑名单',
                 }
             })
-            .state('analytics.project.blacklist.list', {
+            .state('analytics.project.debtors.blacklist.list', {
                 abstract: true,
                 url: '',
                 templateUrl: 'views/analytics/projects/detail/debtors/blacklist_layout.html',
                 resolve: resolveFactory(['scripts/controllers/projects/debtors/kt-blacklist-ctrl.js']),
                 controller: 'ktBlacklistCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '借款人审批-黑名单',
                 }
             })
-            .state('analytics.project.blacklist.list.table', {
+            .state('analytics.project.debtors.blacklist.list.table', {
                 url: '?page&per_page',
                 templateUrl: 'views/analytics/projects/detail/debtors/blacklist_table.html',
                 controller: 'ktBlacklistTableCtrl',
                 data: {
                     breadcrumb: false,
+                    breadcrumbTitle: '黑名单列表',
                     pageTitle: '借款人审批-黑名单'
                 },
             })
@@ -294,6 +317,7 @@
                 url: '/loan_plans',
                 template: '<ui-view/>',
                 data: {
+                    breadcrumbState: 'analytics.project.loanPlans.list.table',
                     pageTitle: '放款管理',
                 }
             })
@@ -304,6 +328,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-ctrl.js']),
                 controller: 'ktLoanPlansCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '放款管理',
                 }
             })
@@ -312,8 +337,9 @@
                 templateUrl: 'views/analytics/projects/detail/loan_plans/list_table.html',
                 controller: 'ktLoanPlansTableCtrl',
                 data: {
-                    breadcrumb: false,
-                    pageTitle: '放款管理-列表'
+                    breadcrumb: true,
+                    breadcrumbTitle: '放款计划列表',
+                    pageTitle: '放款管理-放款计划列表'
                 }
             })
             .state('analytics.project.loanPlans.detail', {
@@ -324,7 +350,8 @@
                 // resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlan-ctrl.js']),
                 // controller: 'ktLoanPlanCtrl',
                 data: {
-                    pageTitle: '放款管理-摘要',
+                    breadcrumb: false,
+                    pageTitle: '放款管理-放款计划',
                 }
             })
             .state('analytics.project.loanPlans.detail.summary', {
@@ -333,7 +360,10 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlan-ctrl.js']),
                 controller: 'ktLoanPlanCtrl',
                 data: {
-                    pageTitle: '放款管理-摘要',
+                    breadcrumb: true,
+                    breadcrumbState: 'analytics.project.loanPlans.detail.summary',
+                    breadcrumbTitle: '放款计划',
+                    pageTitle: '放款管理-放款计划',
                 }
             })
             .state('analytics.project.loanPlans.detail.plans', {
@@ -342,6 +372,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-plans-ctrl.js']),
                 controller: 'ktLoanPlansPlansCtrl',
                 data: {
+                    breadcrumbTitle: '放款计划明细',
                     pageTitle: '放款管理-放款计划明细',
                 }
             })
@@ -351,6 +382,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-results-ctrl.js']),
                 controller: 'ktLoanPlansResultsCtrl',
                 data: {
+                    breadcrumbTitle: '放款结果明细',
                     pageTitle: '放款管理-放款结果明细',
                 }
             })
@@ -360,7 +392,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-repayments-ctrl.js']),
                 controller: 'ktLoanPlansRepaymentsCtrl',
                 data: {
-                    pageTitle: '放款管理-放款结果明细',
+                    breadcrumbTitle: '还款计划明细',
+                    pageTitle: '放款管理-还款计划明细',
                 }
             })
             // 还款管理
@@ -369,6 +402,7 @@
                 url: '/repayments',
                 template: '<ui-view/>',
                 data: {
+                    breadcrumbState: 'analytics.project.repayments.list.table',
                     pageTitle: '还款管理',
                 }
             })
@@ -379,6 +413,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/repayments/kt-repayments-ctrl.js']),
                 controller: 'ktRepaymentsCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '还款管理-还款清单列表',
                 }
             })
@@ -387,7 +422,8 @@
                 templateUrl: 'views/analytics/projects/detail/repayments/list_table.html',
                 controller: 'ktRepaymentsTableCtrl',
                 data: {
-                    breadcrumb: false,
+                    breadcrumb: true,
+                    breadcrumbTitle: '还款清单列表',
                     pageTitle: '还款管理-还款清单列表'
                 }
             })
@@ -397,6 +433,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/repayments/kt-repayment-ctrl.js']),
                 controller: 'ktRepaymentCtrl',
                 data: {
+                    breadcrumbTitle: '还款账单明细',
                     pageTitle: '还款管理-还款账单明细',
                 }
             })
@@ -406,16 +443,18 @@
                 url: '/finance',
                 template: '<ui-view/>',
                 data: {
+                    breadcrumbState: 'analytics.project.finance.billList.table',
                     pageTitle: '财务管理',
                 }
             })
             .state('analytics.project.finance.billList', {
                 abstract: true,
-                url: '',
+                url: '/bills',
                 templateUrl: 'views/analytics/projects/detail/finance/bill_list_layout.html',
                 resolve: resolveFactory(['scripts/controllers/projects/finance/kt-bills-ctrl.js']),
                 controller: 'ktBillsCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '还款对账-还款账单列表',
                 }
             })
@@ -424,20 +463,23 @@
                 templateUrl: 'views/analytics/projects/detail/finance/bill_list_table.html',
                 controller: 'ktBillsTableCtrl',
                 data: {
-                    breadcrumb: false,
+                    breadcrumb: true,
+                    breadcrumbTitle: '还款账单列表',
                     pageTitle: '还款对账-还款账单列表'
                 }
             })
             .state('analytics.project.finance.billDetail', {
-                url: '/:billID',
+                url: '/bills/:billID',
                 templateUrl: 'views/analytics/projects/detail/finance/bill_detail.html',
                 resolve: resolveFactory(['scripts/controllers/projects/finance/kt-bill-ctrl.js']),
                 controller: 'ktBillCtrl',
                 data: {
+                    breadcrumb: true,
+                    breadcrumbTitle: '还款账单明细',
                     pageTitle: '还款对账-还款账单明细',
                 }
             })
-            .state('analytics.project.paymentClear', {
+            .state('analytics.project.finance.paymentClear', {
                 url: '/payment_clear',
                 templateUrl: 'views/analytics/projects/detail/finance/payment_clear.html',
                 resolve: resolveFactory(['scripts/controllers/projects/finance/kt-paymentClear-ctrl.js']),
@@ -446,21 +488,23 @@
                     pageTitle: '回款清算',
                 }
             })
-            .state('analytics.project.otherIncome', {
+            .state('analytics.project.finance.otherIncome', {
                 url: '/other_income',
                 abstract: true,
                 templateUrl: 'views/analytics/projects/detail/finance/other_income_list_layout.html',
                 resolve: resolveFactory(['scripts/controllers/projects/finance/kt-otherIncomes-ctrl.js']),
                 controller: 'ktOtherIncomesCtrl',
                 data: {
+                    breadcrumb: false,
                     pageTitle: '其他收益',
                 }
             })
-            .state('analytics.project.otherIncome.table', {
+            .state('analytics.project.finance.otherIncome.table', {
                 url: '?page&per_page',
                 templateUrl: 'views/analytics/projects/detail/finance/other_income_list_table.html',
                 controller: 'ktOtherIncomesTableCtrl',
                 data: {
+                    breadcrumb: true,
                     pageTitle: '其他收益',
                 }
             })
@@ -479,6 +523,7 @@
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
+                    breadcrumbState: 'analytics.project.asset.feature',
                     pageTitle: '资产表现',
                 }
             })
@@ -488,6 +533,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/asset/kt-feature-ctrl.js']),
                 controller: 'ktAssetFeatureCtrl',
                 data: {
+                    breadcrumbTitle: '资产特征',
                     pageTitle: '资产表现-资产特征',
                 }
             })
@@ -497,6 +543,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/asset/kt-users-ctrl.js']),
                 controller: 'ktUserFeatureCtrl',
                 data: {
+                    breadcrumbTitle: '人群特征',
                     pageTitle: '资产表现-人群特征',
                 }
             })
@@ -506,6 +553,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/asset/kt-overdue-ctrl.js']),
                 controller: 'ktOverdueCtrl',
                 data: {
+                    breadcrumbTitle: '逾期分析',
                     pageTitle: '资产表现-逾期分析',
                 }
             })
@@ -515,6 +563,7 @@
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
+                    breadcrumbState: 'analytics.project.settings.info',
                     pageTitle: '项目设置',
                 }
             })
@@ -524,6 +573,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-info-ctrl.js']),
                 controller: 'ktProjectInfoCtrl',
                 data: {
+                    breadcrumbTitle: '基本信息',
                     pageTitle: '项目设置-基本信息',
                 }
             })
@@ -533,7 +583,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-edit-ctrl.js']),
                 controller: 'ktProjectEditCtrl',
                 data: {
-                    pageTitle: '项目设置-编辑信息',
+                    breadcrumbTitle: '编辑项目',
+                    pageTitle: '项目设置-编辑项目',
                 }
             })
             .state('analytics.project.settings.add', {
@@ -542,6 +593,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-add-ctrl.js']),
                 controller: 'ktProjectAddCtrl',
                 data: {
+                    breadcrumbTitle: '添加项目',
                     pageTitle: '项目设置-添加项目',
                 }
             })
@@ -550,7 +602,8 @@
                 abstract: true,
                 template: '<ui-view/>',
                 data: {
-                    pageTitle: '项目设置',
+                    breadcrumbState: 'analytics.project.settings.subProject.list.table',
+                    pageTitle: '子项目管理',
                 }
             })
             .state('analytics.project.settings.subProject.list', {
@@ -560,7 +613,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subprojects-ctrl.js']),
                 controller: 'ktSubProjectsCtrl',
                 data: {
-                    pageTitle: '项目设置-子项目列表',
+                    breadcrumb: false,
+                    pageTitle: '子项目管理-子项目列表',
                 }
             })
             .state('analytics.project.settings.subProject.list.table', {
@@ -568,8 +622,9 @@
                 templateUrl: 'views/analytics/projects/detail/settings/subproject_list_table.html',
                 controller: 'ktSubProjectsTableCtrl',
                 data: {
-                    breadcrumb: false,
-                    pageTitle: '项目设置-子项目列表'
+                    breadcrumb: true,
+                    breadcrumbTitle: '子项目列表',
+                    pageTitle: '子项目管理-子项目列表'
                 }
             })
             .state('analytics.project.settings.subProject.add', {
@@ -578,7 +633,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subproject-add-ctrl.js']),
                 controller: 'ktSubProjectAddCtrl',
                 data: {
-                    pageTitle: '项目设置-添加子项目',
+                    breadcrumbTitle: '添加子项目',
+                    pageTitle: '子项目管理-添加子项目',
                 }
             })
             .state('analytics.project.settings.subProject.edit', {
@@ -587,7 +643,8 @@
                 resolve: resolveFactory(['scripts/controllers/projects/settings/kt-subproject-edit-ctrl.js']),
                 controller: 'ktSubProjectEditCtrl',
                 data: {
-                    pageTitle: '项目设置-编辑子项目',
+                    breadcrumbTitle: '编辑子项目',
+                    pageTitle: '子项目管理-编辑子项目',
                 }
             })
             /*.state('analytics.project.assetFeature', { //单个项目的资产特抽象页面

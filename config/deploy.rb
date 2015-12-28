@@ -21,6 +21,9 @@ set :repository, 'git@github.kaitongamc.com:Kaitong/kt-lode-frontend.git'
 
 load File.expand_path("../deploy/#{ENV['stage']}.rb", __FILE__)
 
+if ENV['stage'] == 'development' && !ENV['br'].nil?
+  set :branch, ENV['br']
+end
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
 

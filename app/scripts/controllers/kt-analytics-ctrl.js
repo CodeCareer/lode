@@ -7,6 +7,11 @@
             // 初始化从路由获取id
             $scope.projectID = $state.params.id
 
+            // 面包屑过滤器
+            $scope.breadcrumbFilter = function(item) {
+                return item.data.breadcrumb
+            }
+
             // 获取当前项目名称
             function getProjectName() {
                 var f = _.findWhere($scope.projects || [], {
@@ -25,6 +30,12 @@
             $scope.$on('activeProjectChange', function(e, data) {
                 $scope.projectID = data.projectID
                 $scope.activeProject = getProjectName()
+
+                // 更新单个项目的名称，主要用于面包屑
+                var projectMainState = _.find($state.$current.path, function (v) {
+                    return v.name === 'analytics.project'
+                })
+                projectMainState && (projectMainState.data.pageTitle = $scope.activeProject)
             })
 
             // 是否展开全部项目子菜单的开关
@@ -61,8 +72,8 @@
 
             // 全部项目汇总页面 默认展开菜单
             $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
-                if (toState.name === 'analytics.reports.dashboard') { 
-                    $scope.summaryMenu.reportsIsCollapsed = false 
+                if (toState.name === 'analytics.reports.dashboard') {
+                    $scope.summaryMenu.reportsIsCollapsed = false
                 }
             });
 

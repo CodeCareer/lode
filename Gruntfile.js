@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         'copy:dev',
         // 'autoprefixer:development',
         'font-spider:app',
-        'replace:svgfont',
+        // 'replace:svgfont',
         'svg_sprite',
         'svgmin',
         'babel',
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
         'injector:indexAppcss',
         'injector:indexAppjs',
 
-        'replace:svgfont',
+        // 'replace:svgfont',
         'svg_sprite',
         'svgmin',
         'babel',

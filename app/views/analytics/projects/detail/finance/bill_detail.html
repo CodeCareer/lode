@@ -1,10 +1,10 @@
 <div id="loadPlanDetail" class="row" kt-animate-panel child="hpanel">
     <div class="col-lg-12">
-        <div class="content-header clfix">
+        <!-- <div class="content-header clfix">
             <div class="btns fl">
                 <a class="btn btn-sm btn-default" ui-sref="analytics.project.finance.billList.table">&lt;&lt;返回列表</a>
             </div>
-        </div>
+        </div> -->
         <div class="hpanel">
             <div class="panel-heading clfix">
                 <h5>还款账单明细</h5>
@@ -35,7 +35,7 @@
                     </dl>
                 </div>
                 <div class="fr" ng-if="bill.status !== 'done'">
-                    <a class="btn btn-default btn-sm ml10" ng-click="confirmBill(id)">确认账单</a>
+                    <a class="btn btn-dark btn-sm ml10" ng-click="confirmBill(id)">确认账单</a>
                 </div>
             </div>
             <div class="panel-body clfix">
