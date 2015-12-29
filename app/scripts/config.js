@@ -84,7 +84,7 @@
         $stateProvider
 
         /**
-         *  开通小贷平台 
+         *  微贷平台 
          */
             .state('analytics', {
                 url: '/analytics?apimock', //父view的设置，通过ui-sref的跳转会将参数带到子view
@@ -93,7 +93,7 @@
                 data: {
                     breadcrumb: true,
                     breadcrumbState: 'analytics.reports.dashboard',
-                    pageTitle: '小微贷平台',
+                    pageTitle: '微贷平台',
                     permit: ['login'],
                     specialClass: 'fixed-sidebar analytics-page'
                 },

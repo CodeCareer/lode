@@ -10,15 +10,15 @@
                 <!-- <h5 ng-bind="status != 'done' ? '放款计划' : '放款结果'"></h5> -->
                 <div class="fl mt8 f15">
                     <dl class="ib mb0">
-                        <dt class="ib">子项目：</dt>
+                        <dt class="ib">子项目:</dt>
                         <dd class="ib" ng-bind="name"></dd>
                     </dl>
                     <dl class="ib mb0 ml10">
-                        <dt class="ib">批次：</dt>
+                        <dt class="ib">批次:</dt>
                         <dd class="ib" ng-bind="number"></dd>
                     </dl>
                     <dl class="ib mb0 ml10" ng-if="status == 'done'">
-                        <dt class="ib">指令下发时间：</dt>
+                        <dt class="ib">指令下发时间:</dt>
                         <dd class="ib" ng-bind="approve_at"></dd>
                     </dl>
                 </div>
