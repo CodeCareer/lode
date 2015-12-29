@@ -93,7 +93,7 @@
                 data: {
                     breadcrumb: true,
                     breadcrumbState: 'analytics.reports.dashboard',
-                    pageTitle: '开通小贷平台',
+                    pageTitle: '小微贷平台',
                     permit: ['login'],
                     specialClass: 'fixed-sidebar analytics-page'
                 },
