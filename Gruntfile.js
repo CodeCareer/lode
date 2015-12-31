@@ -138,6 +138,7 @@ module.exports = function(grunt) {
     grunt.registerTask('uv', ['updateVersion'])
     grunt.registerTask('serve', ['connect:dist:keepalive'])
     grunt.registerTask('hint', ['jshint'])
+    grunt.registerTask('lint', ['eslint'])
     grunt.registerTask('perform', ['phantomas'])
     grunt.registerTask('test', ['injector:karma', 'karma:unit'])
     grunt.registerTask('daily', ['exec:mina'])

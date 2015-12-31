@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktUsersFeatureGenderCtrl', function($scope, $stateParams, ktInstitutionsService) {
+        .controller('ktUsersFeatureGenderCtrl', function($scope, $stateParams) {
 
             $scope.$emit('activeInstitutionChange', {
                 projectID: $stateParams.projectID

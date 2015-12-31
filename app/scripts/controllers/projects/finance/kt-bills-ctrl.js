@@ -20,10 +20,10 @@
         $scope.statusList = [{
             name: '全部',
             value: 'all'
-        },{
+        }, {
             name: '未完成',
             value: 'initial'
-        },{
+        }, {
             name: '已完成',
             value: 'done'
         }]
@@ -38,11 +38,11 @@
 
         $scope.stateChanged = function() {
             $location.search($.extend($location.search(), {
-                status: $scope.params.status || null,
-                page: 1,
-                per_page: 10
-            }))
-            // $scope.sub_project_id = id
+                    status: $scope.params.status || null,
+                    page: 1,
+                    per_page: 10
+                }))
+                // $scope.sub_project_id = id
         }
 
         $scope.subProjectChange = function(id) {
@@ -62,10 +62,10 @@
             }))
         }
 
-        $scope.numberChange = function ($event) {
+        $scope.numberChange = function($event) {
             $event.stopPropagation()
-            if ($event.keyCode == '13') {
-                $scope.numberQuery()  
+            if ($event.keyCode === 13) {
+                $scope.numberQuery()
             }
         }
 
@@ -83,8 +83,6 @@
             }) || {}
             return $scope.params.sub_project_id ? subProject.name : '全部'
         }
-
-        
 
         ktProjectsService.get({
             projectID: $stateParams.projectID,
@@ -104,7 +102,7 @@
         // $scope.params.maxSize = 5
         // $.extend($scope, ktDataHelper)
         $scope.params.projectID = $stateParams.projectID
-        
+
         var search = $location.search()
         $.extend($scope.params, search)
 

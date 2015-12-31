@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureLocationCtrl', function($scope, $stateParams, ktInstitutionsService) {
+        .controller('ktAssetFeatureLocationCtrl', function($scope, $stateParams) {
 
             $scope.$emit('activeInstitutionChange', {
                 projectID: $stateParams.projectID

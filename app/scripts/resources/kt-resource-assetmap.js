@@ -19,7 +19,7 @@
 		            return ($window.assetsMap && $window.assetsMap[url]) ? $window.assetsMap[url] : url
 		        },
 		        haha: '123123'
-    		}	
+    		}
     	}
     })*/
 

@@ -38,7 +38,7 @@
 
     .factory('ktResInterceptor', ['$q', '$injector', function($q, $injector) {
         return {
-            request: function(req) { 
+            request: function(req) {
                 var $location = $injector.get('$location')
                 var $rootScope = $injector.get('$rootScope')
                 var ktS = $injector.get('ktS')
@@ -57,7 +57,7 @@
                         ac: $rootScope.apiCode
                     })
 
-                // 其他资源文件根据版本缓存
+                    // 其他资源文件根据版本缓存
                 } else {
                     req.url = ktS(req.url)
                 }
@@ -70,7 +70,9 @@
                 // 获取分页信息
                 if (headers['content-type'] && headers['content-type'].indexOf('application/json') > -1) {
                     /*jshint -W030 */
-                    angular.isObject(res.data) && !res.data.totalItems  && (res.data.totalItems = headers['x-total'] || headers['X-Total'] || 0)
+                    /*eslint-disable*/
+                    angular.isObject(res.data) && !res.data.totalItems && (res.data.totalItems = headers['x-total'] || headers['X-Total'] || 0)
+                    /*eslint-enable*/
                 }
                 return res
             },
@@ -83,33 +85,33 @@
                 var ktSweetAlert = $injector.get('ktSweetAlert')
                 var ipCookie = $injector.get('ipCookie')
 
-                if (res.status == 419 || res.status == 401) {
+                if (res.status === 419 || res.status === 401) {
                     var search = $location.search()
                     var stateParams = {}
 
                     // 确保apimock 的传递
-                    if (search.apimock) stateParams.apimock = search.apimock 
+                    if (search.apimock) stateParams.apimock = search.apimock
 
                     // 清除本地数据
                     $rootScope.user = null
                     delete $window.localStorage.user;
                     delete $window.localStorage.token
                     ipCookie.remove('token')
-                    // ipCookie.remove('connect.sid') //这是httpOnly Cookie 前端无法删除
+                        // ipCookie.remove('connect.sid') //这是httpOnly Cookie 前端无法删除
 
                     if (res.config && res.config.params && res.config.params.notRequired) { //官网不需要跳转登录页面
                         return $q.reject(res.data)
                     }
-                    
+
                     $state.go('account.login', stateParams)
-                    
-                } else if (res.status == 403) {
+
+                } else if (res.status === 403) {
                     ktSweetAlert.swal({
-                        title: "请求失败！",
-                        text: "您的权限不足！",
-                        type: "error"
+                        title: '请求失败！',
+                        text: '您的权限不足！',
+                        type: 'error'
                     });
-                } else if (res.status == 500) {
+                } else if (res.status === 500) {
                     $state.go('error.500')
                 }
                 return $q.reject(res.data)

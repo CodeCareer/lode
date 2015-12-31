@@ -12,7 +12,7 @@
     })
 
     //获取user信息
-    .factory('ktSessionUserService',  function($q, $window, ktUserService) {
+    .factory('ktSessionUserService', function($q, $window, ktUserService) {
         return {
             get: function(params) {
                 var localStorage = $window.localStorage
@@ -32,9 +32,9 @@
                         return deferred.resolve(null); //这里不用reject， 否则会触发stateError 时间，导致home上的resolve失效
                     })
                 } else {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         deferred.resolve(user)
-                    },10)
+                    }, 10)
                 }
                 return deferred.promise;
             },

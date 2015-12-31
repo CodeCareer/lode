@@ -65,7 +65,7 @@
                         return number
                     }
                 },*/
-                controller: function($scope, $timeout, $state, $stateParams, $uibModalInstance, ktDebtorsService, ktRulesService) {
+                controller: function($timeout, $state, $uibModalInstance, ktDebtorsService, ktRulesService) {
                     $scope.rules = [{
                         id: '1',
                         name: '规则1',
@@ -151,8 +151,9 @@
 
             //关闭model promise
             modalInstance.result.then(function(data) {
-                if (data.result)
+                if (data.result) {
                     $scope.debtor.status = 'done'
+                }
                 $.each($scope.debtor.borrowers, function(i, e) {
                     e.status = data.result[i]
                 })

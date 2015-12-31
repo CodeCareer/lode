@@ -2,52 +2,54 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        
-        .controller('ktInstitutionsCtrl', function($scope, $location, $stateParams) {
-            
-            $scope.$emit('activeInstitutionChange', {projectID: $stateParams.projectID})
-            $scope.shared = {}
 
-            $scope.pageChanged = function() {
-                $location.search('page', $scope.shared.page)
-            }
+    .controller('ktInstitutionsCtrl', function($scope, $location, $stateParams) {
 
-            $scope.stateChanged = function() {
-                $location.search($.extend($location.search(), {
-                    status: $scope.shared.status || null,
-                    page: 1,
-                    per_page: 10
-                }))
-            }
+        $scope.$emit('activeInstitutionChange', {
+            projectID: $stateParams.projectID
         })
+        $scope.shared = {}
 
-        .controller('ktInstitutionsTableCtrl', function($scope, $location, $state, ktInstitutionsService) {
-            $scope.institutions = [];
-            $scope.shared.maxSize = 5
-            // $.extend($scope, ktInstitutionsHelper)
+        $scope.pageChanged = function() {
+            $location.search('page', $scope.shared.page)
+        }
 
-            var params = {
+        $scope.stateChanged = function() {
+            $location.search($.extend($location.search(), {
+                status: $scope.shared.status || null,
                 page: 1,
                 per_page: 10
-            }
-            var search = $location.search()
+            }))
+        }
+    })
 
-            $.extend(params, search)
+    .controller('ktInstitutionsTableCtrl', function($scope, $location, $state, ktInstitutionsService) {
+        $scope.institutions = [];
+        $scope.shared.maxSize = 5
+            // $.extend($scope, ktInstitutionsHelper)
 
-            $scope.goDetail = function($event, institutionId) {
-                $event.stopPropagation()
-                $event.preventDefault()
-                $state.go('analytics.institution.dashboard', {
-                    id: institutionId
-                })
-            }
+        var params = {
+            page: 1,
+            per_page: 10
+        }
+        var search = $location.search()
 
-            ktInstitutionsService.get(params, function(data) {
-               
-                // $scope.institutions = ktInstitutionsHelper.adapter(data.institutions || []);
-                $scope.institutions = data.institutions;
-                $scope.shared.totalItems = data.totalItems;
-                $.extend($scope.shared, params)
-            });
-        })
+        $.extend(params, search)
+
+        $scope.goDetail = function($event, institutionId) {
+            $event.stopPropagation()
+            $event.preventDefault()
+            $state.go('analytics.institution.dashboard', {
+                id: institutionId
+            })
+        }
+
+        ktInstitutionsService.get(params, function(data) {
+
+            // $scope.institutions = ktInstitutionsHelper.adapter(data.institutions || []);
+            $scope.institutions = data.institutions;
+            $scope.shared.totalItems = data.totalItems;
+            $.extend($scope.shared, params)
+        });
+    })
 })();

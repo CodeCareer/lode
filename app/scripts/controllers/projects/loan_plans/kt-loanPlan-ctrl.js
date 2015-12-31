@@ -66,8 +66,8 @@
                 }))
             }*/
 
-            function updateStatus (data) {
-                var statusValue = (!data || data.status == 'initial') ? '放款计划' : '放款结果'
+            function updateStatus(data) {
+                var statusValue = (!data || data.status === 'initial') ? '放款计划' : '放款结果'
                 $state.current.data.breadcrumbTitle = $state.current.data.pageTitle = statusValue
             }
 
@@ -83,7 +83,7 @@
 
             ktLoanPlansService.get(params, function(data) {
                 updateStatus(data)
-                // $state.current.data.breadcrumbTitle = $state.current.data.pageTitle = (data.status == 'initial' ? '放款计划' : '放款结果')
+                    // $state.current.data.breadcrumbTitle = $state.current.data.pageTitle = (data.status == 'initial' ? '放款计划' : '放款结果')
                 $.extend($scope, data, params)
                     /*$.extend($scope.repaymentsNav, {
                         totalItems: data.totalItems

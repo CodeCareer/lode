@@ -12,16 +12,15 @@ $(document).ready(function() {
         return !!ua.match(ieReg);
     }
 
-    function isSafari () {
+    function isSafari() {
         return /constructor/i.test(window.HTMLElement);
     }
 
     function detectmob() {
         if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     $('html').toggleClass('ie', isIe()).toggleClass('safari', isSafari()).toggleClass('mobile', detectmob());
@@ -32,11 +31,11 @@ $(document).ready(function() {
         return false;
     })
 
-    $(window).bind("load", function() {
+    $(window).bind('load', function() {
 
         setTimeout(function() {
             $(window).off('mousewheel touchstart')
-            // 移除加载遮罩层
+                // 移除加载遮罩层
             $('.splash').css('display', 'none')
         }, 10);
 
@@ -59,22 +58,24 @@ $(document).ready(function() {
         // // 百度统计
         // window._hmt = window._hmt || [];
         // (function() {
-        //     var hm = document.createElement("script");
-        //     hm.src = "//hm.baidu.com/hm.js?ff09f3032a8e3f85e8e0cc21aaa1d1ec";
-        //     var s = document.getElementsByTagName("script")[0];
+        //     var hm = document.createElement('script');
+        //     hm.src = '//hm.baidu.com/hm.js?ff09f3032a8e3f85e8e0cc21aaa1d1ec';
+        //     var s = document.getElementsByTagName('script')[0];
         //     s.parentNode.insertBefore(hm, s);
         // })();
 
         /*;(function() {
-            var cnzz = document.createElement("script");
-            cnzz.src = "//s4.cnzz.com/z_stat.php?id=1256062534&web_id=1256062534";
-            var s = document.getElementsByTagName("script")[0];
+            var cnzz = document.createElement('script');
+            cnzz.src = '//s4.cnzz.com/z_stat.php?id=1256062534&web_id=1256062534';
+            var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(cnzz, s);
         })();*/
     })
 
 
     /*jshint -W030 */
+    /*eslint-disable*/
     console && console.log('%c安全警告！', 'color:red;font-size:50px;-webkit-text-stroke: 1px #333;')
     console && console.log('%c此浏览器功能专供开发者使用。请不要在此粘贴执行任何内容，这可能会导致您的账户受到攻击，给您带来损失！', 'color:#333;font-size:20px;')
+        /*eslint-enable*/
 });

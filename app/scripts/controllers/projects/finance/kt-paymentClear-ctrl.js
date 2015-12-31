@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktPaymentClearCtrl', function($scope, $stateParams, $location, ktBillsService, ktSweetAlert, ktDataHelper) {
+        .controller('ktPaymentClearCtrl', function($scope) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID

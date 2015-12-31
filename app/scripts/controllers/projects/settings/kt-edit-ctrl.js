@@ -33,16 +33,16 @@
             $scope.submitForm = function() {
                 ktProjectsService.update($scope.project).$promise.then(function() {
                     ktSweetAlert.swal({
-                        title: "提示",
-                        text: "项目信息修改成功",
-                        type: "success",
+                        title: '提示',
+                        text: '项目信息修改成功',
+                        type: 'success',
                     });
                 }, function(res) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({
-                        title: "提示",
+                        title: '提示',
                         text: $.isArray(res.error) ? res.error.join('<br/>') : (res.error || '抱歉，项目信息修改失败！'),
-                        type: "error",
+                        type: 'error',
                     });
                 })
                 return false;

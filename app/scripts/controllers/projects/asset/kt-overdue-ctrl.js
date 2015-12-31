@@ -63,20 +63,20 @@
                 }]*/
             }
 
-            
-
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0]
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0]
+                dateTo = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'overdue',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, params), function(data) {
                     $scope.data = data
 

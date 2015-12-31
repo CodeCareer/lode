@@ -74,7 +74,7 @@
                 }
             })
 
-            $scope.$watch('overdueRateProductChart.chartDimension', function(newValue, oldValue, scope) {
+            $scope.$watch('overdueRateProductChart.chartDimension', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     updateProductView()
                 }
@@ -105,12 +105,12 @@
                 })
             }
 
-            $scope.$watch('overdueRateLocationChart.chartDimension', function(newValue, oldValue, scope) {
+            $scope.$watch('overdueRateLocationChart.chartDimension', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     updateLocationView()
                 }
             });
-            
+
             function updateLocationView() {
                 var data = $scope.data
 
@@ -138,17 +138,19 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0]
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0]
+                dateTo = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'overdue_rate',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, params), function(data) {
                     $scope.data = data
 

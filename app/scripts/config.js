@@ -17,7 +17,7 @@
         $httpProvider.interceptors.push('ktResInterceptor'); //custom interceptor
         $httpProvider.defaults.cache = false; // ajax cache
 
-        // window.history.pushState = null // 用于mock不支持pushstate的浏览器 
+        // window.history.pushState = null // 用于mock不支持pushstate的浏览器
         // window.history.popState = null
 
         $locationProvider.html5Mode({
@@ -57,14 +57,14 @@
             }
         };
 
-        //mock data 
+        // mock data
         apiMockProvider.config({
             mockDataPath: '/mock_data',
             apiPath: '/ajax/api',
             // disable: true //关闭api mock
         });
 
-        //默认跳转页面
+        // 默认跳转页面
         $urlRouterProvider.when('', '/analytics/reports/dashboard'); // for hashbang mode
         $urlRouterProvider.when('/', '/analytics/reports/dashboard'); // for html5mode
         $urlRouterProvider.otherwise('/error/404');
@@ -84,7 +84,7 @@
         $stateProvider
 
         /**
-         *  微贷平台 
+         *  微贷平台
          */
             .state('analytics', {
                 url: '/analytics?apimock', //父view的设置，通过ui-sref的跳转会将参数带到子view
@@ -202,7 +202,7 @@
                 }
             })
 
-            .state('analytics.project.debtors', {
+        .state('analytics.project.debtors', {
                 abstract: true,
                 url: '/debtors',
                 template: '<ui-view/>',
@@ -311,8 +311,8 @@
                 },
             })
 
-            // 放款管理
-            .state('analytics.project.loanPlans', {
+        // 放款管理
+        .state('analytics.project.loanPlans', {
                 abstract: true,
                 url: '/loan_plans',
                 template: '<ui-view/>',
@@ -372,6 +372,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-plans-ctrl.js']),
                 controller: 'ktLoanPlansPlansCtrl',
                 data: {
+                    breadcrumb: true,
                     breadcrumbTitle: '放款计划明细',
                     pageTitle: '放款管理-放款计划明细',
                 }
@@ -382,6 +383,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-results-ctrl.js']),
                 controller: 'ktLoanPlansResultsCtrl',
                 data: {
+                    breadcrumb: true,
                     breadcrumbTitle: '放款结果明细',
                     pageTitle: '放款管理-放款结果明细',
                 }
@@ -392,6 +394,7 @@
                 resolve: resolveFactory(['scripts/controllers/projects/loan_plans/kt-loanPlans-repayments-ctrl.js']),
                 controller: 'ktLoanPlansRepaymentsCtrl',
                 data: {
+                    breadcrumb: true,
                     breadcrumbTitle: '还款计划明细',
                     pageTitle: '放款管理-还款计划明细',
                 }
@@ -877,12 +880,15 @@
         .run(function($rootScope, $state, $location, $timeout, $http, ktHomeResource, uibPaginationConfig, ktSessionUserService, ktS, CacheFactory) {
 
             // ajax 请求的缓存策略
+            /*eslint-disable*/
             $http.defaults.cache = CacheFactory('ajaxCache', {
                 maxAge: 30 * 1000, // 30秒缓存
                 recycleFreq: 3 * 1000, // 3秒检查一次缓存是否失效
                 // cacheFlushInterval: 60 * 60 * 1000, // 每小时清一次缓存
                 deleteOnExpire: 'aggressive' // Items will be deleted from this cache when they expire
             });
+            /*eslint-enable*/
+
 
             // 本地化分页
             $.extend(uibPaginationConfig, {
@@ -910,7 +916,7 @@
                 window.history.back()
             }
 
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
                 // 权限控制，需要登录才能访问的页面逻辑，
                 // 首页获取user的逻辑不要尝试在这里解决，放到路由的resolve里面解决，否则很容易造成死循环，注意这个坑
                 var permit = toState.data.permit

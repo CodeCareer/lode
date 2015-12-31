@@ -78,7 +78,7 @@
                 email: '邮箱'
             },
             attachments: '更多资料',
-            
+
             other: {
                 no_products: '没有记录！',
                 product_detail_link: '详情',

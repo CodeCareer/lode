@@ -14,13 +14,15 @@
         $scope.save = function($event, index, id) {
             var $elem = $($event.target)
             var rule = $scope.rules[index]
+            /*eslint-disable*/
             id && (rule.ruleID = id)
+            /*eslint-enable*/
             rule.projectID = $stateParams.projectID
             if (id) {
                 ktRulesService.update(rule, function() {
                     notify.closeAll()
                     notify({
-                        message: "保存成功!",
+                        message: '保存成功!',
                         // position: 'right',
                         classes: 'alert-info right-top',
                         templateUrl: 'views/notification/notify.html',
@@ -33,7 +35,7 @@
                 ktRulesService.create(rule, function(data) {
                     notify.closeAll()
                     notify({
-                        message: "新增成功!",
+                        message: '新增成功!',
                         // position: 'right',
                         classes: 'alert-info right-top',
                         templateUrl: 'views/notification/notify.html',
@@ -43,14 +45,14 @@
                     rule.id = data.id
                 })
             }
-            
+
         }
 
         $scope.remove = function(index, id) {
             ktSweetAlert.swal({
-                title: "确认删除？",
+                title: '确认删除？',
                 text: '',
-                type: "warning",
+                type: 'warning',
                 showCancelButton: true
             }, function(isConfirm) {
                 if (!isConfirm) return
@@ -64,7 +66,7 @@
                     id: id,
                     projectID: $stateParams.projectID,
                     ruleID: id
-                }, function () {
+                }, function() {
                     $scope.rules = _.filter($scope.rules, function(v, i) {
                         return i !== index
                     })

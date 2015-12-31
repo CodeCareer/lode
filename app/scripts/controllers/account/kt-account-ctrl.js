@@ -41,9 +41,9 @@
         .controller('ktPasswordUpdateCtrl', function($scope, ktUserService, ktSweetAlert) {
 
             var defaultForm = {
-                old_password: "",
-                password: "",
-                password_confirmation: ""
+                old_password: '',
+                password: '',
+                password_confirmation: ''
             }
 
             var reset = function() {
@@ -53,8 +53,10 @@
             }
 
             $scope.cancel = function(event) {
+                /*eslint-disable*/
                 event && event.stopPropagation()
                 event && event.preventDefault()
+                /*eslint-enable*/
                 $scope.accountAccordion.openA = false
             }
 
@@ -70,9 +72,9 @@
                     $scope.pendingRequests = false
                     if (data.success) {
                         ktSweetAlert.swal({
-                            title: "更改成功",
+                            title: '更改成功',
                             text: data.error || '密码更改成功！',
-                            type: "success",
+                            type: 'success',
                         }, function() {
                             $scope.accountSet = angular.copy(defaultForm)
                             $scope.accountAccordion.openA = false
@@ -81,9 +83,9 @@
                 }).catch(function(data) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({
-                        title: "保存失败",
+                        title: '保存失败',
                         text: data.error || '抱歉，密码更改失败！',
-                        type: "error",
+                        type: 'error',
                     });
                 })
             }

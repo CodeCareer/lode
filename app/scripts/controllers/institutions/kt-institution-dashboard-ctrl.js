@@ -46,19 +46,21 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'total',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, params), function(data) {
-                    
+
                     data = ktDateHelper.adapterInstitutionDashboard(data)
                     $scope.data = data
 
@@ -100,7 +102,7 @@
                             if (v.name.indexOf('增长') === -1) {
                                 if (v.name !== '贷款余额') {
                                     v.type = 'bar'
-                                    v.stack = "累计趋势"
+                                    v.stack = '累计趋势'
                                     v.barWidth = 40
                                 } else {
                                     v.type = 'line'
@@ -150,7 +152,7 @@
                             if (v.name.indexOf('增长') === -1) {
                                 if (v.name !== '贷款余额增量') {
                                     v.type = 'bar'
-                                    v.stack = "增量趋势"
+                                    v.stack = '增量趋势'
                                     v.barWidth = 40
                                 } else {
                                     v.type = 'line'

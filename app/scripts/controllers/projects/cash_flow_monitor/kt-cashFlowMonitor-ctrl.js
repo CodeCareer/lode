@@ -12,16 +12,16 @@
                 projectID: $stateParams.projectID,
                 type: 'cash_flow',
                 sub_project_id: 'all'
-                // subProjectID: $scope.params.subProjectID || null
-                // date_from: date_from,
-                // date_to: date_to
+                    // subProjectID: $scope.params.subProjectID || null
+                    // date_from: date_from,
+                    // date_to: date_to
             }, $location.search())
 
             $scope.getSubProjectName = ktDataHelper.getSubProjectName($scope)
 
             $scope.subProjectChange = function(id) {
                 $scope.params.sub_project_id = id
-                $scope.params.subProjectID = id !== 'all' ? id: null 
+                $scope.params.subProjectID = id !== 'all' ? id : null
                 getData()
             }
 

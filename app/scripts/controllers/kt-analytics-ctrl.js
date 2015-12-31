@@ -35,7 +35,9 @@
                 var projectMainState = _.find($state.$current.path, function (v) {
                     return v.name === 'analytics.project'
                 })
+                /*eslint-disable*/
                 projectMainState && (projectMainState.data.pageTitle = $scope.activeProject)
+                /*eslint-enable*/
             })
 
             // 是否展开全部项目子菜单的开关
@@ -71,7 +73,7 @@
             }
 
             // 全部项目汇总页面 默认展开菜单
-            $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
+            $rootScope.$on('$stateChangeSuccess', function(ev, toState) {
                 if (toState.name === 'analytics.reports.dashboard') {
                     $scope.summaryMenu.reportsIsCollapsed = false
                 }
@@ -93,9 +95,6 @@
                 $scope.menu[collapseName] = !$scope.menu[collapseName]
             }
 
-            /*$scope.breadcrumbFilter = function(item) {
-                return item.data.breadcrumb
-            }*/
         })
 
 })();

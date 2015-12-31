@@ -22,12 +22,13 @@
 
             $scope.pageChanged = function() {
                 // params.page = $scope.params.page
-                ktLoanPlansService.get($scope.params, function (data) {
+                ktLoanPlansService.get($scope.params, function(data) {
                     $scope.borrowers = data.borrowers
                 })
+
                 // $location.search('page', $scope.params.page)
             }
-         
+
             ktLoanPlansService.get($scope.params, function(data) {
                 $.extend($scope, data)
                 $scope.params.totalItems = data.totalItems

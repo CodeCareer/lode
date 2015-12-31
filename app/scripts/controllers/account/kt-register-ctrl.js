@@ -13,31 +13,32 @@
                     $scope.pendingRequests = false
                     if (res.success) {
                         ktSweetAlert.swal({
-                            title: "提交成功",
-                            text: "感谢您的申请，我们的业务人员会尽快与您联系，以进行线下机构认证。",
-                            type: "success",
+                            title: '提交成功',
+                            text: '感谢您的申请，我们的业务人员会尽快与您联系，以进行线下机构认证。',
+                            type: 'success',
                         }, function() {
                             $state.go($rootScope.previousState || 'home.index')
                         });
                     } else {
                         ktSweetAlert.swal({
-                            title: "提交失败",
+                            title: '提交失败',
                             text: res.error || '抱歉，您的信息没有提交成功，请再次尝试！',
-                            type: "error",
+                            type: 'error',
                         });
                     }
                 }, function(res) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({
-                        title: "提交失败",
+                        title: '提交失败',
                         text: $.isArray(res.error) ? res.error.join('<br/>') : (res.error || '抱歉，您的信息没有提交成功，请再次尝试！'),
-                        type: "error",
+                        type: 'error',
                     });
                 })
                 return false;
             }
 
-            var timerHandlerMessage, timerHandlerTel;
+            var timerHandlerMessage
+            var timerHandlerTel;
             $scope.waitCaptchaMessage = false;
             $scope.waitCaptchaTel = false;
 
@@ -80,8 +81,8 @@
                 var CAPTCHA = $('#' + captchaId).data('captcha')
                 CAPTCHA.validate($scope.registerUser.img_captcha, function(isValid) {
                     if (isValid) {
-                        if (channel == 'sms' && $scope.waitCaptchaMessage) return
-                        if (channel == 'tel' && $scope.waitCaptchaTel) return
+                        if (channel === 'sms' && $scope.waitCaptchaMessage) return
+                        if (channel === 'tel' && $scope.waitCaptchaTel) return
 
                         //获取语音或短信验证码
                         ktCaptchaService.get({
@@ -91,7 +92,7 @@
 
                             if (data.status_code === 0) {
                                 $scope.registerUser.verif_id = data.verif_id
-                                if (channel == 'sms') {
+                                if (channel === 'sms') {
                                     $scope.waitCaptchaMessage = true;
                                     timerMessage(60);
                                 } else {
@@ -100,24 +101,24 @@
                                 }
                             } else {
                                 ktSweetAlert.swal({
-                                    title: "发送失败",
+                                    title: '发送失败',
                                     text: data.msg || '抱歉，系统繁忙！',
-                                    type: "error",
+                                    type: 'error',
                                 });
                             }
                         }, function(data) {
                             ktSweetAlert.swal({
-                                title: "发送失败",
+                                title: '发送失败',
                                 text: data.msg || '抱歉，系统繁忙！',
-                                type: "error",
+                                type: 'error',
                             });
                         })
                     } else {
                         $timeout(function() {
                             ktSweetAlert.swal({
-                                title: "提示",
+                                title: '提示',
                                 text: '图形验证码不正确！',
-                                type: "error",
+                                type: 'error',
                             }, function() {
                                 var form = $('#' + captchaId).closest('form')
                                 form.trigger('accessible.' + form.attr('id'), {
@@ -137,9 +138,9 @@
                 //图形校验成功有data
                 if (!data) {
                     ktSweetAlert.swal({
-                        title: "提示",
+                        title: '提示',
                         text: '图形验证码不正确！',
-                        type: "error",
+                        type: 'error',
                         confirmButtonColor: '#62cb31',
                         // confirmButtonText: '确定'
                     });
@@ -168,18 +169,18 @@
                         }
                     } else {
                         ktSweetAlert.swal({
-                            title: "发送失败",
+                            title: '发送失败',
                             text: data.msg || '抱歉，系统繁忙！',
-                            type: "error",
+                            type: 'error',
                             confirmButtonColor: '#62cb31',
                             // confirmButtonText: '确定'
                         });
                     }
                 }, function(data) {
                     ktSweetAlert.swal({
-                        title: "发送失败",
+                        title: '发送失败',
                         text: data.msg || '抱歉，系统繁忙！',
-                        type: "error",
+                        type: 'error',
                         confirmButtonColor: '#62cb31',
                         // confirmButtonText: '确定'
                     });

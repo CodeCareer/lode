@@ -18,10 +18,7 @@
                 projectID: $stateParams.projectID,
             }, function(data) {
                 $.extend($scope, data)
-                // $scope.summary = data.summary
+                    // $scope.summary = data.summary
             })
-
-            
-
         })
 })();

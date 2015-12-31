@@ -12,13 +12,13 @@
         $scope.statusList = [{
             name: '全部',
             value: 'all'
-        },{
+        }, {
             name: '未开始',
             value: 'initial'
-        },{
+        }, {
             name: '已完成',
             value: 'done'
-        },{
+        }, {
             name: '已拒绝',
             value: 'rejected'
         }]
@@ -55,7 +55,7 @@
         //     page: 1,
         //     per_page: 10
         // }
-        
+
         var search = $location.search()
         $.extend($scope.params, search)
 

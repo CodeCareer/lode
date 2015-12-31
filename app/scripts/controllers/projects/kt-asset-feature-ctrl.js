@@ -11,13 +11,13 @@
             $scope.radioPeriod = 'all'
             $scope.radioPeriodCustom = 'custom'
 
-            $scope.institutions = []        
+            $scope.institutions = []
             $scope.insitutionChange = function(id, name) {
                 $scope.institutionName = name
                 getData(id)
             }
 
-            ktInstitutionsService.get(function (data) {
+            ktInstitutionsService.get(function(data) {
                 $scope.institutions = data.institutions
                 $scope.institutionName = $scope.institutions[0].name
                 getData($scope.institutions[0].id)
@@ -56,17 +56,19 @@
             }
 
             function getData(instID) {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get({
                     type: 'asset_features',
                     instID: instID,
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, function(data) {
                     $scope.data = data
 
@@ -81,7 +83,7 @@
 
                         series: _.map(data.rem_prncp_by_term, function(v) {
                             v.type = 'bar'
-                            v.stack = "按期限"
+                            v.stack = '按期限'
                             v.barWidth = 40
                             return v
                         })
@@ -98,7 +100,7 @@
 
                         series: _.map(data.rem_prncp_by_amnt, function(v) {
                             v.type = 'bar'
-                            v.stack = "按额度"
+                            v.stack = '按额度'
                             v.barWidth = 40
                             return v
                         })
@@ -115,7 +117,7 @@
 
                         series: _.map(data.rem_prncp_by_loc, function(v) {
                             v.type = 'bar'
-                            v.stack = "按地理位置"
+                            v.stack = '按地理位置'
                             v.barWidth = 40
                             return v
                         })
@@ -132,7 +134,7 @@
 
                         series: _.map(data.rem_prncp_by_gender, function(v) {
                             v.type = 'bar'
-                            v.stack = "按性别"
+                            v.stack = '按性别'
                             v.barWidth = 40
                             return v
                         })
@@ -149,7 +151,7 @@
 
                         series: _.map(data.rem_prncp_by_age, function(v) {
                             v.type = 'bar'
-                            v.stack = "按年龄"
+                            v.stack = '按年龄'
                             v.barWidth = 40
                             return v
                         })

@@ -33,9 +33,9 @@
                     scope.pendingRequests = false
 
                     ktSweetAlert.swal({
-                        title: "登录失败",
-                        text: res.error || "登录失败",
-                        type: "error",
+                        title: '登录失败',
+                        text: res.error || '登录失败',
+                        type: 'error',
                     });
 
                 })

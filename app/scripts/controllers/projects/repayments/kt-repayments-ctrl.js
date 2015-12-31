@@ -28,7 +28,6 @@
             $scope.params.sub_project_id = id
         }
 
-        
         $scope.getSubProjectName = ktDataHelper.getSubProjectName($scope)
 
         ktProjectsService.get({
@@ -37,10 +36,10 @@
         }, function(data) {
             $scope.subProjects = data.sub_projects
             $scope.subProjects.unshift({
-                id: 'all',
-                name: '全部'
-            })
-            // $scope.currentSubProjectId = data.sub_projects.length ? data.sub_projects[0].id : null
+                    id: 'all',
+                    name: '全部'
+                })
+                // $scope.currentSubProjectId = data.sub_projects.length ? data.sub_projects[0].id : null
         })
 
     })
@@ -50,7 +49,7 @@
         $scope.repayments = [];
         $scope.subProjects = [];
         $scope.params.projectID = $stateParams.projectID
-        // $.extend($scope, ktDataHelper)
+            // $.extend($scope, ktDataHelper)
 
         // var params = {
         //     id: $stateParams.id,
@@ -67,6 +66,6 @@
             // $.extend($scope.params, params)
         });
 
-        
+
     })
 })();

@@ -52,7 +52,8 @@
             var chartOptions = {}
 
             function getDataKey() {
-                var prefix, suffix
+                var prefix
+                var suffix
                 prefix = $scope.chartDimension === '时点余额' ? 'rem_prncp_by_term' : 'incre_loan_amnt_by_term'
                 suffix = $scope.menuData.value === 'absolute' ? '' : '_percent'
 
@@ -86,7 +87,9 @@
             }
 
             function udpateData(data) {
+                /*eslint-disable */
                 data = data || $scope.data
+                    /*eslint-enable */
 
                 var listName = getDataKey()
                 $scope.data.list = data[listName]
@@ -102,7 +105,7 @@
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
-                        v.stack = "按类型"
+                        v.stack = '按类型'
                         v.barWidth = 40
                         return v
                     })
@@ -110,17 +113,19 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'asset_feature_term',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, params), function(data) {
                     $scope.data = data
                     udpateData(data)

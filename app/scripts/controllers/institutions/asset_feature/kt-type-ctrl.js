@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureTypeCtrl', function($scope, $stateParams,  ktReportService, ktDateHelper) {
+        .controller('ktAssetFeatureTypeCtrl', function($scope, $stateParams, ktReportService, ktDateHelper) {
 
             $scope.$emit('activeInstitutionChange', {
                 projectID: $stateParams.projectID
@@ -41,7 +41,8 @@
             var chartOptions = {}
 
             function getDataKey() {
-                var prefix, suffix
+                var prefix
+                var suffix
                 prefix = $scope.chartDimension === '时点余额' ? 'remain_types' : 'new_types'
                 suffix = $scope.menuData.value === 'absolute' ? '' : '_percent'
 
@@ -89,7 +90,7 @@
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
-                        v.stack = "按类型"
+                        v.stack = '按类型'
                         v.barWidth = 40
                         return v
                     })
@@ -97,17 +98,19 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get({
                     projectID: $stateParams.projectID,
                     type: 'asset_feature_type',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, function(data) {
                     $scope.data = data
                     udpateData(data)

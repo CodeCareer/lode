@@ -59,16 +59,18 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get({
                     type: 'asset_features',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, function(data) {
                     $scope.data = data
 
@@ -83,7 +85,7 @@
 
                         series: _.map(data.types, function(v) {
                             v.type = 'bar'
-                            v.stack = "按类型"
+                            v.stack = '按类型'
                             v.barWidth = 40
                             return v
                         })
@@ -100,7 +102,7 @@
 
                         series: _.map(data.institutions, function(v) {
                             v.type = 'bar'
-                            v.stack = "按机构"
+                            v.stack = '按机构'
                             v.barWidth = 40
                             return v
                         })
@@ -117,7 +119,7 @@
 
                         series: _.map(data.rem_prncp_by_term, function(v) {
                             v.type = 'bar'
-                            v.stack = "按期限"
+                            v.stack = '按期限'
                             v.barWidth = 40
                             return v
                         })
@@ -134,7 +136,7 @@
 
                         series: _.map(data.rem_prncp_by_amnt, function(v) {
                             v.type = 'bar'
-                            v.stack = "按额度"
+                            v.stack = '按额度'
                             v.barWidth = 40
                             return v
                         })
@@ -151,7 +153,7 @@
 
                          series: _.map(data.locations, function(v) {
                              v.type = 'bar'
-                             v.stack = "按地理位置"
+                             v.stack = '按地理位置'
                              v.barWidth = 40
                              return v
                          })
@@ -168,7 +170,7 @@
 
                          series: _.map(data.genders, function(v) {
                              v.type = 'bar'
-                             v.stack = "按性别"
+                             v.stack = '按性别'
                              v.barWidth = 40
                              return v
                          })
@@ -185,7 +187,7 @@
 
                          series: _.map(data.ages, function(v) {
                              v.type = 'bar'
-                             v.stack = "按年龄"
+                             v.stack = '按年龄'
                              v.barWidth = 40
                              return v
                          })

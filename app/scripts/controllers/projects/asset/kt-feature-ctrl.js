@@ -135,7 +135,8 @@
                 }
 
                 var keys = typesMap[type]
-                var prefix, suffix
+                var prefix
+                var suffix
                 prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
                 suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
                 if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
@@ -147,7 +148,6 @@
                     yAxis: [{
                         max: 1,
                         min: 0
-                        
                     }]
                 } : {
                     tooltip: {
@@ -174,7 +174,7 @@
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
-                        v.stack = "堆积组"
+                        v.stack = '堆积组'
                         v.barWidth = 40
                         return v
                     })
@@ -182,17 +182,19 @@
             }
 
             function getData() {
-                var date_from, date_to, datePeriod
+                var dateFrom
+                var dateTo
+                var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                date_from = datePeriod[0] || null
-                date_to = datePeriod[1]
+                dateFrom = datePeriod[0] || null
+                dateTo = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'asset_feature',
-                    date_from: date_from,
-                    date_to: date_to
+                    date_from: dateFrom,
+                    date_to: dateTo
                 }, params), function(data) {
                     $scope.data = data
                     udpateData('timeLimitChart')

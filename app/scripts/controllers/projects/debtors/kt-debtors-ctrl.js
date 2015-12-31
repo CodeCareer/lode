@@ -8,7 +8,7 @@
         $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
         })
-        
+
         $scope.params = {
             maxSize: 5,
             page: 1,

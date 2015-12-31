@@ -3,7 +3,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktOtherIncomesCtrl', function($scope, $location, $stateParams, ktOtherIncomesService, ktProjectsService) {
+    .controller('ktOtherIncomesCtrl', function($scope, $location, $stateParams) {
 
         $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
@@ -27,7 +27,7 @@
         $scope.subProjects = [];
         $scope.params.projectID = $stateParams.projectID
         $.extend($scope, ktDataHelper)
-        
+
         var search = $location.search()
         $.extend($scope.params, search)
 
@@ -36,6 +36,6 @@
             $scope.params.totalItems = data.totalItems;
         });
 
-        
+
     })
 })();
