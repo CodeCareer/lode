@@ -30,8 +30,11 @@
                         <dd class="ib"><i class="glyphicon glyphicon-ok approved-color mr5"></i>已确认</dd>
                     </dl>
                 </div>
-                <div class="fr" ng-if="repayment.status !== 'done'">
-                    <a class="btn btn-dark btn-sm ml10" ng-click="confirmRepayment(id)">确认</a>
+                <div class="fr">
+                    <a ng-if="repayment.status !== 'done'" class="btn btn-dark btn-sm ml10" ng-click="confirmRepayment(id)">确认</a>
+                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="glyphicon glyphicon-download-alt"></i>
+                    </a>
                 </div>
             </div>
             <div class="panel-body clfix">

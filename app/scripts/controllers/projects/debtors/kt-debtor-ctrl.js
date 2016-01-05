@@ -65,7 +65,9 @@
                         return number
                     }
                 },*/
-                controller: function($timeout, $state, $uibModalInstance, ktDebtorsService, ktRulesService) {
+                /*eslint-disable*/
+                controller: function($timeout, $scope, $state, $uibModalInstance, ktDebtorsService, ktRulesService) {
+                /*eslint-enable*/
                     $scope.rules = [{
                         id: '1',
                         name: '规则1',
@@ -125,7 +127,7 @@
                         }, function(data) {
                             $uibModalInstance.close(data);
                         }, function(data) {
-                            $scope.error = data.error || '取消预约失败！';
+                            $scope.error = data.error || '审批失败！';
                         })
                     };
 
@@ -135,14 +137,14 @@
 
                     $scope.gotoRule = function() {
                         $uibModalInstance.dismiss('cancel');
-                        $state.go('analytics.project.rules', {
+                        $state.go('analytics.project.debtors.rules', {
                             projectID: projectID
                         })
                     }
 
                     $scope.gotoBlacklist = function() {
                         $uibModalInstance.dismiss('cancel');
-                        $state.go('analytics.project.blacklist.list.table', {
+                        $state.go('analytics.project.debtors.blacklist.list.table', {
                             projectID: projectID
                         })
                     }

@@ -25,7 +25,11 @@
                 <div class="fr">
                     <a class="btn btn-sm btn-dark ml10" ui-sref="analytics.project.loanPlans.detail.summary({number: debtor.number})" ng-if="debtor.status == 'done'">前往放款计划</a>
                     <a class="btn btn-dark btn-sm ml10" ng-click="approveAll($event)" ng-if="debtor.status !== 'done'">审批全部</a>
+                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="glyphicon glyphicon-download-alt"></i>
+                    </a>
                 </div>
+
             </div>
             <div class="panel-body clfix">
                 <div class="ov-h">
