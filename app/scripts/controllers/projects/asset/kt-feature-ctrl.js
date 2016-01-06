@@ -128,10 +128,10 @@
 
             function getDataKey(type) {
                 var typesMap = {
-                    'timeLimitChart': ['rem_prncp_by_term', 'incre_loan_amnt_by_term'],
-                    'amountChart': ['rem_prncp_by_amnt', 'incre_loan_amnt_by_amnt'],
-                    'typeChart': ['rem_prncp_by_type', 'incre_loan_amnt_by_type'],
-                    'locationChart': ['rem_prncp_by_loc', 'rem_prncp_by_loc_percent'],
+                    'timeLimitChart': ['prncp_balns_by_term', 'incre_loan_amnt_by_term'],
+                    'amountChart': ['prncp_balns_by_amnt', 'incre_loan_amnt_by_amnt'],
+                    'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
+                    'locationChart': ['prncp_balns_by_loc', 'prncp_balns_by_loc_percent'],
                 }
 
                 var keys = typesMap[type]

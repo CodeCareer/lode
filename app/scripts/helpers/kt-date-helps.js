@@ -40,10 +40,13 @@
                     }
                     return dateFrom + '~' + dateTo
                 },
-
-                initPeriod: function($scope, params) { //只针对单个机构的统计页面，所有机构的Dashboard 不太好兼容
-                    var dateFrom = params.dateFrom || ''
-                    var dateTo = params.dateTo || ''
+                /**
+                 * 根据location参数，确定日期组件的初始化状态
+                 */
+                initPeriod: function($scope, params) { //只针对单个项目的统计页面，所有项目的Dashboard 不太好兼容
+                    // mock 过去六个月
+                    var dateFrom = params.date_from || '2015-07'
+                    var dateTo = params.date_to || '2015-12'
 
                     // $scope.radioPeriodAll = this.getDate('all')
                     $scope.radioPeriodLastMonth = this.getDate('lastMonth')
