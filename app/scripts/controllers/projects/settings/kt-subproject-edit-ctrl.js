@@ -23,11 +23,7 @@
                 subProjectID: $stateParams.subProjectID
             }
 
-            ktProjectsService.get({
-                projectID: $stateParams.projectID,
-                subProject: 'sub_projects',
-                subProjectID: $stateParams.subProjectID
-            }, function(data) {
+            ktProjectsService.get($scope.subProject, function(data) {
                 $.extend($scope.subProject, data.sub_project)
             })
 
@@ -40,7 +36,7 @@
                 ktProjectsService.update($scope.subProject).$promise.then(function() {
                     ktSweetAlert.swal({
                         title: '提示',
-                        text: '项目新增成功',
+                        text: '保存成功',
                         type: 'success',
                     }, function() {
                         $state.go('analytics.project.settings.subProject.list.table')
@@ -49,7 +45,7 @@
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({
                         title: '提示',
-                        text: $.isArray(res.error) ? res.error.join('<br/>') : (res.error || '抱歉，项目新增失败！'),
+                        text: $.isArray(res.error) ? res.error.join('<br/>') : (res.error || '抱歉，保存失败！'),
                         type: 'error',
                     });
                 })

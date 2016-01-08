@@ -7,12 +7,30 @@
     angular.module('kt.lode')
 
     //user service
-    .factory('ktUserService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/users')
+    .factory('ktUserService', function($resource, CacheFactory, ktApiVersion) {
+
+        var profileCache
+        if (!CacheFactory.get('profileCache')) {
+            /*eslint-disable*/
+            profileCache = CacheFactory('profileCache', {
+                maxAge: 12 * 60 * 60 * 1000, // Items added to this cache expire after 12 hours
+                cacheFlushInterval: 12 * 60 * 60 * 1000, // This cache will clear itself every 12 hours.
+                deleteOnExpire: 'aggressive', // Items will be deleted from this cache right when they expire.
+                storageMode: 'localStorage' // This cache will use `localStorage`.
+            })
+            /*eslint-enable*/
+        }
+
+        return $resource('/ajax/api/' + ktApiVersion + '/users', {}, {
+            'get': {
+                method: 'GET',
+                cache: profileCache
+            }
+        })
     })
 
     //获取user信息
-    .factory('ktSessionUserService', function($q, $window, ktUserService) {
+    /*.factory('ktSessionUserService', function($q, $window, ktUserService) {
         return {
             get: function(params) {
                 var localStorage = $window.localStorage
@@ -42,18 +60,13 @@
                 delete localStorage.user
             }
         }
-    })
+    })*/
 
     //user session service
     .factory('ktLoginService', function($resource, ktApiVersion) {
         return $resource('/ajax/api/' + ktApiVersion + '/sessions/:confirm', {
             confirm: '@confirm'
         })
-    })
-
-    //institutions service
-    .factory('ktInstitutionService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/institutions')
     })
 
 })();

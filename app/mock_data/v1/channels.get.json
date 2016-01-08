@@ -1,0 +1,18 @@
+{
+    "totalItems": 1,
+    "channels": [{
+        "id": 1,
+        "name": "中信银行",
+        "putin_amount": 100000000,
+        "remain_amount": 100000000,
+        "transaction_amount": 100000000,
+        "total_revenue": 1000000,
+        "avg_duration": 40,
+        "overdue_rate": 0.09,
+        "bad_rate": 0.04,
+        "individual_amount": 10000,
+        "numbers": 1000,
+        "borrowers_number": 1000,
+        "avg_amount": 10000
+    }]
+}

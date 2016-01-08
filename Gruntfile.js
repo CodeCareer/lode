@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         lineEnding: grunt.util.linefeed,
         kt: appConfig,
         config: {
-            src: "tasks/*.js"
+            src: 'tasks/*.js'
         }
     };
 
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     grunt.registerTask('updateVersion', 'update the version', function() {
         var pkg = grunt.file.readJSON('package.json');
         var newVersion = grunt.option('version-set');
-        if (newVersion != pkg.version) {
+        if (newVersion !== pkg.version) {
             grunt.config.merge({
                 replace: {
                     version: {
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                                 match: new RegExp('([\'\"])(' + pkg.version + ')\\1', 'g'),
                                 replacement: function(match, quota, versionStr) {
                                     var versionArr = versionStr.split('.')
-                                    versionArr[2] = parseInt(versionArr[2]) + 1
+                                    versionArr[2] = parseInt(versionArr[2], 10) + 1
                                     return quota + (newVersion || versionArr.join('.')) + quota
                                 }
                             }]

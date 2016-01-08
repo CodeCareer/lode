@@ -1,6 +1,9 @@
-<div id="logo" >
+<div id="logo">
     <span>
-        <i class="icon-lode f22 mr15 vm">&#xe900;</i>微贷平台
+        <!-- <i class="icon-lode f22 mr15 vm">&#xe900;</i> -->
+        <a href="{{accountLink}}" target="_blank" class="mr10">
+            <img src="{{accountLogo}}" alt="中合担保logo" height="30">
+        </a>微贷平台
         <!-- <a ui-sref="analytics.dashboard">
         </a> -->
     </span>
@@ -12,6 +15,12 @@
             <a ui-sref="analytics.dashboard">互联网金融交易所</a>
         </span>
     </div> -->
+    <div class="checkbox checkbox-success fl mt20 lh18">
+        <input id="roleSwitch" type="checkbox" ng-model="user.role" ng-true-value="'admin'" ng-false-value="'normal'">
+        <label class="f12 white" for="roleSwitch">
+            管理员(仅用于展示)
+        </label>
+    </div>
     <div class="navbar-right f12">
         <ul class="nav navbar-nav no-borders">
             <li>
@@ -25,7 +34,3 @@
         </ul>
     </div>
 </nav>
-
-
-
-

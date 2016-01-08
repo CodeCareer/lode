@@ -11,7 +11,13 @@
             $scope.breadcrumbFilter = function(item) {
                 return item.data.breadcrumb
             }
+            $scope.stateGo = function (stateName, func, collapseName) {
+                if (func) {
+                    $scope[func](collapseName)
+                }
 
+                $state.go(stateName)
+            }
             // 获取当前项目名称
             function getProjectName() {
                 var f = _.findWhere($scope.projects || [], {
@@ -44,6 +50,9 @@
             $scope.summaryMenu = {
                 reportsIsCollapsed: !$state.includes('analytics.reports.**'),
                 projectsIsCollapsed: !$state.includes('analytics.projects.**'),
+                institutionsIsCollapsed: !$state.includes('analytics.institutions.**'),
+                channelsIsCollapsed: !$state.includes('analytics.channels.**'),
+                accountsIsCollapsed: !$state.includes('analytics.accounts.**'),
 
             }
 
@@ -64,7 +73,7 @@
             }
 
             // 保证在子项目内当前路由切换项目
-            $scope.goto = function(id) {
+            $scope.currStateSwitch = function(id) {
                 var stateName = $state.includes('analytics.project.**') ? $state.current.name : 'analytics.project.dashboard'
 
                 $state.go(stateName, {

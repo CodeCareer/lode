@@ -41,5 +41,11 @@
                 })
             }
         })
+        /*.factory('ktPermitsValid',  function($rootScope){
+            return function (permit){
+                // var permits = $rootScope.user.permits
+                // var role = $rootScope.user.role
+            };
+        })*/
 
 })();

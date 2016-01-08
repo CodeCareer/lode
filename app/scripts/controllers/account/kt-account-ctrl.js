@@ -15,16 +15,7 @@
                 $state.go(state)
             }
         })
-        //机构控制器
-        /*.controller('ktInstitutionCtrl', function($scope, ktInstitutionService) {
-            $scope.tabStatus.active1 = true //更新父controller内的tabstatus
-
-            ktInstitutionService.get({
-                // id: institutionID
-            }, function(data) {
-                $scope.institution = data.institution
-            })
-        })*/
+        
         //账户设置控制器
         .controller('ktAccountSetCtrl', function($scope) {
             $scope.tabStatus.active2 = true //更新父controller内的tabstatus

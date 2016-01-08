@@ -7,32 +7,35 @@
         </div> -->
         <div class="hpanel">
             <div class="panel-heading clfix">
-                <h5>还款账单明细</h5>
-                <div class="fl mt8 f12">
-                    <dl class="ib mb0 ml10">
-                        <dt class="ib">账单类型：</dt>
-                        <dd class="ib" ng-bind="getTypeName(bill.type)"></dd>
-                    </dl>
-                    <dl class="ib mb0 ml10">
-                        <dt class="ib">账单日期：</dt>
-                        <dd class="ib" ng-bind="bill.repay_at"></dd>
-                    </dl>
-                    <dl class="ib mb0 ml10">
-                        <dt class="ib">子项目：</dt>
+                <!-- <h5>还款账单明细</h5> -->
+                <div class="fl mt8 f13">
+                    <dl class="ib mb0">
+                        <dt class="ib">子项目:</dt>
                         <dd class="ib" ng-bind="bill.name"></dd>
                     </dl>
-                    <dl class="ib mb0 ml10">
-                        <dt class="ib">批次：</dt>
+                    <dl class="ib mb0 ml20">
+                        <dt class="ib">批次:</dt>
                         <dd class="ib" ng-bind="bill.number"></dd>
                     </dl>
-                    <dl class="ib mb0 ml10">
-                        <dt class="ib">还款期数：</dt>
-                        <dd class="ib" ng-bind="'第 '+ bill.stage + ' 期'"></dd>
+                    <dl class="ib mb0 ml20">
+                        <dt class="ib">账单类型:</dt>
+                        <dd class="ib" ng-bind="getTypeName(bill.type)"></dd>
                     </dl>
-                    <dl class="ib mb0 ml10" ng-if="bill.status === 'done'">
+                    <dl class="ib mb0 ml20">
+                        <dt class="ib">账单日期:</dt>
+                        <dd class="ib" ng-bind="bill.repay_at"></dd>
+                    </dl>
+                    <dl class="ib mb0 ml20">
+                        <dt class="ib">还款期数:</dt>
+                        <dd class="ib" ng-bind="bill.stage"></dd>
+                    </dl>
+                    <!-- <dl class="ib mb0 ml10" ng-if="bill.status === 'done'">
                         <dt class="ib">状态：</dt>
                         <dd class="ib"><i class="glyphicon glyphicon-ok approved-color mr5"></i>已确认</dd>
-                    </dl>
+                    </dl> -->
+                </div>
+                <div class="fr mt8 f12" ng-if="bill.status === 'done'">
+                    <span><i class="glyphicon glyphicon-ok approved-color mr5"></i>已确认</span>
                 </div>
                 <div class="fr" ng-if="bill.status !== 'done'">
                     <a class="btn btn-dark btn-sm ml10" ng-click="confirmBill(id)">确认账单</a>
@@ -42,10 +45,9 @@
                 <div class="ov-h">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="chart-table">
-                                <div class="chart-table-heading clfix">
-                                    <div class="f14 pl10 fl">账单摘要</div>
-
+                            <div class="chart-table bg-none">
+                                <div class="chart-table-heading tab-like clfix">
+                                    <div class="f14 pl10 pr10 fl tab">账单摘要</div>
                                 </div>
                                 <div class="dashboard-list">
                                     <ul class="tier-list">
@@ -103,6 +105,11 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="fr">
+                                        <a class="download-data f18 ml5 pr10 pl10 va-2 lh1em">
+                                            <i class="glyphicon glyphicon-download-alt"></i>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="table-responsive table-body">
                                     <table class="table table-striped table-hover">
@@ -126,7 +133,7 @@
                                                 <th class="text-left" ng-bind="::repayment.bank_account"></th>
                                                 <td ng-bind="::repayment.name"></td>
                                                 <td ng-bind="::repayment.identity_num"></td>
-                                                <td ng-bind-html="::getStatusNameNice(repayment.status)"></td>
+                                                <td ng-bind-html="::getStatusName(repayment.status)"></td>
                                                 <td ng-bind="::repayment.repay_principle | ktNumberLocate"></td>
                                                 <td ng-bind="::repayment.repay_interest | ktNumberLocate"></td>
                                                 <td ng-bind="::repayment.ahead_principle | ktNumberLocate"></td>

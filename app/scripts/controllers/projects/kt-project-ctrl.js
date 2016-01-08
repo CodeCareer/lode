@@ -5,7 +5,7 @@
         .controller('ktPrjectCtrl', function($scope, $rootScope, $state) {
 
             // 初始化从路由获取id
-            console.log($state)
+            // console.log($state)
         })
 
 })();

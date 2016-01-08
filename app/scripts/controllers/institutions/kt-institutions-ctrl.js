@@ -5,51 +5,39 @@
 
     .controller('ktInstitutionsCtrl', function($scope, $location, $stateParams) {
 
-        $scope.$emit('activeInstitutionChange', {
+        $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
         })
-        $scope.shared = {}
 
-        $scope.pageChanged = function() {
-            $location.search('page', $scope.shared.page)
+        $scope.params = {
+            page: 1,
+            per_page: 10,
+            maxSize: 5
         }
 
-        $scope.stateChanged = function() {
+        $scope.pageChanged = function() {
+            $location.search('page', $scope.params.page)
+        }
+
+        /*$scope.stateChanged = function() {
             $location.search($.extend($location.search(), {
-                status: $scope.shared.status || null,
+                status: $scope.params.status || null,
                 page: 1,
                 per_page: 10
             }))
-        }
+        }*/
     })
 
     .controller('ktInstitutionsTableCtrl', function($scope, $location, $state, ktInstitutionsService) {
-        $scope.institutions = [];
-        $scope.shared.maxSize = 5
-            // $.extend($scope, ktInstitutionsHelper)
+        $scope.institutions = []
 
-        var params = {
-            page: 1,
-            per_page: 10
-        }
         var search = $location.search()
+        $.extend($scope.params, search)
 
-        $.extend(params, search)
-
-        $scope.goDetail = function($event, institutionId) {
-            $event.stopPropagation()
-            $event.preventDefault()
-            $state.go('analytics.institution.dashboard', {
-                id: institutionId
-            })
-        }
-
-        ktInstitutionsService.get(params, function(data) {
-
-            // $scope.institutions = ktInstitutionsHelper.adapter(data.institutions || []);
+        ktInstitutionsService.get($scope.params, function(data) {
             $scope.institutions = data.institutions;
-            $scope.shared.totalItems = data.totalItems;
-            $.extend($scope.shared, params)
+            $scope.params.totalItems = data.totalItems;
+            // $.extend($scope.params, params)
         });
     })
 })();

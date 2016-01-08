@@ -1,0 +1,34 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>通道名称</th>
+            <th>累计成交金额</th>
+            <th>贷款余额</th>
+            <th>平均贷款期限</th>
+            <th>逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，180" class="icon-lode icon-info f12 opacity-0_5"></i></th>
+            <th>不良率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，90" class="icon-lode icon-info f12 opacity-0_5"></i></th>
+            <th>笔数</th>
+            <th>累计贷款人数</th>
+            <th>人均贷款金额</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="channel in channels">
+            <th class="text-left" ng-bind="::channel.name"></th>
+            <td ng-bind="::channel.transaction_amount | ktNumberLocate"></td>
+            <td ng-bind="::channel.remain_amount | ktNumberLocate"></td>
+            <td ng-bind="::(channel.avg_duration + '天')"></td>
+            <td ng-bind="::(channel.overdue_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::(channel.bad_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::channel.numbers"></td>
+            <td ng-bind="::channel.borrowers_number"></td>
+            <td ng-bind="::channel.avg_amount | ktNumberLocate"></td>
+        </tr>
+        <tr ng-if="(!channels.length || !channels) && !isLoading()">
+            <td colspan="9" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

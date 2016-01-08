@@ -12,12 +12,12 @@
             projectID: '@projectID',
             subProject: '@subProject',
             subProjectID: '@subProjectID'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
         })
-    }, {
-        'get': {
-            method: 'GET',
-            cache: false
-        }
     })
 
     // 机构
@@ -25,12 +25,38 @@
         return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/institutions', {
             projects: '@projects',
             projectID: '@projectID',
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
         })
-    }, {
-        'get': {
-            method: 'GET',
-            cache: false
-        }
+    })
+
+    // 账户
+    .factory('ktAccountsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/accounts', {
+            projects: '@projects',
+            projectID: '@projectID',
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })
+
+    // 通道
+    .factory('ktChannelsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/channels', {
+            projects: '@projects',
+            projectID: '@projectID',
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
     })
 
 
@@ -41,12 +67,12 @@
             type: '@type',
             subProjectID: '@subProjectID',
             instID: '@instID'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
         })
-    }, {
-        'get': {
-            method: 'GET',
-            cache: false
-        }
     })
 
     // 借款人审批
@@ -67,24 +93,24 @@
         return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/rules/:ruleID', {
             projectID: '@projectID',
             ruleID: '@ruleID'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
         })
-    }, {
-        'get': {
-            method: 'GET',
-            cache: false
-        }
     })
 
     // 借款人审批规则-黑名单
     .factory('ktBlacklistService', function($resource, ktApiVersion) {
         return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/blacklist', {
             projectID: '@projectID',
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
         })
-    }, {
-        'get': {
-            method: 'GET',
-            cache: false
-        }
     })
 
     // 放款计划

@@ -52,7 +52,14 @@
 
             $scope.billTypes = ktDataHelper.getBillTypes()
             $scope.getTypeName = ktDataHelper.getBillTypeFactory($scope)
-            $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
+                // $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
+
+            $scope.getStatusNameNice = function(status) {
+                var st = _.find($scope.statusList, function(v) {
+                    return v.value === (status || $scope.params.status)
+                }) || {}
+                return '<span class="' + (status !== 'overdue' ? 'approved-color' : 'warn-color') + '">' + st.name + '</span>'
+            }
 
             $scope.statusList = [{
                 name: '全部',

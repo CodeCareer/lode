@@ -12,6 +12,8 @@
                 var config = {
                     currentUrl: '/anlytics/dashboard',
                     logoHorizonal: ktS('images/logo.svg'),
+                    accountLogo: ktS('images/logo-zh.png'),
+                    accountLink: 'http://www.sinoguarantee.com/',
                     chartColors: ['#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed',
                         '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
                         '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',

@@ -7,16 +7,20 @@
             <th>金额</th>
             <th>来源</th>
             <th>备注</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="otherIncome in otherIncomes">
-            <th class="text-left" ng-bind="::otherIncome.create_at"></th>
+            <th class="text-left" ng-bind="::otherIncome.income_at"></th>
             <td ng-bind="::otherIncome.name"></td>
-            <td ng-bind="::otherIncome.type == 'other' ? '其他' : '未知'"></td>
+            <td ng-bind="::otherIncome.type"></td>
             <td ng-bind="::otherIncome.amount | ktNumberLocate"></td>
             <td ng-bind="::otherIncome.origin"></td>
             <td ng-bind="::otherIncome.desc"></td>
+            <td>
+                <a class="tu" ui-sref="analytics.project.finance.otherIncome.edit({otherIncomeID: otherIncome.id})">编辑</a>
+            </td>
         </tr>
         <tr ng-if="(!otherIncomes.length || !otherIncomes) && !isLoading()">
             <td colspan="6" class="text-info text-center">

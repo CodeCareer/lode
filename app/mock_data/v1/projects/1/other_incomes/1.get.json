@@ -1,0 +1,11 @@
+{
+    "other_income": {
+        "id": "1",
+        "income_at": "2015-02-12",
+        "desc": "备注",
+        "type": "其他",
+        "origin": "其他来源",
+        "amount": 10000,
+        "name": "浮动收益"
+    }
+}
