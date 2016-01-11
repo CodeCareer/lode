@@ -1054,9 +1054,9 @@
 
                 // 登录限制
                 if (!$rootScope.user && permit && $.inArray('login', permit) > -1) {
-                    event.preventDefault(); //此处禁止事件冒泡会偶尔导致ui-rooter 死循环,带排查
+                    // event.preventDefault(); //此处禁止事件冒泡会偶尔导致ui-rooter 死循环,带排查
                     ktUserService.get().$promise.then(function(res) {
-                        console.log(res)
+                        // console.log(res)
                         $rootScope.user = res.account
                         if (!res.account) {
                             $state.go('account.login', toParams)

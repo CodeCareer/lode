@@ -1,12 +1,12 @@
-var modRewrite = require('connect-modrewrite'),
-    gzip = require('connect-gzip');
+var modRewrite = require('connect-modrewrite')
+var gzip = require('connect-gzip')
 var appConfig = {
-    app: 'app',
-    dist: 'dist'
-}
-// var server = 'http://dev-lode.kaitongamc.com'
+        app: 'app',
+        dist: 'dist'
+    }
+    // var server = 'http://dev-lode.kaitongamc.com'
 var server = 'http://10.132.1.113:3000'
-// var server = 'http://op-fame.ktjr.com'
+    // var server = 'http://op-fame.ktjr.com'
 var modRewriteUri = [
     // '^/mock_data/v\d{1,}/([^?]*).*$ /mock_data/$1 [L]',
     '^/(ajax/api/v\\d{1,}/.*)$ ' + server + '/$1 [P]',
@@ -26,12 +26,12 @@ module.exports = {
             open: {
                 target: 'http://localhost:8000',
             },
-            middleware: function(connect, options) {
+            middleware: function(connect) {
 
                 return [
                     /**
                      * @author luxueyan
-                     * 模拟服务器端环境， 
+                     * 模拟服务器端环境，
                      * 1.第一次无token, session写入xsrf token 和用户登录状态
                      * 2.无token访问API接口 返回401错误
                      * 3.登录login过期以后返回419错误
@@ -48,7 +48,7 @@ module.exports = {
 
                         var token = req.session.token
                             // console.log(req.url,'---',req.url.match(/\.json\??\.*/),'++++',req.headers)
-                        if ((!token || !req.headers['authorization']) && req.url.match(/sessions\.post\.json\??.*/)) {
+                        if ((!token || !req.headers.authorization) && req.url.match(/sessions\.post\.json\??.*/)) {
                             // res.cookie("XSRF-TOKEN", "test-xsrf", {
                             //     maxAge: 60 * 60 * 1000
                             // });
@@ -61,13 +61,13 @@ module.exports = {
                             console.log('no need to authorize')
                         } else if (req.url.match(/\.json\??\.*/) && !req.session.token) {
                             res.writeHead(419, {
-                                "Content-Type": "application/json"
+                                'Content-Type': 'application/json'
                             })
                             res.end('{"error":"session expired"}')
-                        } else if (token && req.url.match(/\.json\??\.*/) && token !== req.headers['authorization']) {
+                        } else if (token && req.url.match(/\.json\??\.*/) && token !== req.headers.authorization) {
 
                             res.writeHead(401, {
-                                "Content-Type": "application/json"
+                                'Content-Type': 'application/json'
                             })
                             res.end('{"error":"no token post"}')
                         }
@@ -101,17 +101,19 @@ module.exports = {
                 target: 'http://localhost:8000',
             },
             base: '<%= kt.dist %>',
-            middleware: function(connect, options) {
+            middleware: function() {
                 return [
                     //mock data API0
                     function(req, res, next) {
                         if (!req.url.match(/\.json\??|\/api\/v\d+|\/index\.html|asset-rev.*\.js/g)) {
-                            res.setHeader("Cache-Control", "max-age=" + 60 * 60 * 24 * 365)
+                            res.setHeader('Cache-Control', 'max-age=' + 60 * 60 * 24 * 365)
                         }
                         return next()
                     },
                     modRewrite(modRewriteUri),
-                    gzip.staticGzip(appConfig.dist, {matchType: /text|css|javascript|image|font/}), //启用gzip
+                    gzip.staticGzip(appConfig.dist, {
+                        matchType: /text|css|javascript|image|font/
+                    }), //启用gzip
                     // connect.static(appConfig.dist),
                 ]
             }
