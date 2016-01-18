@@ -1,0 +1,38 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>还款日</th>
+            <th>子项目</th>
+            <th>批次</th>
+            <th>还款期数</th>
+            <th>当期应收总额</th>
+            <th>应还款人数</th>
+            <th>正常还款人数</th>
+            <th>提前还款人数</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="repayment in repayments">
+            <th class="text-left" ng-bind="::repayment.repay_at"></th>
+            <td ng-bind="::repayment.subproject_name"></td>
+            <td ng-bind="::repayment.number"></td>
+            <td ng-bind="::repayment.stage"></td>
+            <td ng-bind="::repayment.amount | ktNumberLocate"></td>
+            <td ng-bind="::repayment.should_people_amount"></td>
+            <td ng-bind="::repayment.normal_people_amount"></td>
+            <td ng-bind="::repayment.ahead_people_amount"></td>
+            <td class="text-center">
+                <a class="tu" ui-sref="analytics.project.repayments.detail({number: repayment.number})" target="_blank">
+                    查看明细
+                </a>
+            </td>
+        </tr>
+        <tr ng-if="(!repayments.length || !repayments) && !isLoading()">
+            <td colspan="9" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

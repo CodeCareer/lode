@@ -1,0 +1,36 @@
+<div id="loanPlans" class="row" kt-animate-panel child="hpanel">
+    <div class="col-lg-12">
+        <!-- <div class="content-header clfix">
+            <div class="btns fl">
+                <a ng-click="back()" class="btn btn-sm btn-default">&lt;&lt;返回列表</a>
+            </div>
+        </div> -->
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>其他收益</h5>
+                <div class="actions fr">
+                    <a class="btn btn-dark btn-sm" ui-sref="analytics.project.finance.otherIncome.add">添加</a>
+                    <!-- <div class="btn btn-sm btn-dark btn-file">
+                        添加 
+                        <input type="file" name="blacklist">
+                    </div> -->
+                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                        <i class="glyphicon glyphicon-download-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body clfix">
+                <div class="ov-h">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="chart-table">
+                                <div class="table-responsive table-body" ui-view></div>
+                            </div>
+                        </div>
+                    </div>
+                    <pagination total-items="params.totalItems" items-per-page="params.per_page" ng-change="pageChanged()" max-size="params.maxSize" ng-model="params.page" class="pagination-sm fr"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

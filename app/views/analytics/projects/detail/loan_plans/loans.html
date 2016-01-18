@@ -1,0 +1,32 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>子项目</th>
+            <th>批次</th>
+            <th>提交时间</th>
+            <th>计划放款金额</th>
+            <th>放款状态</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="loanPlan in loanPlans">
+            <th class="text-left" ng-bind="::loanPlan.subproject_name"></th>
+            <td ng-bind="::loanPlan.batch_no"></td>
+            <td ng-bind="::loanPlan.created_at | date:'yyyy-MM-dd HH:mm:ss'"></td>
+            <td ng-bind="::loanPlan.total_loan_amnt | ktNumberLocate"></td>
+            <td ng-bind-html="getStatusNameNice(loanPlan.status)"></td>
+            <td class="text-center">
+                <a class="tu" ui-sref="analytics.project.loanPlans.detail.summary({batchNo: loanPlan.batch_no})">
+                    <span ng-bind="loanPlan.status != 'issued' ? '进入' : '查看结果'"></span>
+                </a>
+            </td>
+        </tr>
+        <tr ng-if="(!loanPlans.length || !loanPlans) && !isLoading()">
+            <td colspan="7" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
