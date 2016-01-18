@@ -13,7 +13,7 @@
                         'approved': '已通过',
                         'rejected': '已拒绝',
                         'planed': '已生成放款计划',
-                        'finished': '已完成'
+                        'issued': '已下发指令'
                     }
                     return sMap[status] || '未知状态'
                 },
@@ -43,6 +43,9 @@
                     }, {
                         name: '已拒绝',
                         value: 'rejected'
+                    }, {
+                        name: '已下发指令',
+                        value: 'issued'
                     }]
                 },
                 getBillTypes: function() {
@@ -76,7 +79,7 @@
                                 return '<i class="glyphicon glyphicon-time initial-color mr5"></i>' + st.name;
                             case 'approved':
                             case 'planned':
-                            case 'done':
+                            case 'issued':
                             case 'normal':
                                 return '<i class="glyphicon glyphicon-ok approved-color mr5"></i>' + st.name;
                             case 'rejected':

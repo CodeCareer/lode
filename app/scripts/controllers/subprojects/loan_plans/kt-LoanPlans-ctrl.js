@@ -6,7 +6,7 @@
     .controller('ktLoanPlansCtrl', function($scope, $location, $stateParams, ktDataHelper) {
 
         $scope.$emit('activeProjectChange', {
-            projectID: $stateParams.projectID
+            projectID: $stateParams.subProjectID
         })
 
         $scope.statusList = ktDataHelper.getLoanStatusMap()

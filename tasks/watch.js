@@ -14,7 +14,7 @@ module.exports = {
     //     files: ['<%= kt.app %>/common/directives/**/*.less', '<%= kt.app %>/scripts/directives/**/*.less'],
     //     tasks: ['less:common'],
     // },
-    
+
     imgresponsive: {
         files: [
             '<%= kt.app %>/images/slice/**.{jp?g,png,gif}',
@@ -39,7 +39,7 @@ module.exports = {
     },
 
     js: {
-        files: ['<%= kt.app %>/scripts/**/*.js', '<%= kt.app %>/common/**/*.js'],
+        files: ['<%= kt.app %>/scripts/**/*.js', '<%= kt.app %>/common/**/*.js', '<%= kt.app %>/views/**/*.js'],
         options: {
             livereload: '<%= connect.options.livereload %>'
         }
@@ -52,7 +52,7 @@ module.exports = {
 
     injector: {
         files: ['tasks/injector.js'],
-        tasks: ['injector:indexCommoncss', 'injector:indexCommonjs',  'injector:indexAppcss', 'injector:indexAppjs']
+        tasks: ['injector:indexCommoncss', 'injector:indexCommonjs', 'injector:indexAppcss', 'injector:indexAppjs']
     },
 
     livereload: {

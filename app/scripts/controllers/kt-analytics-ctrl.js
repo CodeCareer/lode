@@ -37,26 +37,28 @@
                 $state.go(stateName)
             }
 
-            function getProject() {
+            function getProject(project) {
                 return _.findWhere($scope.projects || [], {
-                    id: $scope.projectID !== 'all' ? parseInt($scope.projectID, 10) : 'all'
+                    id: (project.id !== 'all' ? parseInt(project.id, 10) : 'all')
                 })
             }
 
             // 获取当前项目名称
             function getProjectName() {
-                var f = getProject()
+                var f = getProject({
+                    id: $scope.projectID
+                })
                 return f ? f.name : '全部项目'
             }
 
             // 添加或更新项目
             function updateProject(project) {
-                var f = getProject()
-
+                var f = getProject(project)
                 if (f) {
                     $.extend(f, project)
+                    $scope.activeProjectName = data.name
                 } else {
-                    $scope.projects.unshift(project)
+                    $scope.projects.push(project)
                 }
             }
 
@@ -122,7 +124,7 @@
 
             // 更新项目
             $scope.$on('activeProjectUpdate', function(e, data) {
-                $scope.activeProjectName = data.name
+                
                 updateProject(data)
             })
 

@@ -22,8 +22,8 @@
                 'analytics.subProjects.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/subprojects/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/kt-subprojects-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/subprojects_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/subprojects.js']),
                     controller: 'ktSubProjectsCtrl',
                     data: {
                         breadcrumb: false, //重载父view data
@@ -32,7 +32,7 @@
                 },
                 'analytics.subProjects.list.table': {
                     url: '?page&status&per_page&project_id',
-                    templateUrl: 'views/analytics/subprojects/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/subprojects.html',
                     controller: 'ktSubProjectsTableCtrl',
                     data: {
                         breadcrumb: false,
@@ -67,8 +67,8 @@
                 'analytics.subProject.debtors.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/subprojects/detail/debtors/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/debtors/kt-debtors-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/debtors/debtors_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/debtors/debtors.js']),
                     controller: 'ktDebtorsCtrl',
                     data: {
                         breadcrumb: false,
@@ -77,7 +77,7 @@
                 },
                 'analytics.subProject.debtors.list.table': {
                     url: '?page&per_page',
-                    templateUrl: 'views/analytics/subprojects/detail/debtors/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/debtors/debtors.html',
                     controller: 'ktDebtorsTableCtrl',
                     data: {
                         breadcrumb: true,
@@ -98,8 +98,8 @@
                 'analytics.subProject.debtors.detail.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/subprojects/detail/debtors/detail/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/debtors/kt-debtor-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/debtors/detail/debtor_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/debtors/detail/debtor.js']),
                     controller: 'ktDebtorCtrl',
                     data: {
                         breadcrumb: false,
@@ -109,7 +109,7 @@
                 },
                 'analytics.subProject.debtors.detail.list.table': {
                     url: '?status&page&per_page',
-                    templateUrl: 'views/analytics/subprojects/detail/debtors/detail/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/debtors/detail/debtor.html',
                     controller: 'ktDebtorTableCtrl',
                     data: {
                         breadcrumb: false,
@@ -129,8 +129,8 @@
                 'analytics.subProject.loanPlans.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/loan_plans/kt-loanPlans-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/loan_plans_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/loan_plans/loan_plans.js']),
                     controller: 'ktLoanPlansCtrl',
                     data: {
                         breadcrumb: false,
@@ -139,7 +139,7 @@
                 },
                 'analytics.subProject.loanPlans.list.table': {
                     url: '?status&page&per_page',
-                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/loan_plans.html',
                     controller: 'ktLoanPlansTableCtrl',
                     data: {
                         breadcrumb: true,
@@ -160,8 +160,8 @@
                 'analytics.subProject.loanPlans.detail.list': {
                     url: '',
                     abstract: true,
-                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/detail/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/loan_plans/kt-loanPlan-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/detail/loan_plan_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/loan_plans/detail/loan_plan.js']),
                     controller: 'ktLoanPlanCtrl',
                     data: {
                         pageTitle: '放款管理-放款计划明细',
@@ -169,7 +169,7 @@
                 },
                 'analytics.subProject.loanPlans.detail.list.table': {
                     url: 'page&per_page',
-                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/detail/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/loan_plans/detail/loan_plan.html',
                     controller: 'ktLoanPlanTableCtrl',
                     data: {
                         breadcrumb: true,
@@ -191,8 +191,8 @@
                 'analytics.subProject.repayments.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/subprojects/detail/repayments/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/repayments/kt-repayments-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/repayments/repayments_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/repayments/repayments.js']),
                     controller: 'ktRepaymentsCtrl',
                     data: {
                         breadcrumb: false,
@@ -201,7 +201,7 @@
                 },
                 'analytics.subProject.repayments.list.table': {
                     url: '?page&per_page&start_date&end_date',
-                    templateUrl: 'views/analytics/subprojects/detail/repayments/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/repayments/repayments.html',
                     controller: 'ktRepaymentsTableCtrl',
                     data: {
                         breadcrumb: true,
@@ -221,8 +221,8 @@
                 'analytics.subProject.repayments.detail.list': {
                     url: '',
                     abstract: true,
-                    templateUrl: 'views/analytics/subprojects/detail/repayments/detail/list_layout.html',
-                    resolve: ktLazyResolve(['scripts/controllers/subprojects/repayments/kt-loanPlan-ctrl.js']),
+                    templateUrl: 'views/analytics/subprojects/detail/repayments/detail/repayment_layout.html',
+                    resolve: ktLazyResolve(['views/analytics/subprojects/detail/repayments/detail/repayment.js']),
                     controller: 'ktRepaymentCtrl',
                     data: {
                         pageTitle: '还款管理-还款账单明细',
@@ -230,7 +230,7 @@
                 },
                 'analytics.subProject.repayments.detail.list.table': {
                     url: 'page&per_page',
-                    templateUrl: 'views/analytics/subprojects/detail/repayments/detail/list_table.html',
+                    templateUrl: 'views/analytics/subprojects/detail/repayments/detail/repayment.html',
                     controller: 'ktRepaymentTableCtrl',
                     data: {
                         breadcrumb: true,

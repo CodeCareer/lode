@@ -43,7 +43,7 @@
                     });
 
                     $scope.$emit('activeProjectUpdate', $scope.project)
-                    
+
                 }, function(res) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({

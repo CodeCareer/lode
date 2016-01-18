@@ -5,7 +5,7 @@
         .controller('ktLoanPlanCtrl', function($scope, $stateParams) {
 
             $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
+                projectID: $stateParams.subProjectID
             })
 
             $scope.loanPlan = {}

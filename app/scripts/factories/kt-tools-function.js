@@ -8,7 +8,7 @@
     angular
         .module('kt.lode')
         // 登录通用控制函数
-        .factory('ktLoginCommon', function($rootScope, $window, $state, $location, ktSweetAlert, ktUrlGet) {
+        .factory('ktLoginCommon', function($rootScope, $window, $state, $location, ktSweetAlert, ktUrlGet, CacheFactory) {
             return function(ktLoginService, scope) {
                 scope.pendingRequests = true
 
@@ -16,6 +16,7 @@
                     scope.pendingRequests = false
 
                     if (res.token) {
+                        CacheFactory.clearAll()
                         $window.localStorage.token = res.token
                         var url = $rootScope.currentUrl || ktUrlGet('/', $location.search())
                         // var redirectState = $rootScope.previousState || 'analytics.reports.dashboard'
