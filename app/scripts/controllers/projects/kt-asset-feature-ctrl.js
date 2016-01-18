@@ -140,21 +140,21 @@
             }
 
             function getData(instID) {
-                var dateFrom
-                var dateTo
+                var startDate
+                var endDate
                 var datePeriod
                 datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
                 datePeriod = datePeriod.split('~')
-                dateFrom = datePeriod[0] || null
-                dateTo = datePeriod[1]
+                startDate = datePeriod[0] || null
+                endDate = datePeriod[1]
 
                 $scope.activeInstID = instID || 'all'
 
                 ktReportService.get({
                     type: 'asset_features',
                     instID: instID !== 'all' ? instID : null,
-                    date_from: dateFrom,
-                    date_to: dateTo
+                    start_date: startDate,
+                    end_date: endDate
                 }, function(data) {
                     $scope.data = data
 

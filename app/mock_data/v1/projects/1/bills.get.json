@@ -1,7 +1,7 @@
 {
-    "totalItems": 2,
+    "total_items": 2,
     "bills": [{
-        "id": "1",
+        "id": 1,
         "type": "system",
         "stage": 1,
         "amount": 10000,
@@ -10,7 +10,7 @@
         "number": "15XEF0201",
         "name": "15信而富01"
     },{
-        "id": "2",
+        "id": 2,
         "type": "other",
         "stage": 1,
         "amount": 10000,

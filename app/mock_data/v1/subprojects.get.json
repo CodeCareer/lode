@@ -1,7 +1,7 @@
 {
-    "totalItems": 2,
-    "sub_projects": [{
-        "id": "1",
+    "total_items": 2,
+    "subprojects": [{
+        "id": 1,
         "funder": "京东金融",
         "channel": "开通金融",
         "channel_rate": 0.01,
@@ -15,7 +15,7 @@
         "is_self_funds": true,
         "name": "信而富01"
     },{
-        "id": "2",
+        "id": 2,
         "funder": "京东金融",
         "channel": "开通金融",
         "channel_rate": 0.01,

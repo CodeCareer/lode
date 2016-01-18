@@ -1,5 +1,5 @@
 {
-    "totalItems": 2,
+    "total_items": 2,
     "results": [{
         "name": "拒绝",
         "value": "reject"
@@ -34,14 +34,14 @@
         "value": "ex"
     }],
     "rules": [{
-        "id": "1",
+        "id": 1,
         "field": "age",
         "condition": "lt",
         "value": 19,
         "result": "reject",
         "name": "规则1"
     }, {
-        "id": "2",
+        "id": 2,
         "field": "salary",
         "condition": "gt",
         "value": 10000,

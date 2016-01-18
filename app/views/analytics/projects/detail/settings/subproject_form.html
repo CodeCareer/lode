@@ -8,11 +8,11 @@
             <div class="panel-body clfix pr ov-h">
                 <div class="form-body clfix">
                     <div class="col-md-9 col-md-offset-1" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                        <form name="subProjectForm" class="form-horizontal" method="post" id="subProjectForm" ng-submit="submitForm()">
+                        <form name="subProjectForm" class="form-horizontal" method="post" id="subProjectForm" kt-submit="submitForm()" kt-autofill-submit>
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.name.$invalid && subProjectForm.name.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>子项目名称</label>
                                 <div class="col-md-8">
-                                    <input placeholder="规则：项目名称+0n" type="text" required="required" ng-model="subProject.name"  class="form-control" name="name">
+                                    <input placeholder="规则：项目名称+0n" type="text" ng-model="subProject.name"  class="form-control" name="name">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.name.$dirty && subProjectForm.name.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入子项目名称</div>
                                     </div>
@@ -32,7 +32,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.funder.$invalid && subProjectForm.funder.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>资金方信息</label>
                                 <div class="col-md-8">
-                                    <input placeholder="资金方信息" type="text" required="required" ng-model="subProject.funder"  class="form-control" name="funder">
+                                    <input placeholder="资金方信息" type="text" ng-model="subProject.funder"  class="form-control" name="funder">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.funder.$dirty && subProjectForm.funder.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入资金方信息</div>
                                     </div>
@@ -41,7 +41,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.channel.$invalid && subProjectForm.channel.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>通道方信息</label>
                                 <div class="col-md-8">
-                                    <input placeholder="通道方信息" type="text" required="required" ng-model="subProject.channel"  class="form-control" name="channel">
+                                    <input placeholder="通道方信息" type="text" ng-model="subProject.channel"  class="form-control" name="channel">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.channel.$dirty && subProjectForm.channel.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入通道方信息</div>
                                     </div>
@@ -50,7 +50,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.channel_rate.$invalid && subProjectForm.channel_rate.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>通道方费率</label>
                                 <div class="col-md-8">
-                                    <input placeholder="通道方费率" type="text" required="required" ng-model="subProject.channel_rate"  class="form-control" name="channel_rate">
+                                    <input placeholder="通道方费率" type="text" ng-model="subProject.channel_rate"  class="form-control" name="channel_rate">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.channel_rate.$dirty && subProjectForm.channel_rate.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入通道方费率</div>
                                     </div>
@@ -59,7 +59,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.amount.$invalid && subProjectForm.amount.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>期初投放金额</label>
                                 <div class="col-md-8">
-                                    <input placeholder="期初投放金额" type="text" required="required" ng-model="subProject.amount"  class="form-control" name="amount">
+                                    <input placeholder="期初投放金额" type="text" ng-model="subProject.amount"  class="form-control" name="amount">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.amount.$dirty && subProjectForm.amount.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入期初投放金额</div>
                                     </div>
@@ -68,7 +68,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.start_at.$invalid && subProjectForm.start_at.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>开始时间</label>
                                 <div class="col-md-8">
-                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="开始时间" type="text" required="required" ng-model="subProject.start_at"  class="form-control" name="start_at">
+                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="开始时间" type="text" ng-model="subProject.start_at"  class="form-control" name="start_at">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.start_at.$dirty && subProjectForm.start_at.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入开始时间</div>
                                     </div>
@@ -77,7 +77,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.end_at.$invalid && subProjectForm.end_at.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>终止时间</label>
                                 <div class="col-md-8">
-                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="终止时间" type="text" required="required" ng-model="subProject.end_at"  class="form-control" name="end_at">
+                                    <input kt-date-picker datepicker-settings="datepickerSettings" placeholder="终止时间" type="text" ng-model="subProject.end_at"  class="form-control" name="end_at">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.end_at.$dirty && subProjectForm.end_at.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入终止时间</div>
                                     </div>
@@ -86,7 +86,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.annual_rate.$invalid && subProjectForm.annual_rate.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>约定收益率</label>
                                 <div class="col-md-8">
-                                    <input placeholder="约定收益率" type="text" required="required" ng-model="subProject.annual_rate"  class="form-control" name="annual_rate">
+                                    <input placeholder="约定收益率" type="text" ng-model="subProject.annual_rate"  class="form-control" name="annual_rate">
                                     <div class="mt5 text-danger" ng-messages="subProjectForm.annual_rate.$dirty && subProjectForm.annual_rate.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入约定收益率</div>
                                     </div>
@@ -117,7 +117,7 @@
                                     <div kt-loading-status height="32" width="32"></div>
                                 </div>
                                 <div class="col-md-8 col-md-offset-4">
-                                    <button class="btn btn-navy-blue" ng-disabled="subProjectForm.$invalid || pendingRequests">保存更改</button>
+                                    <button class="btn btn-navy-blue" ng-disabled="pendingRequests">保存更改</button>
                                     <button class="btn btn-default" ng-click="cancel($event)">取消</button>
                                 </div>
                             </div>

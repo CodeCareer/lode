@@ -1,0 +1,38 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>借款人账户号</th>
+            <th>姓名</th>
+            <th>身份证号</th>
+            <th>还款状态</th>
+            <th>当期应还本金</th>
+            <th>当期应还利息</th>
+            <th>提前还款本金</th>
+            <th>提前还款违约金</th>
+            <th>累计逾期金额</th>
+            <th>累计逾期罚息</th>
+            <th>当期贷款服务费</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="repayment in bill.repayments">
+            <th class="text-left" ng-bind="::repayment.bank_account"></th>
+            <td ng-bind="::repayment.name"></td>
+            <td ng-bind="::repayment.identity_num"></td>
+            <td ng-bind-html="::getStatusName(repayment.status)"></td>
+            <td ng-bind="::repayment.repay_principle | ktNumberLocate"></td>
+            <td ng-bind="::repayment.repay_interest | ktNumberLocate"></td>
+            <td ng-bind="::repayment.ahead_principle | ktNumberLocate"></td>
+            <td ng-bind="::repayment.ahead_compensation | ktNumberLocate"></td>
+            <td ng-bind="::repayment.overdue_total_amount | ktNumberLocate"></td>
+            <td ng-bind="::repayment.overdue_total_fine | ktNumberLocate"></td>
+            <td ng-bind="::repayment.service_fees | ktNumberLocate"></td>
+        </tr>
+        <tr ng-if="(!bill.repayments.length || !bill.repayments) && !isLoading()">
+            <td colspan="12" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

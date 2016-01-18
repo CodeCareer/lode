@@ -1,6 +1,6 @@
 {
-    "sub_project": {
-        "id": "1",
+    "subproject": {
+        "id": 1,
         "funder": "京东金融",
         "channel": "开通金融",
         "channel_rate": 0.01,

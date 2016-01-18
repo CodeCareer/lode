@@ -11,13 +11,13 @@
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="loanPlan in loanPlans">
-            <th class="text-left" ng-bind="::loanPlan.name"></th>
-            <td ng-bind="::loanPlan.number"></td>
-            <td ng-bind="::loanPlan.create_at"></td>
+            <th class="text-left" ng-bind="::loanPlan.subproject_name"></th>
+            <td ng-bind="::loanPlan.batch_no"></td>
+            <td ng-bind="::loanPlan.created_at | date:'yyyy-MM-dd HH:mm:ss'"></td>
             <td ng-bind="::loanPlan.loan_amount | ktNumberLocate"></td>
             <td ng-bind-html="getStatusNameNice(loanPlan.status)"></td>
             <td class="text-center">
-                <a class="tu" ui-sref="analytics.project.loanPlans.detail.summary({number: loanPlan.number})">
+                <a class="tu" ui-sref="analytics.project.loanPlans.detail.summary({batchNo: loanPlan.batch_no})">
                     <span ng-bind="loanPlan.status != 'done' ? '进入' : '查看结果'"></span>
                 </a>
             </td>

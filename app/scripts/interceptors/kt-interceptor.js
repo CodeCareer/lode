@@ -71,8 +71,8 @@
                 if (headers['content-type'] && headers['content-type'].indexOf('application/json') > -1) {
                     /*jshint -W030 */
                     /*eslint-disable*/
-                    angular.isObject(res.data) && !res.data.totalItems && (res.data.totalItems = headers['x-total'] || headers['X-Total'] || 0)
-                    /*eslint-enable*/
+                    angular.isObject(res.data) && !res.data.total_items && (res.data.total_items = headers['x-total'] || headers['X-Total'] || 0)
+                        /*eslint-enable*/
                 }
                 return res
             },
@@ -84,6 +84,7 @@
                 var $window = $injector.get('$window')
                 var ktSweetAlert = $injector.get('ktSweetAlert')
                 var ipCookie = $injector.get('ipCookie')
+                var CacheFactory = $injector.get('CacheFactory')
 
                 if (res.status === 419 || res.status === 401) {
                     var search = $location.search()
@@ -94,10 +95,13 @@
 
                     // 清除本地数据
                     $rootScope.user = null
+                    $rootScope.currentUrl = '';
                     delete $window.localStorage.user;
                     delete $window.localStorage.token
                     ipCookie.remove('token')
-                        // ipCookie.remove('connect.sid') //这是httpOnly Cookie 前端无法删除
+                    CacheFactory.clearAll()
+
+                    // ipCookie.remove('connect.sid') //这是httpOnly Cookie 前端无法删除
 
                     if (res.config && res.config.params && res.config.params.notRequired) { //官网不需要跳转登录页面
                         return $q.reject(res.data)
@@ -111,9 +115,10 @@
                         text: '您的权限不足！',
                         type: 'error'
                     });
-                } else if (res.status === 500) {
-                    $state.go('error.500')
                 }
+                /*else if (res.status === 500) { // 注释掉是为了接部分接口
+                    $state.go('error.500')
+                }*/
                 return $q.reject(res.data)
             }
         }

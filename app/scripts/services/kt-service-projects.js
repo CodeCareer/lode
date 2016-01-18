@@ -8,9 +8,20 @@
 
     // 项目
     .factory('ktProjectsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/:subProject/:subProjectID', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:subContent', {
             projectID: '@projectID',
-            subProject: '@subProject',
+            subContent: '@subContent',
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })
+
+    // 子项目
+    .factory('ktSubProjectsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/subprojects/:subProjectID', {
             subProjectID: '@subProjectID'
         }, {
             'get': {
@@ -22,8 +33,8 @@
 
     // 机构
     .factory('ktInstitutionsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/institutions', {
-            projects: '@projects',
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/institutions', {
+            projectType: '@projectType',
             projectID: '@projectID',
         }, {
             'get': {
@@ -35,8 +46,8 @@
 
     // 账户
     .factory('ktAccountsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/accounts', {
-            projects: '@projects',
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/accounts', {
+            projectType: '@projectType',
             projectID: '@projectID',
         }, {
             'get': {
@@ -48,8 +59,8 @@
 
     // 通道
     .factory('ktChannelsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/:projects/:projectID/channels', {
-            projects: '@projects',
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/channels', {
+            projectType: '@projectType',
             projectID: '@projectID',
         }, {
             'get': {
@@ -62,7 +73,7 @@
 
     // 统计
     .factory('ktReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/reports/:type/:subProjectID/:instID', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/statistics/:type/:subProjectID/:instID', {
             projectID: '@projectID',
             type: '@type',
             subProjectID: '@subProjectID',
@@ -77,9 +88,11 @@
 
     // 借款人审批
     .factory('ktDebtorsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/debtors/:number', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/:loanType/:batchNo', {
+            projectType: '@projectType',
+            loanType: '@loanType',
             projectID: '@projectID',
-            number: '@number'
+            batchNo: '@batchNo'
         }, {
             'get': {
                 method: 'GET',
@@ -88,9 +101,48 @@
         })
     })
 
+    // 借款人审批
+    .factory('ktApprovalsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/approvals/:batchNo', {
+            // projectID: '@projectID',
+            batchNo: '@batchNo'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })
+
+    // 借款人审批-助贷机构
+    /*.factory('ktSubDebtorsService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:subProjectID/:loanType/:batchNo', {
+            projectType: '@projectType',
+            subProjectID: '@subProjectID',
+            loanType: '@loanType',
+            batchNo: '@batchNo'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })*/
+
+    // 借款人批次上传
+    .factory('ktLoanBatchesUpload', function($urlMatcherFactory, Upload, ktApiVersion) {
+        return function upload(data) {
+            var url = $urlMatcherFactory.compile('/ajax/' + ktApiVersion + '/subprojects/:subProjectID/loan_batches/upload').format(data)
+            return Upload.upload({
+                url: url,
+                data: data || {}
+            })
+        }
+    })
+
     // 借款人审批-规则
     .factory('ktRulesService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/rules/:ruleID', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/rules/:ruleID', {
             projectID: '@projectID',
             ruleID: '@ruleID'
         }, {
@@ -103,7 +155,7 @@
 
     // 借款人审批规则-黑名单
     .factory('ktBlacklistService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/blacklist', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/blacklist', {
             projectID: '@projectID',
         }, {
             'get': {
@@ -113,11 +165,12 @@
         })
     })
 
-    // 放款计划
+    // 项目-放款计划
     .factory('ktLoanPlansService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/loan_plans/:number/:content', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/loan_plans/:batchNo/:content', {
+            projectType: '@projectType',
             projectID: '@projectID',
-            number: '@number',
+            batchNo: '@batchNo',
             content: '@content'
         }, {
             'get': {
@@ -127,11 +180,13 @@
         })
     })
 
+
     // 还款计划
     .factory('ktRepaymentsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/repayments/:number/:content', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/repayments/:batchNo/:content', {
+            projectType: '@projectType',
             projectID: '@projectID',
-            number: '@number',
+            batchNo: '@batchNo',
             content: '@content'
         }, {
             'get': {
@@ -143,7 +198,8 @@
 
     // 财务管理-还款对账
     .factory('ktBillsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/bills/:billID', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/bills/:billID', {
+            projectType: '@projectType',
             projectID: '@projectID',
             billID: '@billID'
         }, {
@@ -156,7 +212,7 @@
 
     // 财务管理-其他收入
     .factory('ktOtherIncomesService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/projects/:projectID/other_incomes/:otherIncomeID', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/other_incomes/:otherIncomeID', {
             projectID: '@projectID',
             otherIncomeID: '@otherIncomeID'
         }, {

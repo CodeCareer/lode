@@ -12,7 +12,9 @@
             maxSize: 5,
             page: 1,
             per_page: 10,
-            sub_project_id: 'all'
+            projectID: $stateParams.projectID,
+            projectType: 'projects',
+            subproject_id: 'all'
         }
 
         $scope.pageChanged = function() {
@@ -21,48 +23,40 @@
 
         $scope.subProjectChange = function(id) {
             $location.search($.extend($location.search(), {
-                sub_project_id: id !== 'all' ? id : null,
+                subproject_id: id !== 'all' ? id : null,
                 page: 1,
                 per_page: 10
             }))
-            $scope.params.sub_project_id = id
+            $scope.params.subproject_id = id
         }
 
         $scope.getSubProjectName = ktDataHelper.getSubProjectName($scope)
 
+        $scope.subProjects = [];
         ktProjectsService.get({
             projectID: $stateParams.projectID,
-            subProject: 'sub_projects'
+            subContent: 'subprojects'
         }, function(data) {
-            $scope.subProjects = data.sub_projects
+            $scope.subProjects = data.subprojects
             $scope.subProjects.unshift({
                     id: 'all',
                     name: '全部'
                 })
-                // $scope.currentSubProjectId = data.sub_projects.length ? data.sub_projects[0].id : null
+                // $scope.currentSubProjectId = data.subprojects.length ? data.subprojects[0].id : null
         })
 
     })
 
     .controller('ktRepaymentsTableCtrl', function($scope, $location, $stateParams, ktRepaymentsService) {
-        // $scope.params.maxSize = 5
         $scope.repayments = [];
-        $scope.subProjects = [];
-        $scope.params.projectID = $stateParams.projectID
-            // $.extend($scope, ktDataHelper)
 
-        // var params = {
-        //     id: $stateParams.id,
-        //     page: 1,
-        //     per_page: 10
-        // }
         var search = $location.search()
         $.extend($scope.params, search)
 
         ktRepaymentsService.get($scope.params, function(data) {
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.repayments = data.repayments;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
 

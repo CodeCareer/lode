@@ -4,7 +4,7 @@
     angular.module('kt.lode')
         .controller('ktOtherIncomeAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktOtherIncomesService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 

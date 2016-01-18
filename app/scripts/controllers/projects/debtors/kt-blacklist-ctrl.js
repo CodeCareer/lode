@@ -41,7 +41,7 @@
 
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.blacklist = data.blacklist;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

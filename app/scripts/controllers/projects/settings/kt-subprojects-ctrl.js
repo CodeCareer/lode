@@ -14,7 +14,7 @@
             page: 1,
             per_page: 10,
             projectID: $stateParams.projectID,
-            subProject: 'sub_projects'
+            subContent: 'subprojects'
         }
 
         $scope.pageChanged = function() {
@@ -37,8 +37,8 @@
         $.extend($scope.params, search)
 
         ktProjectsService.get($scope.params, function(data) {
-            $scope.subProjects = data.sub_projects;
-            $scope.params.totalItems = data.totalItems;
+            $scope.subProjects = data.subprojects;
+            $scope.params.totalItems = data.total_items;
         });
     })
 })();

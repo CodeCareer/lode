@@ -61,16 +61,16 @@
             // }
 
             // function getData() {
-            //     var date_from, date_to, datePeriod
+            //     var start_date, end_date, datePeriod
             //     datePeriod = ktDateHelper.getDate($scope.radioPeriod) || $scope.radioPeriodCustom
             //     datePeriod = datePeriod.split('~')
-            //     date_from = datePeriod[0] || null
-            //     date_to = datePeriod[1]
+            //     start_date = datePeriod[0] || null
+            //     end_date = datePeriod[1]
 
             //     ktReportService.get({
             //         type: 'asset_features',
-            //         date_from: date_from,
-            //         date_to: date_to
+            //         start_date: start_date,
+            //         end_date: end_date
             //     }, function(data) {
             //         $scope.data = data
 

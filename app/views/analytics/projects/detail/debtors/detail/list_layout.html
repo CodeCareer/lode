@@ -10,21 +10,26 @@
                 <!-- <h5>借款人详情</h5> -->
                 <div class="fl mt8 f13">
                     <dl class="ib mb0">
-                        <dt class="ib">子项目:</dt>
-                        <dd class="ib" ng-bind="debtor.name"></dd>
+                        <dt class="ib">子项目 : </dt>
+                        <dd class="ib" ng-bind="debtor.subproject_name"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
-                        <dt class="ib">批次:</dt>
-                        <dd class="ib" ng-bind="debtor.number"></dd>
+                        <dt class="ib">批次 : </dt>
+                        <dd class="ib" ng-bind="debtor.batch_no"></dd>
                     </dl>
-                    <dl class="ib mb0 ml20" ng-if="debtor.status == 'done'">
-                        <dt class="ib">审批时间:</dt>
-                        <dd class="ib" ng-bind="debtor.approve_at"></dd>
+                    <dl class="ib mb0 ml20" ng-if="debtor.status == 'approved' || debtor.status == 'planned'">
+                        <dt class="ib">审批时间 : </dt>
+                        <dd class="ib" ng-bind="debtor.approval_time | date:'yyyy-MM-dd HH:mm:ss'"></dd>
                     </dl>
                 </div>
                 <div class="fr">
-                    <a class="btn btn-sm btn-dark ml10" ui-sref="analytics.project.loanPlans.detail.summary({number: debtor.number})" ng-if="debtor.status == 'done'">前往放款计划</a>
-                    <a class="btn btn-dark btn-sm ml10" ng-click="approveAll($event)" ng-if="debtor.status !== 'done'">审批全部</a>
+                    <a class="btn btn-sm btn-dark ml10" ng-click="createPlan()" ng-if="debtor.status === 'approved'">
+                        生成放款计划
+                    </a>
+                    <a class="btn btn-sm btn-dark ml10" ui-sref="analytics.project.loanPlans.detail.summary({batchNo: debtor.batch_no})" ng-if="debtor.status === 'planned'">
+                        前往放款计划
+                    </a>
+                    <a class="btn btn-dark btn-sm ml10" ng-click="approveAll($event)" ng-if="debtor.status === 'draft'">审批全部</a>
                     <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="glyphicon glyphicon-download-alt"></i>
                     </a>
@@ -36,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="chart-table">
-                                <div class="chart-table-heading clfix" ng-if="debtor.status == 'done'">
+                                <div class="chart-table-heading clfix" ng-if="debtor.status == 'approved' || debtor.status == 'planned'">
                                     <div class="fl">
                                         <div class="fl">
                                             <div class="dropdown fl" dropdown>
@@ -45,7 +50,7 @@
                                                 </div>
                                                 <div class="dropdown-menu animated fadeIn m-t-xs">
                                                     <ul>
-                                                        <li ng-repeat="status in statusList|filter:{value:'!initial'}" ng-class="{active: params.status === status.value}">
+                                                        <li ng-repeat="status in statusList|filter:filterStatus" ng-class="{active: params.status === status.value}">
                                                             <a ng-click="statusChange(status.value)" title="{{status.name}}" ng-bind="status.name"></a>
                                                          </li>
                                                     </ul>
@@ -53,7 +58,7 @@
                                             </div>
                                             <!-- <a class="btn btn-sm btn-default ml10">前往放款计划</a> -->
                                         </div>
-                                        <!-- <div class="btns" ng-if="params.status !== 'done'">
+                                        <!-- <div class="btns" ng-if="params.status !== 'approved'">
                                             <a class="btn btn-default btn-sm ml10" ng-click="approveAll($event)">审批全部</a>
                                         </div> -->
                                     </div>

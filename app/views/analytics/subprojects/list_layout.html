@@ -1,0 +1,35 @@
+<div id="subprojects" class="row" kt-animate-panel child="hpanel">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading clfix">
+                <h5>子项目列表</h5>
+            </div>
+            <div class="panel-body clfix">
+                <div class="ov-h">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="chart-table">
+                                <div class="chart-table-heading clfix">
+                                    <div class="dropdown fl" dropdown ng-if="user.role == 'admin'">
+                                        <div dropdown-toggle class="dropdown-toggle cp">
+                                            <span ng-bind="getProjectName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                                        </div>
+                                        <div class="dropdown-menu animated fadeIn m-t-xs">
+                                            <ul>
+                                                <li ng-repeat="project in projects" ng-class="{active: params.project_id == project.id}">
+                                                    <a ng-click="projectChanged(project.id)" title="{{project.name}}" ng-bind="project.name"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table-body" ui-view></div>
+                            </div>
+                        </div>
+                    </div>
+                    <uib-pagination total-items="params.totalItems" items-per-page="params.per_page" ng-change="pageChanged()" max-size="params.maxSize" ng-model="params.page" class="pagination-sm fr"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

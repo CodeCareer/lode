@@ -9,12 +9,41 @@
             return {
                 getLoanPlanStatus: function(status) {
                     var sMap = {
-                        'initial': '未开始',
+                        'draft': '未开始',
                         'approved': '已通过',
                         'rejected': '已拒绝',
-                        'done': '已完成'
+                        'planed': '已生成放款计划',
+                        'finished': '已完成'
                     }
                     return sMap[status] || '未知状态'
+                },
+                filterStatus: function(arr) {
+                    return function(item) {
+                        return _.contains(arr || [], item.value)
+                    }
+                },
+                filterStatusReverse: function(arr) {
+                    return function(item) {
+                        return !_.contains(arr || [], item.status)
+                    }
+                },
+                getLoanStatusMap: function() {
+                    return [{
+                        name: '全部',
+                        value: 'all'
+                    }, {
+                        name: '未审核',
+                        value: 'draft'
+                    }, {
+                        name: '已通过',
+                        value: 'approved'
+                    }, {
+                        name: '已生成放款计划',
+                        value: 'planned'
+                    }, {
+                        name: '已拒绝',
+                        value: 'rejected'
+                    }]
                 },
                 getBillTypes: function() {
                     return [{
@@ -43,9 +72,10 @@
                         }) || {}
 
                         switch (status) {
-                            case 'initial':
+                            case 'draft':
                                 return '<i class="glyphicon glyphicon-time initial-color mr5"></i>' + st.name;
                             case 'approved':
+                            case 'planned':
                             case 'done':
                             case 'normal':
                                 return '<i class="glyphicon glyphicon-ok approved-color mr5"></i>' + st.name;
@@ -64,9 +94,9 @@
                 getSubProjectName: function($scope) {
                     return function(id) {
                         var subProject = _.find($scope.subProjects, function(v) {
-                            return v.id === (id || $scope.params.sub_project_id)
+                            return v.id === (id || $scope.params.subproject_id)
                         }) || {}
-                        return $scope.params.sub_project_id ? subProject.name : '全部'
+                        return $scope.params.subproject_id ? subProject.name : '全部'
                     }
                 },
                 getOwnFunds: function() {

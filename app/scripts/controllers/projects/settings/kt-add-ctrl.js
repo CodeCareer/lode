@@ -2,9 +2,9 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktProjectAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService) {
+        .controller('ktProjectAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService, ktInstitutionsService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
@@ -16,8 +16,15 @@
                     enabled: true
                 }
             }
+
+            ktInstitutionsService.get({
+                inst_type: 'zhudai'
+            }, function(res) {
+                $scope.institutions = res.institutions
+            })
+
             $scope.project = {
-                projectID: 'new'
+                // projectID: 'new'
             }
 
             $scope.cancel = function($event) {
@@ -34,6 +41,9 @@
                     }, function() {
                         $state.go('analytics.projects.list.table')
                     });
+
+                    $scope.$emit('activeProjectUpdate', $scope.project)
+                    
                 }, function(res) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({

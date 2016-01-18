@@ -4,22 +4,22 @@
             <!-- <span class="text-primary-dark font-small-bold" ng-bind="'您好，' + user.name"></span> -->
             <div class="dropdown" dropdown dropdown-append-to-body>
                 <div dropdown-toggle class="dropdown-toggle white">
-                    <span ng-bind="activeProject || '全部项目'"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                    <span ng-bind="activeProjectName"></span><b class="icon-lode icon-arrow">&#xe805;</b>
                 </div>
                 <div id="side-menu-dropdown" class="dropdown-menu animated fadeIn m-t-xs">
                     <ul>
-                        <li ng-class="{'active': $state.includes('analytics.reports.**') || $state.includes('analytics.projects.**') || $state.includes('analytics.institutions.**') || $state.includes('analytics.channels.**') || $state.includes('analytics.accounts.**')}"><a ui-sref="analytics.reports.dashboard" title="全部项目">全部项目</a></li>
-                        <li ng-class="{'active': $state.includes('analytics.project.**', {id: item.id})}" ng-repeat="item in ::projects">
-                            <a ng-click="currStateSwitch(item.id)" title="{{::item.name}}" ng-bind="::item.name"></a>
+                        <!-- <li ng-class="{'active': !projectID}"><a ui-sref="analytics.reports.dashboard" title="全部项目">全部项目</a></li> -->
+                        <li ng-class="{'active': item.id == projectID}" ng-repeat="item in projects">
+                            <a ng-click="currStateSwitch(item.id)" title="{{item.name}}" ng-bind="item.name"></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 单个项目时候的主菜单 -->
-    <ul ng-show="$state.includes('analytics.project.**')" class="nav detail-name" id="side-menu">
-        <li ui-sref-active="active">
+    <!-- 资金平台-单个项目时候的主菜单 -->
+    <ul ng-if="user.institution.inst_type === 'zijin'" ng-show="$state.includes('analytics.project.**')" class="nav detail-name" id="side-menu">
+        <li ng-class="{active:$state.current.name =='analytics.project.dashboard'}">
             <a ng-click="stateGo('analytics.project.dashboard', 'updateMenu', 'dashboardIsCollapsed')">
                 <i class="icon-lode icon-calc mr10 va-1"></i>数据总览
             </a>
@@ -101,9 +101,9 @@
             </ul>
         </li>
     </ul>
-    <!-- 单个项目时候的主菜单 -->
-    <!-- 全部项目时候的主菜单 -->
-    <ul ng-show="$state.includes('analytics.reports.**') || $state.includes('analytics.projects.**') || $state.includes('analytics.institutions.**') || $state.includes('analytics.channels.**') || $state.includes('analytics.accounts.**')" class="nav main-name" id="side-menu">
+    <!-- 资金平台-单个项目时候的主菜单 -->
+    <!-- 资金平台-全部项目时候的主菜单 -->
+    <ul ng-if="user.institution.inst_type === 'zijin'" ng-show="$state.includes('analytics.reports.**') || $state.includes('analytics.projects.**') || $state.includes('analytics.institutions.**') || $state.includes('analytics.channels.**') || $state.includes('analytics.accounts.**')" class="nav main-name" id="side-menu">
         <li ng-class="{active: $state.includes('analytics.reports.**')}">
             <a href="javascript:;" ng-click="updateSummaryMenu('reportsIsCollapsed')">
                 <i class="icon-lode icon-calc mr10 va-1"></i>数据报表
@@ -143,11 +143,58 @@
             </a>
         </li> -->
     </ul>
-    <!-- 全部项目时候的主菜单 -->
-    <div class="buttons text-left mt20 ml50 pl2" ng-show="$state.includes('analytics.project.**')">
+    <!-- 资金平台-全部项目时候的主菜单 -->
+    <!-- 助贷机构-单个项目时候的主菜单 -->
+    <ul ng-if="user.institution.inst_type === 'zhudai'" ng-show="$state.includes('analytics.subProject.**')" class="nav detail-name" id="side-menu">
+        <li ng-class="{active:$state.includes('analytics.subProject.debtors.**')}">
+            <a ng-click="stateGo('analytics.subProject.debtors.list.table', 'updateMenu', 'subDebtorsIsCollapsed')">
+                <i class="icon-lode icon-approve mr10 va-1"></i>借款人管理
+            </a>
+        </li>
+        <li ng-class="{active:$state.includes('analytics.subProject.loanPlans.**')}">
+            <a ng-click="stateGo('analytics.subProject.loanPlans.list.table', 'updateMenu', 'subLoanPlansIsCollapsed')">
+                <i class="icon-lode icon-loan mr10 va-1"></i>放款管理
+            </a>
+        </li>
+        <li ng-class="{active:$state.includes('analytics.subProject.repayments.**')}">
+            <a ng-click="stateGo('analytics.subProject.repayments.list.table', 'updateMenu', 'subRepaymentsIsCollapsed')">
+                <i class="icon-lode icon-list mr10 va-1"></i>还款管理
+            </a>
+        </li>
+        
+        <!-- <li ng-class="{active: $state.includes('analytics.project.loanPlans.**')}">
+            <a ng-click="stateGo('analytics.project.loanPlans.list.table', 'updateMenu', 'loanPlansIsCollapsed')">
+                <i class="icon-lode icon-loan mr10 va-1"></i>放款管理
+            </a>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.repayments.**')}">
+            <a ng-click="stateGo('analytics.project.repayments.list.table', 'updateMenu', 'repaymentsIsCollapsed')">
+                <i class="icon-lode icon-list mr10 va-1"></i>还款管理
+            </a>
+        </li> -->
+        
+    </ul>
+    <!-- 助贷机构-单个项目时候的主菜单 -->
+    <!-- 助贷机构-全部项目时候的主菜单 -->
+    <ul ng-if="user.institution.inst_type === 'zhudai'" ng-show="$state.includes('analytics.subProjects.**') || $state.includes('analytics.projects.**')" class="nav main-name" id="side-menu">
+        
+        <li ng-class="{active: $state.includes('analytics.subProjects.list.**')}">
+            <a ng-click="stateGo('analytics.subProjects.list.table', 'updateSummaryMenu', 'subProjectsIsCollapsed')">
+                <i class="icon-lode icon-title mr10 va-1"></i>子项目列表
+            </a>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.projects.list.**') || $state.includes('analytics.projects.add')}">
+            <a ng-click="stateGo('analytics.projects.list.table', 'updateSummaryMenu', 'projectsIsCollapsed')">
+                <i class="icon-lode icon-project mr10 va-1"></i>项目列表
+            </a>
+        </li>
+       
+    </ul>
+    <!-- 助贷机构-全部项目时候的主菜单 -->
+    <div ng-if="user.institution.inst_type === 'zijin'" class="buttons text-left mt20 ml50 pl2" ng-show="$state.includes('analytics.project.**')">
         <a ui-sref="analytics.project.settings.add" class="btn btn-dark btn-sm">添加项目</a>
     </div>
-    <div class="buttons text-left mt20 ml50 pl2" ng-show="$state.includes('analytics.projects.**') || $state.includes('analytics.reports.**')">
+    <div ng-if="user.institution.inst_type === 'zijin'" class="buttons text-left mt20 ml50 pl2" ng-show="$state.includes('analytics.projects.**') || $state.includes('analytics.reports.**') || $state.includes('analytics.institutions.**') || $state.includes('analytics.channels.**') || $state.includes('analytics.accounts.**')">
         <a ui-sref="analytics.projects.add" class="btn btn-dark btn-sm">添加项目</a>
     </div>
 </div>

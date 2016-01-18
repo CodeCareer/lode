@@ -4,7 +4,7 @@
     angular.module('kt.lode')
         .controller('ktProjectInfoCtrl', function($scope, $stateParams, ktProjectsService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 

@@ -8,7 +8,7 @@
     angular
         .module('kt.lode')
         // 登录通用控制函数
-        .factory('ktLoginCommon', function($rootScope, $window, $state, ktSweetAlert) {
+        .factory('ktLoginCommon', function($rootScope, $window, $state, $location, ktSweetAlert, ktUrlGet) {
             return function(ktLoginService, scope) {
                 scope.pendingRequests = true
 
@@ -17,12 +17,12 @@
 
                     if (res.token) {
                         $window.localStorage.token = res.token
-
-                        var redirectState = $rootScope.previousState || 'analytics.reports.dashboard'
-                        if (redirectState.indexOf('analytics.') === -1) redirectState = 'analytics.reports.dashboard'
-
-                        var params = $rootScope.previousStateParams || {}
-                        $state.go(redirectState, params)
+                        var url = $rootScope.currentUrl || ktUrlGet('/', $location.search())
+                        // var redirectState = $rootScope.previousState || 'analytics.reports.dashboard'
+                        // if (redirectState.indexOf('analytics.') === -1) redirectState = 'analytics.reports.dashboard'
+                        // var params = $rootScope.previousStateParams || {}
+                        $location.url(url)
+                        // $state.go(redirectState, params)
                     } else {
                         $state.go('account.confirm', {
                             institution: res.institution,
@@ -41,11 +41,10 @@
                 })
             }
         })
-        /*.factory('ktPermitsValid',  function($rootScope){
-            return function (permit){
-                // var permits = $rootScope.user.permits
-                // var role = $rootScope.user.role
-            };
-        })*/
-
+        .factory('ktUrlGet', function() {
+            return function(url, params) {
+                var ret = url + ($.isEmptyObject(params) ? '' : ('?' + $.param(params)))
+                return ret
+            }
+        })
 })();

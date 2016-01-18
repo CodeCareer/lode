@@ -79,7 +79,7 @@
 
             ktBillsService.get($scope.params, function(data) {
                 $.extend($scope, data)
-                $scope.params.totalItems = data.totalItems
+                $scope.params.totalItems = data.total_items
             })*/
         })
 })();

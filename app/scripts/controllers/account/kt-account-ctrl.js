@@ -15,7 +15,6 @@
                 $state.go(state)
             }
         })
-        
         //账户设置控制器
         .controller('ktAccountSetCtrl', function($scope) {
             $scope.tabStatus.active2 = true //更新父controller内的tabstatus
@@ -47,7 +46,7 @@
                 /*eslint-disable*/
                 event && event.stopPropagation()
                 event && event.preventDefault()
-                /*eslint-enable*/
+                    /*eslint-enable*/
                 $scope.accountAccordion.openA = false
             }
 

@@ -8,6 +8,7 @@ module.exports = {
             cwd: '<%= kt.app %>',
             src: [
                 'scripts/controllers/**/*.js',
+                'views/**/*.js',
                 'scripts/directives/**/*.js',
                 'common/directives/**/*.js',
                 'common/factories/kt-captcha.js',

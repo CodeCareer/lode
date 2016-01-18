@@ -13,42 +13,41 @@
             maxSize: 5,
             page: 1,
             per_page: 10,
-            institution_id: 'all',
+            zhudai_id: 'all',
             account_id: 'all',
         }
 
-        ktInstitutionsService.get(function(data) {
+        ktInstitutionsService.get({
+            inst_type: 'zhudai'
+        }, function(data) {
             data.institutions.unshift({
                 id: 'all',
                 name: '全部机构'
             })
 
             $scope.institutions = data.institutions
-                // $scope.institutionName = getInstitutionName()
-                // getData($scope.institutions[0].id)
         })
-
-        ktAccountsService.get(function(data) {
+        
+        // to do
+        /*ktAccountsService.get(function(data) {
             data.accounts.unshift({
                 id: 'all',
                 name: '全部用户'
             })
 
             $scope.accounts = data.accounts
-                // $scope.accountName = getAccountName()
-                // getData($scope.institutions[0].id)
-        })
+        })*/
 
         $scope.getInstitutionName = function() {
             var inst = _.find($scope.institutions, function(v) {
-                return v.id == $scope.params.institution_id
+                return v.id == $scope.params.zhudai_id
             }) || {}
             return inst.name
         }
 
         $scope.getAccountName = function() {
             var acc = _.find($scope.accounts, function(v) {
-                return v.id == $scope.params.account_id
+                return v.id === parseInt($scope.params.account_id, 10)
             }) || {}
             return acc.name
         }
@@ -60,7 +59,7 @@
         $scope.institutionChanged = function(id) {
             // $scope.institutionName = getInstitutionName(id)
             $location.search($.extend($location.search(), {
-                institution_id: id || null,
+                zhudai_id: id || null,
                 page: 1,
                 per_page: 10
             }))
@@ -86,23 +85,14 @@
 
     .controller('ktProjectsTableCtrl', function($scope, $location, $state, ktProjectsService) {
         $scope.projects = [];
-        // $scope.params.maxSize = 5
-        // $.extend($scope, ktProjectsHelper)
 
         var search = $location.search()
         $.extend($scope.params, search)
-        /*$scope.goDetail = function($event, projectId) {
-            $event.stopPropagation()
-            $event.preventDefault()
-            $state.go('analytics.project.dashboard', {
-                id: projectId
-            })
-        }*/
 
         ktProjectsService.get($scope.params, function(data) {
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.projects = data.projects;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

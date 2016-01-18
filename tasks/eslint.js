@@ -3,5 +3,5 @@ module.exports = {
         configFile: '.eslintrc',
         // rulePaths: ['conf/rules']
     },
-    target: ['app/scripts/**/*.js']
+    target: ['app/scripts/**/*.js', 'app/views/**/*.js']
 }

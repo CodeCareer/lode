@@ -9,24 +9,14 @@
             projectID: $stateParams.projectID
         })
 
-        $scope.statusList = [{
-            name: '全部',
-            value: 'all'
-        }, {
-            name: '未开始',
-            value: 'initial'
-        }, {
-            name: '已完成',
-            value: 'done'
-        }, {
-            name: '已拒绝',
-            value: 'rejected'
-        }]
+        $scope.statusList = ktDataHelper.getLoanStatusMap()
 
         $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
         $scope.params = {
             maxSize: 5,
+            projectType: 'projects',
+            projectID: $stateParams.projectID,
             page: 1,
             per_page: 10,
         }
@@ -46,25 +36,14 @@
 
     .controller('ktLoanPlansTableCtrl', function($scope, $location, $stateParams, ktLoanPlansService) {
         $scope.loanPlans = [];
-        // $scope.params.maxSize = 5
-        // $.extend($scope, ktDataHelper)
-        $scope.params.projectID = $stateParams.projectID
-
-        // var params = {
-        //     id: $stateParams.id,
-        //     page: 1,
-        //     per_page: 10
-        // }
 
         var search = $location.search()
         $.extend($scope.params, search)
 
         ktLoanPlansService.get($scope.params, function(data) {
 
-            // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.loanPlans = data.loan_plans;
-            $scope.params.totalItems = data.totalItems;
-            // $.extend($scope.params, params)
+            $scope.params.totalItems = data.total_items;
         });
     })
 })();

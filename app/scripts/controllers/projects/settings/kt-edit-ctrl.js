@@ -2,9 +2,9 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktProjectEditCtrl', function($scope, $window, $stateParams, ktSweetAlert, ktProjectsService) {
+        .controller('ktProjectEditCtrl', function($scope, $state, $window, $stateParams, ktSweetAlert, ktProjectsService, ktInstitutionsService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
@@ -16,6 +16,12 @@
                     enabled: true
                 }
             }
+
+            ktInstitutionsService.get({
+                inst_type: 'zhudai'
+            }, function(res) {
+                $scope.institutions = res.institutions
+            })
 
             ktProjectsService.get({
                 projectID: $stateParams.projectID,
@@ -35,8 +41,13 @@
                     ktSweetAlert.swal({
                         title: '提示',
                         text: '项目信息修改成功',
-                        type: 'success',
+                        type: 'success'
+                    }, function() {
+                        $state.go('analytics.project.settings.info')
                     });
+
+                    $scope.$emit('activeProjectUpdate', $scope.project)
+
                 }, function(res) {
                     $scope.pendingRequests = false
                     ktSweetAlert.swal({

@@ -36,7 +36,7 @@
 
         ktAccountsService.get($scope.params, function(data) {
             $scope.accounts = data.accounts;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

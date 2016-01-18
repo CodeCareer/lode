@@ -10,8 +10,9 @@
 
             $scope.params = {
                 maxSize: 5,
+                projectType: 'projects',
                 projectID: $stateParams.projectID,
-                number: $stateParams.number,
+                batchNo: $stateParams.batchNo,
                 content: 'plans',
                 page: 1,
                 per_page: 10
@@ -31,7 +32,7 @@
 
             ktLoanPlansService.get($scope.params, function(data) {
                 $.extend($scope, data)
-                $scope.params.totalItems = data.totalItems
+                $scope.params.totalItems = data.total_items
             })
         })
 })();

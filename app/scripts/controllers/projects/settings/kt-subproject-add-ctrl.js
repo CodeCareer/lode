@@ -4,7 +4,7 @@
     angular.module('kt.lode')
         .controller('ktSubProjectAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
@@ -19,8 +19,8 @@
 
             $scope.subProject = {
                 projectID: $stateParams.projectID,
-                subProject: 'sub_projects',
-                subProjectID: 'new'
+                subContent: 'subprojects',
+                // subProjectID: 'new'
             }
 
             $scope.cancel = function($event) {

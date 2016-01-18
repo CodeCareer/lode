@@ -13,7 +13,9 @@
             maxSize: 5,
             page: 1,
             type: 'system',
-            sub_project_id: 'all',
+            projectType: 'projects',
+            projectID: $stateParams.projectID,
+            subproject_id: 'all',
             per_page: 10
         }
 
@@ -42,16 +44,16 @@
                     page: 1,
                     per_page: 10
                 }))
-                // $scope.sub_project_id = id
+                // $scope.subproject_id = id
         }
 
         $scope.subProjectChange = function(id) {
             $location.search($.extend($location.search(), {
-                sub_project_id: id !== 'all' ? id : null,
+                subproject_id: id !== 'all' ? id : null,
                 page: 1,
                 per_page: 10
             }))
-            $scope.params.sub_project_id = id
+            $scope.params.subproject_id = id
         }
 
         $scope.billTypeChange = function(type) {
@@ -79,29 +81,26 @@
 
         $scope.getSubProjectName = function() {
             var subProject = _.find($scope.subProjects, function(v) {
-                return v.id === $scope.params.sub_project_id
+                return v.id === $scope.params.subproject_id
             }) || {}
-            return $scope.params.sub_project_id ? subProject.name : '全部'
+            return $scope.params.subproject_id ? subProject.name : '全部'
         }
 
         ktProjectsService.get({
             projectID: $stateParams.projectID,
-            subProject: 'sub_projects'
+            subContent: 'subprojects'
         }, function(data) {
-            $scope.subProjects = data.sub_projects
+            $scope.subProjects = data.subprojects
             $scope.subProjects.unshift({
                 id: 'all',
                 name: '全部'
             })
-            $scope.currentSubProjectId = data.sub_projects.length ? data.sub_projects[0].id : null
+            $scope.currentSubProjectId = data.subprojects.length ? data.subprojects[0].id : null
         })
     })
 
     .controller('ktBillsTableCtrl', function($scope, $location, $stateParams, ktBillsService) {
         $scope.bills = [];
-        // $scope.params.maxSize = 5
-        // $.extend($scope, ktDataHelper)
-        $scope.params.projectID = $stateParams.projectID
 
         var search = $location.search()
         $.extend($scope.params, search)
@@ -109,7 +108,7 @@
         ktBillsService.get($scope.params, function(data) {
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.bills = data.bills;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

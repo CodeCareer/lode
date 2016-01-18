@@ -1,5 +1,5 @@
 {
-    "totalItems": 3,
+    "total_items": 3,
     "debtor": {
         "number": "15XEF0202",
         "status": "done",
@@ -7,7 +7,7 @@
         "approve_at": "2015-02-28",
         "id": "15XEF0202",
         "borrowers": [{
-            "id": "1",
+            "id": 1,
             "age": 23,
             "gender": "男",
             "pass_amount": 10000,
@@ -21,7 +21,7 @@
             "identity_num": "110220198809092010",
             "name": "张三"
         }, {
-            "id": "2",
+            "id": 2,
             "age": 23,
             "gender": "女",
             "pass_amount": 10000,
@@ -35,7 +35,7 @@
             "identity_num": "110220198809092010",
             "name": "李四"
         }, {
-            "id": "2",
+            "id": 2,
             "age": 19,
             "gender": "男",
             "pass_amount": 10000,

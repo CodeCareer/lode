@@ -13,7 +13,7 @@
             maxSize: 5,
             page: 1,
             per_page: 10,
-            sub_project_id: 'all'
+            subproject_id: 'all'
         }
 
         $scope.pageChanged = function() {
@@ -33,7 +33,7 @@
 
         ktOtherIncomesService.get($scope.params, function(data) {
             $scope.otherIncomes = data.other_incomes;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
         });
 
 

@@ -4,32 +4,32 @@
     angular.module('kt.lode')
         .controller('ktCashFlowMonitorCtrl', function($scope, $location, $stateParams, ktReportService, ktProjectsService, ktDataHelper) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
             $scope.params = $.extend({
                 projectID: $stateParams.projectID,
                 type: 'cash_flow',
-                sub_project_id: 'all'
+                subproject_id: 'all'
                     // subProjectID: $scope.params.subProjectID || null
-                    // date_from: date_from,
-                    // date_to: date_to
+                    // start_date: start_date,
+                    // end_date: end_date
             }, $location.search())
 
             $scope.getSubProjectName = ktDataHelper.getSubProjectName($scope)
 
             $scope.subProjectChange = function(id) {
-                $scope.params.sub_project_id = id
+                $scope.params.subproject_id = id
                 $scope.params.subProjectID = id !== 'all' ? id : null
                 getData()
             }
 
             ktProjectsService.get({
                 projectID: $stateParams.projectID,
-                subProject: 'sub_projects'
+                subContent: 'subprojects'
             }, function(data) {
-                $scope.subProjects = data.sub_projects
+                $scope.subProjects = data.subprojects
                 $scope.subProjects.unshift({
                     id: 'all',
                     name: '全部'
@@ -68,8 +68,8 @@
                 if (newValue !== oldvalue && newValue !== 'custom') {
                     var dates = newValue.split('~')
                     $location.search($.extend(params, {
-                        date_from: dates[0] || null,
-                        date_to: dates[1] || null
+                        start_date: dates[0] || null,
+                        end_date: dates[1] || null
                     }))
 
                     // getData()
@@ -84,11 +84,11 @@
             })*/
 
             function getData() {
-                // var date_from, date_to, datePeriod
+                // var start_date, end_date, datePeriod
                 // datePeriod = $scope.radioPeriod
                 // datePeriod = datePeriod.split('~')
-                // date_from = datePeriod[0]
-                // date_to = datePeriod[1]
+                // start_date = datePeriod[0]
+                // end_date = datePeriod[1]
 
                 ktReportService.get($scope.params, function(data) {
                     $scope.data = data

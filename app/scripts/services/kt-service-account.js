@@ -6,7 +6,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    //user service
+    // user service
     .factory('ktUserService', function($resource, CacheFactory, ktApiVersion) {
 
         var profileCache
@@ -18,12 +18,14 @@
                 deleteOnExpire: 'aggressive', // Items will be deleted from this cache right when they expire.
                 storageMode: 'localStorage' // This cache will use `localStorage`.
             })
+
             /*eslint-enable*/
         }
 
-        return $resource('/ajax/api/' + ktApiVersion + '/users', {}, {
+        return $resource('/ajax/' + ktApiVersion + '/users', {}, {
             'get': {
                 method: 'GET',
+                // apiMock: true,
                 cache: profileCache
             }
         })
@@ -62,10 +64,19 @@
         }
     })*/
 
-    //user session service
+    // 登录接口
     .factory('ktLoginService', function($resource, ktApiVersion) {
-        return $resource('/ajax/api/' + ktApiVersion + '/sessions/:confirm', {
+        return $resource('/ajax/' + ktApiVersion + '/sessions/:confirm', {
             confirm: '@confirm'
+        }, {
+            'post': {
+                method: 'POST',
+                // apiMock: true,
+            },
+            'save': {
+                method: 'POST',
+                // apiMock: true,
+            }
         })
     })
 

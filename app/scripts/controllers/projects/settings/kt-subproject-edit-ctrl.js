@@ -2,9 +2,9 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktSubProjectEditCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService) {
+        .controller('ktSubProjectEditCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktSubProjectsService) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
@@ -18,13 +18,13 @@
             }
 
             $scope.subProject = {
-                projectID: $stateParams.projectID,
-                subProject: 'sub_projects',
+                // projectID: $stateParams.projectID,
+                // subProject: 'subprojects',
                 subProjectID: $stateParams.subProjectID
             }
 
-            ktProjectsService.get($scope.subProject, function(data) {
-                $.extend($scope.subProject, data.sub_project)
+            ktSubProjectsService.get($scope.subProject, function(data) {
+                $.extend($scope.subProject, data.subproject)
             })
 
             $scope.cancel = function($event) {
@@ -33,7 +33,7 @@
             }
 
             $scope.submitForm = function() {
-                ktProjectsService.update($scope.subProject).$promise.then(function() {
+                ktSubProjectsService.update($scope.subProject).$promise.then(function() {
                     ktSweetAlert.swal({
                         title: '提示',
                         text: '保存成功',

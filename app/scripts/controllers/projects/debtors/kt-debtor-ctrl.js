@@ -3,17 +3,21 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktDebtorCtrl', function($scope, $location, $stateParams, $uibModal, ktDataHelper) {
+    .controller('ktDebtorCtrl', function($scope, $location, $stateParams, $state, $uibModal, ktLoanPlansService, ktDebtorsService, ktDataHelper, ktSweetAlert) {
 
         $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
         })
+
         $scope.params = {
             maxSize: 5,
             page: 1,
             status: 'all',
+            loanType: 'loan_applications',
+            batchNo: $stateParams.batchNo,
             per_page: 10
         }
+
         $scope.debtor = {}
 
         $scope.pageChanged = function() {
@@ -28,19 +32,8 @@
             }))
         }
 
-        $scope.statusList = [{
-            name: '全部',
-            value: 'all'
-        }, {
-            name: '未审批',
-            value: 'initial'
-        }, {
-            name: '已通过',
-            value: 'approved'
-        }, {
-            name: '已拒绝',
-            value: 'rejected'
-        }]
+        $scope.statusList = ktDataHelper.getLoanStatusMap()
+        $scope.filterStatus = ktDataHelper.filterStatus(['all', 'rejected', 'approved'])
 
         $scope.getStatusName = function(status) {
             var st = _.find($scope.statusList, function(v) {
@@ -51,11 +44,30 @@
 
         $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
+        $scope.createPlan = function() {
+            ktLoanPlansService.create({
+                // projectID: $stateParams.projectID,
+                // number: $stateParams.number,
+                status: 'approved',
+                batchNo: $stateParams.batchNo,
+                content: 'new'
+            }, function(data) {
+                ktSweetAlert.swal({
+                    title: '成功',
+                    text: data.error || '放款计划生成成功！',
+                    type: 'success',
+                });
+                $scope.debtor.status = 'planned'
+            }, function() {
+
+            })
+        }
+
         $scope.approveAll = function($event) {
             $event.stopPropagation()
             $event.preventDefault()
             var projectID = $stateParams.projectID
-            var number = $stateParams.number
+            var batchNo = $stateParams.batchNo
 
             var modalInstance = $uibModal.open({
                 templateUrl: 'views/modals/approve_borrower.html',
@@ -66,8 +78,9 @@
                     }
                 },*/
                 /*eslint-disable*/
-                controller: function($timeout, $scope, $state, $uibModalInstance, ktDebtorsService, ktRulesService) {
-                /*eslint-enable*/
+                controller: function($timeout, $scope, $state, $uibModalInstance, ktApprovalsService, ktRulesService) {
+                    /*eslint-enable*/
+
                     $scope.rules = [{
                         id: '1',
                         name: '规则1',
@@ -100,7 +113,7 @@
 
                     $scope.selected = {}
                     $scope.selected.rules = _.pluck($scope.rules, 'id')
-                    $scope.number = number
+                    $scope.batchNo = batchNo
 
                     $scope.checkAll = true
                     $scope.filterByBlacklist = true
@@ -119,9 +132,9 @@
                     $scope.ok = function() {
                         $scope.error = ''; // 每次提交清除错误
                         // $scope.pendingRequests = false
-                        ktDebtorsService.update({
-                            projectID: projectID,
-                            number: $scope.number,
+                        ktApprovalsService.save({
+                            // projectID: projectID,
+                            batchNo: $stateParams.batchNo,
                             by_bl: $scope.filterByBlacklist,
                             rules: $scope.selected.rules
                         }, function(data) {
@@ -152,43 +165,32 @@
             });
 
             //关闭model promise
-            modalInstance.result.then(function(data) {
-                if (data.result) {
-                    $scope.debtor.status = 'done'
+            modalInstance.result.then(function() {
+                /*$state.go($state.current.name, {}, {
+                    reload: true
+                });*/
+                ktDebtorsService.get($scope.params, function(data) {
+                    $.extend($scope.debtor, data.loan_batch);
+                    $scope.params.totalItems = data.total_items;
+                });
+                /*if (data.result) {
+                    $scope.shared.debtor.status = 'done'
                 }
-                $.each($scope.debtor.borrowers, function(i, e) {
+                $.each($scope.shared.debtor.borrowers, function(i, e) {
                     e.status = data.result[i]
-                })
+                })*/
             })
         }
 
     })
 
     .controller('ktDebtorTableCtrl', function($scope, $location, $stateParams, ktDebtorsService) {
-        // $scope.debtor;
-        // $scope.params.maxSize = 5
-
-
-        // $scope.getStatusName($location.search().borrower_status)
-        // $.extend($scope, ktProjectsHelper)
-
-        $scope.params.projectID = $stateParams.projectID
-        $scope.params.number = $stateParams.number
-
         var search = $location.search()
         $.extend($scope.params, search)
-            /*$scope.goDetail = function($event, projectId) {
-                $event.stopPropagation()
-                $event.preventDefault()
-                $state.go('analytics.project.dashboard', {
-                    id: projectId
-                })
-            }*/
 
         ktDebtorsService.get($scope.params, function(data) {
-            // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
-            $.extend($scope.debtor, data.debtor);
-            $scope.params.totalItems = data.totalItems;
+            $.extend($scope.debtor, data.loan_batch);
+            $scope.params.totalItems = data.total_items;
         });
     })
 })();

@@ -36,6 +36,7 @@
             $scope.params = {
                 maxSize: 5,
                 projectID: $stateParams.projectID,
+                projectType: 'projects',
                 number: $stateParams.number,
                 page: 1,
                 per_page: 10
@@ -45,9 +46,9 @@
 
             ktRepaymentsService.get($scope.params, function(data) {
                 $.extend($scope, data)
-                $scope.params.totalItems = data.totalItems
+                $scope.params.totalItems = data.total_items
                     /*$.extend($scope.params, {
-                        totalItems: data.totalItems
+                        totalItems: data.total_items
                     }, params)*/
             })
         })

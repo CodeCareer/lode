@@ -36,7 +36,7 @@
 
         ktChannelsService.get($scope.params, function(data) {
             $scope.channels = data.channels;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

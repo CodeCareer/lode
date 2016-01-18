@@ -1,0 +1,36 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-left">
+            <th>放款日</th>
+            <th>借款人姓名</th>
+            <th>身份证号</th>
+            <th>银行卡号</th>
+            <th>银行信息</th>
+            <th>金额</th>
+            <th>产品代码</th>
+            <th>期限</th>
+            <th>起息日</th>
+            <th>首次还款日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-right" ng-repeat="borrower in borrowers">
+            <th class="text-left" ng-bind="::borrower.create_at"></th>
+            <td ng-bind="::borrower.name"></td>
+            <td ng-bind="::borrower.identity_num"></td>
+            <td ng-bind="::borrower.bank_account"></td>
+            <td ng-bind="::borrower.bank_info"></td>
+            <td ng-bind="::borrower.amount | ktNumberLocate"></td>
+            <td ng-bind="::borrower.product_num"></td>
+            <td ng-bind="::borrower.duration + '天'"></td>
+            <td ng-bind="::borrower.value_at"></td>
+            <td ng-bind="::borrower.repayment_first_at"></td>
+        </tr>
+        <tr ng-if="(!borrowers.length || !borrowers) && !isLoading()">
+            <td colspan="10" class="text-info text-center">
+                <i class="pe-7s-attention f20 mr5"></i>
+                <span class="f16">没有数据！</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

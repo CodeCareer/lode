@@ -13,10 +13,11 @@
                         delete $window.localStorage.user;
                         delete $window.localStorage.token;
                         $rootScope.user = null;
+                        $rootScope.currentUrl = '';
                         ipCookie.remove('token')
                         CacheFactory.clearAll()
 
-                        $state.go($rootScope.currentState || 'account.login', {}, {
+                        $state.go('account.login', {}, {
                             reload: true
                         })
                     })

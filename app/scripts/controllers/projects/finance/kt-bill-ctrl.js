@@ -11,6 +11,7 @@
             $scope.params = {
                 maxSize: 5,
                 projectID: $stateParams.projectID,
+                projectType: 'projects',
                 billID: $stateParams.billID,
                 page: 1,
                 status: 'all',
@@ -87,7 +88,7 @@
 
             ktBillsService.get($scope.params, function(data) {
                 $.extend($scope, data)
-                $scope.params.totalItems = data.totalItems
+                $scope.params.totalItems = data.total_items
             })
         })
 })();

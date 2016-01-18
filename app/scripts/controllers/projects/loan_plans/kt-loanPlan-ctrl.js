@@ -8,41 +8,28 @@
                 projectID: $stateParams.projectID
             })
 
-            $scope.approve = function(number) {
+            function updateStatus(status, callback) {
                 ktLoanPlansService.update({
-                    projectID: $stateParams.projectID,
-                    // number: $stateParams.number,
-                    status: 'approved',
-                    number: number
+                    // projectID: $stateParams.projectID,
+                    status: status,
+                    batchNo: $stateParams.batchNo,
                 }, function(data) {
-                    $scope.status = data.status || 'approved'
+                    $scope.status = data.status || status
+                    /*eslint-disable*/
+                    callback && callback(data)
+                    /*eslint-enable*/
                 })
             }
 
-            $scope.reject = function(number) {
-                ktLoanPlansService.update({
-                    projectID: $stateParams.projectID,
-                    // number: $stateParams.number,
-                    status: 'rejected',
-                    number: number
-                }, function(data) {
-                    $scope.status = data.status || 'rejected'
-                })
-            }
+            $scope.loanPlan = {}
 
-            $scope.sendDirective = function(number) {
-                ktLoanPlansService.update({
-                    projectID: $stateParams.projectID,
-                    // number: $stateParams.number,
-                    status: 'done',
-                    number: number
-                }, function(data) {
-                    $scope.status = data.status || 'done'
-                    $scope.summary = data.summary
-                    $scope.approve_at = data.approve_at || moment().format('YYYY-MM-DD H:mm:ss')
-                    updateStatus(data)
-                })
-            }
+            $scope.approve = updateStatus('approved')
+            $scope.approve = updateStatus('reject')
+            $scope.approve = updateStatus('finished', function(data) {
+                $scope.loanPlan.summary = data.summary
+                $scope.loanPlan.approval_time = data.approval_time || moment().format('YYYY-MM-DD H:mm:ss')
+                updateStatus(data)
+            })
 
             /*$scope.repaymentsNav = {
                 maxSize: 5
@@ -66,28 +53,25 @@
                 }))
             }*/
 
-            function updateStatus(data) {
-                var statusValue = (!data || data.status === 'initial') ? '放款计划' : '放款结果'
+            function updatePageTitle(data) {
+                var statusValue = (!data || data.status === 'draft') ? '放款计划' : '放款结果'
                 $state.current.data.breadcrumbTitle = $state.current.data.pageTitle = statusValue
             }
 
-            var params = {
-                projectID: $stateParams.projectID,
-                number: $stateParams.number,
+            $scope.params = {
+                // projects: 'projects',
+                // projectID: $stateParams.projectID,
+                batchNo: $stateParams.batchNo,
                 page: 1,
                 per_page: 10
             }
+
             var search = $location.search()
+            $.extend($scope.params, search)
 
-            $.extend(params, search)
-
-            ktLoanPlansService.get(params, function(data) {
-                updateStatus(data)
-                    // $state.current.data.breadcrumbTitle = $state.current.data.pageTitle = (data.status == 'initial' ? '放款计划' : '放款结果')
-                $.extend($scope, data, params)
-                    /*$.extend($scope.repaymentsNav, {
-                        totalItems: data.totalItems
-                    }, params)*/
+            ktLoanPlansService.get($scope.params, function(data) {
+                updatePageTitle(data)
+                $.extend($scope.loanPlan, data.loan_plan)
             })
         })
 })();

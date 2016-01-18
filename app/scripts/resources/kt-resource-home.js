@@ -10,7 +10,7 @@
         return {
             get: function() {
                 var config = {
-                    currentUrl: '/anlytics/dashboard',
+                    // currentUrl: '/anlytics/dashboard',
                     logoHorizonal: ktS('images/logo.svg'),
                     accountLogo: ktS('images/logo-zh.png'),
                     accountLink: 'http://www.sinoguarantee.com/',

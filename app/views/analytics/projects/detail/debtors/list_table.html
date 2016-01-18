@@ -14,22 +14,22 @@
             </thead>
             <tbody>
                 <tr class="text-right" ng-repeat="debtor in debtors">
-                    <th class="text-left" ng-bind="::debtor.name"></th>
-                    <td ng-bind="::debtor.number"></td>
-                    <td ng-bind="::debtor.create_at"></td>
-                    <td ng-bind="::debtor.apply_amount"></td>
-                    <td ng-bind="::debtor.pass_amount"></td>
-                    <td>
-                        <span ng-if="::debtor.status === 'initial'">
-                            <i class="glyphicon glyphicon-time initial-color mr5"></i>未开始
+                    <th class="text-left" ng-bind="::debtor.subproject_name"></th>
+                    <td ng-bind="::debtor.batch_no"></td>
+                    <td ng-bind="::debtor.created_at | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    <td ng-bind="::debtor.total_count"></td>
+                    <td ng-bind="::debtor.approved_count"></td>
+                    <td ng-bind-html="getStatusNameNice(debtor.status)">
+                        <!--                         <span ng-if="::debtor.status === 'draft'">
+                            <i class="glyphicon glyphicon-time draft-color mr5"></i>未开始
                         </span>
-                        <span ng-if="::debtor.status !== 'initial'">
+                        <span ng-if="::debtor.status !== 'draft'">
                             <i class="glyphicon glyphicon-ok done-color mr5"></i>已完成
-                        </span>
+                        </span>-->
                     </td>
                     <td class="text-center">
-                        <a class="tu" ui-sref="analytics.project.debtors.detail.list.table({number: debtor.number})">
-                            <span ng-bind="debtor.status == 'initial' ? '审批' : '查看'"></span>
+                        <a class="tu" ui-sref="analytics.project.debtors.detail.list.table({batchNo: debtor.batch_no})">
+                            <span ng-bind="debtor.status == 'draft' ? '审批' : '查看'"></span>
                         </a>
                     </td>
                 </tr>

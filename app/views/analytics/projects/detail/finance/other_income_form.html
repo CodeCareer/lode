@@ -8,7 +8,7 @@
             <div class="panel-body clfix pr ov-h">
                 <div class="form-body clfix">
                     <div class="col-md-9 col-md-offset-1" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                        <form name="otherIncomeForm" class="form-horizontal" method="post" id="otherIncomeForm" ng-submit="submitForm()">
+                        <form name="otherIncomeForm" class="form-horizontal" method="post" id="otherIncomeForm" kt-submit="submitForm()" kt-autofill-submit>
                             <div class="form-group col-lg-12" ng-class="{'has-error':otherIncomeForm.name.$invalid && otherIncomeForm.name.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>收入名称</label>
                                 <div class="col-md-8">
@@ -71,7 +71,7 @@
                                     <div kt-loading-status height="32" width="32"></div>
                                 </div>
                                 <div class="col-md-8 col-md-offset-4">
-                                    <button class="btn btn-navy-blue" ng-disabled="otherIncomeForm.$invalid || pendingRequests">保存更改</button>
+                                    <button class="btn btn-navy-blue" ng-disabled="pendingRequests">保存更改</button>
                                     <button class="btn btn-default" ng-click="cancel($event)">取消</button>
                                 </div>
                             </div>

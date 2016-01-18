@@ -36,7 +36,7 @@
 
         ktInstitutionsService.get($scope.params, function(data) {
             $scope.institutions = data.institutions;
-            $scope.params.totalItems = data.totalItems;
+            $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
     })

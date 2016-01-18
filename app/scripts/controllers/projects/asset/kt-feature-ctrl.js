@@ -4,7 +4,7 @@
     angular.module('kt.lode')
         .controller('ktAssetFeatureCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
 
-            $scope.$emit('activeInstitutionChange', {
+            $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
             })
 
@@ -17,8 +17,8 @@
                 if (newValue !== oldvalue && newValue !== 'custom') {
                     var dates = newValue.split('~')
                     $location.search($.extend(params, {
-                        date_from: dates[0] || null,
-                        date_to: dates[1] || null
+                        start_date: dates[0] || null,
+                        end_date: dates[1] || null
                     }))
 
                     // getData()
@@ -182,19 +182,19 @@
             }
 
             function getData() {
-                var dateFrom
-                var dateTo
+                var startDate
+                var endDate
                 var datePeriod
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
-                dateFrom = datePeriod[0] || null
-                dateTo = datePeriod[1]
+                startDate = datePeriod[0] || null
+                endDate = datePeriod[1]
 
                 ktReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'asset_feature',
-                    date_from: dateFrom,
-                    date_to: dateTo
+                    type: 'assets_features',
+                    start_date: startDate,
+                    end_date: endDate
                 }, params), function(data) {
                     $scope.data = data
                     udpateData('timeLimitChart')
