@@ -49,7 +49,7 @@
             'account.login': {
                 url: '/login',
                 templateUrl: 'views/login.html',
-                resolve: ktLazyResolve(['scripts/controllers/account/login.js']),
+                resolve: ktLazyResolve(['views/login.js']),
                 controller: 'ktLoginCtrl',
                 data: {
                     pageTitle: '登录'
@@ -58,7 +58,7 @@
             'account.register': {
                 url: '/register',
                 templateUrl: 'views/register.html',
-                resolve: ktLazyResolve(['scripts/controllers/account/register.js']),
+                resolve: ktLazyResolve(['views/register.js']),
                 controller: 'ktRegisterCtrl',
                 data: {
                     pageTitle: '入会'
@@ -67,7 +67,7 @@
             'account.confirm': {
                 url: '/confirm',
                 templateUrl: 'views/confirm.html',
-                resolve: ktLazyResolve(['scripts/controllers/account/confirm.js']),
+                resolve: ktLazyResolve(['views/confirm.js']),
                 controller: 'ktConfirmCtrl',
                 params: {
                     institution: {},
