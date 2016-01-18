@@ -18,7 +18,7 @@
                 <a ng-if="bill.status === 'finished'" class="tu" ui-sref="analytics.subProject.repayments.detail.list.table({batchNo: bill.batch_no})">
                     <span>查看明细</span>
                 </a>
-                <div bill.status !== 'finished'>
+                <div ng-if="bill.status !== 'finished'">
                     <div class="btn btn-sm btn-dark btn-file">
                         提交借款名单
                         <input ngf-validate="{size: {max: '20MB'}" ngf-select="upload($files, $event, bill.batch_no)" ng-disabled="uploading" accept=".csv" ngf-multiple="false" type="file" name="file" ng-model="file">
