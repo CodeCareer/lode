@@ -15,20 +15,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-right" ng-repeat="repayment in bill.repayments">
-            <th class="text-left" ng-bind="::repayment.bank_account"></th>
-            <td ng-bind="::repayment.name"></td>
-            <td ng-bind="::repayment.identity_num"></td>
-            <td ng-bind-html="::getStatusName(repayment.status)"></td>
-            <td ng-bind="::repayment.repay_principle | ktNumberLocate"></td>
-            <td ng-bind="::repayment.repay_interest | ktNumberLocate"></td>
-            <td ng-bind="::repayment.ahead_principle | ktNumberLocate"></td>
-            <td ng-bind="::repayment.ahead_compensation | ktNumberLocate"></td>
-            <td ng-bind="::repayment.overdue_total_amount | ktNumberLocate"></td>
-            <td ng-bind="::repayment.overdue_total_fine | ktNumberLocate"></td>
-            <td ng-bind="::repayment.service_fees | ktNumberLocate"></td>
+        <tr class="text-right" ng-repeat="payment in bill.payment_details">
+            <th class="text-left" ng-bind="::payment.recpt_acct_no"></th>
+            <td ng-bind="::payment.name"></td>
+            <td ng-bind="::payment.id_no"></td>
+            <td ng-bind-html="::getStatusNameNice(payment.status)"></td>
+            <td ng-bind="::payment.pymnt_prncp | ktNumberLocate"></td>
+            <td ng-bind="::payment.pymnt_int | ktNumberLocate"></td>
+            <td ng-bind="::payment.ahead_principle | ktNumberLocate"></td>
+            <td ng-bind="::payment.ahead_compensation | ktNumberLocate"></td>
+            <td ng-bind="::payment.overdue_total_amount | ktNumberLocate"></td>
+            <td ng-bind="::payment.overdue_total_fine | ktNumberLocate"></td>
+            <td ng-bind="::payment.service_fees | ktNumberLocate"></td>
         </tr>
-        <tr ng-if="(!bill.repayments.length || !bill.repayments) && !isLoading()">
+        <tr ng-if="!bill.payment_details.length && !isLoading()">
             <td colspan="12" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>

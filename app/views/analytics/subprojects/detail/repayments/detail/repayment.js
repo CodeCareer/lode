@@ -2,20 +2,27 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktRepaymentCtrl', function($scope, $stateParams) {
+        .controller('ktRepaymentCtrl', function($scope, $stateParams, ktDataHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.subProjectID
             })
 
+            $scope.statusList = ktDataHelper.getPaymentStatusMap()
+            $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
+
             $scope.bill = {}
 
             $scope.params = {
-                projectType: 'subprojects',
-                projectID: $stateParams.subProjectID,
-                batchNo: $stateParams.batchNo,
+                maxSize: 5,
+                billID: $stateParams.billID,
+                content: 'payment_details',
                 page: 1,
                 per_page: 10
+            }
+
+            $scope.pageChanged = function() {
+                $location.search('page', $scope.params.page)
             }
         })
         .controller('ktRepaymentTableCtrl', function($scope, $state, $location, $stateParams, ktBillsService) {
@@ -29,7 +36,8 @@
             }*/
 
             ktBillsService.get($scope.params, function(data) {
-                $.extend($scope.bill, data.bill)
+                $.extend($scope.bill, data.statement)
+                $scope.params.totalItems = data.statement.total_items
                     // updatePageTitle(data)
             })
         })

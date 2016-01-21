@@ -18,11 +18,11 @@
                     </dl>
                     <dl class="ib mb0 ml20">
                         <dt class="ib">账单日期:</dt>
-                        <dd class="ib" ng-bind="bill.repay_at"></dd>
+                        <dd class="ib" ng-bind="bill.due_date"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
                         <dt class="ib">还款期数:</dt>
-                        <dd class="ib" ng-bind="bill.stage"></dd>
+                        <dd class="ib" ng-bind="bill.term"></dd>
                     </dl>
                     <!-- <dl class="ib mb0 ml10" ng-if="bill.status === 'finished'">
                         <dt class="ib">状态：</dt>
@@ -38,9 +38,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="chart-table">
-                                <div class="chart-table-heading clfix">
-                                    <div class="f14 pl10 fl br pr10">个人明细</div>
-                                </div>
+                                <!-- <div class="chart-table-heading clfix">
+                                    <div class="f14 pl10 fl pr10">个人明细</div>
+                                </div> -->
                                 <div class="table-responsive table-body" ui-view>
                                 </div>
                             </div>

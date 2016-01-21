@@ -210,7 +210,7 @@
                     }
                 },
                 'analytics.subProject.repayments.detail': {
-                    url: '/:batchNo',
+                    url: '/:billID',
                     abstract: true,
                     template: '<ui-view/>',
                     data: {
@@ -229,7 +229,7 @@
                     }
                 },
                 'analytics.subProject.repayments.detail.list.table': {
-                    url: 'page&per_page',
+                    url: '?page&per_page',
                     templateUrl: 'views/analytics/subprojects/detail/repayments/detail/repayment.html',
                     controller: 'ktRepaymentTableCtrl',
                     data: {

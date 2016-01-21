@@ -13,11 +13,11 @@
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="bill in bills">
-            <th class="text-left" ng-bind="::bill.create_at"></th>
+            <th class="text-left" ng-bind="::bill.due_date"></th>
             <td ng-bind="::getTypeName(bill.type)"></td>
-            <td ng-bind="::bill.name"></td>
-            <td ng-bind="::bill.number"></td>
-            <td ng-bind="::bill.stage"></td>
+            <td ng-bind="::bill.subproject_name"></td>
+            <td ng-bind="::bill.batch_no"></td>
+            <td ng-bind="::bill.term"></td>
             <td ng-bind="::bill.amount"></td>
             <td ng-bind-html="getStatusNameNice(bill.status)"></td>
             <td class="text-center">

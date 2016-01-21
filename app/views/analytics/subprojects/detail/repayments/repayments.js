@@ -9,7 +9,7 @@
             projectID: $stateParams.subProjectID
         })
 
-        $scope.statusList = ktDataHelper.getLoanStatusMap()
+        $scope.statusList = ktDataHelper.getStatementStatusMap()
         $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
         ktDateHelper.initPeriodDay($scope, $location.search() || {})
@@ -37,17 +37,22 @@
         }
     })
 
-    .controller('ktRepaymentsTableCtrl', function($scope, $location, $stateParams, ktBillsService, ktLoanBatchesUpload) {
+    .controller('ktRepaymentsTableCtrl', function($scope, $location, $stateParams, ktBillsService, ktStatementsUpload) {
         $scope.bills = [];
-        $scope.upload = function(file, event, batchNo) {
+        $scope.upload = function(file, event, statementID) {
             $scope.uploading = true
                 // console.log(file, event)
-            ktLoanBatchesUpload({
-                subProjectID: $stateParams.subProjectID,
+            ktStatementsUpload({
+                statementID: statementID,
                 file: file,
-            }).then(function(res) {
+            }).then(function() {
                 // console.log('Success ' + res.config.data.file.name + 'uploaded. response: ' + res.data);
-                $scope.bills.unshift(res.data.loan_batch)
+                // $scope.bills.unshift(res.data.loan_batch)
+                var bill = _.findWhere($scope.bills, {
+                    id: statementID
+                })
+                bill.status = 'uploaded'
+
                 $scope.uploading = false
             }, function(res) {
                 ktSweetAlert.swal({
@@ -68,7 +73,7 @@
 
         ktBillsService.get($scope.params, function(data) {
 
-            $scope.bills = data.bills;
+            $scope.bills = data.statements;
             $scope.params.totalItems = data.total_items;
         });
     })

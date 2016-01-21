@@ -165,6 +165,18 @@
             })
         }
     })
+    
+    // 借款人批次上传
+    .factory('ktStatementsUpload', function($urlMatcherFactory, Upload, ktApiVersion) {
+        return function upload(data) {
+            var url = $urlMatcherFactory.compile('/ajax/' + ktApiVersion + '/statements/:statementID/upload').format(data)
+
+            return Upload.upload({
+                url: url,
+                data: data || {}
+            })
+        }
+    })
 
     // 借款人审批-规则
     .factory('ktRulesService', function($resource, ktApiVersion) {
@@ -224,9 +236,10 @@
 
     // 财务管理-还款对账
     .factory('ktBillsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/bills/:billID', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/statements/:billID/:content', {
             projectType: '@projectType',
             projectID: '@projectID',
+            content: '@content',
             billID: '@billID'
         }, {
             'get': {

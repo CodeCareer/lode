@@ -14,6 +14,8 @@
                         'rejected': '已拒绝',
                         'planed': '已生成放款计划',
                         'issued': '已下发指令',
+                        'checked': '已对账',
+                        'uploaded': '已上传',
                         'success': '放款成功',
                         'fail': '放款失败',
                     }
@@ -28,6 +30,36 @@
                     return function(item) {
                         return !_.contains(arr || [], item.status)
                     }
+                },
+                getPaymentStatusMap: function() {
+                    return [{
+                        name: '全部',
+                        value: 'all'
+                    }, {
+                        name: '正常还款',
+                        value: 'normal'
+                    }, {
+                        name: '提前还款',
+                        value: 'advanced'
+                    }, {
+                        name: '逾期',
+                        value: 'overdue'
+                    }]
+                },
+                getStatementStatusMap: function() {
+                    return [{
+                        name: '全部',
+                        value: 'all'
+                    }, {
+                        name: '未上传',
+                        value: 'draft'
+                    }, {
+                        name: '已上传',
+                        value: 'uploaded'
+                    }, {
+                        name: '已对账',
+                        value: 'checked'
+                    }]
                 },
                 getLoanStatusMap: function() {
                     return [{
@@ -81,7 +113,6 @@
                         var st = _.find($scope.statusList, function(v) {
                             return v.value === (status || $scope.params.status)
                         }) || {}
-
                         switch (status) {
                             case 'draft':
                                 return '<i class="glyphicon glyphicon-time initial-color mr5"></i>' + st.name;
@@ -89,12 +120,14 @@
                             case 'planned':
                             case 'issued':
                             case 'normal':
+                            case 'checked':
                             case 'success':
                                 return '<i class="glyphicon glyphicon-ok approved-color mr5"></i>' + st.name;
                             case 'fail':
                             case 'rejected':
                                 return '<i class="glyphicon glyphicon-remove rejected-color mr5"></i>' + st.name;
-                            case 'ahead':
+                            case 'advanced':
+                            case 'uploaded':
                                 return '<i class="glyphicon glyphicon-thumbs-up approved-color mr5"></i>' + st.name;
                             case 'overdue':
                                 return '<i class="glyphicon glyphicon-thumbs-down warn-color mr5"></i>' + st.name;

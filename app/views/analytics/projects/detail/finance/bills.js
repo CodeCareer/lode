@@ -19,17 +19,7 @@
             per_page: 10
         }
 
-        $scope.statusList = [{
-            name: '全部',
-            value: 'all'
-        }, {
-            name: '未完成',
-            value: 'initial'
-        }, {
-            name: '已完成',
-            value: 'done'
-        }]
-
+        $scope.statusList = ktDataHelper.getStatementStatusMap()
         $scope.billTypes = ktDataHelper.getBillTypes()
         $scope.getTypeName = ktDataHelper.getBillTypeFactory($scope)
         $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
@@ -107,7 +97,7 @@
 
         ktBillsService.get($scope.params, function(data) {
             // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
-            $scope.bills = data.bills;
+            $scope.bills = data.statements;
             $scope.params.totalItems = data.total_items;
             // $.extend($scope.params, params)
         });
