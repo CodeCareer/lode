@@ -52,7 +52,7 @@
                 }
 
                 //数据接口缓存处理
-                if (req.url.indexOf('/api/v') > -1) {
+                if (req.url.indexOf('/ajax/v') > -1) {
                     req.url = ktUri.appendParams(req.url, {
                         ac: $rootScope.apiCode
                     })

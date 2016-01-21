@@ -69,20 +69,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.credit_amount.$invalid && projectForm.credit_amount.$dirty}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.credit_amnt.$invalid && projectForm.credit_amnt.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>总授信额度</label>
                                 <div class="col-md-8">
-                                    <input placeholder="总授信额度" type="text" ng-model="project.credit_amount" id="" class="form-control" name="credit_amount">
-                                    <div class="mt5 text-danger" ng-messages="projectForm.credit_amount.$dirty && projectForm.credit_amount.$error">
+                                    <input placeholder="总授信额度" type="text" ng-model="project.credit_amnt" id="" class="form-control" name="credit_amnt">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.credit_amnt.$dirty && projectForm.credit_amnt.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入总授信额度</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.warranty_gold.$invalid && projectForm.warranty_gold.$dirty}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.warranty_amnt.$invalid && projectForm.warranty_amnt.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>质保金</label>
                                 <div class="col-md-8">
-                                    <input placeholder="质保金" type="text" ng-model="project.warranty_gold" id="" class="form-control" name="warranty_gold">
-                                    <div class="mt5 text-danger" ng-messages="projectForm.warranty_gold.$dirty && projectForm.warranty_gold.$error">
+                                    <input placeholder="质保金" type="text" ng-model="project.warranty_amnt" id="" class="form-control" name="warranty_amnt">
+                                    <div class="mt5 text-danger" ng-messages="projectForm.warranty_amnt.$dirty && projectForm.warranty_amnt.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入质保金</div>
                                     </div>
                                 </div>

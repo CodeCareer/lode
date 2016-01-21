@@ -82,7 +82,7 @@
                             id: 'all',
                             name: '全部项目'
                         })
-                        $scope.projects = data.projects
+                        $rootScope.projects = $scope.projects = data.projects
                         $scope.activeProjectName = getProjectName()
                         updatePageTitle()
 
@@ -96,7 +96,7 @@
                             id: 'all',
                             name: '全部项目'
                         })
-                        $scope.projects = data.subprojects
+                        $rootScope.projects = $scope.projects = data.subprojects
                         $scope.activeProjectName = getProjectName()
                         updatePageTitle()
                     })

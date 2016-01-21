@@ -1,14 +1,13 @@
+<!-- 暂时废弃：可以用views/analytics/dashboard.html替代， 他与所有项目的总览共用一个view，暂时废弃 -->
 <div class="row" kt-animate-panel child="hpanel" effect="zoomIn" delay="0.1">
     <div class="col-lg-12 ">
-        <!-- <div class="content-header clfix">
-        </div> -->
         <div class="hpanel">
             <div class="panel-heading clfix">
                 <h5>总览</h5>
             </div>
             <div class="panel-body clfix pr ov-h">
                 <div class="dashboard-table">
-                    <div class="row">
+                    <div class="row" ng-if="summary.length">
                         <div class="td col-md-1-5 text-center">
                             <h6>项目授信额</h6>
                             <div class="f16 mt20 fb" ng-bind="summary[0] | ktNumberLocate">
@@ -29,16 +28,16 @@
                             <div class="f16 mt20 fb" ng-bind="(summary[3] | number:0) + '人'">
                             </div>
                         </div>
-                        <!-- <div class="td col-md-1-5 text-center">
-                            <h6>合作机构数</h6>
-                            <div class="f16 mt20 fb" ng-bind="summary[4] | number:0">
-                                100
-                            </div>
-                        </div> -->
                         <div class="col-md-1-5 text-center">
                             <h6>逾期率</h6>
                             <div class="f16 mt20 fb" ng-bind="((summary[4] * 100) | number:2)+ '%'">
                             </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="!summary.length && !isLoading()">
+                        <div class="col-md-12 text-center text-info">
+                            <i class="pe-7s-attention f20 mr5"></i>
+                            <span class="f16">没有数据！</span>
                         </div>
                     </div>
                 </div>
@@ -51,23 +50,15 @@
                     <div class="btn-group btn-group-sm">
                         <label class="btn btn-dark" ng-model="ownFunds.radioDataShowType" uib-btn-radio="'all'">
                             总体
-                            <!-- <i class="icon-lode">&#xe806;</i> -->
                         </label>
                         <label class="btn btn-dark" ng-model="ownFunds.radioDataShowType" uib-btn-radio="'single'">
                             子项目
-                            <!-- <i class="icon-lode">&#xe808;</i> -->
                         </label>
                     </div>
                     <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="glyphicon glyphicon-download-alt"></i>
                     </a> -->
                 </div>
-                <!-- <div class="actions fr">
-                    <div class="btn-group btn-group-sm fr" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="'all'">全部</label>
-                        <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="false" show-shortcuts="false">任意</label>
-                    </div>
-                </div> -->
             </div>
             <div class="panel-body clfix pr ov-h">
                 <div class="chart-table" ng-show="ownFunds.radioDataShowType == 'all'">
@@ -82,7 +73,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right">
+                                <tr class="text-right" ng-if="own_funds_total.length">
                                     <!-- <th class="text-left" ng-bind="own.name"></th> -->
                                     <td ng-bind="own_funds_total[0] | ktNumberLocate"></td>
                                     <td ng-bind="own_funds_total[1] | ktNumberLocate"></td>
@@ -94,6 +85,12 @@
                                     <td ng-bind="own_funds_total[7] | ktNumberLocate"></td>
                                     <td ng-bind="own_funds_total[8] | ktNumberLocate"></td>
                                     <td ng-bind="own_funds_total[9] | ktNumberLocate"></td>
+                                </tr>
+                                <tr ng-if="!own_funds_total.length && !isLoading()">
+                                    <td colspan="10" class="text-info text-center">
+                                        <i class="pe-7s-attention f20 mr5"></i>
+                                        <span class="f16">没有数据！</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -112,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right" ng-repeat="ofd in own_funds_detail">
+                                <tr class="text-right" ng-repeat="ofd in own_funds_detail" ng-if="own_funds_detail.length">
                                     <th class="text-left" ng-bind="ofd.name"></th>
                                     <td ng-bind="ofd.data[0] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[1] | ktNumberLocate"></td>
@@ -124,6 +121,12 @@
                                     <td ng-bind="ofd.data[7] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[8] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[9] | ktNumberLocate"></td>
+                                </tr>
+                                <tr ng-if="!own_funds_detail.length && !isLoading()">
+                                    <td colspan="11" class="text-info text-center">
+                                        <i class="pe-7s-attention f20 mr5"></i>
+                                        <span class="f16">没有数据！</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -138,11 +141,9 @@
                     <div class="btn-group btn-group-sm">
                         <label class="btn btn-dark" ng-model="guaranteeLoan.radioDataShowType" uib-btn-radio="'all'">
                             总体
-                            <!-- <i class="icon-lode">&#xe806;</i> -->
                         </label>
                         <label class="btn btn-dark" ng-model="guaranteeLoan.radioDataShowType" uib-btn-radio="'single'">
                             子项目
-                            <!-- <i class="icon-lode">&#xe808;</i> -->
                         </label>
                     </div>
                     <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
@@ -163,7 +164,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right">
+                                <tr class="text-right" ng-if="guarantee_loan_total.length">
                                     <!-- <th class="text-left" ng-bind="own.name"></th> -->
                                     <td ng-bind="guarantee_loan_total[0] | ktNumberLocate"></td>
                                     <td ng-bind="guarantee_loan_total[1] | ktNumberLocate"></td>
@@ -174,6 +175,12 @@
                                     <td ng-bind="(guarantee_loan_total[6] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="guarantee_loan_total[7] | ktNumberLocate"></td>
                                     <td ng-bind="guarantee_loan_total[8] | ktNumberLocate"></td>
+                                </tr>
+                                <tr ng-if="!guarantee_loan_total.length && !isLoading()">
+                                    <td colspan="9" class="text-info text-center">
+                                        <i class="pe-7s-attention f20 mr5"></i>
+                                        <span class="f16">没有数据！</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -192,7 +199,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right" ng-repeat="ofd in guarantee_loan_detail">
+                                <tr class="text-right" ng-repeat="ofd in guarantee_loan_detail" ng-if="guarantee_loan_detail.length">
                                     <th class="text-left" ng-bind="ofd.name"></th>
                                     <td ng-bind="ofd.data[0] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[1] | ktNumberLocate"></td>
@@ -203,6 +210,12 @@
                                     <td ng-bind="(ofd.data[6] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="ofd.data[7] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[8] | ktNumberLocate"></td>
+                                </tr>
+                                <tr ng-if="!guarantee_loan_detail.length && !isLoading()">
+                                    <td colspan="10" class="text-info text-center">
+                                        <i class="pe-7s-attention f20 mr5"></i>
+                                        <span class="f16">没有数据！</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

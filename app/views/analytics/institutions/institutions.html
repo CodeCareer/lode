@@ -17,25 +17,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-right" ng-repeat="institution in institutions">
+        <tr class="text-right" ng-repeat="institution in institutions" ng-if="institutions.length">
             <th class="text-left" ng-bind="::institution.name"></th>
-            <td ng-bind="::institution.putin_amount | ktNumberLocate"></td>
+            <td ng-bind="::institution.init_amnt | ktNumberLocate"></td>
             <td ng-bind="::institution.remain_amount | ktNumberLocate"></td>
-            <td ng-bind="::institution.transaction_amount | ktNumberLocate"></td>
+            <td ng-bind="::institution.loan_amnt | ktNumberLocate"></td>
             <td ng-bind="::institution.total_revenue | ktNumberLocate"></td>
             <td ng-bind="::(institution.avg_duration + '天')"></td>
-            <td ng-bind="::(institution.overdue_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::(institution.bad_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::institution.individual_amount | ktNumberLocate"></td>
-            <td ng-bind="::institution.numbers"></td>
-            <td ng-bind="::institution.borrowers_number"></td>
-            <td ng-bind="::institution.avg_amount | ktNumberLocate"></td>
+            <td ng-bind="::(institution.ovd_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::(institution.np_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::institution.avrge_loan_amnt | ktNumberLocate"></td>
+            <td ng-bind="::institution.loan_count"></td>
+            <td ng-bind="::institution.borrower_count"></td>
+            <td ng-bind="::institution.loan_amnt_per_borrower | ktNumberLocate"></td>
             <td class="text-center">
-                <a class="tu" ui-sref="analytics.projects.list.table({institution_id: institution.id})">查看</a>
+                <a class="tu" ui-sref="analytics.projects.list.table({zhudai_id: institution.id})">查看</a>
             </td>
         </tr>
-        <tr ng-if="(!institutions.length || !institutions) && !isLoading()">
-            <td colspan="9" class="text-info text-center">
+        <tr ng-if="!institutions.length && !isLoading()">
+            <td colspan="13" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

@@ -13,7 +13,7 @@
                 abstract: true,
                 url: '/error?apimock&inst_type&role',
                 templateUrl: 'views/common/empty.html',
-                resolve: ktLazyResolve(['scripts/controllers/kt-errors-ctrl.js']),
+                resolve: ktLazyResolve(['views/error/errors.js']),
                 controller: 'ktErrorsCtrl',
                 data: {
                     pageTitle: '错误',

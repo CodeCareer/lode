@@ -6,7 +6,7 @@
             </div>
             <div class="panel-body clfix pr ov-h mt10">
                 <div class="card-list">
-                    <div class="card" ng-repeat="rule in rules">
+                    <div class="card" ng-repeat="rule in rules" ng-if="rules.length">
                         <form name="form_{{$index}}" class="form-horizontal" method="post" id="form_{{$index}}">
                             <div class="card-heading">
                                 <label>规则名称</label>
@@ -18,7 +18,7 @@
                                     <div class="item left">
                                         <label>字段</label>
                                         <!-- {value} as {text} for {item} in {list} 实现select 内容与值分离，注意不要使用track by -->
-                                        <select  ng-options="field.value as field.name for field in fields" ng-model="rule.field"  class="mr5 ml5 form-control"></select>
+                                        <select ng-options="field.value as field.name for field in fields" ng-model="rule.field" class="mr5 ml5 form-control"></select>
                                     </div>
                                     <div class="item right">
                                         <label>值</label>
@@ -39,6 +39,10 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="text-info text-center" ng-if="!rules.length">
+                        <i class="pe-7s-attention f20 mr5"></i>
+                        <span class="f16">没有数据！</span>
                     </div>
                 </div>
             </div>

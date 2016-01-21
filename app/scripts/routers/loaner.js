@@ -208,7 +208,7 @@
                 'analytics.accounts.list': {
                     abstract: true,
                     url: '',
-                    templateUrl: 'views/analytics/accounts/accounts.html',
+                    templateUrl: 'views/analytics/accounts/accounts_layout.html',
                     resolve: ktLazyResolve(['views/analytics/accounts/accounts.js']),
                     controller: 'ktAccountsCtrl',
                     data: {
@@ -230,8 +230,6 @@
                     url: '/projects/:projectID',
                     abstract: true,
                     template: '<ui-view/>',
-                    // resolve: ktLazyResolve(['scripts/controllers/projects/kt-project-ctrl.js']), //已放到 kt-analytics.js 替代
-                    // controller: 'ktPrjectCtrl',
                     data: {
                         breadcrumb: true,
                         // breadcrumbTitle: '资产特征',
@@ -242,7 +240,7 @@
                 },
                 'analytics.project.dashboard': {
                     url: '/dashboard',
-                    templateUrl: 'views/analytics/projects/dashboard.html',
+                    templateUrl: 'views/analytics/dashboard.html',
                     resolve: ktLazyResolve(['views/analytics/projects/dashboard.js']),
                     controller: 'ktProjectDashboardCtrl',
                     data: {
@@ -420,7 +418,7 @@
                     }
                 },
                 'analytics.project.loanPlans.detail.results': {
-                    url: '/results',
+                    url: '/results?issue_status',
                     templateUrl: 'views/analytics/projects/detail/loan_plans/results.html',
                     resolve: ktLazyResolve(['views/analytics/projects/detail/loan_plans/results.js']),
                     controller: 'ktLoanPlansResultsCtrl',
@@ -624,7 +622,7 @@
                 'analytics.project.asset.overdue': {
                     url: '/overdue',
                     templateUrl: 'views/analytics/projects/detail/asset/overdue.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/asset/overdue.html']),
+                    resolve: ktLazyResolve(['views/analytics/projects/detail/asset/overdue.js']),
                     controller: 'ktOverdueCtrl',
                     data: {
                         breadcrumbTitle: '逾期分析',

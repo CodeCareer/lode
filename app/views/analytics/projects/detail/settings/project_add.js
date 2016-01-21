@@ -33,7 +33,7 @@
             }
 
             $scope.submitForm = function() {
-                ktProjectsService.save($scope.project).$promise.then(function() {
+                ktProjectsService.save($scope.project).$promise.then(function(data) {
                     ktSweetAlert.swal({
                         title: '提示',
                         text: '项目新增成功',
@@ -41,7 +41,7 @@
                     }, function() {
                         $state.go('analytics.projects.list.table')
                     });
-
+                    $scope.project.id = data.id
                     $scope.$emit('activeProjectUpdate', $scope.project)
 
                 }, function(res) {

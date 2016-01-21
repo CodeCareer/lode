@@ -32,7 +32,7 @@
                 <a class="tu" ui-sref="analytics.project.settings.subProject.edit({subProjectID: subProject.id})">编辑</a>
             </td>
         </tr>
-        <tr ng-if="(!subProjects.length || !subProjects) && !isLoading()">
+        <tr ng-if="!subProjects.length && !isLoading()">
             <td colspan="11" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>

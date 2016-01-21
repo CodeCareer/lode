@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktUserFeatureCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
+        .controller('ktUserFeatureCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -158,7 +158,7 @@
                 startDate = datePeriod[0] || null
                 endDate = datePeriod[1]
 
-                ktReportService.get($.extend({
+                ktProjectsReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'users_feature',
                     start_date: startDate,

@@ -65,7 +65,7 @@
         });
 
         // 启动路由
-        ktRouterProvider.run()        
+        ktRouterProvider.run()
     }
 
     angular
@@ -109,7 +109,7 @@
                 window.history.back()
             }
 
-            function permitValidate (event, toState, toParams){
+            function permitValidate(event, toState, toParams) {
                 var permit = toState.data.permit
                 if ($rootScope.user && permit) {
                     if ($.inArray('zijin', permit) > -1 && $rootScope.user.institution.inst_type !== 'zijin') {
@@ -135,7 +135,13 @@
                 if (search.apimock && !toParams.apimock) {
                     toParams.apimock = search.apimock
                 }
+
+                if (toState.name.indexOf('analytics') > -1) {
+                    $rootScope.wantJumpUrl = $state.href(toState.name, toParams)
+                }
+
                 permitValidate(event, toState, toParams)
+
 
                 // 登录限制 --- 主路由入口resolve内取用户信息，无权限拦截器可以跳转登录页面，此处的逻辑冗余
                 /*if (!$rootScope.user && permit && $.inArray('login', permit) > -1) {
@@ -153,7 +159,6 @@
                         $state.go('account.login', toParams)
                     })
                 } else */
-                
 
             })
 
@@ -168,19 +173,20 @@
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
                 permitValidate(event, toState, toParams)
-                /*window.requestAnimationFrame(function() {
-                    // 响应式移动设备上，顶部导航切换页面时候收起hack
-                    $('#navbar').removeClass('in').attr('aria-expanded', 'false')
+                    /*window.requestAnimationFrame(function() {
+                        // 响应式移动设备上，顶部导航切换页面时候收起hack
+                        $('#navbar').removeClass('in').attr('aria-expanded', 'false')
 
-                    // 切换页面成功后回到顶部
-                    $('body').scrollTop(0)
-                })*/
+                        // 切换页面成功后回到顶部
+                        $('body').scrollTop(0)
+                    })*/
 
                 // 存储非错误和登录注册框的url 供redirect或者返回用
-                if (toState.name.indexOf('error') === -1 && toState.name.indexOf('account') === -1) {
-                    var url = $rootScope.$state.$current.url.format(toParams)
-                    // console.log($rootScope.$state.$current.source, url)
-                    $rootScope.currentUrl = url;
+                if (toState.name.indexOf('analytics') > -1) {
+                    // var url = $rootScope.$state.$current.url.format(toParams)
+                    var url = $state.href(toState.name, toParams)
+                    // $rootScope.currentUrl = url;
+                    $rootScope.wantJumpUrl = '';
                     // $rootScope.latestState = toState.name;
                 }
 

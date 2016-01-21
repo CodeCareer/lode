@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureCtrl', function($scope, $stateParams, ktReportService, ktInstitutionsService, ktDateHelper) {
+        .controller('ktAssetFeatureCtrl', function($scope, $stateParams, ktProjectsReportService, ktInstitutionsService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -87,8 +87,8 @@
                     'timelimitsChart': ['prncp_balns_by_term', 'incre_loan_amnt_by_term'],
                     'amountsChart': ['prncp_balns_by_amnt', 'incre_loan_amnt_by_amnt'],
                     // 'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
-                    'locationsChart': ['prncp_balns_by_loc', 'prncp_balns_by_loc_percent'],
-                    'gendersChart': ['prncp_balns_by_gender', 'prncp_balns_by_gender_percent'],
+                    'locationsChart': ['prncp_balns_by_loc', 'incre_loan_amnt_by_loc'],
+                    'gendersChart': ['prncp_balns_by_gender', 'incre_loan_amnt_by_gender'],
                     'agesChart': ['prncp_balns_by_age', 'prncp_balns_by_age_percent'],
                 }
 
@@ -118,7 +118,7 @@
 
             function udpateData(type) {
                 var data = $scope.data
-
+                
                 var listName = getDataKey(type)
                 $scope[type].list = data[listName]
                 $scope[type].chartOptions = $.extend(true, {}, chartOptions, {
@@ -150,9 +150,9 @@
 
                 $scope.activeInstID = instID || 'all'
 
-                ktReportService.get({
-                    type: 'asset_features',
-                    instID: instID !== 'all' ? instID : null,
+                ktProjectsReportService.get({
+                    type: 'assets_stats',
+                    inst_id: instID,
                     start_date: startDate,
                     end_date: endDate
                 }, function(data) {

@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktCashFlowMonitorCtrl', function($scope, $location, $stateParams, ktReportService, ktProjectsService, ktDataHelper) {
+        .controller('ktCashFlowMonitorCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktProjectsService, ktDataHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -90,7 +90,7 @@
                 // start_date = datePeriod[0]
                 // end_date = datePeriod[1]
 
-                ktReportService.get($scope.params, function(data) {
+                ktProjectsReportService.get($scope.params, function(data) {
                     $scope.data = data
 
                     $scope.cashFlowChart.chartOptions = $.extend(true, {}, chartOptions, {

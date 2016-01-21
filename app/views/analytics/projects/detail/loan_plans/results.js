@@ -10,11 +10,11 @@
 
             $scope.params = {
                 maxSize: 5,
-                projectID: $stateParams.projectID,
-                number: $stateParams.number,
-                content: 'results',
+                // projectID: $stateParams.projectID,
+                batchNo: $stateParams.batchNo,
+                content: 'issue_results',
                 page: 1,
-                status: 'all',
+                issue_status: 'all',
                 per_page: 10
             }
 
@@ -23,33 +23,25 @@
 
             $scope.pageChanged = function() {
                 ktLoanPlansService.get($scope.params, function(data) {
-                    $scope.borrowers = data.borrowers
+                    $scope.issue_results.borrowers = data.issue_results.borrowers
                 })
             }
 
-            $scope.statusList = [{
-                name: '全部',
-                value: 'all'
-            }, {
-                name: '成功',
-                value: 'approved'
-            }, {
-                name: '失败',
-                value: 'rejected'
-            }]
+            $scope.statusList = ktDataHelper.getLoanStatusMap()
+            $scope.filterStatus = ktDataHelper.filterStatus(['all', 'success', 'fail'])
             $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
             $scope.getStatusName = function(status) {
                 var statusObj = _.find($scope.statusList, function(v) {
-                    return v.value === (status || $scope.params.status)
+                    return v.value === (status || $scope.params.issue_status)
                 }) || {}
                 return statusObj.name || '未知'
             }
 
             $scope.statusChange = function(status) {
-                $scope.params.status = status
+                $scope.params.issue_status = status
                 ktLoanPlansService.get($scope.params, function(data) {
-                    $scope.borrowers = data.borrowers
+                    $scope.issue_results.borrowers = data.issue_results.borrowers
                 })
             }
 

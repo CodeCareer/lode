@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="hpanel">
+        <div ng-if="data" class="hpanel">
             <div class="panel-heading clfix">
                 <h5>资产特征</h5>
                 <div class="dropdown fl ml25" dropdown>
@@ -37,7 +37,7 @@
                     </a>
                 </div>
             </div>
-            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-theme-1.js','common/directives/kt-echart-directive.js']">
+            <div class="panel-body clfix pr ov-h" oc-lazy-load="['common/directives/kt-echart-directive.js']">
                 <div class="chart-table">
                     <div class="chart-table-heading clfix">
                         <div class="f14 pl10">按贷款期限来分</div>
@@ -223,6 +223,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div ng-if="!data && !isLoading()" class="hpanel text-center text-info">
+            <i class="pe-7s-attention f20 mr5"></i>
+            <span class="f16">没有数据！</span>
         </div>
     </div>
 </div>

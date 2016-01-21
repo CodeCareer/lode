@@ -22,7 +22,7 @@
                 $urlRouterProvider.when('', redirectTo('/analytics/home')); // for hashbang mode
                 $urlRouterProvider.when('/', redirectTo('/analytics/home')); // for html5mode
                 // $urlRouterProvider.otherwise('/error/404');
-                $urlRouterProvider.otherwise(redirectTo('error/404'));
+                $urlRouterProvider.otherwise(redirectTo('/error/404'));
 
                 setUpRoutes(ktLoanerRoutesProvider.routes)
                 setUpRoutes(ktDebtorRoutesProvider.routes)

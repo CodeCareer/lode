@@ -6,15 +6,15 @@
                 <div class="fl mt8 f13">
                     <dl class="ib mb0">
                         <dt class="ib">子项目:</dt>
-                        <dd class="ib" ng-bind="name"></dd>
+                        <dd class="ib" ng-bind="details.subproject_name"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
                         <dt class="ib">批次:</dt>
-                        <dd class="ib" ng-bind="number"></dd>
+                        <dd class="ib" ng-bind="details。batch_no"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
                         <dt class="ib">提交时间:</dt>
-                        <dd class="ib" ng-bind="submit_at"></dd>
+                        <dd class="ib" ng-bind="details.created_at | date:'yyyy-MM-dd HH:mm:ss'"></dd>
                     </dl>
                 </div>
                 <div class="fr">
@@ -45,19 +45,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="text-right" ng-repeat="borrower in borrowers">
-                                                <th class="text-left" ng-bind="::borrower.create_at"></th>
+                                            <tr class="text-right" ng-repeat="borrower in details.borrowers">
+                                                <th class="text-left" ng-bind="details.schedule_date"></th>
                                                 <td ng-bind="::borrower.name"></td>
-                                                <td ng-bind="::borrower.identity_num"></td>
-                                                <td ng-bind="::borrower.bank_account"></td>
-                                                <td ng-bind="::borrower.bank_info"></td>
-                                                <td ng-bind="::borrower.amount | ktNumberLocate"></td>
-                                                <td ng-bind="::borrower.product_num"></td>
-                                                <td ng-bind="::borrower.duration + '天'"></td>
-                                                <td ng-bind="::borrower.value_at"></td>
-                                                <td ng-bind="::borrower.repayment_first_at"></td>
+                                                <td ng-bind="::borrower.id_no"></td>
+                                                <td ng-bind="::borrower.recpt_acct_no"></td>
+                                                <td ng-bind="::borrower.recpt_acct_bank"></td>
+                                                <td ng-bind="::borrower.loan_amnt | ktNumberLocate"></td>
+                                                <td ng-bind="::borrower.product_id"></td>
+                                                <td ng-bind="::borrower.terms + '期'"></td>
+                                                <td ng-bind="details.value_day"></td>
+                                                <td ng-bind="details.first_day"></td>
                                             </tr>
-                                            <tr ng-if="(!borrowers.length || !borrowers) && !isLoading()">
+                                            <tr ng-if="borrowers.length && !isLoading()">
                                                 <td colspan="10" class="text-info text-center">
                                                     <i class="pe-7s-attention f20 mr5"></i>
                                                     <span class="f16">没有数据！</span>

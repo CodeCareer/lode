@@ -5,7 +5,7 @@ var appConfig = {
         dist: 'dist'
     }
     // var server = 'http://dev-lode.kaitongamc.com'
-var server = 'http://10.132.1.83:3000'
+var server = 'http://10.132.1.53:3000'
     // var server = 'http://op-fame.ktjr.com'
 var modRewriteUri = [
     // '^/mock_data/v\d{1,}/([^?]*).*$ /mock_data/$1 [L]',

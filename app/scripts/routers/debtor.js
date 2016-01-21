@@ -185,7 +185,7 @@
                     data: {
                         breadcrumb: true,
                         breadcrumbState: 'analytics.subProject.repayments.list.table',
-                        pageTitle: '还款管理',
+                        pageTitle: '财务管理',
                     }
                 },
                 'analytics.subProject.repayments.list': {
@@ -196,7 +196,7 @@
                     controller: 'ktRepaymentsCtrl',
                     data: {
                         breadcrumb: false,
-                        pageTitle: '还款管理-还款账单列表',
+                        pageTitle: '财务管理-还款账单列表',
                     }
                 },
                 'analytics.subProject.repayments.list.table': {
@@ -206,7 +206,7 @@
                     data: {
                         breadcrumb: true,
                         breadcrumbTitle: '还款账单列表',
-                        pageTitle: '还款管理-还款账单列表'
+                        pageTitle: '财务管理-还款账单列表'
                     }
                 },
                 'analytics.subProject.repayments.detail': {
@@ -215,7 +215,7 @@
                     template: '<ui-view/>',
                     data: {
                         breadcrumb: false,
-                        pageTitle: '还款管理-还款账单明细',
+                        pageTitle: '财务管理-还款账单明细',
                     }
                 },
                 'analytics.subProject.repayments.detail.list': {
@@ -225,7 +225,7 @@
                     resolve: ktLazyResolve(['views/analytics/subprojects/detail/repayments/detail/repayment.js']),
                     controller: 'ktRepaymentCtrl',
                     data: {
-                        pageTitle: '还款管理-还款账单明细',
+                        pageTitle: '财务管理-还款账单明细',
                     }
                 },
                 'analytics.subProject.repayments.detail.list.table': {
@@ -235,7 +235,7 @@
                     data: {
                         breadcrumb: true,
                         breadcrumbTitle: '还款账单明细',
-                        pageTitle: '还款管理-还款账单明细',
+                        pageTitle: '财务管理-还款账单明细',
                     }
                 },
             }

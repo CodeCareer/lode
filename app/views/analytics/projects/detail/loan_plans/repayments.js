@@ -10,9 +10,9 @@
 
             $scope.params = {
                 maxSize: 5,
-                projectID: $stateParams.projectID,
-                number: $stateParams.number,
-                content: 'repayments',
+                // projectID: $stateParams.projectID,
+                batchNo: $stateParams.batchNo,
+                content: 'payment_details',
                 page: 1,
                 per_page: 10
             }
@@ -22,7 +22,7 @@
 
             $scope.pageChanged = function() {
                 ktLoanPlansService.get($scope.params, function(data) {
-                    $scope.borrowers = data.borrowers
+                    $scope.payment_details.borrowers = data.payment_details.borrowers
                 })
 
                 // $location.search('page', $scope.params.page)

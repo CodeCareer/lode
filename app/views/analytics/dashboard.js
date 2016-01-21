@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktDashboardCtrl', function($scope, $stateParams, ktReportService, ktDataHelper) {
+        .controller('ktDashboardCtrl', function($scope, $stateParams, ktProjectsReportService, ktDataHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -13,8 +13,8 @@
             $scope.ownFunds = ktDataHelper.getOwnFunds()
             $scope.guaranteeLoan = ktDataHelper.getGuaranteeLoan()
 
-            ktReportService.get({
-                type: 'total'
+            ktProjectsReportService.get({
+                type: 'stat_overview'
             }, function(data) {
                 $.extend($scope, data)
                 // $scope.summary = data.summary

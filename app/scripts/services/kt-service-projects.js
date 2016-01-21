@@ -71,9 +71,9 @@
     })
 
 
-    // 统计
-    .factory('ktReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/statistics/:type/:subProjectID/:instID', {
+    // 统计-按项目
+    .factory('ktProjectsReportService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:type/', {
             projectID: '@projectID',
             type: '@type',
             subProjectID: '@subProjectID',
@@ -85,6 +85,32 @@
             }
         })
     })
+
+    /*// 统计-按机构
+    .factory('ktInstitutionsReportService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/institutions/:instID/:type', {
+            instID: '@instID',
+            type: '@type'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })*/
+    
+    // 统计总览
+    /*.factory('ktReportOverviewService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:type', {
+            projectID: '@projectID',
+            type: '@type'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })*/
 
     // 借款人审批
     .factory('ktDebtorsService', function($resource, ktApiVersion) {

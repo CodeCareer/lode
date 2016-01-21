@@ -3,7 +3,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktProjectsCtrl', function($scope, $location, $stateParams, ktInstitutionsService, ktAccountsService) {
+    .controller('ktProjectsCtrl', function($scope, $location, $stateParams, ktInstitutionsService) {
 
         $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
@@ -27,7 +27,7 @@
 
             $scope.institutions = data.institutions
         })
-        
+
         // to do
         /*ktAccountsService.get(function(data) {
             data.accounts.unshift({
@@ -47,7 +47,7 @@
 
         $scope.getAccountName = function() {
             var acc = _.find($scope.accounts, function(v) {
-                return v.id === parseInt($scope.params.account_id, 10)
+                return v.id == scope.params.account_id
             }) || {}
             return acc.name
         }

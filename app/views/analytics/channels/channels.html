@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-right" ng-repeat="channel in channels">
+        <tr class="text-right" ng-repeat="channel in channels" ng-if="channels.length">
             <th class="text-left" ng-bind="::channel.name"></th>
             <td ng-bind="::channel.transaction_amount | ktNumberLocate"></td>
             <td ng-bind="::channel.remain_amount | ktNumberLocate"></td>
@@ -24,7 +24,7 @@
             <td ng-bind="::channel.borrowers_number"></td>
             <td ng-bind="::channel.avg_amount | ktNumberLocate"></td>
         </tr>
-        <tr ng-if="(!channels.length || !channels) && !isLoading()">
+        <tr ng-if="!channels.length && !isLoading()">
             <td colspan="9" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>

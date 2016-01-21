@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktOverdueCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
+        .controller('ktOverdueCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -72,7 +72,7 @@
                 startDate = datePeriod[0]
                 endDate = datePeriod[1]
 
-                ktReportService.get($.extend({
+                ktProjectsReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'overdue_stats',
                     start_date: startDate,

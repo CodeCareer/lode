@@ -56,11 +56,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.amount.$invalid && subProjectForm.amount.$dirty}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':subProjectForm.init_amount.$invalid && subProjectForm.init_amount.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>期初投放金额</label>
                                 <div class="col-md-8">
-                                    <input placeholder="期初投放金额" type="text" ng-model="subProject.amount"  class="form-control" name="amount">
-                                    <div class="mt5 text-danger" ng-messages="subProjectForm.amount.$dirty && subProjectForm.amount.$error">
+                                    <input placeholder="期初投放金额" type="text" ng-model="subProject.init_amount"  class="form-control" name="init_amount">
+                                    <div class="mt5 text-danger" ng-messages="subProjectForm.init_amount.$dirty && subProjectForm.init_amount.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入期初投放金额</div>
                                     </div>
                                 </div>

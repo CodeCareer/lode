@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureCtrl', function($scope, $location, $stateParams, ktReportService, ktDateHelper) {
+        .controller('ktAssetFeatureCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -128,10 +128,10 @@
 
             function getDataKey(type) {
                 var typesMap = {
-                    'timeLimitChart': ['prncp_balns_by_term', 'incre_loan_amnt_by_term'],
-                    'amountChart': ['prncp_balns_by_amnt', 'incre_loan_amnt_by_amnt'],
-                    'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
-                    'locationChart': ['prncp_balns_by_loc', 'prncp_balns_by_loc_percent'],
+                    'timeLimitChart': ['prncp_balns_by_term', 'loan_amnt_incrmnt_by_term'],
+                    'amountChart': ['prncp_balns_by_amnt', 'loan_amnt_incrmnt_by_amnt'],
+                    'typeChart': ['prncp_balns_by_type', 'loan_amnt_incrmnt_by_type'],
+                    'locationChart': ['prncp_balns_by_loc', 'loan_amnt_incrmnt_by_loc'],
                 }
 
                 var keys = typesMap[type]
@@ -145,10 +145,10 @@
                     tooltip: {
                         valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
-                    yAxis: [{
+                    yAxis: {
                         max: 1,
                         min: 0
-                    }]
+                    }
                 } : {
                     tooltip: {
                         valueType: 'rmb'
@@ -167,10 +167,10 @@
                     legend: {
                         data: _.pluck(data[listName], 'name')
                     },
-                    xAxis: [{
+                    xAxis: {
                         type: 'category',
                         data: data.dates
-                    }],
+                    },
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
@@ -190,7 +190,7 @@
                 startDate = datePeriod[0] || null
                 endDate = datePeriod[1]
 
-                ktReportService.get($.extend({
+                ktProjectsReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'assets_features',
                     start_date: startDate,

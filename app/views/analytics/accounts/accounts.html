@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-right" ng-repeat="account in accounts">
+        <tr class="text-right" ng-repeat="account in accounts" ng-if="accounts.length">
             <th class="text-left" ng-bind="::account.name"></th>
             <td ng-bind="::account.putin_amount | ktNumberLocate"></td>
             <td ng-bind="::account.remain_amount | ktNumberLocate"></td>
@@ -22,8 +22,8 @@
                 <a class="tu" ui-sref="analytics.projects.list.table({account_id: account.id})">查看</a>
             </td>
         </tr>
-        <tr ng-if="(!accounts.length || !accounts) && !isLoading()">
-            <td colspan="9" class="text-info text-center">
+        <tr ng-if="!accounts.length && !isLoading()">
+            <td colspan="7" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

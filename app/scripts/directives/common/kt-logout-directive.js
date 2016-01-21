@@ -10,10 +10,11 @@
                         event.stopPropagation()
                         event.preventDefault()
 
-                        delete $window.localStorage.user;
-                        delete $window.localStorage.token;
-                        $rootScope.user = null;
-                        $rootScope.currentUrl = '';
+                        delete $window.localStorage.user
+                        delete $window.localStorage.token
+                        $rootScope.user = null
+                        $rootScope.currentUrl = ''
+                        $rootScope.wantJumpUrl = ''
                         ipCookie.remove('token')
                         CacheFactory.clearAll()
 

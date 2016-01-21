@@ -1,6 +1,6 @@
 {
     "total_items": 2,
-    "debtors": [{
+    "loan_batches": [{
         "id": 1,
         "apply_amount": 10000,
         "pass_amount": 10000,

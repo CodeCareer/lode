@@ -17,12 +17,12 @@
             <th class="text-left">
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name"></a>
             </th>
-            <td ng-bind="::project.amount | ktNumberLocate"></td>
-            <td ng-bind="::project.total_invest | ktNumberLocate"></td>
+            <td ng-bind="::project.credit_amnt | ktNumberLocate"></td>
+            <td ng-bind="::project.init_amnt | ktNumberLocate"></td>
             <td ng-bind="::project.remain_amount | ktNumberLocate"></td>
-            <td ng-bind="::project.total_deal | ktNumberLocate"></td>
-            <td ng-bind="::(project.overdue_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::(project.bad_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::project.loan_amnt | ktNumberLocate"></td>
+            <td ng-bind="::(project.ovd_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::(project.np_rate * 100 | number:2) + '%'"></td>
             <td ng-bind="::project.total_revenue | ktNumberLocate"></td>
             <td class="text-center">
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>

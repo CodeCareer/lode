@@ -24,25 +24,4 @@
         'kt.common',
         'kt.lode.i18' //国际化
     ])
-
-    // state lazyload resolve
-    .provider('ktLazyResolve', function(ktSProvider) {
-        var ktS = ktSProvider.$get()
-        this.$get = function() {
-            return function(deps, resolve) {
-
-                angular.forEach(deps, function(v, i) {
-                    deps[i] = ktS(v)
-                })
-
-                var lazyLoad = {
-                    dependence: function($ocLazyLoad) {
-                        return $ocLazyLoad.load(deps)
-                    }
-                }
-                return $.extend(lazyLoad, resolve || {})
-            }
-        }
-
-    })
 })();

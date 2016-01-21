@@ -13,8 +13,8 @@
         if (!CacheFactory.get('profileCache')) {
             /*eslint-disable*/
             profileCache = CacheFactory('profileCache', {
-                maxAge: 12 * 60 * 60 * 1000, // Items added to this cache expire after 12 hours
-                cacheFlushInterval: 12 * 60 * 60 * 1000, // This cache will clear itself every 12 hours.
+                maxAge: 1 * 60 * 60 * 1000, // Items added to this cache expire after 1 hours
+                cacheFlushInterval: 1 * 60 * 60 * 1000, // This cache will clear itself every 1 hours.
                 deleteOnExpire: 'aggressive', // Items will be deleted from this cache right when they expire.
                 storageMode: 'localStorage' // This cache will use `localStorage`.
             })
