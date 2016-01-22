@@ -115,10 +115,15 @@
                         text: '您的权限不足！',
                         type: 'error'
                     });
+                } 
+                else if (res.status === 500) { // 注释掉是为了接部分接口
+                    ktSweetAlert.swal({
+                        title: '请求失败！',
+                        text: '服务器出错了，请稍后再试',
+                        type: 'error'
+                    });
+                    // $state.go('error.500')
                 }
-                /*else if (res.status === 500) { // 注释掉是为了接部分接口
-                    $state.go('error.500')
-                }*/
                 return $q.reject(res.data)
             }
         }

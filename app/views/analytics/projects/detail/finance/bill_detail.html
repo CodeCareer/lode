@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <!-- <div class="content-header clfix">
             <div class="btns fl">
-                <a class="btn btn-sm btn-default" ui-sref="analytics.project.finance.billList.table">&lt;&lt;返回列表</a>
+                <a class="btn btn-sm btn-default" ui-sref="analytics.project.finance.statement.ist.table">&lt;&lt;返回列表</a>
             </div>
         </div> -->
         <div class="hpanel">
@@ -10,34 +10,34 @@
                 <!-- <h5>还款账单明细</h5> -->
                 <div class="fl mt8 f13">
                     <dl class="ib mb0">
-                        <dt class="ib">子项目:</dt>
-                        <dd class="ib" ng-bind="bill.name"></dd>
+                        <dt class="ib">子项目：</dt>
+                        <dd class="ib" ng-bind="statement.subproject_name"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
-                        <dt class="ib">批次:</dt>
-                        <dd class="ib" ng-bind="bill.number"></dd>
+                        <dt class="ib">批次：</dt>
+                        <dd class="ib" ng-bind="statement.batch_no"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
-                        <dt class="ib">账单类型:</dt>
-                        <dd class="ib" ng-bind="getTypeName(bill.type)"></dd>
+                        <dt class="ib">账单类型：</dt>
+                        <dd class="ib" ng-bind="getTypeName(statement.type)"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
-                        <dt class="ib">账单日期:</dt>
-                        <dd class="ib" ng-bind="bill.repay_at"></dd>
+                        <dt class="ib">账单日期：</dt>
+                        <dd class="ib" ng-bind="statement.due_date"></dd>
                     </dl>
                     <dl class="ib mb0 ml20">
-                        <dt class="ib">还款期数:</dt>
-                        <dd class="ib" ng-bind="bill.stage"></dd>
+                        <dt class="ib">还款期数：</dt>
+                        <dd class="ib" ng-bind="statement.term"></dd>
                     </dl>
-                    <!-- <dl class="ib mb0 ml10" ng-if="bill.status === 'done'">
+                    <!-- <dl class="ib mb0 ml10" ng-if="statement.status === 'checked'">
                         <dt class="ib">状态：</dt>
                         <dd class="ib"><i class="glyphicon glyphicon-ok approved-color mr5"></i>已确认</dd>
                     </dl> -->
                 </div>
-                <div class="fr mt8 f12" ng-if="bill.status === 'done'">
+                <div class="fr mt8 f12" ng-if="statement.status === 'checked'">
                     <span><i class="glyphicon glyphicon-ok approved-color mr5"></i>已确认</span>
                 </div>
-                <div class="fr" ng-if="bill.status !== 'done'">
+                <div class="fr" ng-if="statement.status !== 'checked'">
                     <a class="btn btn-dark btn-sm ml10" ng-click="confirmBill(id)">确认账单</a>
                 </div>
             </div>
@@ -53,19 +53,19 @@
                                     <ul class="tier-list">
                                         <li class="item-l1">
                                             <div class="key-name">当前应收还款总额：</div>
-                                            <div class="value" ng-bind="summary.amount | ktNumberLocate"></div>
+                                            <div class="value" ng-bind="summary.total_pymnt | ktNumberLocate"></div>
                                         </li>
                                         <li class="item-l2">
                                             <div class="key-name">当期还款本息总额：</div>
-                                            <div class="value" ng-bind="summary.pri_int_amount | ktNumberLocate"></div>
+                                            <div class="value" ng-bind="statement.total_pymnt | ktNumberLocate"></div>
                                         </li>
                                         <li class="item-l3">
                                             <div class="key-name">当期还款本金：</div>
-                                            <div class="value" ng-bind="summary.repay_principle | ktNumberLocate"></div>
+                                            <div class="value" ng-bind="statement.total_pymnt_prncp | ktNumberLocate"></div>
                                         </li>
                                         <li class="item-l3">
                                             <div class="key-name">当期还款利息：</div>
-                                            <div class="value" ng-bind="summary.repay_interest | ktNumberLocate"></div>
+                                            <div class="value" ng-bind="(statement.total_pymnt - statement.total_pymnt_prncp) | ktNumberLocate"></div>
                                         </li>
                                         <li class="item-l2">
                                             <div class="key-name">当期提前还款本金：</div>
@@ -129,20 +129,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="text-right" ng-repeat="repayment in bill.repayments">
-                                                <th class="text-left" ng-bind="::repayment.bank_account"></th>
-                                                <td ng-bind="::repayment.name"></td>
-                                                <td ng-bind="::repayment.identity_num"></td>
-                                                <td ng-bind-html="::getStatusName(repayment.status)"></td>
-                                                <td ng-bind="::repayment.repay_principle | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.repay_interest | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.ahead_principle | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.ahead_compensation | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.overdue_total_amount | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.overdue_total_fine | ktNumberLocate"></td>
-                                                <td ng-bind="::repayment.service_fees | ktNumberLocate"></td>
+                                            <tr class="text-right" ng-repeat="payment_detail in statement.payment_details">
+                                                <th class="text-left" ng-bind="::payment_detail.recpt_acct_no"></th>
+                                                <td ng-bind="::payment_detail.name"></td>
+                                                <td ng-bind="::payment_detail.id_no"></td>
+                                                <td ng-bind-html="::getStatusName(payment_detail.status)"></td>
+                                                <td ng-bind="::payment_detail.pymnt_prncp | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.pymnt_int | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.ahead_principle | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.ahead_compensation | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.overdue_total_amount | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.overdue_total_fine | ktNumberLocate"></td>
+                                                <td ng-bind="::payment_detail.service_fees | ktNumberLocate"></td>
                                             </tr>
-                                            <tr ng-if="(!bill.repayments.length || !bill.repayments) && !isLoading()">
+                                            <tr ng-if="!statement.payment_details.length && !isLoading()">
                                                 <td colspan="12" class="text-info text-center">
                                                     <i class="pe-7s-attention f20 mr5"></i>
                                                     <span class="f16">没有数据！</span>

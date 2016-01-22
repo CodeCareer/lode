@@ -54,16 +54,16 @@
             }))
         }
 
-        $scope.numberChange = function($event) {
+        $scope.batchNoChange = function($event) {
             $event.stopPropagation()
             if ($event.keyCode === 13) {
-                $scope.numberQuery()
+                $scope.batchNoQuery()
             }
         }
 
-        $scope.numberQuery = function() {
+        $scope.batchNoQuery = function() {
             $location.search($.extend($location.search(), {
-                number: $scope.params.number || null,
+                batch_no: $scope.params.batch_no || null,
                 page: 1,
                 per_page: 10
             }))
@@ -71,7 +71,7 @@
 
         $scope.getSubProjectName = function() {
             var subProject = _.find($scope.subProjects, function(v) {
-                return v.id === $scope.params.subproject_id
+                return v.id == $scope.params.subproject_id
             }) || {}
             return $scope.params.subproject_id ? subProject.name : '全部'
         }

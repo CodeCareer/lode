@@ -21,7 +21,7 @@
             <td ng-bind="::bill.amount"></td>
             <td ng-bind-html="getStatusNameNice(bill.status)"></td>
             <td class="text-center">
-                <a class="tu" ui-sref="analytics.project.finance.billDetail({billID: bill.id})">
+                <a ng-if="bill.status ==='uploaded'" class="tu" ui-sref="analytics.project.finance.billDetail({billID: bill.id})">
                     <span>查看明细</span>
                 </a>
             </td>

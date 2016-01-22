@@ -7,31 +7,17 @@
     angular.module('kt.lode')
         .factory('ktDataHelper', function() {
             return {
-                getLoanPlanStatus: function(status) {
-                    var sMap = {
-                        'draft': '未开始',
-                        'approved': '已通过',
-                        'rejected': '已拒绝',
-                        'planed': '已生成放款计划',
-                        'issued': '已下发指令',
-                        'checked': '已对账',
-                        'uploaded': '已上传',
-                        'success': '放款成功',
-                        'fail': '放款失败',
-                    }
-                    return sMap[status] || '未知状态'
-                },
-                filterStatus: function(arr) {
+                filterStatus: function(arr) { //filter:{fn}
                     return function(item) {
                         return _.contains(arr || [], item.value)
                     }
                 },
-                filterStatusReverse: function(arr) {
+                filterStatusReverse: function(arr) { //filter:{fn}
                     return function(item) {
                         return !_.contains(arr || [], item.status)
                     }
                 },
-                getPaymentStatusMap: function() {
+                getPaymentStatusMap: function() { // 单个借款人的还款状态
                     return [{
                         name: '全部',
                         value: 'all'
@@ -46,7 +32,7 @@
                         value: 'overdue'
                     }]
                 },
-                getStatementStatusMap: function() {
+                getStatementStatusMap: function() { // 每一期的账单状态
                     return [{
                         name: '全部',
                         value: 'all'
@@ -61,7 +47,7 @@
                         value: 'checked'
                     }]
                 },
-                getLoanStatusMap: function() {
+                getLoanStatusMap: function() { // 每一批次的借款放款状态
                     return [{
                         name: '全部',
                         value: 'all'
@@ -72,14 +58,35 @@
                         name: '已通过',
                         value: 'approved'
                     }, {
-                        name: '已生成放款计划',
-                        value: 'planned'
-                    }, {
                         name: '已拒绝',
                         value: 'rejected'
                     }, {
+                        name: '已生成放款计划',
+                        value: 'planned'
+                    }, {
                         name: '已下发指令',
                         value: 'issued'
+                    }]
+                },
+                getBorrowersApprovalStatusMap: function() {
+                    return [{
+                        name: '全部',
+                        value: 'all'
+                    }, {
+                        name: '未审核',
+                        value: 'draft'
+                    }, {
+                        name: '已通过',
+                        value: 'approved'
+                    }, {
+                        name: '已拒绝',
+                        value: 'rejected'
+                    }]
+                },
+                getBorrowersLoanStatusMap: function() { // 单个借款人的放款结果状态
+                    return [{
+                        name: '全部',
+                        value: 'all'
                     }, {
                         name: '放款成功',
                         value: 'success'

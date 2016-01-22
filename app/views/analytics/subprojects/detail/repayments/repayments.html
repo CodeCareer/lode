@@ -19,18 +19,18 @@
                     <span>查看明细</span>
                 </a>
                 <div ng-if="bill.status !== 'uploaded'">
-                    <div class="btn btn-sm btn-dark btn-file">
+                    <div class="btn btn-sm btn-default btn-file">
                         提交借款名单
                         <input ngf-validate="{size: {max: '20MB'}" ngf-select="upload($files, $event, bill.id)" ng-disabled="uploading" accept=".csv" ngf-multiple="false" type="file" name="file" ng-model="file">
                     </div>
-                    <a class="tu">
+                    <a class="tu" href="/download/payments.csv">
                         <span>下载样例</span>
                     </a>
                 </div>
             </td>
         </tr>
-        <tr ng-if="(!bills.length || !bills) && !isLoading()">
-            <td colspan="8" class="text-info text-center">
+        <tr ng-if="!bills.length && !isLoading()">
+            <td colspan="5" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

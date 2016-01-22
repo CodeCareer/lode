@@ -32,8 +32,8 @@
             }))
         }
 
-        $scope.statusList = ktDataHelper.getLoanStatusMap()
-        $scope.filterStatus = ktDataHelper.filterStatus(['all', 'rejected', 'approved'])
+        $scope.statusList = ktDataHelper.getBorrowersApprovalStatusMap()
+        // $scope.filterStatus = ktDataHelper.filterStatus(['all', 'rejected', 'approved'])
 
         $scope.getStatusName = function(status) {
             var st = _.find($scope.statusList, function(v) {
@@ -81,22 +81,7 @@
                 controller: function($timeout, $scope, $state, $uibModalInstance, ktApprovalsService, ktRulesService) {
                     /*eslint-enable*/
 
-                    $scope.rules = [{
-                        id: '1',
-                        name: '规则1',
-                        condition: '借款人年龄小于20',
-                        result: '拒绝'
-                    }, {
-                        id: '2',
-                        name: '规则2',
-                        condition: '借款人收入小于5000',
-                        result: '拒绝'
-                    }, {
-                        id: '3',
-                        name: '规则3',
-                        condition: '借款人省市等于北京',
-                        result: '通过'
-                    }]
+                    $scope.rules = []
 
                     ktRulesService.get({
                         projectID: projectID

@@ -16,7 +16,7 @@
                                         </div>
                                         <div class="dropdown-menu animated fadeIn m-t-xs">
                                             <ul>
-                                                <li ng-repeat="subProject in subProjects" ng-class="{active: params.subproject_id === subProject.id}">
+                                                <li ng-repeat="subProject in subProjects" ng-class="{active: params.subproject_id == subProject.id}">
                                                     <a ng-click="subProjectChange(subProject.id)" title="{{subProject.name}}" ng-bind="subProject.name"></a>
                                                 </li>
                                             </ul>
@@ -44,9 +44,9 @@
                                         </div>
                                     </div>
                                     <div class="input-group fr input-group-xs mr10">
-                                        <input type="text" ng-keydown="numberChange($event)" ng-model="params.number" class="form-control" placeholder="输入批次搜索">
+                                        <input type="text" ng-keydown="batchNoChange($event)" ng-model="params.batch_no" class="form-control" placeholder="输入批次搜索">
                                         <span class="input-group-btn">
-                                            <button ng-click="numberQuery()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                                             <button ng-click="batchNoQuery()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                                         </span>
                                     </div>
                                 </div>

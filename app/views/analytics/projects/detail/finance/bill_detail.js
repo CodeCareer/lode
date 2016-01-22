@@ -10,9 +10,10 @@
 
             $scope.params = {
                 maxSize: 5,
-                projectID: $stateParams.projectID,
-                projectType: 'projects',
+                // projectID: $stateParams.projectID,
+                // projectType: 'projects',
                 billID: $stateParams.billID,
+                content: 'payment_details',
                 page: 1,
                 status: 'all',
                 per_page: 10
@@ -29,9 +30,9 @@
                     ktBillsService.update({
                         projectID: $stateParams.projectID,
                         billID: $stateParams.billID,
-                        status: 'done'
+                        status: 'checked'
                     }, function(data) {
-                        $scope.bill.status = data.status || 'done'
+                        $scope.bill.status = data.status || 'checked'
                     })
                 });
             }
@@ -62,19 +63,8 @@
                 return '<span class="' + (status !== 'overdue' ? 'approved-color' : 'warn-color') + '">' + st.name + '</span>'
             }
 
-            $scope.statusList = [{
-                name: '全部',
-                value: 'all'
-            }, {
-                name: '正常',
-                value: 'normal'
-            }, {
-                name: '提前还款',
-                value: 'ahead'
-            }, {
-                name: '逾期',
-                value: 'overdue'
-            }]
+            $scope.statusList = ktDataHelper.getPaymentStatusMap()
+                // $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
             $scope.getStatusName = function(status) {
                 var st = _.find($scope.statusList, function(v) {
@@ -88,7 +78,7 @@
 
             ktBillsService.get($scope.params, function(data) {
                 $.extend($scope, data)
-                $scope.params.totalItems = data.total_items
+                $scope.params.totalItems = data.statement.total_items
             })
         })
 })();

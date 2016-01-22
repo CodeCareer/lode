@@ -27,8 +27,8 @@
                 })
             }
 
-            $scope.statusList = ktDataHelper.getLoanStatusMap()
-            $scope.filterStatus = ktDataHelper.filterStatus(['all', 'success', 'fail'])
+            $scope.statusList = ktDataHelper.getBorrowersLoanStatusMap()
+            // $scope.filterStatus = ktDataHelper.filterStatus(['all', 'success', 'fail'])
             $scope.getStatusNameNice = ktDataHelper.getStatusNameNice($scope)
 
             $scope.getStatusName = function(status) {
