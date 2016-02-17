@@ -39,7 +39,7 @@
         }
 
         $scope.getProjectName = function() {
-            var f = _.findWhere($scope.projects || [], {
+            var f = _.find($scope.projects || [], {
                 id: $scope.params.project_id
             })
             return f ? f.name : '全部项目'

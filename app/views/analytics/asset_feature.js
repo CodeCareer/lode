@@ -25,7 +25,7 @@
 
                 $scope.institutions = data.institutions
                 $scope.institutionName = $scope.institutions[0].name
-                // getData($scope.institutions[0].id)
+                    // getData($scope.institutions[0].id)
             })
 
             $scope.radioDataShowType = 'chart'
@@ -95,8 +95,8 @@
                 var keys = typesMap[type]
                 var prefix = keys[0]
                 var suffix = ''
-                // prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
-                // suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
+                    // prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
+                    // suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
                 if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
 
                 chartOptions = suffix === '_percent' ? {
@@ -118,12 +118,12 @@
 
             function udpateData(type) {
                 var data = $scope.data
-                
+
                 var listName = getDataKey(type)
                 $scope[type].list = data[listName]
                 $scope[type].chartOptions = $.extend(true, {}, chartOptions, {
                     legend: {
-                        data: _.pluck(data[listName], 'name')
+                        data: _.map(data[listName], 'name')
                     },
                     xAxis: [{
                         type: 'category',

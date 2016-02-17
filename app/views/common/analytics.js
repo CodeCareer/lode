@@ -38,7 +38,7 @@
             }
 
             function getProject(project) {
-                return _.findWhere($scope.projects || [], {
+                return _.find($scope.projects || [], {
                     id: (project.id !== 'all' ? parseInt(project.id, 10) : 'all')
                 })
             }

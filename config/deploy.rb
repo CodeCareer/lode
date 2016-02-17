@@ -24,6 +24,9 @@ load File.expand_path("../deploy/#{ENV['stage']}.rb", __FILE__)
 if ENV['stage'] =~ /development/ && !ENV['br'].nil?
   set :branch, ENV['br']
 end
+if ENV['stage'] =~ /development/ && !ENV['cmbr'].nil?
+  set :common_branch, ENV['cmbr']
+end
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
 
@@ -98,7 +101,7 @@ end
 
 namespace :common_project do
   task :clone => :environment do
-    queue! %[git clone -b master #{common_repository} --depth=1]
+    queue! %[git clone -b #{common_branch} #{common_repository} --depth=1]
     queue %{echo "通用模块clone完成"}
     queue! %[rm app/common && mv kt-frontend-common/app ./app/common -f]
     queue %{echo "通用模块移动组装完成---mv kt-frontend-common/app ./app/common"}

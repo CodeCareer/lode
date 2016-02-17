@@ -9,12 +9,12 @@
             return {
                 filterStatus: function(arr) { //filter:{fn}
                     return function(item) {
-                        return _.contains(arr || [], item.value)
+                        return _.includes(arr || [], item.value)
                     }
                 },
                 filterStatusReverse: function(arr) { //filter:{fn}
                     return function(item) {
-                        return !_.contains(arr || [], item.status)
+                        return !_.includes(arr || [], item.status)
                     }
                 },
                 getPaymentStatusMap: function() { // 单个借款人的还款状态

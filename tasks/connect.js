@@ -1,10 +1,11 @@
 var modRewrite = require('connect-modrewrite')
 var gzip = require('connect-gzip')
 var appConfig = {
-        app: 'app',
-        dist: 'dist'
-    }
-    // var server = 'http://dev-lode.kaitongamc.com'
+    app: 'app',
+    dist: 'dist'
+}
+
+// var server = 'http://dev-lode.kaitongamc.com'
 var server = 'http://10.132.1.83:3000'
     // var server = 'http://op-fame.ktjr.com'
 var modRewriteUri = [

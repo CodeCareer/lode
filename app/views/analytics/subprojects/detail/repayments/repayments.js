@@ -48,7 +48,7 @@
             }).then(function() {
                 // console.log('Success ' + res.config.data.file.name + 'uploaded. response: ' + res.data);
                 // $scope.bills.unshift(res.data.loan_batch)
-                var bill = _.findWhere($scope.bills, {
+                var bill = _.find($scope.bills, {
                     id: statementID
                 })
                 bill.status = 'uploaded'

@@ -86,9 +86,9 @@
                     ktRulesService.get({
                         projectID: projectID
                     }, function(data) {
-                        var conMaps = _.object(_.pluck(data.conditions, 'value'), _.pluck(data.conditions, 'name'))
-                        var resMaps = _.object(_.pluck(data.results, 'value'), _.pluck(data.results, 'name'))
-                        var fieldsMap = _.object(_.pluck(data.fields, 'value'), _.pluck(data.fields, 'name'))
+                        var conMaps = _.object(_.map(data.conditions, 'value'), _.map(data.conditions, 'name'))
+                        var resMaps = _.object(_.map(data.results, 'value'), _.map(data.results, 'name'))
+                        var fieldsMap = _.object(_.map(data.fields, 'value'), _.map(data.fields, 'name'))
                         _.each(data.rules, function(vr) {
                             vr.condition_des = '借款人' + fieldsMap[vr.field] + conMaps[vr.condition] + vr.value
                             vr.result_des = resMaps[vr.result]
@@ -97,7 +97,7 @@
                     })
 
                     $scope.selected = {}
-                    $scope.selected.rules = _.pluck($scope.rules, 'id')
+                    $scope.selected.rules = _.map($scope.rules, 'id')
                     $scope.batchNo = batchNo
 
                     $scope.checkAll = true
@@ -105,7 +105,7 @@
 
                     $scope.checkAllToggle = function() {
                         $scope.filterByBlacklist = $scope.checkAll ? true : false;
-                        $scope.selected.rules = $scope.checkAll ? _.pluck($scope.rules, 'id') : [];
+                        $scope.selected.rules = $scope.checkAll ? _.map($scope.rules, 'id') : [];
                     }
 
                     $scope.checkListChange = function() {

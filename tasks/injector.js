@@ -1,6 +1,7 @@
 var commonScripts = [
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/underscore/underscore-min.js',
+    // 'bower_components/underscore/underscore-min.js',
+    'bower_components/lodash/dist/lodash.min.js',
     'bower_components/angular/angular.js',
     'bower_components/oclazyload/dist/ocLazyLoad.js',
     'bower_components/ng-file-upload/ng-file-upload-all.min.js',

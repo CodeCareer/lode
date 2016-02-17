@@ -99,12 +99,12 @@
                         },
                         xAxis: [{
                             type: 'category',
-                            data: _.pluck(data.results, 'stage')
+                            data: _.map(data.results, 'stage')
                         }],
 
                         series: [{
                                 name: '计划还款金额',
-                                data: _.pluck(data.results, 'plan_rpmnt_amnt'),
+                                data: _.map(data.results, 'plan_rpmnt_amnt'),
                                 type: 'line',
                                 smooth: false,
                                 itemStyle: {
@@ -116,7 +116,7 @@
                                 }
                             }, {
                                 name: '实际还款金额',
-                                data: _.pluck(data.results, 'real_rpmnt_amnt'),
+                                data: _.map(data.results, 'real_rpmnt_amnt'),
                                 type: 'line',
                                 smooth: false,
                                 itemStyle: {
@@ -128,7 +128,7 @@
                                 }
                             }, {
                                 name: '约定兑付现金流',
-                                data: _.pluck(data.results, 'agree_cash_flow'),
+                                data: _.map(data.results, 'agree_cash_flow'),
                                 type: 'line',
                                 smooth: false,
                                 itemStyle: {

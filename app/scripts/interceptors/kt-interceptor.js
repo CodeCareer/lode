@@ -115,8 +115,7 @@
                         text: '您的权限不足！',
                         type: 'error'
                     });
-                } 
-                else if (res.status === 500) { // 注释掉是为了接部分接口
+                } else if (res.status === 500) { // 注释掉是为了接部分接口
                     ktSweetAlert.swal({
                         title: '请求失败！',
                         text: '服务器出错了，请稍后再试',

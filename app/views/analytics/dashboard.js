@@ -76,7 +76,7 @@
 
             //         /*$scope.typesChart.chartOptions = $.extend(true, {}, chartOptions, {
             //             legend: {
-            //                 data: _.pluck(data.types, 'name')
+            //                 data: _.map(data.types, 'name')
             //             },
             //             xAxis: [{
             //                 type: 'category',
@@ -93,7 +93,7 @@
 
             //         $scope.institutionsChart.chartOptions = $.extend(true, {}, chartOptions, {
             //             legend: {
-            //                 data: _.pluck(data.institutions, 'name')
+            //                 data: _.map(data.institutions, 'name')
             //             },
             //             xAxis: [{
             //                 type: 'category',
@@ -110,7 +110,7 @@
 
             //         $scope.timelimitsChart.chartOptions = $.extend(true, {}, chartOptions, {
             //             legend: {
-            //                 data: _.pluck(data.rem_prncp_by_term, 'name')
+            //                 data: _.map(data.rem_prncp_by_term, 'name')
             //             },
             //             xAxis: [{
             //                 type: 'category',
@@ -127,7 +127,7 @@
 
             //         $scope.amountsChart.chartOptions = $.extend(true, {}, chartOptions, {
             //             legend: {
-            //                 data: _.pluck(data.rem_prncp_by_amnt, 'name')
+            //                 data: _.map(data.rem_prncp_by_amnt, 'name')
             //             },
             //             xAxis: [{
             //                 type: 'category',
@@ -144,7 +144,7 @@
 
             //         /* $scope.locationsChart.chartOptions = $.extend(true, {}, chartOptions, {
             //              legend: {
-            //                  data: _.pluck(data.locations, 'name')
+            //                  data: _.map(data.locations, 'name')
             //              },
             //              xAxis: [{
             //                  type: 'category',
@@ -161,7 +161,7 @@
 
             //          $scope.gendersChart.chartOptions = $.extend(true, {}, chartOptions, {
             //              legend: {
-            //                  data: _.pluck(data.genders, 'name')
+            //                  data: _.map(data.genders, 'name')
             //              },
             //              xAxis: [{
             //                  type: 'category',
@@ -178,7 +178,7 @@
 
             //          $scope.agesChart.chartOptions = $.extend(true, {}, chartOptions, {
             //              legend: {
-            //                  data: _.pluck(data.ages, 'name')
+            //                  data: _.map(data.ages, 'name')
             //              },
             //              xAxis: [{
             //                  type: 'category',

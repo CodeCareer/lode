@@ -83,7 +83,7 @@
                     // 逾期率趋势图表
                     $scope.overdueRateChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
-                            data: _.pluck(data.overdue_trends, 'name')
+                            data: _.map(data.overdue_trends, 'name')
                         },
                         xAxis: [{
                             type: 'category',
@@ -98,7 +98,7 @@
 
                     $scope.migrateRateChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
-                            data: _.pluck(data.migration_trends, 'name')
+                            data: _.map(data.migration_trends, 'name')
                         },
                         xAxis: [{
                             type: 'category',

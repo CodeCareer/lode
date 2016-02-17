@@ -36,13 +36,15 @@ module.exports = {
                 cwd: 'app/fonts/pe-icon-7-stroke/',
                 src: ['fonts/*.*'],
                 dest: '<%= kt.dist %>'
-            }/*, {
+            }
+            /*, {
                 expand: true,
                 dot: true,
                 cwd: 'app/fonts/kt/fonts',
                 src: ['*.*'],
                 dest: '<%= kt.dist %>/fonts/kt'
-            }*/, {
+            }*/
+            , {
                 expand: true,
                 dot: true,
                 cwd: 'app/common/fonts',
@@ -78,7 +80,7 @@ module.exports = {
         }, { //用于开发环境
             expand: true,
             cwd: '<%= kt.app %>/common',
-            src: ['images/**/*.*'], 
+            src: ['images/**/*.*'],
             dest: '.tmp'
         }]
 

@@ -133,7 +133,7 @@
                 $scope[type].list = data[listName]
                 $scope[type].chartOptions = $.extend(true, {}, chartOptions, {
                     legend: {
-                        data: _.pluck(data[listName], 'name')
+                        data: _.map(data[listName], 'name')
                     },
                     xAxis: [{
                         type: 'category',
