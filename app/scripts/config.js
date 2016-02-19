@@ -71,7 +71,7 @@
     angular
         .module('kt.lode')
         .config(configApp)
-        .run(function($rootScope, $state, $location, $timeout, $http, ktHomeResource, uibPaginationConfig, ktUserService, ktS, CacheFactory) {
+        .run(function($rootScope, $state, $location, $timeout, $http, ktHomeResource, uibPaginationConfig, ktUserService, ktS, CacheFactory, ktEchartTheme1) {
 
             // ajax 请求的缓存策略
             /*eslint-disable*/
@@ -95,6 +95,7 @@
                 rotate: true
             });
 
+
             $rootScope.apiCode = Math.random().toString(16).slice(2); // ajax disable catch
             $rootScope.version = '1.0.33'; // html,image version
 
@@ -104,7 +105,9 @@
             var resource = ktHomeResource.get($rootScope.version)
             $.extend($rootScope, resource)
 
-            $rootScope.$state = $state;
+            echarts.registerTheme('theme1', ktEchartTheme1) //echarts-3.x
+
+            $rootScope.$state = $state
             $rootScope.back = function() {
                 window.history.back()
             }
@@ -184,8 +187,8 @@
                 // 存储非错误和登录注册框的url 供redirect或者返回用
                 if (toState.name.indexOf('analytics') > -1) {
                     // var url = $rootScope.$state.$current.url.format(toParams)
-                    var url = $state.href(toState.name, toParams)
-                    // $rootScope.currentUrl = url;
+                    // var url = $state.href(toState.name, toParams)
+                        // $rootScope.currentUrl = url;
                     $rootScope.wantJumpUrl = '';
                     // $rootScope.latestState = toState.name;
                 }
@@ -196,7 +199,7 @@
                 $rootScope.currentState = toState.name;
             });
 
-            // ng-include 加载完后显示footer, 避免闪烁
+            // ng-include 加载完后延迟显示footer, 避免闪烁
             $rootScope.$on('$includeContentLoaded', function() {
                 setTimeout(function() {
                     $('#footer-analytics').css('display', 'block')

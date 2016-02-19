@@ -1,18 +1,18 @@
 {
+    "status_code": null,
+    "message": null,
     "total_items": 1,
     "institutions": [{
         "id": 1,
         "name": "信而富",
-        "putin_amount": 100000000,
-        "remain_amount": 100000000,
-        "transaction_amount": 100000000,
-        "total_revenue": 1000000,
-        "avg_duration": 40,
-        "overdue_rate": 0.09,
-        "bad_rate": 0.04,
-        "individual_amount": 10000,
-        "numbers": 1000,
-        "borrowers_number": 1000,
-        "avg_amount": 10000
+        "init_amnt": 0.0,
+        "loan_amnt": 40000.0,
+        "total_revenue": 320.0,
+        "ovd_rate": 0.0,
+        "np_rate": 0.0,
+        "avrge_loan_amnt": 6666.666666666667,
+        "loan_count": 6,
+        "borrower_count": 6,
+        "loan_amnt_per_borrower": 6666.666666666667
     }]
 }

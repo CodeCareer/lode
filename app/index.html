@@ -18,8 +18,8 @@
     <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <!-- for seo-begin -->
-    <meta name="Keywords" content="金融,开通金融,互联网金融,金融平台,融资,理财,金融信息,金融信息服务,金融信息服务平台,资金,资产,金融资产交易,金融安全,专业金融信息服务,融资担保,交易所,金融交易" />
-    <meta name="Description" content="开通金融信息（北京）有限公司是北京市金融工作局批准设立的专业金融信息服务机构，由人人贷和中合中小企业融资担保股份有限公司共同发起设立。开通金融结合互联网大数据技术专注于不断推进金融业态创新，为会员持续提供具有价值的金融信息服务及专业、安全、高效的金融资产登记、交易、清结算平台支持。" />
+    <meta name="Keywords" content="开通金融,开通金融信息（北京）有限公司,开通金融信息有限公司,开通金融信息公司,开通金融公司,李欣贺,人人贷,友信,中合担保,开通,金融,互联网金融,金融平台,金融信息服务平台,金融资产交易" />
+    <meta name="Description" content="开通金融信息服务（北京）有限公司是北京市金融工作局批准设立的专业金融信息服务机构，由人人贷和中合中小企业融资担保股份有限公司共同发起设立。开通金融结合互联网大数据技术专注于不断推进金融业态创新，为会员持续提供具有价值的金融信息服务及专业、安全、高效的金融资产登记、交易、清结算平台支持。" />
     <meta name="Copyright" content="开通金融信息服务(北京)有限公司，2015">
     <meta name="geo.region" content="China" />
     <meta name="geo.placename" content="Beijing" />
@@ -75,36 +75,6 @@
     <!-- Page title set in ktPageTitle directive -->
     <title kt-page-title inst-name="微贷平台"></title>
 
-    <!-- baidu anlytics-->
-    <!-- <script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?fdb649362ddc03885cc5dd49b0118666";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-    </script> -->
-    <!-- baidu anlytics-->
-
-    <!-- google anlytics-->
-    <!--<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-66185696-2', 'auto');
-    ga('send', 'pageview');
-    </script> -->
-    <!-- google anlytics-->
-
     <!-- build:css({.,app,.tmp}) styles/vendor.css -->
     <!-- injectorCommon:css -->
     <link rel="stylesheet" href="styles/bootstrap-custom-lode.css"/>
@@ -116,11 +86,7 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>
     <!-- endinjector -->
     <!-- endbuild -->
-    <!--     
-    <link rel="stylesheet" href="bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
-    -->
+    
     <!-- build:css({.tmp,app}) styles/style.css -->
     <!-- injectorApp:css -->
     <link rel="stylesheet" href="common/fonts/lode/css/style.css"/>
@@ -132,8 +98,6 @@
 <!-- Body -->
 
 <body class="{{$state.current.data.specialClass}} fixed-navbar">
-    <!-- <div class="fzltchjt none">开通金融资产方</div> -->
-    <!-- <div class="fzltxihk none">让互联网金融变得简单&可靠</div> -->
 
     <!--[if lt IE 9]>
     <p class="alert alert-danger" style="text-align:center;z-index:2001;position:fixed; width: 100%;">您使用的浏览器 <strong>版本太低</strong>。 为了更好的体验，请 <a href="http://browsehappy.com/">下载高级浏览器</a>。</p>
@@ -141,9 +105,7 @@
 
     <!-- Simple splash screen-->
     <div class="splash">
-        <!-- <div class="color-line"></div> -->
         <div class="splash-title">
-            <!-- <h1>开通金融</h1> -->
             <img src="images/logo-vertical-new.svg" height="100" width="97" alt="开通金融logo">
             <p class="mt10">微贷平台</p>
             <img alt="" src="images/loading-bars.svg" width="64" height="64" /> 
@@ -159,7 +121,7 @@
     <!-- build:js({.,app}) scripts/vendor.js -->
     <!-- injectorCommon:js -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
@@ -187,7 +149,7 @@
     <!-- endinjector -->
     <!-- endbuild -->
     
-    <script src="common/libs/echarts.js"></script>
+    <script src="common/libs/echarts3.js"></script>
     
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <!-- injectorApp:js -->
@@ -200,7 +162,7 @@
     <script src="common/factories/kt-image.js"></script>
     <script src="common/filters/kt-filter-common.js"></script>
     <script src="common/directives/kt-common-directive.js"></script>
-    <script src="common/directives/kt-echart-theme-1.js"></script>
+    <script src="common/directives/kt-echart3-theme-1.js"></script>
     <script src="scripts/init.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/routers/loaner.js"></script>

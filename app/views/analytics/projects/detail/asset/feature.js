@@ -145,10 +145,11 @@
                     tooltip: {
                         valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
-                    yAxis: {
+                    yAxis: [{
+                        interval: 0.2,
                         max: 1,
                         min: 0
-                    }
+                    }]
                 } : {
                     tooltip: {
                         valueType: 'rmb'
@@ -167,10 +168,10 @@
                     legend: {
                         data: _.map(data[listName], 'name')
                     },
-                    xAxis: {
+                    xAxis: [{
                         type: 'category',
                         data: data.dates
-                    },
+                    }],
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'

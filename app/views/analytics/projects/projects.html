@@ -25,7 +25,8 @@
             <td ng-bind="::(project.np_rate * 100 | number:2) + '%'"></td>
             <td ng-bind="::project.total_revenue | ktNumberLocate"></td>
             <td class="text-center">
-                <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
+                <a ng-if="user.institution.inst_type !== 'zijin'" class="tu" ui-sref="analytics.subProjects.list.table({project_id: project.id})">查看</a>
+                <a ng-if="user.institution.inst_type === 'zijin'" class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
             </td>
         </tr>
         <tr ng-if="(!projects.length || !projects) && !isLoading()">

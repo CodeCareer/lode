@@ -32,42 +32,27 @@
 
             $scope.timelimitsChart = {
                 chartOptions: {},
-                list: [],
-                menuData: {
-                    index: 0
-                }
+                list: []
             }
 
             $scope.amountsChart = {
                 chartOptions: {},
-                list: [],
-                menuData: {
-                    index: 0
-                }
+                list: []
             }
 
             $scope.locationsChart = {
                 chartOptions: {},
-                list: [],
-                menuData: {
-                    index: 0
-                }
+                list: []
             }
 
             $scope.gendersChart = {
                 chartOptions: {},
-                list: [],
-                menuData: {
-                    index: 0
-                }
+                list: []
             }
 
             $scope.agesChart = {
                 chartOptions: {},
-                list: [],
-                menuData: {
-                    index: 0
-                }
+                list: []
             }
 
             $scope.$watch('radioPeriod', function(newValue, oldvalue) {
@@ -104,6 +89,7 @@
                         valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
                     yAxis: [{
+                        interval: 0.2,
                         max: 1,
                         min: 0
                     }]

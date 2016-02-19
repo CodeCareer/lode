@@ -1,14 +1,33 @@
 {
-    "total_items": 1,
+    "status_code": null,
+    "message": null,
+    "total_items": 3,
     "projects": [{
         "id": 1,
-        "amount": 1000000,
-        "total_invest": 10000,
-        "remain_amount": 10000,
-        "total_deal": 10000,
-        "overdue_rate": 0.10,
-        "bad_rate": 0.08,
-        "total_revenue": 10000,
-        "name": "信而富"
+        "name": "信而富上海银行项目",
+        "credit_amnt": 10000.0,
+        "init_amnt": null,
+        "loan_amnt": 20000.0,
+        "ovd_rate": 0.0,
+        "np_rate": 0.0,
+        "total_revenue": 160.0
+    }, {
+        "id": 2,
+        "name": "xinerfu project",
+        "credit_amnt": null,
+        "init_amnt": null,
+        "loan_amnt": 20000.0,
+        "ovd_rate": 0.0,
+        "np_rate": 0.0,
+        "total_revenue": 160.0
+    }, {
+        "id": 3,
+        "name": "wzc测试项目",
+        "credit_amnt": null,
+        "init_amnt": null,
+        "loan_amnt": 0,
+        "ovd_rate": 0,
+        "np_rate": 0,
+        "total_revenue": 0
     }]
 }

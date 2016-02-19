@@ -1,0 +1,54 @@
+{
+    "statement": {
+        "total_items": 2,
+        "subproject_name": "外贸合作项目",
+        "batch_no": "WMHZXM20160122D390",
+        "due_date": "2016-02-22",
+        "term": 1,
+        "payment_details": [{
+            "id": 1,
+            "pymnt_amnt": 1080.0,
+            "pymnt_prncp": 1000.0,
+            "pymnt_int": 80.0,
+            "curr_term": 1,
+            "rem_term": null,
+            "pymnt_date": "2016-02-22",
+            "sched_pymnt_date": "2016-02-22",
+            "status": "normal",
+            "ovd_days": 0,
+            "created_at": "2016-01-22T16:37:19.000+08:00",
+            "updated_at": "2016-01-22T16:37:19.000+08:00",
+            "loan_id": 6000,
+            "statement_id": 1.0,
+            "recpt_acct_no": "622260 09100 9898 9909",
+            "name": "张三",
+            "id_no": "110113198801010011"
+        }, {
+            "id": 2,
+            "pymnt_amnt": 1080.0,
+            "pymnt_prncp": 1000.0,
+            "pymnt_int": 80.0,
+            "curr_term": 1,
+            "rem_term": null,
+            "pymnt_date": "2016-02-22",
+            "sched_pymnt_date": "2016-02-22",
+            "status": "normal",
+            "ovd_days": 0,
+            "created_at": "2016-01-22T16:37:20.000+08:00",
+            "updated_at": "2016-01-22T16:37:20.000+08:00",
+            "loan_id": 6001,
+            "statement_id": 1.0,
+            "recpt_acct_no": "622260 09100 9898 9909",
+            "name": "李四",
+            "id_no": "110113198801010011"
+        }],
+        "total_pymnt": 2160.0,
+        "total_pymnt_prncp": 2000.0
+    },
+    "summary": {
+        "term": 1,
+        "date": "2016-02-22",
+        "prncp": "2332.74",
+        "total_pymnt": "2707.74"
+    }
+}

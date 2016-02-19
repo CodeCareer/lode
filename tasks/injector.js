@@ -46,7 +46,7 @@ var appScripts = [
     'app/common/filters/kt-filter-common.js',
     // 'app/common/directives/kt-safari-image-directive.js',
     'app/common/directives/kt-common-directive.js',
-    'app/common/directives/kt-echart-theme-1.js',
+    'app/common/directives/kt-echart3-theme-1.js',
     'app/scripts/init.js',
     'app/scripts/app.js',
     'app/scripts/routers/loaner.js',

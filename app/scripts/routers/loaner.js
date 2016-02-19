@@ -35,6 +35,8 @@
                                 $rootScope.defaultRoute = defaultRouteMap[instType] || 'analytics.home'
 
                                 deferred.resolve(res.account)
+                            }, function() {
+                                deferred.resolve(null)
                             })
                             return deferred.promise
                         }
@@ -47,9 +49,11 @@
                     template: '',
                     resolve: {
                         // 需要等待
-                        waitUser: function($rootScope, $state, user) {
+                        waitUser: function($rootScope, $state, $window, user) {
                             if (user) {
                                 $state.go($rootScope.defaultRoute, $state.params)
+                            } else {
+                                $window.history.back()
                             }
                         }
                     }
@@ -81,7 +85,11 @@
                 'analytics.reports.assetFeature': {
                     url: '/asset_feature',
                     templateUrl: 'views/analytics/asset_feature.html',
-                    resolve: ktLazyResolve(['views/analytics/asset_feature.js']),
+                    resolve: ktLazyResolve([
+                        'views/analytics/asset_feature.js',
+                        'common/directives/kt-echart3-directive.js',
+                        'common/directives/kt-linemenu-directive.js'
+                    ]),
                     controller: 'ktAssetFeatureCtrl',
                     data: {
                         // breadcrumb: true,
@@ -232,7 +240,6 @@
                     template: '<ui-view/>',
                     data: {
                         breadcrumb: true,
-                        // breadcrumbTitle: '资产特征',
                         breadcrumbState: 'analytics.project.dashboard',
                         pageTitle: '项目详情',
                         specialClass: 'fixed-sidebar analytics-page analytics-detail',
@@ -584,7 +591,9 @@
                 'analytics.project.cashFlowMonitor': {
                     url: '/cash_flow_monitor?subproject_id',
                     templateUrl: 'views/analytics/projects/detail/cash_flow_monitor/detail.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/cash_flow_monitor/detail.js']),
+                    resolve: ktLazyResolve(['views/analytics/projects/detail/cash_flow_monitor/detail.js',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
                     controller: 'ktCashFlowMonitorCtrl',
                     data: {
                         pageTitle: '现金流监控',
@@ -602,7 +611,11 @@
                 'analytics.project.asset.feature': {
                     url: '/feature',
                     templateUrl: 'views/analytics/projects/detail/asset/feature.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/asset/feature.js']),
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/asset/feature.js',
+                        'common/directives/kt-echart3-directive.js',
+                        'common/directives/kt-linemenu-directive.js'
+                    ]),
                     controller: 'ktAssetFeatureCtrl',
                     data: {
                         breadcrumbTitle: '资产特征',
@@ -612,7 +625,11 @@
                 'analytics.project.asset.users': {
                     url: '/users',
                     templateUrl: 'views/analytics/projects/detail/asset/users.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/asset/users.js']),
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/asset/users.js',
+                        'common/directives/kt-echart3-directive.js',
+                        'common/directives/kt-linemenu-directive.js'
+                    ]),
                     controller: 'ktUserFeatureCtrl',
                     data: {
                         breadcrumbTitle: '人群特征',
@@ -622,7 +639,10 @@
                 'analytics.project.asset.overdue': {
                     url: '/overdue',
                     templateUrl: 'views/analytics/projects/detail/asset/overdue.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/asset/overdue.js']),
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/asset/overdue.js',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
                     controller: 'ktOverdueCtrl',
                     data: {
                         breadcrumbTitle: '逾期分析',
