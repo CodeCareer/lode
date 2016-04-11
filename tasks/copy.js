@@ -4,7 +4,8 @@ module.exports = {
                 expand: true,
                 dot: true,
                 cwd: '<%= kt.app %>',
-                src: ['*.{ico,png,txt,xml}',
+                src: [
+                    '*.{ico,png,txt,xml}',
                     '.htaccess',
                     '*.{html,htm}',
                     'views/**/*.html',
@@ -80,17 +81,17 @@ module.exports = {
         ]
     },
     dev: {
-        files: [{ //用于开发环境
+        files: [{
             expand: true,
             cwd: '<%= kt.app %>',
             dest: '.tmp',
             src: ['common/directives/**/*.{png,jpg,jpeg,gif,svg}']
-        }, { //用于开发环境
+        }, {
             expand: true,
             cwd: 'bower_components/bootstrap/dist',
             dest: '.tmp',
             src: ['fonts/*.*']
-        }, { //用于开发环境
+        }, {
             expand: true,
             cwd: '<%= kt.app %>/common',
             src: ['images/**/*.*'],

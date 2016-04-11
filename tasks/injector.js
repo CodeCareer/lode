@@ -73,7 +73,7 @@ var appScripts = [
 ];
 
 var commonCss = [ // injector 会自动校验文件路径是否存在，所以需要填写基于项目目录的路径，然后再transform里面替换
-    '.tmp/styles/bootstrap-custom-lode.css',
+    '.tmp/less/bootstrap.css',
     'bower_components/fontawesome/css/font-awesome.css',
     'bower_components/animate.css/animate.css',
     'bower_components/sweetalert/dist/sweetalert.css',
@@ -84,8 +84,8 @@ var commonCss = [ // injector 会自动校验文件路径是否存在，所以�
 
 var appCss = [
     'app/common/fonts/lode/css/style.css',
-    '.tmp/styles/style.css',
-    '.tmp/styles/analytics.css',
+    '.tmp/less/style.css',
+    '.tmp/less/analytics.css',
 ];
 
 module.exports = {

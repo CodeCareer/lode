@@ -12,13 +12,13 @@ module.exports = {
             removeUnknownsAndDefaults: false
         }]
     },
-    app: {
+    dist: {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%= kt.app %>',
+            cwd: '<%= kt.dist %>',
             src: ['images/**/*.svg'],
-            dest: '<%= kt.app %>'
+            dest: '<%= kt.dist %>'
         }]
     }
 };

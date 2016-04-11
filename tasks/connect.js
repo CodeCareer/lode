@@ -4,23 +4,24 @@ var appConfig = {
     app: 'app',
     dist: 'dist'
 }
+var port = 8000
+var livereloadPort = 35727
 
-var server = 'http://dev-lode-zh.ktjr.com'
-// var server = 'http://10.132.1.83:3000'
+var server = 'http://dev-lode.ktjr.com'
+    // var server = 'http://10.132.1.83:3000'
     // var server = 'http://op-fame.ktjr.com'
+
 var modRewriteUri = [
     // '^/mock_data/v\d{1,}/([^?]*).*$ /mock_data/$1 [L]',
     '^/(ajax/v\\d{1,}/.*)$ ' + server + '/$1 [P]',
     '^/(uploads/.*)$ ' + server + '/$1 [P]',
     '^/(.(?!\\.))*$ /index.html [L]',
-    // '^/seallogo.dll.*$ /mock_data/seallogo.dll'
-    // '^\/src/([^\\?]*)(?:\\?.*)?$ /Users/luxueyan/work/tanx-m-ssp/src/$1 [L]',
 ]
 
 var sessionMidWare = function() {
 
     return function(req, res, next) {
-        /*console.log(req.url)
+        /*
         if (req.method === 'POST' && req.url.match(/\/ajax\/v\d\/sessions/)) {
             var resToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNTVhMWNhODY2OTVhMzJlYTUyMDAwMDAwIiwiZXhwIjoxNDM2NzU5NjA4fQ.2CwqRebKd8HPJlG0nAmYBal2eNgkbhgWLdw6Qp6Aix0'
             req.session.token = resToken
@@ -66,14 +67,14 @@ var sessionMidWare = function() {
 }
 module.exports = {
     options: {
-        port: 8000,
+        port: port,
         hostname: '*',
-        livereload: 35727
+        livereload: livereloadPort
     },
     livereload: {
         options: {
             open: {
-                target: 'http://localhost:8000',
+                target: 'http://localhost:' + port,
             },
             middleware: function(connect) {
 
@@ -115,7 +116,7 @@ module.exports = {
         options: {
             livereload: false,
             open: {
-                target: 'http://localhost:8000',
+                target: 'http://localhost:' + port,
             },
             base: '<%= kt.dist %>',
             middleware: function() {

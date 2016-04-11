@@ -61,14 +61,12 @@ module.exports = function(grunt) {
 
     grunt.registerTask('live', [
         'clean:dev',
-        'responsive_images',
+        // 'responsive_images',
         'sprite',
         'less:development',
         // 'less:common',
-        // 'copy:commonImgs',
         'copy:dev',
         // 'autoprefixer:development',
-        // 'font-spider:app',
         // 'replace:svgfont',
         'svg_sprite',
         'svgmin',
@@ -77,7 +75,6 @@ module.exports = function(grunt) {
         'injector:indexCommonjs',
         'injector:indexAppcss',
         'injector:indexAppjs',
-        // 'copy:styles',
         'connect:livereload',
         'watch'
     ]);
@@ -90,10 +87,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'responsive_images',
+        // 'responsive_images',
         'sprite',
         'less:production',
-        // 'font-spider:app',
         'injector:indexCommoncss',
         'injector:indexCommonjs',
         'injector:indexAppcss',
@@ -101,11 +97,11 @@ module.exports = function(grunt) {
 
         // 'replace:svgfont',
         'svg_sprite',
-        'svgmin',
         'babel',
         'useminPrepare',
         'concat',
         'copy:dist',
+        'svgmin',
         'replace:baseUrl',
         'imagemin',
         'cssmin',
@@ -130,7 +126,6 @@ module.exports = function(grunt) {
         'filerev:assetsRev',
         'injector:assetsMap',
         'htmlmin',
-        // 'font-spider:dist',
     ]);
 
     grunt.registerTask('default', ['build'])
