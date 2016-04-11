@@ -29,17 +29,17 @@ var commonScripts = [
     'bower_components/sweetalert/dist/sweetalert.min.js',
     'bower_components/angular-apimock/dist/angular-apimock.min.js',
     // 'bower_components/echarts/build/dist/echarts.js',
-    'app/common/libs/jquery-date-range-picker.js',
-    'app/common/libs/requestAnimationFrame.js',
-    'app/common/libs/ua.js',
 ];
 
 var appScripts = [
+    'app/common/libs/jquery-date-range-picker.js',
+    'app/common/libs/requestAnimationFrame.js',
+    'app/common/libs/ua.js',
     'app/common/kt-common.js',
     'app/common/locale/angular-locale_zh-cn.js',
     'app/common/factories/kt-resource-assetmap.js',
     'app/common/providers/kt-resolve-provider.js',
-    // 'app/common/factories/kt-captcha.js',
+    'app/common/helpers/kt-common-helpers.js',
     'app/common/factories/kt-alert.js',
     'app/common/factories/kt-uri.js',
     'app/common/factories/kt-image.js',
@@ -67,8 +67,8 @@ var appScripts = [
     // 'app/scripts/services/kt-service-institutions.js',
     'app/scripts/services/kt-service-projects.js',
     'app/scripts/filters/kt-filter-institutions.js',
-    'app/scripts/helpers/kt-date-helps.js',
-    'app/scripts/helpers/kt-common-helps.js',
+    'app/scripts/helpers/kt-date-helper.js',
+    'app/scripts/helpers/kt-data-helper.js',
     'app/scripts/interceptors/kt-interceptor.js',
 ];
 
