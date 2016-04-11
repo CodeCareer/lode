@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktProjectAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService, ktInstitutionsService) {
+        .controller('ktProjectAddCtrl', function($scope, $window, $state, $stateParams, ktSweetAlert, ktProjectsService, ktInstitutionsService, ktChannelsService) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -21,6 +21,12 @@
                 inst_type: 'zhudai'
             }, function(res) {
                 $scope.institutions = res.institutions
+            })
+
+            ktChannelsService.get({
+                inst_type: 'zhudai'
+            }, function(res) {
+                $scope.channels = res.channels
             })
 
             $scope.project = {

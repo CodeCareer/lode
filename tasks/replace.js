@@ -19,8 +19,8 @@ module.exports = {
     baseUrl: {
         options: {
             patterns: [{
-                match: /href="http:\/\/dev\.ktjr\.com:8000\/"/g,
-                replacement: 'href="https://lode.ktjr.com"'
+                match: /href="http:\/\/dev\.ktjr\.com:8888\/"/g,
+                replacement: 'href="https://pano.ktjr.com"'
             }
             /*, {
                 match: /\/mock_data\/seallogo\.dll/g,
@@ -66,11 +66,11 @@ module.exports = {
     appConfig: {
         options: {
             patterns: [{
-                match: /\$compileProvider\.debugInfoEnabled\(\!0\)/g,
-                replacement: '$compileProvider.debugInfoEnabled(!1)'
+                match: /\.debugInfoEnabled\(\!0\)/g,
+                replacement: '.debugInfoEnabled(!1)'
             }, {
-                match: /\$ocLazyLoadProvider\.config\(\{debug\:\!0\}\)/g,
-                replacement: '$ocLazyLoadProvider.config({debug:!1})'
+                match: /\.config\(\{debug\:\!0\}\)/g,
+                replacement: '.config({debug:!1})'
             }]
         },
         files: [{

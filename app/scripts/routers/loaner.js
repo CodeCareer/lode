@@ -23,7 +23,7 @@
                     resolve: ktLazyResolve(['views/common/analytics.js'], {
 
                         user: function($q, $rootScope, ktUserService) {
-
+                            'ngInject';
                             // if ($rootScope.user) return true
                             var deferred = $q.defer()
                             ktUserService.get(function(res) {
@@ -50,6 +50,7 @@
                     resolve: {
                         // 需要等待
                         waitUser: function($rootScope, $state, $window, user) {
+                            'ngInject';
                             if (user) {
                                 $state.go($rootScope.defaultRoute, $state.params)
                             } else {

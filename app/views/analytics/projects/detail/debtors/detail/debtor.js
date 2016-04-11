@@ -86,9 +86,9 @@
                     ktRulesService.get({
                         projectID: projectID
                     }, function(data) {
-                        var conMaps = _.object(_.map(data.conditions, 'value'), _.map(data.conditions, 'name'))
-                        var resMaps = _.object(_.map(data.results, 'value'), _.map(data.results, 'name'))
-                        var fieldsMap = _.object(_.map(data.fields, 'value'), _.map(data.fields, 'name'))
+                        var conMaps = _.zipObject(_.map(data.conditions, 'value'), _.map(data.conditions, 'name'))
+                        var resMaps = _.zipObject(_.map(data.results, 'value'), _.map(data.results, 'name'))
+                        var fieldsMap = _.zipObject(_.map(data.fields, 'value'), _.map(data.fields, 'name'))
                         _.each(data.rules, function(vr) {
                             vr.condition_des = '借款人' + fieldsMap[vr.field] + conMaps[vr.condition] + vr.value
                             vr.result_des = resMaps[vr.result]
@@ -101,7 +101,6 @@
                     $scope.batchNo = batchNo
 
                     $scope.checkAll = true
-                    $scope.filterByBlacklist = true
 
                     $scope.checkAllToggle = function() {
                         $scope.filterByBlacklist = $scope.checkAll ? true : false;

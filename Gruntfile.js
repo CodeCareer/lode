@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         // 'copy:commonImgs',
         'copy:dev',
         // 'autoprefixer:development',
-        'font-spider:app',
+        // 'font-spider:app',
         // 'replace:svgfont',
         'svg_sprite',
         'svgmin',
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
         'responsive_images',
         'sprite',
         'less:production',
-        'font-spider:app',
+        // 'font-spider:app',
         'injector:indexCommoncss',
         'injector:indexCommonjs',
         'injector:indexAppcss',
@@ -111,7 +111,9 @@ module.exports = function(grunt) {
         'cssmin',
         'autoprefixer:production',
         'replace:fontsUrl',
-        'uglify',
+        'ngAnnotate:dist',
+        'uglify:forLazyLoad',
+        'uglify:generated',
         'replace:appConfig', //替换config.js 内的一些配置属性
 
         //注意filerev 的顺序

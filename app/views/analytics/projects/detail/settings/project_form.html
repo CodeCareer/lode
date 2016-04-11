@@ -8,18 +8,35 @@
             <div class="panel-body clfix pr ov-h">
                 <div class="form-body clfix">
                     <div class="col-md-9 col-md-offset-1" oc-lazy-load="['common/directives/datepicker/directive.js', 'common/directives/datepicker/theme/v2/style.css']">
-                        <form name="projectForm" class="form-horizontal" method="post" id="projectForm" kt-submit="submitForm()" kt-autofill-submit>
+                        <form name="projectForm" novalidate class="form-horizontal" method="post" id="projectForm" kt-submit="submitForm()" kt-autofill-submit>
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.name.$invalid && projectForm.name.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>项目名称</label>
                                 <div class="col-md-8">
-                                    <input placeholder="项目名称" type="text" ng-maxlength="30" ng-model="project.name" id="" class="form-control" name="name">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select name="zhudai_id" ng-required="true" ng-model="project.zhudai_id" ng-options="institution.id as institution.name for institution in institutions" class="form-control">
+                                                <option value="" selected>请选择机构</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input placeholder="金额" type="text" ng-maxlength="30" ng-model="project.name" id="" class="form-control" name="name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="channel_id" ng-required="true" ng-model="project.channel_id" ng-options="channels.id as channels.name for channels in channelss" class="form-control">
+                                                <option value="" selected>请选择通道</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="mt5 text-danger" ng-messages="projectForm.name.$dirty && projectForm.name.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入项目名称</div>
                                         <div ng-message="maxlength"><i class="fa fa-frown-o fb mr5"></i>不能大于30个字符</div>
                                     </div>
+                                    <div class="mt5 text-danger" ng-messages="projectForm.zhudai_id.$dirty && projectForm.zhudai_id.$error">
+                                        <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请选择合作机构</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.zhudai_id.$invalid && projectForm.zhudai_id.$dirty}">
+                            <!--<div class="form-group col-lg-12" ng-class="{'has-error':projectForm.zhudai_id.$invalid && projectForm.zhudai_id.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>合作机构</label>
                                 <div class="col-md-8">
                                     <select name="zhudai_id" ng-model="project.zhudai_id" ng-options="institution.id as institution.name for institution in institutions" class="form-control"></select>
@@ -28,7 +45,7 @@
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请选择合作机构</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.desc.$invalid && projectForm.desc.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>项目简介</label>
                                 <div class="col-md-8">
@@ -36,7 +53,6 @@
                                     <div class="mt5 text-danger" ng-messages="projectForm.desc.$dirty && projectForm.desc.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入项目简介</div>
                                         <div ng-message="maxlength"><i class="fa fa-frown-o fb mr5"></i>不能大于300个字符</div>
-
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.warranty_amnt.$invalid && projectForm.warranty_amnt.$dirty}">
+                            <!-- <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.warranty_amnt.$invalid && projectForm.warranty_amnt.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>质保金</label>
                                 <div class="col-md-8">
                                     <input placeholder="质保金" type="text" ng-model="project.warranty_amnt" id="" class="form-control" name="warranty_amnt">
@@ -86,11 +102,15 @@
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入质保金</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.risk_provision.$invalid && projectForm.risk_provision.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>风险准备金</label>
                                 <div class="col-md-8">
-                                    <input placeholder="风险准备金" type="text" ng-model="project.risk_provision" id="" class="form-control" name="risk_provision">
+                                    <div class="input-group">
+                                        <!-- <div class="input-group-addon">￥</div> -->
+                                        <input placeholder="风险准备金" type="text" ng-model="project.risk_provision" id="" class="form-control" name="risk_provision">
+                                        <div class="input-group-addon">千万元</div>
+                                    </div>
                                     <div class="mt5 text-danger" ng-messages="projectForm.risk_provision.$dirty && projectForm.risk_provision.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入风险准备金</div>
                                     </div>
@@ -99,7 +119,10 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.retained_profit_rate.$invalid && projectForm.retained_profit_rate.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>利润留存率</label>
                                 <div class="col-md-8">
-                                    <input placeholder="利润留存率" type="text" ng-model="project.retained_profit_rate" id="" class="form-control" name="retained_profit_rate">
+                                    <div class="input-group">
+                                        <input placeholder="利润留存率" type="text" ng-model="project.retained_profit_rate" id="" class="form-control" name="retained_profit_rate">
+                                        <div class="input-group-addon">%</div>
+                                    </div>
                                     <div class="mt5 text-danger" ng-messages="projectForm.retained_profit_rate.$dirty && projectForm.retained_profit_rate.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入利润留存率</div>
                                     </div>
@@ -108,7 +131,10 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.cash_deposit.$invalid && projectForm.cash_deposit.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>保证金</label>
                                 <div class="col-md-8">
-                                    <input placeholder="保证金" type="text" ng-model="project.cash_deposit" id="" class="form-control" name="cash_deposit">
+                                    <div class="input-group">
+                                        <input placeholder="保证金" type="text" ng-model="project.cash_deposit" id="" class="form-control" name="cash_deposit">
+                                        <div class="input-group-addon">千万元</div>
+                                    </div>
                                     <div class="mt5 text-danger" ng-messages="projectForm.cash_deposit.$dirty && projectForm.cash_deposit.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入保证金</div>
                                     </div>
@@ -117,10 +143,10 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.premium_rate.$invalid && projectForm.premium_rate.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>保费费率</label>
                                 <div class="col-md-8">
-                                    <!-- <div class="input-group"> -->
-                                    <input placeholder="保费费率" type="text" ng-model="project.premium_rate" id="" class="form-control" name="premium_rate">
-                                    <!-- <span class="input-group-addon">%</span> -->
-                                    <!-- </div> -->
+                                    <div class="input-group">
+                                        <input placeholder="保费费率" type="text" ng-model="project.premium_rate" id="" class="form-control" name="premium_rate">
+                                        <span class="input-group-addon">%</span>
+                                    </div>
                                     <div class="mt5 text-danger" ng-messages="projectForm.premium_rate.$dirty && projectForm.premium_rate.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入保费费率</div>
                                     </div>
@@ -129,7 +155,7 @@
                             <div class="form-group col-lg-12" ng-class="{'has-error':projectForm.counter_guarantee.$invalid && projectForm.counter_guarantee.$dirty}">
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>反担保</label>
                                 <div class="col-md-8">
-                                    <textarea placeholder="反担保" type="text" ng-model="project.counter_guarantee" id="" class="form-control" name="counter_guarantee"></textarea>
+                                    <textarea placeholder="反担保,多个担保人用请用逗号（“,”）分隔" type="text" ng-model="project.counter_guarantee" id="" class="form-control" name="counter_guarantee"></textarea>
                                     <div class="mt5 text-danger" ng-messages="projectForm.counter_guarantee.$dirty && projectForm.counter_guarantee.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请输入反担保</div>
                                     </div>

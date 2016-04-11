@@ -1,8 +1,8 @@
 module.exports = {
     options: {
         assetsDirs: [ //不支持通配符
-            '<%= kt.dist %>', 
-            /*已经找到方法，在directive内的css引用图片时候使用绝对路径，grunt-usemin/lib/fileprocessor.js内有默认的 pattern*/ 
+            '<%= kt.dist %>',
+            /*已经找到方法，在directive内的css引用图片时候使用绝对路径，grunt-usemin/lib/fileprocessor.js内有默认的 pattern*/
             // '<%= kt.dist %>/common/directives/icheck' //目前没有找到好的方法，如果directive有新增，这里需要新增搜索路径
         ],
         patterns: {
@@ -23,7 +23,7 @@ module.exports = {
             ]
         }
     },
-    // html: ['<%= kt.dist %>/index.html'] 
+    // html: ['<%= kt.dist %>/index.html']
     html: [
         '<%= kt.dist %>/views/**/*.html',
         '<%= kt.dist %>/index.html',
@@ -39,6 +39,7 @@ module.exports = {
     js: [
         '<%= kt.dist %>/common/**/*.js',
         '<%= kt.dist %>/scripts/**/*.js',
+        '<%= kt.dist %>/views/**/*.js',
         '!<%= kt.dist %>/scripts/vendor*.js'
     ],
     // index: '<%= kt.dist %>/index.html',

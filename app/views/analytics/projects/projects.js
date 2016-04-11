@@ -40,14 +40,18 @@
 
         $scope.getInstitutionName = function() {
             var inst = _.find($scope.institutions, function(v) {
+                /*eslint-disable*/
                 return v.id == $scope.params.zhudai_id
+                /*eslint-enable*/
             }) || {}
             return inst.name
         }
 
         $scope.getAccountName = function() {
             var acc = _.find($scope.accounts, function(v) {
+                /*eslint-disable*/
                 return v.id == scope.params.account_id
+                /*eslint-enable*/
             }) || {}
             return acc.name
         }
@@ -90,10 +94,8 @@
         $.extend($scope.params, search)
 
         ktProjectsService.get($scope.params, function(data) {
-            // $scope.projects = ktProjectsHelper.adapter(data.projects || []);
             $scope.projects = data.projects;
             $scope.params.totalItems = data.total_items;
-            // $.extend($scope.params, params)
         });
     })
 })();

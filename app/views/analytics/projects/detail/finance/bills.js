@@ -71,7 +71,9 @@
 
         $scope.getSubProjectName = function() {
             var subProject = _.find($scope.subProjects, function(v) {
+                /*eslint-disable*/
                 return v.id == $scope.params.subproject_id
+                /*eslint-enable*/
             }) || {}
             return $scope.params.subproject_id ? subProject.name : '全部'
         }

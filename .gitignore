@@ -13,6 +13,7 @@ nginx.conf
 /tmp/
 .tmp/
 *.bak
+.DS_store
 /**/.DS_store
 ## Specific to RubyMotion:
 .dat*

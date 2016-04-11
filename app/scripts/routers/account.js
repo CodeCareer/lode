@@ -58,7 +58,11 @@
                 'account.register': {
                     url: '/register',
                     templateUrl: 'views/register.html',
-                    resolve: ktLazyResolve(['views/register.js']),
+                    resolve: ktLazyResolve([
+                        'views/register.js',
+                        'common/directives/kt-captchaimg-directive.js',
+                        'common/factories/kt-captcha.js'
+                    ]),
                     controller: 'ktRegisterCtrl',
                     data: {
                         pageTitle: '入会'

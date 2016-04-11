@@ -16,6 +16,15 @@ module.exports = {
                             keepSpecialComments: 0
                         };
                     }
+                }],
+                js: [{
+                    name: 'uglify',
+                    createConfig: function(context, block) {
+                        var generated = context.options.generated;
+                        generated.options = {
+                            mangle: true
+                        }
+                    }
                 }]
             }
         }

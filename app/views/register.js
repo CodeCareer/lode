@@ -37,13 +37,16 @@
                 return false;
             }
 
-            var timerHandlerMessage
-            var timerHandlerTel;
+            // var timerHandlerMessage
+            // var timerHandlerTel;
             $scope.waitCaptchaMessage = false;
             $scope.waitCaptchaTel = false;
+            $scope.captchaSettings = {}
+            var timerMessage = ktCaptchaHelper.timerMessage($scope)
+            var timerTel = ktCaptchaHelper.timerTel($scope)
 
             // 60秒计时短信
-            function timerMessage(second) {
+            /*function timerMessage(second) {
                 $scope.timerMessage = second
                 timerHandlerMessage = setInterval(function() {
                     $scope.timerMessage--;
@@ -66,19 +69,23 @@
                     }
                     $scope.$apply();
                 }, 1000)
-            }
+            }*/
 
             // 获取验证码，首先校验图形验证码，通过事件的异步方式
-            $scope.getCaptcha = function($event, channel, captchaId) {
+            $scope.getCaptcha = function($event, channel) {
                 $event.preventDefault()
                 $event.stopPropagation()
 
-                /*$scope.$broadcast('validateImgCaptcha', {
-                    value: $scope.registerUser.img_captcha,
-                    channel: channel
-                })*/
+                var CAPTCHA = $scope.captchaSettings.CAPTCHA
+                if (!CAPTCHA) {
+                    ktSweetAlert.swal({
+                        title: '验证码组件有误',
+                        text: '验证码组件有误！',
+                        type: 'error',
+                    });
+                    return
+                }
 
-                var CAPTCHA = $('#' + captchaId).data('captcha')
                 CAPTCHA.validate($scope.registerUser.img_captcha, function(isValid) {
                     if (isValid) {
                         if (channel === 'sms' && $scope.waitCaptchaMessage) return
@@ -120,7 +127,7 @@
                                 text: '图形验证码不正确！',
                                 type: 'error',
                             }, function() {
-                                var form = $('#' + captchaId).closest('form')
+                                var form = CAPTCHA._container.closest('form')
                                 form.trigger('accessible.' + form.attr('id'), {
                                     field: 'img_captcha'
                                 })
@@ -129,7 +136,7 @@
                         }, 100)
                     }
                 })
-                return false
+                // return false
             }
 
             // 图形校验结果

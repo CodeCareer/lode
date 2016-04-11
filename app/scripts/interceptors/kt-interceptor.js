@@ -9,7 +9,7 @@
     /*
      * @jwt interceptor & seo
      */
-    .factory('ktTokenInterceptor', ['$q', '$injector', '$window', function($q, $injector, $window) {
+    .factory('ktTokenInterceptor', function($q, $injector, $window) {
         return {
             request: function(req) {
                 req.headers = req.headers || {};
@@ -34,9 +34,9 @@
                 return res
             }*/
         }
-    }])
+    })
 
-    .factory('ktResInterceptor', ['$q', '$injector', function($q, $injector) {
+    .factory('ktResInterceptor', function($q, $injector) {
         return {
             request: function(req) {
                 var $location = $injector.get('$location')
@@ -126,5 +126,5 @@
                 return $q.reject(res.data)
             }
         }
-    }])
+    })
 })();

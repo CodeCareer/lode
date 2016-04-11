@@ -96,7 +96,7 @@
 
                 },
 
-                initPeriodDay: function($scope, params) { 
+                initPeriodDay: function($scope, params) {
                     var startDate = params.start_date
                     var endDate = params.end_date
 

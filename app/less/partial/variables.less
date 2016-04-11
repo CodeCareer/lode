@@ -1,0 +1,76 @@
+@version: '1.0.33';
+
+// Color list
+@color-navy-blue:#34495e; //primary-dark
+@color-navy-blue-hover:#62cb31;
+// @color-violet:#9b59b6; //primary2
+@color-violet:#b432ea; //primary2
+// @color-blue:#3498db; //info2
+@color-blue:#3ebfff; //info2
+// @color-green:#62cb31; //success2
+@color-green:#24eabd; //success2
+// @color-yellow:#ffb606; //warning2
+@color-yellow:#ff7019; //warning2
+// @color-orange:#e67e22;
+@color-red:#e74c3c; //danger1
+@color-red-deep:#c0392b; //danger2
+// @color-orange:#f58f57;
+@color-orange:#eb6100; //warning2
+@color-orange-light:#f1904c; //waring-light
+
+// Additional colors
+// @color-text: #6a6c6f;
+@color-text: #626472;
+@color-bright: #f7f9fa;
+@color-background: #edf0f5;
+// @border-color: #e4e5e7;
+// @color-gray: #d1d1d1;
+@color-gray: #f0f0f0;
+@color-gray-light: #f5f5f5;
+
+@gray-mid: #666;
+
+@color-dark: #455463;
+@text-light: #a7afb8;
+
+// Additional variables
+@menu-width: 200px;
+@main-transition: all 0.1s ease-out 0s;
+
+// 主要用于tag 标签颜色
+@color-blue1:#0066CC;
+@color-blue2:#008CFF;
+@color-blue3:#50BCFF;
+
+@color-green1:#006837;
+@color-green2:#00AA59;
+@color-green3:#7AC943;
+
+@color-orange1:#DB7214;
+@color-orange2:#F7903C;
+@color-orange3:#FBB03B;
+
+@color-red1:#AF2536;
+@color-red2:#C44747;
+@color-red3:#F2576A;
+
+// 主框架色系, 逐级变浅
+@color-1: #33364b; //主要用于导航栏背景 
+@color-2: #40435a; 
+@color-3: #6b708f; 
+@color-4: #7f87b5;
+@color-5: #cfd6e4;
+@color-6: #afb7d0;
+@color-7: #b3b7c6;
+@color-8: #e7eaf1;
+@color-9: #7d809a;
+@border-color: @color-5;
+
+/* Mixin */
+.bg-transparent(@color, @alpha: 1) {
+  background: rgba( red(@color), green(@color), blue(@color), @alpha);
+}
+
+.color-transparent(@color, @alpha: 1) {
+  color: rgba( red(@color), green(@color), blue(@color), @alpha);
+}

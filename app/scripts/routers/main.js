@@ -10,11 +10,13 @@
                 })
             }
             var redirectTo = function(url) {
-                return function($injector, $location) {
+                var fn = function($injector, $location) {
                     var ktUrlGet = $injector.get('ktUrlGet')
                     var search = $location.search()
                     return ktUrlGet(url, search)
                 }
+                fn.$inject = ['$injector', '$location'] //手动写注入，otherwise不支持数组参数
+                return fn
             }
 
             this.run = function() {

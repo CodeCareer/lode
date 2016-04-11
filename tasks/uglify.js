@@ -1,11 +1,11 @@
 module.exports = {
     options: {
-        mangle: false
+        mangle: true
     },
     forLazyLoad: {
         files: [{
             expand: true,
-            cwd: '<%= kt.app %>',
+            cwd: '<%= kt.dist %>',
             src: [
                 'scripts/controllers/**/*.js',
                 'views/**/*.js',

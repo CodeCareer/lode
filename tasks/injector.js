@@ -31,7 +31,7 @@ var commonScripts = [
     // 'bower_components/echarts/build/dist/echarts.js',
     'app/common/libs/jquery-date-range-picker.js',
     'app/common/libs/requestAnimationFrame.js',
-    // 'app/common/libs/echarts.js',
+    'app/common/libs/ua.js',
 ];
 
 var appScripts = [

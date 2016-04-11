@@ -1,0 +1,151 @@
+.table {
+    margin-bottom: 0;
+}
+
+.table > thead > tr,
+.table > tbody > tr,
+.table > tfoot > tr,
+{
+    & > th {
+        font-weight: bolder;
+        font-size: 13px;
+    }
+    & > td {
+        font-size: 12px;
+        padding: 12px 11px;
+    }
+    & > th,
+    & > td {
+        white-space: nowrap;
+        border-top: 0;
+        border-right: 1px solid @color-5;
+        &:last-child {
+            border-right: 0;
+        }
+    }
+}
+
+
+/*.table-v-striped > tbody > tr {
+    & > th, & > td {
+        border-top: 0;
+        border-right: 1px solid @color-5;
+        &:last-child {
+            border-right: 0;
+        }
+    }
+}*/
+
+.table > thead > tr > th {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid @color-3;
+    background: @color-3;
+    color: white;
+    padding: 11px;
+    text-align: center;
+    &:first-child {
+        text-align: left;
+        &.text-center {
+            text-align: center;
+        }
+    }
+    &.text-left {
+        text-align: left;
+    }
+    &.text-right {
+        text-align: right;
+    }
+}
+
+.table > tbody > tr {
+    &> td {
+        font-size: 12px;
+        text-align: center;
+        &:first-child {
+            text-align: left;
+            &.text-center {
+                text-align: center;
+            }
+        }
+        &.text-left {
+            text-align: left;
+        }
+        &.text-right {
+            text-align: right;
+        }
+    }
+    & > th {
+        padding: 12px 11px;
+        text-align: center;
+        &:first-child {
+            text-align: left;
+            &.text-center {
+                text-align: center;
+            }
+        }
+        &.text-left {
+            text-align: left;
+        }
+        &.text-right {
+            text-align: right;
+        }
+    }
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: @color-gray-light;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: white;
+}
+
+.table > tbody > tr {
+    background-color: white;
+}
+
+.table-hover > tbody > tr {
+    &:hover {
+        background-color: @color-gray;
+    }
+}
+
+table {
+    th.sort-column {
+        cursor: pointer;
+        .sort-icon {
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            font-size: 12px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            &:before {
+                content: "\e150";
+            }
+        }
+        &.sort-desc {
+            .sort-icon:before {
+                content: "\e156";
+            }
+        }
+        &.sort-asc {
+            .sort-icon:before {
+                content: "\e155";
+            }
+        }
+    }
+}
+
+.dashboard-table {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    .td {
+        border-right: 1px solid @color-8;
+    }
+}

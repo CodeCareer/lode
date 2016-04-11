@@ -33,9 +33,10 @@
 
     // 机构
     .factory('ktInstitutionsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/institutions', {
+        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/institutions/:instID', {
             projectType: '@projectType',
             projectID: '@projectID',
+            instID: '@instID'
         }, {
             'get': {
                 method: 'GET',
@@ -98,7 +99,7 @@
             }
         })
     })*/
-    
+
     // 统计总览
     /*.factory('ktReportOverviewService', function($resource, ktApiVersion) {
         return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:type', {
@@ -165,7 +166,7 @@
             })
         }
     })
-    
+
     // 借款人批次上传
     .factory('ktStatementsUpload', function($urlMatcherFactory, Upload, ktApiVersion) {
         return function upload(data) {

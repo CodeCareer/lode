@@ -124,7 +124,6 @@
 
             // 更新项目
             $scope.$on('activeProjectUpdate', function(e, data) {
-                
                 updateProject(data)
             })
 
