@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktOverdueCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktDateHelper) {
+        .controller('ktOverdueCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -42,7 +42,8 @@
                 m4m5: true,
                 m5m6: true,
                 radioDataShowType: 'table',
-                chartDimension: '逾期率'
+                chartDimension: '逾期率',
+                chartOptions: {}
             }
 
 
@@ -72,9 +73,9 @@
                 startDate = datePeriod[0]
                 endDate = datePeriod[1]
 
-                ktProjectsReportService.get($.extend({
+                ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'overdue_stats',
+                    type: 'overdue',
                     start_date: startDate,
                     end_date: endDate
                 }, params), function(data) {

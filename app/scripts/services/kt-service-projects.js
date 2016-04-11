@@ -87,6 +87,37 @@
         })
     })
 
+    // 全部项目统计
+    .factory('ktStaticsReportService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/statistics/:type/', {
+            projectID: '@projectID',
+            type: '@type',
+            subProjectID: '@subProjectID',
+            instID: '@instID'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })
+
+    // 单个项目统计
+    .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {
+        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:type/', {
+            projectID: '@projectID',
+            type: '@type',
+            subProjectID: '@subProjectID',
+            instID: '@instID'
+        }, {
+            'get': {
+                method: 'GET',
+                cache: false
+            }
+        })
+    })
+
+
     /*// 统计-按机构
     .factory('ktInstitutionsReportService', function($resource, ktApiVersion) {
         return $resource('/ajax/' + ktApiVersion + '/institutions/:instID/:type', {

@@ -19,10 +19,10 @@
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <input placeholder="金额" type="text" ng-maxlength="30" ng-model="project.name" id="" class="form-control" name="name">
+                                            <input placeholder="名称" type="text" ng-maxlength="30" ng-model="project.name" id="" class="form-control" name="name">
                                         </div>
                                         <div class="col-md-4">
-                                            <select name="channel_id" ng-required="true" ng-model="project.channel_id" ng-options="channels.id as channels.name for channels in channelss" class="form-control">
+                                            <select name="channel_id" ng-required="false" ng-model="project.channel_id" ng-options="channels.id as channels.name for channels in channelss" class="form-control">
                                                 <option value="" selected>请选择通道</option>
                                             </select>
                                         </div>
@@ -40,7 +40,7 @@
                                 <label class="text-primary-dark col-md-4 control-label"><span class="ml5 f14 text-danger">*</span>合作机构</label>
                                 <div class="col-md-8">
                                     <select name="zhudai_id" ng-model="project.zhudai_id" ng-options="institution.id as institution.name for institution in institutions" class="form-control"></select>
-                                   
+
                                     <div class="mt5 text-danger" ng-messages="projectForm.zhudai_id.$dirty && projectForm.zhudai_id.$error">
                                         <div ng-message="required"><i class="fa fa-frown-o fb mr5"></i>请选择合作机构</div>
                                     </div>
