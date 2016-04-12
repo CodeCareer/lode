@@ -8,7 +8,7 @@ var port = 8000
 var livereloadPort = 35727
 
 //var server = 'http://dev-lode.ktjr.com'
-var server = 'http://10.132.1.227:3000'
+var server = 'http://localhost:3000'
     // var server = 'http://10.132.1.83:3000'
     // var server = 'http://op-fame.ktjr.com'
 

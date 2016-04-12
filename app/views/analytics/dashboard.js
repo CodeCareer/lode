@@ -56,7 +56,7 @@
 
             // var chartOptions = {
             //     tooltip: {
-            //         valueType: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
+            //         yAxisFormat: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
             //     }
             // }
 

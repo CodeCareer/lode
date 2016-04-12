@@ -63,7 +63,7 @@
 
             var chartOptions = {
                 tooltip: {
-                    valueType: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
+                    yAxisFormat: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
                 }
             }
 
@@ -86,7 +86,7 @@
 
                 chartOptions = suffix === '_percent' ? {
                     tooltip: {
-                        valueType: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
+                        yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
                     yAxis: [{
                         interval: 0.2,
@@ -95,7 +95,7 @@
                     }]
                 } : {
                     tooltip: {
-                        valueType: 'rmb'
+                        yAxisFormat: 'rmb'
                     }
                 }
 
