@@ -50,6 +50,11 @@
                 list: []
             }
 
+            $scope.educationsChart = {
+                chartOptions: {},
+                list: []
+            }
+
             $scope.locationsChart = {
                 chartOptions: {},
                 list: []
@@ -84,6 +89,7 @@
                     // 'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
                     'locationsChart': ['prncp_balns_by_loc', 'incre_loan_amnt_by_loc'],
                     'gendersChart': ['prncp_balns_by_gender', 'incre_loan_amnt_by_gender'],
+                    'educationsChart': ['prncp_balns_by_education', 'incre_loan_amnt_by_education'],
                     'incomesChart': ['prncp_balns_by_income', 'incre_loan_amnt_by_income'],
                     'agesChart': ['prncp_balns_by_age', 'prncp_balns_by_age_percent'],
                 }
@@ -160,6 +166,7 @@
                     // udpateData('locationsChart')
                     // udpateData('gendersChart')
                     udpateData('incomesChart')
+                    udpateData('educationChart')
                     udpateData('agesChart')
                 })
             }

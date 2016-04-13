@@ -35,7 +35,7 @@ end
 set :shared_paths, ['log', 'node_modules', 'bower_components']
 
 # Optional settings:
-  
+
 #   set :user, 'deploy'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
@@ -103,7 +103,7 @@ namespace :common_project do
   task :clone => :environment do
     queue! %[git clone -b #{common_branch} #{common_repository} --depth=1]
     queue %{echo "通用模块clone完成"}
-    queue! %[rm app/common && mv kt-frontend-common/app ./app/common -f]
+    queue! %[mv kt-frontend-common/app ./app/common -f]
     queue %{echo "通用模块移动组装完成---mv kt-frontend-common/app ./app/common"}
   end
 end
@@ -121,7 +121,7 @@ end
 namespace :bower do
   task :install => :environment do
     queue! %[npm install]
-    queue! %[bower install] 
+    queue! %[bower install]
   end
 end
 
