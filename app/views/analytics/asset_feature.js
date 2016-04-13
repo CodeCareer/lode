@@ -40,6 +40,16 @@
                 list: []
             }
 
+            $scope.agesChart = {
+                chartOptions: {},
+                list: []
+            }
+
+            $scope.incomesChart = {
+                chartOptions: {},
+                list: []
+            }
+
             $scope.locationsChart = {
                 chartOptions: {},
                 list: []
@@ -74,6 +84,7 @@
                     // 'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
                     'locationsChart': ['prncp_balns_by_loc', 'incre_loan_amnt_by_loc'],
                     'gendersChart': ['prncp_balns_by_gender', 'incre_loan_amnt_by_gender'],
+                    'incomesChart': ['prncp_balns_by_income', 'incre_loan_amnt_by_income'],
                     'agesChart': ['prncp_balns_by_age', 'prncp_balns_by_age_percent'],
                 }
 
@@ -146,8 +157,9 @@
 
                     udpateData('timelimitsChart')
                     udpateData('amountsChart')
-                    udpateData('locationsChart')
-                    udpateData('gendersChart')
+                    // udpateData('locationsChart')
+                    // udpateData('gendersChart')
+                    udpateData('incomesChart')
                     udpateData('agesChart')
                 })
             }

@@ -47,6 +47,28 @@
                 }
             }
 
+            $scope.ageChart = {
+                radioDataShowType: 'table',
+                chartDimension: '时点余额',
+                chartOptions: {},
+                list: [],
+                menuData: { // 绝对值百分比
+                    index: 0,
+                    value: 'absolute'
+                }
+            }
+
+            $scope.incomeChart = {
+                radioDataShowType: 'table',
+                chartDimension: '时点余额',
+                chartOptions: {},
+                list: [],
+                menuData: { // 绝对值百分比
+                    index: 0,
+                    value: 'absolute'
+                }
+            }
+
             $scope.typeChart = {
                 radioDataShowType: 'table',
                 chartDimension: '时点余额',
@@ -94,6 +116,18 @@
                 }
             })
 
+            $scope.$watch('ageChart.menuData.index', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('ageChart')
+                }
+            })
+
+            $scope.$watch('incomeChart.menuData.index', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('incomeChart')
+                }
+            })
+
             $scope.$watch('typeChart.menuData.index', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
                     udpateData('typeChart')
@@ -130,6 +164,8 @@
                 var typesMap = {
                     'timeLimitChart': ['prncp_balns_by_term', 'loan_amnt_incrmnt_by_term'],
                     'amountChart': ['prncp_balns_by_amnt', 'loan_amnt_incrmnt_by_amnt'],
+                    'ageChart': ['prncp_balns_by_age', 'loan_amnt_incrmnt_by_age'],
+                    'incomeChart': ['prncp_balns_by_income', 'loan_amnt_incrmnt_by_income'],
                     'typeChart': ['prncp_balns_by_type', 'loan_amnt_incrmnt_by_type'],
                     'locationChart': ['prncp_balns_by_loc', 'loan_amnt_incrmnt_by_loc'],
                 }
@@ -200,8 +236,10 @@
                     $scope.data = data
                     udpateData('timeLimitChart')
                     udpateData('amountChart')
-                    udpateData('typeChart')
-                    udpateData('locationChart')
+                    udpateData('ageChart')
+                    udpateData('incomeChart')
+                    // udpateData('typeChart')
+                    // udpateData('locationChart')
                 })
             }
 

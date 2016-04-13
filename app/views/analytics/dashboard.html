@@ -108,7 +108,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-right" ng-repeat="ofd in self_owned_capital_stat_details" ng-if="self_owned_capital_stat_details.length">
+                                <tr class="text-right" ng-repeat="ofd in self_owned_capital_stat_by_subproject" ng-if="self_owned_capital_stat_by_subproject.length">
                                     <th class="text-left" ng-bind="ofd.name"></th>
                                     <td ng-bind="ofd.data[0] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[1] | ktNumberLocate"></td>
@@ -121,7 +121,7 @@
                                     <td ng-bind="ofd.data[8] | ktNumberLocate"></td>
                                     <td ng-bind="ofd.data[9] | ktNumberLocate"></td>
                                 </tr>
-                                <tr ng-if="!self_owned_capital_stat_details.length && !isLoading()">
+                                <tr ng-if="!self_owned_capital_stat_by_subproject.length && !isLoading()">
                                     <td colspan="11" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
