@@ -165,8 +165,8 @@
                     udpateData('amountsChart')
                     // udpateData('locationsChart')
                     // udpateData('gendersChart')
-                    udpateData('incomesChart')
-                    udpateData('educationChart')
+                    // udpateData('incomesChart')
+                    udpateData('educationsChart')
                     udpateData('agesChart')
                 })
             }

@@ -133,13 +133,31 @@
                 }
             })
 
-            $scope.$watch('incomeChart.menuData.index', function(newValue, oldvalue) {
+            $scope.$watch('ageChart.chartDimension', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
-                    udpateData('incomeChart')
+                    udpateData('ageChart')
                 }
             })
 
-            $scope.$watch('typeChart.menuData.index', function(newValue, oldvalue) {
+            /*$scope.$watch('incomeChart.menuData.index', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('incomeChart')
+                }
+            })*/
+
+            $scope.$watch('educationChart.menuData.index', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('educationChart')
+                }
+            })
+
+            $scope.$watch('educationChart.chartDimension', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('educationChart')
+                }
+            })
+
+            /*$scope.$watch('typeChart.menuData.index', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
                     udpateData('typeChart')
                 }
@@ -167,7 +185,7 @@
                 if (newValue !== oldvalue) {
                     udpateData('locationChart')
                 }
-            })
+            })*/
 
             var chartOptions = {}
 
