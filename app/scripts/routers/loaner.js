@@ -49,12 +49,12 @@
                     template: '',
                     resolve: {
                         // 需要等待
-                        waitUser: function($rootScope, $state, $window, user) {
+                        waitUser: function($rootScope, $state, user) {
                             'ngInject';
                             if (user) {
                                 $state.go($rootScope.defaultRoute, $state.params)
                             } else {
-                                $window.history.back()
+                                $state.go('account.login')
                             }
                         }
                     }
