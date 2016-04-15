@@ -91,47 +91,12 @@
                 <div class="chart-table" ng-show="migrateRateChart.radioDataShowType == 'chart'">
                     <div class="chart-table-heading clfix">
                         <div class="checkbox-group clfix">
-                            <div class="checkbox">
-                                <input id="cm1" kt-echart-legend chart-id="migrateRateChart" name="C-M1" type="checkbox" ng-model="migrateRateChart.cm1">
-                                <label for="cm1">
-                                    C-M1
+                            <div class="checkbox" ng-repeat="l in migrateRateChart.legend">
+                                <input id="{{l.name}}" kt-echart-legend chart-id="migrateRateChart" name="{{l.name}}" type="checkbox" ng-model="l.value">
+                                <label for="{{l.name}}" ng-bind="l.name">
+
                                 </label>
-                                <div class="color-icon" style="background-color:{{chartColors[0]}};"></div>
-                            </div>
-                            <div class="checkbox">
-                                <input id="m1m2" kt-echart-legend chart-id="migrateRateChart" name="M1-M2" type="checkbox" ng-model="migrateRateChart.m1m2">
-                                <label for="m1m2">
-                                    M1-M2
-                                </label>
-                                <div class="color-icon" style="background-color:{{chartColors[1]}};"></div>
-                            </div>
-                            <div class="checkbox">
-                                <input id="m2m3" kt-echart-legend chart-id="migrateRateChart" name="M2-M3" type="checkbox" ng-model="migrateRateChart.m2m3">
-                                <label for="m2m3">
-                                    M2-M3
-                                </label>
-                                <div class="color-icon" style="background-color:{{chartColors[2]}};"></div>
-                            </div>
-                            <div class="checkbox">
-                                <input id="m3m4" kt-echart-legend chart-id="migrateRateChart" name="M3-M4" type="checkbox" ng-model="migrateRateChart.m3m4">
-                                <label for="m3m4">
-                                    M3-M4
-                                </label>
-                                <div class="color-icon" style="background-color:{{chartColors[3]}};"></div>
-                            </div>
-                            <div class="checkbox">
-                                <input id="m4m5" kt-echart-legend chart-id="migrateRateChart" name="M4-M5" type="checkbox" ng-model="migrateRateChart.m4m5">
-                                <label for="m4m5">
-                                    M4-M5
-                                </label>
-                                <div class="color-icon" style="background-color:{{chartColors[4]}};"></div>
-                            </div>
-                            <div class="checkbox">
-                                <input id="m5m6" kt-echart-legend chart-id="migrateRateChart" name="M5-M6" type="checkbox" ng-model="migrateRateChart.m5m6">
-                                <label for="m5m6">
-                                    M5-M6
-                                </label>
-                                <div class="color-icon" style="background-color:{{chartColors[5]}};"></div>
+                                <div class="color-icon" style="background-color:{{chartColors[$index]}};"></div>
                             </div>
                         </div>
                     </div>

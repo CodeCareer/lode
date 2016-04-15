@@ -35,12 +35,7 @@
             }
 
             $scope.migrateRateChart = {
-                cm1: true,
-                m1m2: true,
-                m2m3: true,
-                m3m4: true,
-                m4m5: true,
-                m5m6: true,
+                legend: [],
                 radioDataShowType: 'table',
                 chartDimension: '逾期率',
                 chartOptions: {}
@@ -96,6 +91,13 @@
                             return v
                         })
                     })
+
+                    $scope.migrateRateChart.legend = _.chain(data.migration_trends).map(function(v) {
+                        return {
+                            name: v.name,
+                            value: true
+                        }
+                    }).value()
 
                     $scope.migrateRateChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
