@@ -32,41 +32,49 @@
 
             $scope.timelimitsChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.amountsChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.agesChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.incomesChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.educationsChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.locationsChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.gendersChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
             $scope.agesChart = {
                 chartOptions: {},
+                menuData: { index: 0 },
                 list: []
             }
 
@@ -163,9 +171,9 @@
 
                     udpateData('timelimitsChart')
                     udpateData('amountsChart')
-                    // udpateData('locationsChart')
-                    // udpateData('gendersChart')
-                    // udpateData('incomesChart')
+                        // udpateData('locationsChart')
+                        // udpateData('gendersChart')
+                        // udpateData('incomesChart')
                     udpateData('educationsChart')
                     udpateData('agesChart')
                 })

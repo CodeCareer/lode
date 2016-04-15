@@ -20,9 +20,9 @@
                             <i class="icon-lode">&#xe806;</i>
                         </label>
                     </div>
-                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="glyphicon glyphicon-download-alt"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="panel-body clfix pr ov-h">
@@ -62,7 +62,7 @@
                             <tbody>
                                 <tr class="text-right" ng-repeat="trend in data.overdue_trends">
                                     <th class="text-left" ng-bind="trend.name"></th>
-                                    <td ng-repeat="value in trend.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    <td ng-repeat="value in trend.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -82,9 +82,9 @@
                             <i class="icon-lode">&#xe806;</i>
                         </label>
                     </div>
-                    <a class="download-data f18 ml5 pr10 pl10 va-2">
+                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
                         <i class="glyphicon glyphicon-download-alt"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="panel-body clfix pr ov-h">
@@ -115,21 +115,21 @@
                             <div class="checkbox">
                                 <input id="m3m4" kt-echart-legend chart-id="migrateRateChart" name="M3-M4" type="checkbox" ng-model="migrateRateChart.m3m4">
                                 <label for="m3m4">
-                                    M3-M4 
+                                    M3-M4
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[3]}};"></div>
                             </div>
                             <div class="checkbox">
                                 <input id="m4m5" kt-echart-legend chart-id="migrateRateChart" name="M4-M5" type="checkbox" ng-model="migrateRateChart.m4m5">
                                 <label for="m4m5">
-                                    M4-M5 
+                                    M4-M5
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[4]}};"></div>
                             </div>
                             <div class="checkbox">
                                 <input id="m5m6" kt-echart-legend chart-id="migrateRateChart" name="M5-M6" type="checkbox" ng-model="migrateRateChart.m5m6">
                                 <label for="m5m6">
-                                    M5-M6 
+                                    M5-M6
                                 </label>
                                 <div class="color-icon" style="background-color:{{chartColors[5]}};"></div>
                             </div>
@@ -152,7 +152,7 @@
                             <tbody>
                                 <tr class="text-right" ng-repeat="item in data.migration_trends">
                                     <th class="text-left" ng-bind="item.name"></th>
-                                    <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td> 
+                                    <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
                                 </tr>
                             </tbody>
                         </table>

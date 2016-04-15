@@ -40,17 +40,17 @@
                 </li> -->
             </ul>
         </li>
-        <li ng-class="{active: $state.includes('analytics.project.loanPlans.**')}">
+        <!-- <li ng-class="{active: $state.includes('analytics.project.loanPlans.**')}">
             <a ng-click="stateGo('analytics.project.loanPlans.list.table', 'updateMenu', 'loanPlansIsCollapsed')">
                 <i class="icon-lode icon-loan mr10 va-1"></i>放款管理
             </a>
-        </li>
+        </li> -->
         <!-- <li ng-class="{active: $state.includes('analytics.project.repayments.**')}">
             <a ng-click="stateGo('analytics.project.repayments.list.table', 'updateMenu', 'repaymentsIsCollapsed')">
                 <i class="icon-lode icon-list mr10 va-1"></i>还款管理
             </a>
         </li> -->
-        <li ng-class="{active: $state.includes('analytics.project.finance.**') || $state.includes('analytics.project.finance.paymentClear.**') || $state.includes('analytics.project.finance.otherIncome.**')}">
+        <!--<li ng-class="{active: $state.includes('analytics.project.finance.**') || $state.includes('analytics.project.finance.paymentClear.**') || $state.includes('analytics.project.finance.otherIncome.**')}">
             <a href="javascript:;" ng-click="updateMenu('financeIsCollapsed')">
                 <i class="icon-lode icon-lock mr10 va-1"></i>财务管理
             </a>
@@ -58,14 +58,14 @@
                 <li ng-class="{active: $state.includes('analytics.project.finance.billList.**') || $state.includes('analytics.project.finance.billDetail.**')}">
                     <a ui-sref="analytics.project.finance.billList.table">还款对账</a>
                 </li>
-                <!-- <li ui-sref-active="active">
+                <!~~ <li ui-sref-active="active">
                     <a ui-sref="analytics.project.finance.paymentClear">回款清算</a>
-                </li> -->
-                <!-- <li ui-sref-active="active">
+                </li> ~~>
+                <!~~ <li ui-sref-active="active">
                     <a ui-sref="analytics.project.finance.otherIncome.list.table">其他收益</a>
-                </li> -->
+                </li> ~~>
             </ul>
-        </li>
+        </li>-->
         <!-- <li ng-class="{active: $state.includes('analytics.project.cashFlowMonitor')}">
             <a ng-click="stateGo('analytics.project.cashFlowMonitor', 'updateMenu', 'cashFlowMonitorIsCollapsed')">
                 <i class="icon-lode icon-look mr10 va-1"></i>现金流监控
@@ -161,7 +161,7 @@
                 <i class="icon-lode icon-lock mr10 va-1"></i>财务管理
             </a>
         </li>
-        
+
         <!-- <li ng-class="{active: $state.includes('analytics.project.loanPlans.**')}">
             <a ng-click="stateGo('analytics.project.loanPlans.list.table', 'updateMenu', 'loanPlansIsCollapsed')">
                 <i class="icon-lode icon-loan mr10 va-1"></i>放款管理
@@ -172,12 +172,12 @@
                 <i class="icon-lode icon-list mr10 va-1"></i>还款管理
             </a>
         </li> -->
-        
+
     </ul>
     <!-- 助贷机构-单个项目时候的主菜单 -->
     <!-- 助贷机构-全部项目时候的主菜单 -->
     <ul ng-if="user.institution.inst_type === 'zhudai'" ng-show="$state.includes('analytics.subProjects.**') || $state.includes('analytics.projects.**')" class="nav main-name" id="side-menu">
-        
+
         <li ng-class="{active: $state.includes('analytics.subProjects.list.**')}">
             <a ng-click="stateGo('analytics.subProjects.list.table', 'updateSummaryMenu', 'subProjectsIsCollapsed')">
                 <i class="icon-lode icon-title mr10 va-1"></i>子项目列表
@@ -188,7 +188,7 @@
                 <i class="icon-lode icon-project mr10 va-1"></i>项目列表
             </a>
         </li>
-       
+
     </ul>
     <!-- 助贷机构-全部项目时候的主菜单 -->
     <div ng-if="user.institution.inst_type === 'zijin'" class="buttons text-left mt20 ml50 pl2" ng-show="$state.includes('analytics.project.**')">

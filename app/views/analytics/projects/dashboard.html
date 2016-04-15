@@ -87,7 +87,7 @@
                                     <td ng-bind="own_funds_total[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!own_funds_total.length && !isLoading()">
-                                    <td colspan="10" class="text-info text-center">
+                                    <td colspan="{{ownFunds.fieldNames}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -123,7 +123,7 @@
                                     <td ng-bind="ofd.data[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!own_funds_detail.length && !isLoading()">
-                                    <td colspan="11" class="text-info text-center">
+                                    <td colspan="{{ownFunds.fieldNames.length + 1}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -171,13 +171,14 @@
                                     <td ng-bind="guarantee_loan_total[2] | ktNumberLocate"></td>
                                     <td ng-bind="(guarantee_loan_total[3] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="(guarantee_loan_total[4] * 100 | number:2) + '%'"></td>
-                                    <td ng-bind="guarantee_loan_total[5] | ktNumberLocate"></td>
-                                    <td ng-bind="(guarantee_loan_total[6] * 100 | number:2) + '%'"></td>
-                                    <td ng-bind="guarantee_loan_total[7] | ktNumberLocate"></td>
+                                    <td ng-bind="(guarantee_loan_total[5] * 100 | number:2) + '%'"></td>
+                                    <td ng-bind="guarantee_loan_total[6] | ktNumberLocate"></td>
+                                    <td ng-bind="(guarantee_loan_total[7] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="guarantee_loan_total[8] | ktNumberLocate"></td>
+                                    <td ng-bind="guarantee_loan_total[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!guarantee_loan_total.length && !isLoading()">
-                                    <td colspan="9" class="text-info text-center">
+                                    <td colspan="{{guaranteeLoan.fieldNames.length}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -206,13 +207,14 @@
                                     <td ng-bind="ofd.data[2] | ktNumberLocate"></td>
                                     <td ng-bind="(ofd.data[3] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="(ofd.data[4] * 100 | number:2) + '%'"></td>
-                                    <td ng-bind="ofd.data[5] | ktNumberLocate"></td>
-                                    <td ng-bind="(ofd.data[6] * 100 | number:2) + '%'"></td>
-                                    <td ng-bind="ofd.data[7] | ktNumberLocate"></td>
+                                    <td ng-bind="(ofd.data[5] * 100 | number:2) + '%'"></td>
+                                    <td ng-bind="ofd.data[6] | ktNumberLocate"></td>
+                                    <td ng-bind="(ofd.data[7] * 100 | number:2) + '%'"></td>
                                     <td ng-bind="ofd.data[8] | ktNumberLocate"></td>
+                                    <td ng-bind="ofd.data[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!guarantee_loan_detail.length && !isLoading()">
-                                    <td colspan="10" class="text-info text-center">
+                                    <td colspan="{{guaranteeLoan.fieldNames + 1}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>

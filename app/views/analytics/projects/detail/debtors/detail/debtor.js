@@ -10,7 +10,7 @@
         })
 
         $scope.params = {
-            maxSize: 5,
+            maxSize: 10,
             page: 1,
             status: 'all',
             loanType: 'loan_applications',
@@ -33,7 +33,7 @@
         }
 
         $scope.statusList = ktDataHelper.getBorrowersApprovalStatusMap()
-        // $scope.filterStatus = ktDataHelper.filterStatus(['all', 'rejected', 'approved'])
+            // $scope.filterStatus = ktDataHelper.filterStatus(['all', 'rejected', 'approved'])
 
         $scope.getStatusName = function(status) {
             var st = _.find($scope.statusList, function(v) {
@@ -172,9 +172,38 @@
         var search = $location.search()
         $.extend($scope.params, search)
 
+        var educationList = [{
+            name: '博士',
+            index: 0,
+            value: 'postgraduate'
+        }, {
+            name: '硕士',
+            index: 1,
+            value: 'postgraduate'
+        }, {
+            name: '本科',
+            index: 2,
+            value: 'bachelor'
+        }, {
+            name: '大专',
+            index: 3,
+            value: 'junior_college'
+        }, {
+            name: '高中及以下',
+            index: 4,
+            value: 'high_school'
+        }]
+
+        $scope.getEducationName = function(index) {
+            var ed = _.find(educationList, function(v) {
+                return v.index === index
+            }) || {}
+            return ed.name || '-'
+        }
+
         ktDebtorsService.get($scope.params, function(data) {
             $.extend($scope.debtor, data.loan_batch);
-            $scope.params.totalItems = data.total_items;
+            $scope.params.totalItems = data.loan_batch.total_items;
         });
     })
 })();

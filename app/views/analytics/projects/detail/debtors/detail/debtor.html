@@ -1,36 +1,97 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr class="text-left">
-            <th>借款人姓名</th>
-            <th>借款人身份证号</th>
-            <th>年龄</th>
+            <th>购车人姓名</th>
+            <th>业务性质</th>
+            <th>经销商</th>
             <th>性别</th>
-            <!-- <th>行业</th> -->
-            <th>收入</th>
-            <!-- <th>户口所在地</th> -->
-            <!-- <th>资料附件</th> -->
-            <th>审批状态</th>
-            <th>备注</th>
+            <th>年龄</th>
+            <th>学历</th>
+            <th>身份证号</th>
+            <th>身份证归属地</th>
+            <th>户籍</th>
+            <th>手机号</th>
+            <th>手机号归属地</th>
+            <th>婚否</th>
+            <th>参保</th>
+            <th>所属行业</th>
+            <th>所有权人</th>
+            <th>与购车人关系</th>
+            <th>公司名称</th>
+            <th>单位类别</th>
+            <th>职务</th>
+            <th>单位地址</th>
+            <th>经营期限</th>
+            <th>月收入</th>
+            <th>是否分期</th>
+            <th>保费</th>
+            <th>保费费率</th>
+            <th>综合累计收回</th>
+            <th>综合累计收益</th>
+            <th>车辆类型</th>
+            <th>产品类别</th>
+            <th>上牌地</th>
+            <th>行驶证车主</th>
+            <th>车价</th>
+            <th>二手车评估价值</th>
+            <th>已使用年限</th>
+            <th>销售价格</th>
+            <th>融资期限</th>
+            <th>首期比例</th>
+            <th>首期租金</th>
+            <th>融资比例</th>
+            <th>融资金额</th>
+            <th>月供金额</th>
+            <th>累计收益</th>
         </tr>
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="borrower in debtor.borrowers">
             <th class="text-left" ng-bind="::borrower.name"></th>
-            <td ng-bind="::borrower.id_no"></td>
-            <td ng-bind="::borrower.age"></td>
-            <td ng-bind="::borrower.sex"></td>
-            <!-- <td ng-bind="::borrower.job_industry"></td> -->
-            <td ng-bind="::borrower.monthly_income"></td>
-            <!-- <td ng-bind="::borrower.account_province"></td> -->
-            <!-- <td>
-                <a href="{{::borrower.attachments_url}}" target="_blank" class="tu">查看</a>
-            </td> -->
-            <td ng-bind-html="getStatusNameNice(borrower.status)"></td>
-            <td class="text-center" ng-bind="::borrower.description">
-            </td>
+            <td ng-bind="::borrower.ywxz | ktNull"></td>
+            <td ng-bind="::borrower.jxs | ktNull"></td>
+            <td ng-bind="::(borrower.sex == 1 ? '女' : '男') | ktNull"></td>
+            <td ng-bind="::borrower.age | ktNull"></td>
+            <td ng-bind="::getEducationName(borrower.education) | ktNull"></td>
+            <td ng-bind="::borrower.id_no | ktNull"></td>
+            <td ng-bind="::borrower.census_addr | ktNull"></td>
+            <td ng-bind="::borrower.hz | ktNull"></td>
+            <td ng-bind="::borrower.phone | ktNull"></td>
+            <td ng-bind="::borrower.sjgsd | ktNull"></td>
+            <td ng-bind="::borrower.hf | ktNull"></td>
+            <td ng-bind="::borrower.cb | ktNull"></td>
+            <td ng-bind="::borrower.sshy | ktNull"></td>
+            <td ng-bind="::borrower.syqr | ktNull"></td>
+            <td ng-bind="::borrower.ygcrgx | ktNull"></td>
+            <td ng-bind="::borrower.gsmc | ktNull"></td>
+            <td ng-bind="::borrower.dwlb | ktNull"></td>
+            <td ng-bind="::borrower.emp_title | ktNull"></td>
+            <td ng-bind="::borrower.dwdz | ktNull"></td>
+            <td ng-bind="::borrower.jyqx | ktNull"></td>
+            <td ng-bind="::borrower.monthly_income | ktNumberLocate"></td>
+            <td ng-bind="::borrower.sffq | ktNull"></td>
+            <td ng-bind="::borrower.baofei | ktNumberLocate"></td>
+            <td ng-bind="::borrower.bffl | ktNumber:2:'percent2'"></td>
+            <td ng-bind="::borrower.zhljsh | ktNumberLocate"></td>
+            <td ng-bind="::borrower.zhljsy | ktNumberLocate"></td>
+            <td ng-bind="::borrower.cllx | ktNull"></td>
+            <td ng-bind="::borrower.cplb | ktNull"></td>
+            <td ng-bind="::borrower.spd | ktNull"></td>
+            <td ng-bind="::borrower.xszcz"></td>
+            <td ng-bind="::borrower.cj | ktNumberLocate"></td>
+            <td ng-bind="::borrower.escpgjz | ktNumberLocate"></td>
+            <td ng-bind="::borrower.ysynx | ktNull"></td>
+            <td ng-bind="::borrower.xsjg | ktNumberLocate"></td>
+            <td ng-bind="::borrower.rzqx | ktNull"></td>
+            <td ng-bind="::borrower.sqbl | ktNumber:2:'percent2'"></td>
+            <td ng-bind="::borrower.sqzj | ktNumberLocate"></td>
+            <td ng-bind="::borrower.rzbl | ktNumber:2:'percent2'"></td>
+            <td ng-bind="::borrower.rzje | ktNumberLocate"></td>
+            <td ng-bind="::borrower.ygje | ktNumberLocate"></td>
+            <td ng-bind="::borrower.ljsy | ktNumberLocate"></td>
         </tr>
         <tr ng-if="(!debtor.borrowers.length || !debtor.borrowers) && !isLoading()">
-            <td colspan="10" class="text-info text-center">
+            <td colspan="41" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

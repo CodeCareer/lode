@@ -86,7 +86,7 @@
                                     <td ng-bind="self_owned_capital_stat_summary[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!self_owned_capital_stat_summary.length && !isLoading()">
-                                    <td colspan="10" class="text-info text-center">
+                                    <td colspan="{{ownFunds.fieldNames.length}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -122,7 +122,7 @@
                                     <td ng-bind="ofd.data[9] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!self_owned_capital_stat_by_subproject.length && !isLoading()">
-                                    <td colspan="11" class="text-info text-center">
+                                    <td colspan="{{ownFunds.fieldNames.length+1}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -178,7 +178,7 @@
                                     <td ng-bind="guarantee_loan_total[8] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!guarantee_loan_total.length && !isLoading()">
-                                    <td colspan="9" class="text-info text-center">
+                                    <td colspan="{{guaranteeLoan.fieldNames.length}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
@@ -213,7 +213,7 @@
                                     <td ng-bind="ofd.data[8] | ktNumberLocate"></td>
                                 </tr>
                                 <tr ng-if="!guarantee_loan_detail.length && !isLoading()">
-                                    <td colspan="10" class="text-info text-center">
+                                    <td colspan="{{guaranteeLoan.fieldNames.length+1}}" class="text-info text-center">
                                         <i class="pe-7s-attention f20 mr5"></i>
                                         <span class="f16">没有数据！</span>
                                     </td>
