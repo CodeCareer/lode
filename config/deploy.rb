@@ -103,7 +103,7 @@ namespace :common_project do
   task :clone => :environment do
     queue! %[git clone -b #{common_branch} #{common_repository} --depth=1]
     queue %{echo "通用模块clone完成"}
-    queue! %[rm app/common && mv kt-frontend-common/app app/common -f]
+    queue! %[mv kt-frontend-common/app app/common -f]
     queue %{echo "通用模块移动组装完成---mv kt-frontend-common/app ./app/common"}
   end
 end
