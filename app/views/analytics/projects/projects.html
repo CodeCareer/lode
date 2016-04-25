@@ -2,13 +2,9 @@
     <thead>
         <tr class="text-left">
             <th>项目名称</th>
-            <th>项目授信额</th>
-            <th>累计期初投放额</th>
-            <th>责任余额</th>
             <th>累计成交金额</th>
             <th>逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，180" class="icon-lode icon-info f12 opacity-0_5"></i></th>
             <th>不良率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，90" class="icon-lode icon-info f12 opacity-0_5"></i></th>
-            <th>总收益</th>
             <th>详情</th>
         </tr>
     </thead>
@@ -17,13 +13,9 @@
             <th class="text-left">
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name"></a>
             </th>
-            <td ng-bind="::project.credit_amnt | ktNumberLocate"></td>
-            <td ng-bind="::project.init_amnt | ktNumberLocate"></td>
-            <td ng-bind="::project.remain_amount | ktNumberLocate"></td>
             <td ng-bind="::project.loan_amnt | ktNumberLocate"></td>
             <td ng-bind="::(project.ovd_rate * 100 | number:2) + '%'"></td>
             <td ng-bind="::(project.np_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::project.total_revenue | ktNumberLocate"></td>
             <td class="text-center">
                 <a ng-if="user.institution.inst_type !== 'zijin'" class="tu" ui-sref="analytics.subProjects.list.table({project_id: project.id})">查看</a>
                 <a ng-if="user.institution.inst_type === 'zijin'" class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
