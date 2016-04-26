@@ -50,7 +50,6 @@ var appScripts = [
     'app/scripts/init.js',
     'app/scripts/app.js',
     'app/scripts/routers/loaner.js',
-    'app/scripts/routers/debtor.js',
     'app/scripts/routers/account.js',
     'app/scripts/routers/error.js',
     'app/scripts/routers/main.js',

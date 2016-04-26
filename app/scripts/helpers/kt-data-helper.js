@@ -6,6 +6,28 @@
     'use strict';
     angular.module('kt.lode')
         .factory('ktDataHelper', function() {
+            var educationList = [{
+                name: '博士',
+                index: 0,
+                value: 'doctor'
+            }, {
+                name: '硕士',
+                index: 1,
+                value: 'postgraduate'
+            }, {
+                name: '本科',
+                index: 2,
+                value: 'bachelor'
+            }, {
+                name: '大专',
+                index: 3,
+                value: 'junior_college'
+            }, {
+                name: '高中及以下',
+                index: 4,
+                value: 'high_school'
+            }]
+
             return {
                 filterStatus: function(arr) { //filter:{fn}
                     return function(item) {
@@ -16,6 +38,15 @@
                     return function(item) {
                         return !_.includes(arr || [], item.status)
                     }
+                },
+                getEducationMap: function() {
+                    return educationList
+                },
+                getEducationName: function(index) {
+                    var ed = _.find(educationList, function(v) {
+                        return v.index === index
+                    }) || {}
+                    return ed.name || '-'
                 },
                 getProjectStatusMap: function() {
                     return [{

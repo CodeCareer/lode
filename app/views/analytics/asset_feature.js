@@ -48,31 +48,7 @@
                 list: []
             }
 
-            $scope.incomesChart = {
-                chartOptions: {},
-                menuData: { index: 0 },
-                list: []
-            }
-
             $scope.educationsChart = {
-                chartOptions: {},
-                menuData: { index: 0 },
-                list: []
-            }
-
-            $scope.locationsChart = {
-                chartOptions: {},
-                menuData: { index: 0 },
-                list: []
-            }
-
-            $scope.gendersChart = {
-                chartOptions: {},
-                menuData: { index: 0 },
-                list: []
-            }
-
-            $scope.agesChart = {
                 chartOptions: {},
                 menuData: { index: 0 },
                 list: []
@@ -94,11 +70,7 @@
                 var typesMap = {
                     'timelimitsChart': ['prncp_balns_by_term', 'incre_loan_amnt_by_term'],
                     'amountsChart': ['prncp_balns_by_amnt', 'incre_loan_amnt_by_amnt'],
-                    // 'typeChart': ['prncp_balns_by_type', 'incre_loan_amnt_by_type'],
-                    'locationsChart': ['prncp_balns_by_loc', 'incre_loan_amnt_by_loc'],
-                    'gendersChart': ['prncp_balns_by_gender', 'incre_loan_amnt_by_gender'],
                     'educationsChart': ['prncp_balns_by_education', 'incre_loan_amnt_by_education'],
-                    'incomesChart': ['prncp_balns_by_income', 'incre_loan_amnt_by_income'],
                     'agesChart': ['prncp_balns_by_age', 'prncp_balns_by_age_percent'],
                 }
 
@@ -171,9 +143,6 @@
 
                     udpateData('timelimitsChart')
                     udpateData('amountsChart')
-                        // udpateData('locationsChart')
-                        // udpateData('gendersChart')
-                        // udpateData('incomesChart')
                     udpateData('educationsChart')
                     udpateData('agesChart')
                 })

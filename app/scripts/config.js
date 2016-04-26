@@ -71,16 +71,16 @@
     angular
         .module('kt.lode')
         .config(configApp)
-        .run(function($rootScope, $state, $location, $timeout, $http, ktHomeResource, uibPaginationConfig, ktUserService, ktS, CacheFactory, ktEchartTheme1) {
+        .run(function($rootScope, $state, $location, $timeout, $http, ktHomeResource, uibPaginationConfig, ktUserService, ktS, ktEchartTheme1) {
 
             // ajax 请求的缓存策略
             /*eslint-disable*/
-            $http.defaults.cache = CacheFactory('ajaxCache', {
+            /*$http.defaults.cache = CacheFactory('ajaxCache', {
                 maxAge: 30 * 1000, // 30秒缓存
                 recycleFreq: 3 * 1000, // 3秒检查一次缓存是否失效
                 // cacheFlushInterval: 60 * 60 * 1000, // 每小时清一次缓存
                 deleteOnExpire: 'aggressive' // Items will be deleted from this cache when they expire
-            });
+            });*/
             /*eslint-enable*/
 
             // 本地化分页
@@ -97,7 +97,7 @@
 
 
             $rootScope.apiCode = Math.random().toString(16).slice(2); // ajax disable catch
-            $rootScope.version = '1.0.33'; // html,image version
+            // $rootScope.version = '1.0.33'; // html,image version
 
             $rootScope.ktS = ktS // 资源哈希表
 
@@ -112,7 +112,7 @@
                 window.history.back()
             }
 
-            function permitValidate(event, toState, toParams) {
+            /*function permitValidate(event, toState, toParams) {
                 var permit = toState.data.permit
                 if ($rootScope.user && permit) {
                     if ($.inArray('zijin', permit) > -1 && $rootScope.user.institution.inst_type !== 'zijin') {
@@ -126,7 +126,7 @@
                         $state.go('error.404', toParams)
                     }
                 }
-            }
+            }*/
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
                 // 权限控制，需要登录才能访问的页面逻辑，
@@ -143,61 +143,30 @@
                     $rootScope.wantJumpUrl = $state.href(toState.name, toParams)
                 }
 
-                permitValidate(event, toState, toParams)
-
-
-                // 登录限制 --- 主路由入口resolve内取用户信息，无权限拦截器可以跳转登录页面，此处的逻辑冗余
-                /*if (!$rootScope.user && permit && $.inArray('login', permit) > -1) {
-                    event.preventDefault(); //此处禁止事件冒泡会偶尔导致ui-rooter 死循环,带排查
-                    ktUserService.get().$promise.then(function(res) {
-                        // console.log(res)
-                        $rootScope.user = res.account
-                        if (!res.account) {
-                            $state.go('account.login', toParams)
-                        } else {
-                            $state.go(toState.name, toParams)
-                        }
-
-                    }).catch(function() {
-                        $state.go('account.login', toParams)
-                    })
-                } else */
-
+                // permitValidate(event, toState, toParams)
             })
 
             $rootScope.$on('$stateChangeError', function(event, toState, toParams) {
-                // console.log(arguments[5])
                 $state.go('error.404', toParams);
-            });
+            })
 
             $rootScope.$on('$stateNotFound', function(event, toState, toParams) {
                 $state.go('error.404', toParams);
-            });
+            })
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-                permitValidate(event, toState, toParams)
-                    /*window.requestAnimationFrame(function() {
-                        // 响应式移动设备上，顶部导航切换页面时候收起hack
-                        $('#navbar').removeClass('in').attr('aria-expanded', 'false')
-
-                        // 切换页面成功后回到顶部
-                        $('body').scrollTop(0)
-                    })*/
+                // permitValidate(event, toState, toParams)
 
                 // 存储非错误和登录注册框的url 供redirect或者返回用
                 if (toState.name.indexOf('analytics') > -1) {
-                    // var url = $rootScope.$state.$current.url.format(toParams)
-                    // var url = $state.href(toState.name, toParams)
-                        // $rootScope.currentUrl = url;
                     $rootScope.wantJumpUrl = '';
-                    // $rootScope.latestState = toState.name;
                 }
 
                 // 存储状态
                 $rootScope.previousState = fromState.name;
                 $rootScope.previousStateParams = fromParams;
                 $rootScope.currentState = toState.name;
-            });
+            })
 
             // ng-include 加载完后延迟显示footer, 避免闪烁
             $rootScope.$on('$includeContentLoaded', function() {

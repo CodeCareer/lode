@@ -14,15 +14,14 @@
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name"></a>
             </th>
             <td ng-bind="::project.loan_amnt | ktNumberLocate"></td>
-            <td ng-bind="::(project.ovd_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::(project.np_rate * 100 | number:2) + '%'"></td>
+            <td ng-bind="::project.ovd_rate | ktNumber:2:'percent'"></td>
+            <td ng-bind="::project.np_rate | ktNumber:2:'percent'"></td>
             <td class="text-center">
-                <a ng-if="user.institution.inst_type !== 'zijin'" class="tu" ui-sref="analytics.subProjects.list.table({project_id: project.id})">查看</a>
-                <a ng-if="user.institution.inst_type === 'zijin'" class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
+                <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
             </td>
         </tr>
         <tr ng-if="(!projects.length || !projects) && !isLoading()">
-            <td colspan="9" class="text-info text-center">
+            <td colspan="5" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

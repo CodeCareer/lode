@@ -7,7 +7,7 @@
 <!-- Main Wrapper -->
 <div id="wrapper" oc-lazy-load="['common/directives/kt-platform-directive.js']">
     <div kt-loading-status class="global-loading-status" height="64" width="64"></div>
-    <div class="normalheader transition" kt-animate-panel child="hpanel" kt-platform-init>
+    <div class="normalheader transition" kt-platform-init>
         <div class="hpanel" order="1" placement="bottom">
             <div class="panel-body">
                 <h2 class="font-light m-b-xs f20">
@@ -15,11 +15,8 @@
                 </h2>
                 <div id="hbreadcrumb" class="pull-left">
                     <ol class="hbreadcrumb breadcrumb">
-                        <!-- <li><a ui-sref="platform.dashboard">我的开通</a></li> -->
                         <li ng-repeat="state in $state.$current.path | filter:breadcrumbFilter" ng-class="{active: $last}">
                             <a ng-disabled="$last" ui-sref="{{state.data.breadcrumbState || state.name}}">{{state.data.breadcrumbTitle || state.data.pageTitle}}</a>
-                            <!-- <span ng-switch-when="true">{{state.data.pageTitle}}</span> -->
-                            <!--  -->
                         </li>
                     </ol>
                 </div>

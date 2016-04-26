@@ -7,9 +7,9 @@ var appConfig = {
 var port = 8000
 var livereloadPort = 35727
 
-//var server = 'http://dev-lode.ktjr.com'
-// var server = 'http://lode.ktjr.com'
-var server = 'http://127.0.0.1:3000'
+// var server = 'http://dev-lode.ktjr.com'
+var server = 'http://lode.ktjr.com'
+// var server = 'http://127.0.0.1:3000'
 // var server = 'http://10.132.1.227:3000'
     // var server = 'http://10.132.1.83:3000'
     // var server = 'http://op-fame.ktjr.com'

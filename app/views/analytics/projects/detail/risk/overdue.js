@@ -12,8 +12,6 @@
 
             ktDateHelper.initPeriod($scope, params)
 
-            // $scope.radioPeriod = 'lastMonth'
-            // $scope.radioPeriodCustom = 'custom'
             $scope.data = {}
             $scope.$watch('radioPeriod', function(newValue, oldvalue) {
                 if (newValue !== oldvalue && newValue !== 'custom') {
@@ -22,8 +20,6 @@
                         start_date: dates[0] || null,
                         end_date: dates[1] || null
                     }))
-
-                    // getData()
                 }
             })
 
@@ -48,15 +44,7 @@
                         type: 'line',
                     },
                     yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
-                },
-                /*yAxis: [{
-                    type: 'value',
-                    axisLabel: {
-                        formatter: function(value) {
-                            return (value * 100).toFixed(0) + '%'
-                        }
-                    }
-                }]*/
+                }
             }
 
             function getData() {

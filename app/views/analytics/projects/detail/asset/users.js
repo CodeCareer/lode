@@ -19,23 +19,10 @@
                         start_date: dates[0] || null,
                         end_date: dates[1] || null
                     }))
-
-                    // getData()
                 }
             })
 
             $scope.ageChart = {
-                radioDataShowType: 'table',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
-
-            $scope.genderChart = {
                 radioDataShowType: 'table',
                 chartDimension: '时点余额',
                 chartOptions: {},
@@ -69,27 +56,15 @@
                 }
             })
 
-            $scope.$watch('genderChart.menuData.index', function(newValue, oldvalue) {
+            $scope.$watch('educationChart.menuData.index', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
-                    udpateData('genderChart')
+                    udpateData('educationChart')
                 }
             })
 
-            $scope.$watch('genderChart.chartDimension', function(newValue, oldvalue) {
+            $scope.$watch('educationChart.chartDimension', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
-                    udpateData('genderChart')
-                }
-            })
-
-            $scope.$watch('incomeChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('incomeChart')
-                }
-            })
-
-            $scope.$watch('incomeChart.chartDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('incomeChart')
+                    udpateData('educationChart')
                 }
             })
 
@@ -98,8 +73,7 @@
             function getDataKey(type) {
                 var typesMap = {
                     'ageChart': ['rem_prncp_by_age', 'incre_loan_amnt_by_age'],
-                    'genderChart': ['rem_prncp_by_gender', 'incre_loan_amnt_by_gender'],
-                    'incomeChart': ['rem_prncp_by_income', 'incre_loan_amnt_by_income'],
+                    'educationChart': ['rem_prncp_by_education', 'incre_loan_amnt_by_education'],
                 }
 
                 var keys = typesMap[type]
@@ -166,8 +140,7 @@
                 }, params), function(data) {
                     $scope.data = data
                     udpateData('ageChart')
-                    udpateData('genderChart')
-                    udpateData('incomeChart')
+                    udpateData('educationChart')
                 })
             }
 

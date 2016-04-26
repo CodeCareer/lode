@@ -20,10 +20,19 @@
                         start_date: dates[0] || null,
                         end_date: dates[1] || null
                     }))
-
-                    // getData()
                 }
             })
+
+            $scope.pledgeChart = {
+                radioDataShowType: 'table',
+                chartDimension: '时点余额',
+                chartOptions: {},
+                list: [],
+                menuData: { // 绝对值百分比
+                    index: 0,
+                    value: 'absolute'
+                }
+            }
 
             $scope.timeLimitChart = {
                 radioDataShowType: 'table',
@@ -47,61 +56,6 @@
                 }
             }
 
-            $scope.ageChart = {
-                radioDataShowType: 'table',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
-
-            $scope.incomeChart = {
-                radioDataShowType: 'table',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
-
-            $scope.educationChart = {
-                radioDataShowType: 'table',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
-
-            $scope.typeChart = {
-                radioDataShowType: 'table',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
-
-            $scope.locationChart = {
-                radioDataShowType: 'table',
-                topDimension: 'Top5',
-                chartDimension: '时点余额',
-                chartOptions: {},
-                list: [],
-                menuData: { // 绝对值百分比
-                    index: 0,
-                    value: 'absolute'
-                }
-            }
 
             $scope.$watch('timeLimitChart.menuData.index', function(newValue, oldvalue) {
                 if (newValue !== oldvalue) {
@@ -127,77 +81,13 @@
                 }
             })
 
-            $scope.$watch('ageChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('ageChart')
-                }
-            })
-
-            $scope.$watch('ageChart.chartDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('ageChart')
-                }
-            })
-
-            /*$scope.$watch('incomeChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('incomeChart')
-                }
-            })*/
-
-            $scope.$watch('educationChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('educationChart')
-                }
-            })
-
-            $scope.$watch('educationChart.chartDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('educationChart')
-                }
-            })
-
-            /*$scope.$watch('typeChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('typeChart')
-                }
-            })
-
-            $scope.$watch('typeChart.chartDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('typeChart')
-                }
-            })
-
-            $scope.$watch('locationChart.menuData.index', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('locationChart')
-                }
-            })
-
-            $scope.$watch('locationChart.chartDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('locationChart')
-                }
-            })
-
-            $scope.$watch('locationChart.topDimension', function(newValue, oldvalue) {
-                if (newValue !== oldvalue) {
-                    udpateData('locationChart')
-                }
-            })*/
-
             var chartOptions = {}
 
             function getDataKey(type) {
                 var typesMap = {
                     'timeLimitChart': ['prncp_balns_by_term', 'loan_amnt_incrmnt_by_term'],
                     'amountChart': ['prncp_balns_by_amnt', 'loan_amnt_incrmnt_by_amnt'],
-                    'ageChart': ['prncp_balns_by_age', 'loan_amnt_incrmnt_by_age'],
-                    'incomeChart': ['prncp_balns_by_income', 'loan_amnt_incrmnt_by_income'],
-                    'educationChart': ['prncp_balns_by_education', 'loan_amnt_incrmnt_by_education'],
-                    'typeChart': ['prncp_balns_by_type', 'loan_amnt_incrmnt_by_type'],
-                    'locationChart': ['prncp_balns_by_loc', 'loan_amnt_incrmnt_by_loc'],
+                    'pledgeChart': ['prncp_balns_by_pledge', 'loan_pledge_incrmnt_by_pledge'],
                 }
 
                 var keys = typesMap[type]
@@ -264,13 +154,9 @@
                     end_date: endDate
                 }, params), function(data) {
                     $scope.data = data
+                    udpateData('pledgeChart')
                     udpateData('timeLimitChart')
                     udpateData('amountChart')
-                    udpateData('ageChart')
-                    udpateData('educationChart')
-                    // udpateData('incomeChart')
-                    // udpateData('typeChart')
-                    // udpateData('locationChart')
                 })
             }
 

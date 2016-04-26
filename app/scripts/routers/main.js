@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .provider('ktRouter', function($rootScopeProvider, $stateProvider, $urlRouterProvider, ktLoanerRoutesProvider, ktDebtorRoutesProvider, ktAccountRoutesProvider, ktErrorRoutesProvider) {
+        .provider('ktRouter', function($rootScopeProvider, $stateProvider, $urlRouterProvider, ktLoanerRoutesProvider, ktAccountRoutesProvider, ktErrorRoutesProvider) {
 
             var setUpRoutes = function(routes) {
                 _.each(routes, function(v, k) {
@@ -27,7 +27,7 @@
                 $urlRouterProvider.otherwise(redirectTo('/error/404'));
 
                 setUpRoutes(ktLoanerRoutesProvider.routes)
-                setUpRoutes(ktDebtorRoutesProvider.routes)
+                // setUpRoutes(ktDebtorRoutesProvider.routes)
                 setUpRoutes(ktAccountRoutesProvider.routes)
                 setUpRoutes(ktErrorRoutesProvider.routes)
 
