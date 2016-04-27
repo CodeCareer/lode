@@ -13,27 +13,25 @@
             maxSize: 10,
             page: 1,
             status: 'all',
-            loanType: 'loan_applications',
-            batchNo: 'ZXM120160414F380', // for debugger
+            subContent: 'borrowers',
+            projectID: $stateParams.projectID,
             per_page: 10
         }
-
-        $scope.debtor = {}
 
         $scope.pageChanged = function() {
             $location.search('page', $scope.params.page)
         }
     })
 
-    .controller('ktDebtorTableCtrl', function($scope, $location, $stateParams, ktDebtorsService, ktDataHelper) {
+    .controller('ktDebtorTableCtrl', function($scope, $location, $stateParams, ktProjectsService, ktDataHelper) {
         var search = $location.search()
         $.extend($scope.params, search)
 
         $scope.getEducationName = ktDataHelper.getEducationName
 
-        ktDebtorsService.get($scope.params, function(data) {
-            $.extend($scope.debtor, data.loan_batch);
-            $scope.params.totalItems = data.loan_batch.total_items;
-        });
+        ktProjectsService.get($scope.params, function(data) {
+            $scope.borrowers = data.borrowers
+            $scope.params.totalItems = data.total_items;
+        })
     })
 })();

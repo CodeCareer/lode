@@ -73,7 +73,7 @@
     })
 
     // 借款人
-    .factory('ktDebtorsService', function($resource, ktApiVersion) {
+    /*.factory('ktDebtorsService', function($resource, ktApiVersion) {
         return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/:loanType/:batchNo', {
             projectType: '@projectType',
             loanType: '@loanType',
@@ -85,6 +85,6 @@
                 cache: false
             }
         })
-    })
+    })*/
 
 })();

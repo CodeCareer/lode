@@ -28,16 +28,6 @@
             $scope.institutions = data.institutions
         })
 
-        // to do
-        /*ktAccountsService.get(function(data) {
-            data.accounts.unshift({
-                id: 'all',
-                name: '全部用户'
-            })
-
-            $scope.accounts = data.accounts
-        })*/
-
         $scope.getInstitutionName = function() {
             var inst = _.find($scope.institutions, function(v) {
                 /*eslint-disable*/
@@ -45,15 +35,6 @@
                 /*eslint-enable*/
             }) || {}
             return inst.name
-        }
-
-        $scope.getAccountName = function() {
-            var acc = _.find($scope.accounts, function(v) {
-                /*eslint-disable*/
-                return v.id == scope.params.account_id
-                /*eslint-enable*/
-            }) || {}
-            return acc.name
         }
 
         $scope.pageChanged = function() {
@@ -64,15 +45,6 @@
             // $scope.institutionName = getInstitutionName(id)
             $location.search($.extend($location.search(), {
                 zhudai_id: id || null,
-                page: 1,
-                per_page: 10
-            }))
-        }
-
-        $scope.accountChanged = function(id) {
-            // $scope.accountName = getAccountName(id)
-            $location.search($.extend($location.search(), {
-                account_id: id || null,
                 page: 1,
                 per_page: 10
             }))

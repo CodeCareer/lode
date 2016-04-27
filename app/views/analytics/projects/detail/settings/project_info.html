@@ -1,77 +1,36 @@
-<div class="row mt30" kt-animate-panel child="hpanel">
-    <div class="col-md-12 table-responsive">
-        <div class="hpanel">
-            <div class="panel-heading clfix">
-                <h5>基本信息</h5>
-                <div class="fr">
-                    <a class="btn btn-sm btn-dark" ui-sref="analytics.project.settings.edit">编辑</a>
-                </div>
+<div class="mt30" kt-animate-panel child="hpanel">
+    <div class="hpanel table-responsive">
+        <div class="panel-heading clfix">
+            <h5>基本信息</h5>
+            <div class="fr">
+                <a class="btn btn-sm btn-dark" ui-sref="analytics.project.settings.edit">编辑</a>
             </div>
-            <div class="panel-body clfix pr ov-h">
-                <div class="chart-table">
-                    <table class="table table-striped">
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">项目名称</th>
-                            <td class="text-left" ng-bind="::project.name"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">项目简介</th>
-                            <td class="text-left" ng-bind="::project.desc"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">开始时间</th>
-                            <td class="text-left" ng-bind="::project.start_at"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">终止时间</th>
-                            <td class="text-left" ng-bind="::project.end_at"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">助贷机构</th>
-                            <td class="text-left" ng-bind="::project.loan_aid_inst"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">总授信额度</th>
-                            <td class="text-left" ng-bind="::project.credit_amnt | ktNumberLocate"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">质保金</th>
-                            <td class="text-left" ng-bind="::project.warranty_amnt | ktNumberLocate"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">风险准备金</th>
-                            <td class="text-left" ng-bind="::project.risk_provision | ktNumberLocate"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">利润留存率</th>
-                            <td class="text-left" ng-bind="(project.retained_profit_rate*100 | number:2) + '%'"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">保证金</th>
-                            <td class="text-left" ng-bind="::project.cash_deposit | ktNumberLocate"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">保费费率</th>
-                            <td class="text-left" ng-bind="(project.premium_rate*100 | number:2) + '%'"></td>
-                        </tr>
-                        <tr>
-                            <th width="150" class="text-right fn text-primary-dark">反担保</th>
-                            <td class="text-left" ng-bind="::project.counter_guarantee"></td>
-                        </tr>
-                    </table>
-                </div>
+        </div>
+        <div class="panel-body clfix pr ov-h">
+            <div class="chart-table">
+                <table class="table table-striped">
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">项目名称</th>
+                        <td class="text-left" ng-bind="::project.name"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">项目简介</th>
+                        <td class="text-left" ng-bind="::project.desc"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">开始时间</th>
+                        <td class="text-left" ng-bind="::project.start_at | date:'yyyy-MM-dd'"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">终止时间</th>
+                        <td class="text-left" ng-bind="::project.end_at | date:'yyyy-MM-dd'"></td>
+                    </tr>
+                    <tr>
+                        <th width="150" class="text-right fn text-primary-dark">助贷机构</th>
+                        <td class="text-left" ng-bind="::project.inst_name"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-    <!-- <div class="col-md-12" ng-if="!project">
-        <div class="hpanel">
-            <div class="panel-body text-center text-primary">
-                <div ng-if="!isLoading()">
-                    <i class="pe-7s-attention f20 mr5"></i>
-                    <span class="f16">没有相关机构信息！</span>
-                </div>
-                <div kt-loading-status height="64" width="64"></div>
-            </div>
-        </div>
-    </div> -->
 </div>

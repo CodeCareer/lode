@@ -8,17 +8,13 @@
                 projectID: $stateParams.projectID
             })
 
-            // $scope.radioPeriod = 'all'
-            // $scope.radioPeriodCustom = 'custom'
-            $scope.ownFunds = ktDataHelper.getOwnFunds()
-            $scope.guaranteeLoan = ktDataHelper.getGuaranteeLoan()
+            $scope.statByProject = ktDataHelper.getStatByProject()
 
             ktProjectStaticsReportService.get({
                 type: 'summary',
                 projectID: $stateParams.projectID,
             }, function(data) {
                 $.extend($scope, data)
-                    // $scope.summary = data.summary
             })
         })
 })();

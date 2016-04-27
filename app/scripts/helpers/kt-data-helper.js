@@ -195,53 +195,28 @@
                         return $scope.params.subproject_id ? subProject.name : '全部'
                     }
                 },
-                getOwnFunds: function() {
+                getStatByProject: function() {
                     return {
                         radioDataShowType: 'all', // all ,single
-                        fieldNames: [
-                            '自有资金投放额',
-                            '累计成交金额',
-                            '未收回自有资金投放额',
-                            '逾期率',
-                            '不良率',
-                            '损失率',
-                            '预期收益',
-                            '总收益',
-                            '约定收益',
-                            '已兑付收益',
-                            // '其他收入',
-                            // '浮动收益'
-                        ],
-                        fieldNameTips: ['资金来源为自有资金的项目的成交额', '', '资金来源为自有资金的项目的贷款余额', '0，180', '90，180', '', '约定收益率', '', '', '', '融资顾问费、评审费等', '']
-                    }
-                },
-                getGuaranteeLoan: function() {
-                    return {
-                        radioDataShowType: 'all', // all ,single
-                        fieldNames: [
-                            '担保责任额',
-                            '累计成交金额',
-                            '担保责任余额',
-                            '逾期率',
-                            '不良率',
-                            '损失率',
-                            '总收益',
-                            '担保费收入',
-                            '其他收入',
-                            '浮动收益'
-                        ],
-                        fieldNameTips: [
-                            '',
-                            '',
-                            '担保贷款项目的余额',
-                            '0，180',
-                            '90，180',
-                            '',
-                            '',
-                            '费率',
-                            '',
-                            ''
-                        ]
+                        fieldNames: [{
+                            name: '项目名称',
+                            tip: ''
+                        }, {
+                            name: '累计成交额',
+                            tip: ''
+                        }, {
+                            name: '累计成交笔数',
+                            tip: ''
+                        }, {
+                            name: '累计借款人数',
+                            tip: ''
+                        }, {
+                            name: '逾期率',
+                            tip: '0，180'
+                        }, {
+                            name: '不良率',
+                            tip: '90，180'
+                        }]
                     }
                 }
             }

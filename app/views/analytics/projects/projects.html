@@ -2,26 +2,28 @@
     <thead>
         <tr class="text-left">
             <th>项目名称</th>
-            <th>累计成交金额</th>
-            <th>逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，180" class="icon-lode icon-info f12 opacity-0_5"></i></th>
-            <th>不良率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，90" class="icon-lode icon-info f12 opacity-0_5"></i></th>
+            <th>助贷机构</th>
+            <th>项目描述</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
             <th>详情</th>
         </tr>
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="project in projects">
             <th class="text-left">
-                <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name"></a>
+                <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name | ktNull"></a>
             </th>
-            <td ng-bind="::project.loan_amnt | ktNumberLocate"></td>
-            <td ng-bind="::project.ovd_rate | ktNumber:2:'percent'"></td>
-            <td ng-bind="::project.np_rate | ktNumber:2:'percent'"></td>
+            <td ng-bind="::project.inst_name | ktNull"></td>
+            <td ng-bind="::project.desc | ktNull"></td>
+            <td ng-bind="::project.start_at | date:'yyyy-MM-dd'"></td>
+            <td ng-bind="::project.end_at | date:'yyyy-MM-dd'"></td>
             <td class="text-center">
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})">查看</a>
             </td>
         </tr>
         <tr ng-if="(!projects.length || !projects) && !isLoading()">
-            <td colspan="5" class="text-info text-center">
+            <td colspan="6" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>
