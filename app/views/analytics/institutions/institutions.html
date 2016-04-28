@@ -3,10 +3,8 @@
         <tr class="text-left">
             <th>机构名称</th>
             <th>累计成交金额</th>
-            <th>平均贷款期限</th>
             <th>逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，180" class="icon-lode icon-info f12 opacity-0_5"></i></th>
             <th>不良率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="0，90" class="icon-lode icon-info f12 opacity-0_5"></i></th>
-            <th>单笔额度</th>
             <th>笔数</th>
             <th>累计贷款人数</th>
             <th>人均贷款金额</th>
@@ -17,13 +15,11 @@
         <tr class="text-right" ng-repeat="institution in institutions" ng-if="institutions.length">
             <th class="text-left" ng-bind="::institution.name"></th>
             <td ng-bind="::institution.loan_amnt | ktNumberLocate"></td>
-            <td ng-bind="::(institution.avg_duration + '天')"></td>
             <td ng-bind="::(institution.ovd_rate * 100 | number:2) + '%'"></td>
             <td ng-bind="::(institution.np_rate * 100 | number:2) + '%'"></td>
-            <td ng-bind="::institution.avrge_loan_amnt | ktNumberLocate"></td>
             <td ng-bind="::institution.loan_count"></td>
             <td ng-bind="::institution.borrower_count"></td>
-            <td ng-bind="::institution.loan_amnt_per_borrower | ktNumberLocate"></td>
+            <td ng-bind="::institution.avrge_loan_amnt | ktNumberLocate"></td>
             <td class="text-center">
                 <a class="tu" ui-sref="analytics.projects.list.table({zhudai_id: institution.id})">查看</a>
             </td>
