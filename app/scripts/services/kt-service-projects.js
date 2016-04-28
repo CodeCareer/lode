@@ -35,7 +35,7 @@
     })
 
     // 统计-按项目
-    .factory('ktProjectsReportService', function($resource, ktApiVersion) {
+    /*.factory('ktProjectsReportService', function($resource, ktApiVersion) {
         return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:type', {
             projectID: '@projectID',
             type: '@type',
@@ -46,7 +46,7 @@
             }
         })
     })
-
+*/
     // 全部项目统计
     .factory('ktStaticsReportService', function($resource, ktApiVersion) {
         return $resource('/ajax/' + ktApiVersion + '/statistics/:type', {
@@ -61,8 +61,9 @@
 
     // 单个项目统计
     .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:type', {
+        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:dimention/:type/', {
             projectID: '@projectID',
+            dimention: '@dimention',
             type: '@type'
         }, {
             'get': {
@@ -71,20 +72,5 @@
             }
         })
     })
-
-    // 借款人
-    /*.factory('ktDebtorsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/:projectType/:projectID/:loanType/:batchNo', {
-            projectType: '@projectType',
-            loanType: '@loanType',
-            projectID: '@projectID',
-            batchNo: '@batchNo'
-        }, {
-            'get': {
-                method: 'GET',
-                cache: false
-            }
-        })
-    })*/
 
 })();

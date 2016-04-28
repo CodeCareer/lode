@@ -288,7 +288,7 @@
                     }
                 },
                 'analytics.project.risk.vintage': {
-                    url: '/vintage?vintage_start&vintage_end&dimenstion',
+                    url: '/vintage?vintage_start_date&vintage_end_date&vintage_index',
                     templateUrl: 'views/analytics/projects/detail/risk/vintage.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/risk/vintage.js',

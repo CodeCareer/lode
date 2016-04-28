@@ -18,18 +18,11 @@
                     if (res.token) {
                         CacheFactory.clearAll()
                         $window.localStorage.token = res.token
+
                         var url = $rootScope.wantJumpUrl || ktUrlGet('/', $location.search())
-                            // var redirectState = $rootScope.previousState || 'analytics.reports.dashboard'
-                            // if (redirectState.indexOf('analytics.') === -1) redirectState = 'analytics.reports.dashboard'
-                            // var params = $rootScope.previousStateParams || {}
                         $location.url(url)
-                            // $state.go(redirectState, params)
-                    } else {
-                        $state.go('account.confirm', {
-                            institution: res.institution,
-                            user: scope.user
-                        })
                     }
+
                 }).catch(function(res) {
                     scope.pendingRequests = false
                     var error = res.error || '登录失败！'

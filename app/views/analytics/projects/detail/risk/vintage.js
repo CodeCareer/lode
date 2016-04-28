@@ -9,38 +9,38 @@
             })
 
             var params = $scope.params = $.extend({
-                dimenstion: 'C-M1',
-                vintage_start: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),
-                vintage_end: moment().date(0).format('YYYY-MM-DD'),
+                vintage_index: 'c_m1_rate',
+                vintage_start_date: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),
+                vintage_end_date: moment().date(0).format('YYYY-MM-DD'),
             }, $location.search() || {})
 
-            $scope.dimensions = [{
+            $scope.vintage_indexs = [{
                 name: 'C-M1',
-                value: 'C_M1'
+                value: 'c_m1_rate'
             }, {
                 name: 'M1-C',
-                value: 'M_1C'
+                value: 'm1_c_rate'
             }, {
                 name: 'M1-M2',
-                value: 'M1_M2'
+                value: 'm1_m2_rate'
             }, {
                 name: '逾期率',
-                value: 'overdue'
+                value: 'ovd_rate'
             }, {
                 name: '不良率',
-                value: 'bad'
+                value: 'np_rate'
             }]
 
             $scope.vintageRange = (function () {
-                if (params.vintage_start) {
-                    return params.vintage_start + '~' + params.vintage_end
+                if (params.vintage_start_date) {
+                    return params.vintage_start_date + '~' + params.vintage_end_date
                 }
             })();
 
-            $scope.dimensions.activeName = function() {
-                var d = _.find($scope.dimensions, function(v) {
-                    return v.value === params.dimenstion
-                }) || $scope.dimensions[0]
+            $scope.vintage_indexs.activeName = function() {
+                var d = _.find($scope.vintage_indexs, function(v) {
+                    return v.value === params.vintage_index
+                }) || $scope.vintage_indexs[0]
                 return d.name
             }
 
@@ -61,8 +61,8 @@
                 if (newValue !== oldvalue) {
                     var dates = newValue.split('~')
                     $location.search($.extend(params, {
-                        vintage_start: dates[0] || null,
-                        vintage_end: dates[1] || null
+                        vintage_start_date: dates[0] || null,
+                        vintage_end_date: dates[1] || null
                     }))
                 }
 
@@ -99,7 +99,8 @@
 
                 ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'overdue',
+                    type: 'vintages',
+                    dimention: 'risk',
                     start_date: startDate,
                     end_date: endDate
                 }, params), function(data) {
@@ -107,14 +108,14 @@
 
                     $scope.vintageChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
-                            data: _.map(data.overdue_trends, 'name')
+                            data: _.map(data.trends, 'name')
                         },
-                        xAxis: [{
+                        xAxis: {
                             type: 'category',
                             data: data.dates
-                        }],
+                        },
 
-                        series: _.map(data.overdue_trends, function(v) {
+                        series: _.map(data.trends, function(v) {
                             v.type = 'line'
                             return v
                         })

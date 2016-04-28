@@ -4,12 +4,12 @@
             功能：
             <div dropdown class="ib vm">
                 <div dropdown-toggle class="cp">
-                    <span ng-bind="dimensions.activeName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+                    <span ng-bind="vintage_indexs.activeName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
                 </div>
                 <div dropdown-menu class="animated fadeIn m-t-xs">
                     <ul>
-                        <li ng-repeat="d in dimensions" ng-class="{active: d.value == params.dimenstion}">
-                            <a ng-click="goTo('dimenstion', d.value)" title="{{::d.name}}" ng-bind="::d.name"></a>
+                        <li ng-repeat="d in vintage_indexs" ng-class="{active: d.value == params.vintage_index}">
+                            <a ng-click="goTo('vintage_index', d.value)" title="{{::d.name}}" ng-bind="::d.name"></a>
                         </li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
     </div>
     <div class="hpanel">
         <div class="panel-heading clfix">
-            <h5 ng-bind="dimensions.activeName()"></h5>
+            <h5 ng-bind="vintage_indexs.activeName()"></h5>
             <div class="actions fr">
                 <div class="btn-group btn-group-sm">
                     <label class="btn btn-dark" ng-model="vintageChart.radioDataShowType" uib-btn-radio="'table'">
@@ -62,7 +62,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-right" ng-repeat="trend in data.overdue_trends">
+                            <tr class="text-right" ng-repeat="trend in data.trends">
                                 <th class="text-left" ng-bind="trend.name"></th>
                                 <td ng-repeat="value in trend.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
                             </tr>

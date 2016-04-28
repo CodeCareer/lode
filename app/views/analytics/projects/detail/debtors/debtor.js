@@ -23,7 +23,7 @@
         }
     })
 
-    .controller('ktDebtorTableCtrl', function($scope, $location, $stateParams, ktProjectsService, ktDataHelper) {
+    .controller('ktDebtorTableCtrl', function($scope, $location, ktProjectsService, ktDataHelper) {
         var search = $location.search()
         $.extend($scope.params, search)
 

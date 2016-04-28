@@ -10,7 +10,6 @@
 
             ktProjectsService.get({
                 projectID: $stateParams.projectID,
-                // detail: 'info'
             }, function(data) {
                 $scope.project = data.project
             })

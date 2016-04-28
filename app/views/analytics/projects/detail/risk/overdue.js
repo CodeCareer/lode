@@ -58,7 +58,8 @@
 
                 ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'overdue',
+                    type: 'trends',
+                    dimention: 'risk',
                     start_date: startDate,
                     end_date: endDate
                 }, params), function(data) {
@@ -69,10 +70,10 @@
                         legend: {
                             data: _.map(data.overdue_trends, 'name')
                         },
-                        xAxis: [{
+                        xAxis: {
                             type: 'category',
                             data: data.dates
-                        }],
+                        },
 
                         series: _.map(data.overdue_trends, function(v) {
                             v.type = 'line'
@@ -91,10 +92,10 @@
                         legend: {
                             data: _.map(data.migration_trends, 'name')
                         },
-                        xAxis: [{
+                        xAxis: {
                             type: 'category',
                             data: data.dates
-                        }],
+                        },
 
                         series: _.map(data.migration_trends, function(v) {
                             v.type = 'line'

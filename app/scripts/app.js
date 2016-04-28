@@ -22,6 +22,6 @@
         'angular-cache',
         'ngFileUpload',
         'kt.common',
-        'kt.lode.i18' //国际化
+        // 'kt.lode.i18' //国际化,ugliy? 之后有需要用angular默认的国际化方式
     ])
 })();

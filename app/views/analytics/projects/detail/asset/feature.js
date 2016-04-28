@@ -81,13 +81,25 @@
                 }
             })
 
+            $scope.$watch('pledgeChart.menuData.index', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('pledgeChart')
+                }
+            })
+
+            $scope.$watch('pledgeChart.chartDimension', function(newValue, oldvalue) {
+                if (newValue !== oldvalue) {
+                    udpateData('pledgeChart')
+                }
+            })
+
             var chartOptions = {}
 
             function getDataKey(type) {
                 var typesMap = {
                     'timeLimitChart': ['prncp_balns_by_term', 'loan_amnt_incrmnt_by_term'],
                     'amountChart': ['prncp_balns_by_amnt', 'loan_amnt_incrmnt_by_amnt'],
-                    'pledgeChart': ['prncp_balns_by_pledge', 'loan_pledge_incrmnt_by_pledge'],
+                    'pledgeChart': ['prncp_balns_by_mortgage_rate', 'loan_amnt_incrmnt_by_mortgage_rate'],
                 }
 
                 var keys = typesMap[type]
@@ -95,17 +107,17 @@
                 var suffix
                 prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
                 suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
-                if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
+                    // if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
 
                 chartOptions = suffix === '_percent' ? {
                     tooltip: {
                         yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
-                    yAxis: [{
+                    yAxis: {
                         interval: 0.2,
                         max: 1,
                         min: 0
-                    }]
+                    }
                 } : {
                     tooltip: {
                         yAxisFormat: 'rmb'
@@ -124,10 +136,10 @@
                     legend: {
                         data: _.map(data[listName], 'name')
                     },
-                    xAxis: [{
+                    xAxis: {
                         type: 'category',
                         data: data.dates
-                    }],
+                    },
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
@@ -149,7 +161,8 @@
 
                 ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'assets_features',
+                    type: 'loan',
+                    dimention: 'distribution',
                     start_date: startDate,
                     end_date: endDate
                 }, params), function(data) {

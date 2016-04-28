@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktUserFeatureCtrl', function($scope, $location, $stateParams, ktProjectsReportService, ktDateHelper) {
+        .controller('ktUserFeatureCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
 
             $scope.$emit('activeProjectChange', {
                 projectID: $stateParams.projectID
@@ -33,7 +33,7 @@
                 }
             }
 
-            $scope.incomeChart = {
+            $scope.educationChart = {
                 radioDataShowType: 'table',
                 chartDimension: '时点余额',
                 chartOptions: {},
@@ -72,8 +72,8 @@
 
             function getDataKey(type) {
                 var typesMap = {
-                    'ageChart': ['rem_prncp_by_age', 'incre_loan_amnt_by_age'],
-                    'educationChart': ['rem_prncp_by_education', 'incre_loan_amnt_by_education'],
+                    'ageChart': ['prncp_balns_by_age', 'loan_amnt_incrmnt_by_age'],
+                    'educationChart': ['prncp_balns_by_education', 'loan_amnt_incrmnt_by_education'],
                 }
 
                 var keys = typesMap[type]
@@ -81,16 +81,16 @@
                 var suffix
                 prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
                 suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
-                if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
+                // if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
 
                 chartOptions = suffix === '_percent' ? {
                     tooltip: {
                         yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
-                    yAxis: [{
+                    yAxis: {
                         max: 1,
                         min: 0
-                    }]
+                    }
                 } : {
                     tooltip: {
                         yAxisFormat: 'rmb'
@@ -109,10 +109,10 @@
                     legend: {
                         data: _.map(data[listName], 'name')
                     },
-                    xAxis: [{
+                    xAxis: {
                         type: 'category',
                         data: data.dates
-                    }],
+                    },
 
                     series: _.map(data[listName], function(v) {
                         v.type = 'bar'
@@ -132,9 +132,10 @@
                 startDate = datePeriod[0] || null
                 endDate = datePeriod[1]
 
-                ktProjectsReportService.get($.extend({
+                ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
-                    type: 'users_feature',
+                    type: 'borrower',
+                    dimention: 'distribution',
                     start_date: startDate,
                     end_date: endDate
                 }, params), function(data) {
