@@ -1,7 +1,7 @@
 <div kt-animate-panel child="hpanel">
     <div class="content-header clfix">
         <div class="filter fl mr20">
-            功能：
+            指标：
             <div dropdown class="ib vm">
                 <div dropdown-toggle class="cp">
                     <span ng-bind="vintage_indexs.activeName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
@@ -45,8 +45,8 @@
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="chart-table" ng-show="vintageChart.radioDataShowType == 'chart'">
-                <div class="chart-table-heading clfix">
-                </div>
+                <!-- <div class="chart-table-heading clfix">
+                </div> -->
                 <div class="chart-table-body">
                     <div id="vintageChart" kt-echart chart-options="vintageChart.chartOptions" style="height:400px;">
                     </div>

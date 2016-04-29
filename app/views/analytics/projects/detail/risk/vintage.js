@@ -9,7 +9,7 @@
             })
 
             var params = $scope.params = $.extend({
-                vintage_index: 'c_m1_rate',
+                vintage_index: 'ovd_rate',
                 vintage_start_date: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),
                 vintage_end_date: moment().date(0).format('YYYY-MM-DD'),
             }, $location.search() || {})

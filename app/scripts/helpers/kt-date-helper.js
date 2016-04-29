@@ -89,7 +89,7 @@
                     if (startDate && endDate) {
                         $scope.radioPeriod = startDate + '~' + endDate
                     } else {
-                        $scope.radioPeriod = $scope.radioPeriodLastMonth
+                        $scope.radioPeriod = $scope.radioPeriodLast6Month
                     }
 
                     $scope.radioPeriodCustom = ($scope.radioPeriod === $scope.radioPeriodLastMonth || $scope.radioPeriod === $scope.radioPeriodLast3Month || $scope.radioPeriod === $scope.radioPeriodLast6Month) ? 'custom' : $scope.radioPeriod
