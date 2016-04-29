@@ -42,9 +42,9 @@
                 getEducationMap: function() {
                     return educationList
                 },
-                getEducationName: function(index) {
+                getEducationName: function(value) {
                     var ed = _.find(educationList, function(v) {
-                        return v.index === index
+                        return v.value === value
                     }) || {}
                     return ed.name || '-'
                 },
