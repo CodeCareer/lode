@@ -63,11 +63,11 @@
                                 <tr class="text-right">
                                     <tr class="text-right" ng-repeat="item in ageChart.list" ng-show="ageChart.menuData.index === 0">
                                         <th class="text-left" ng-bind="::item.name"></th>
-                                        <td ng-repeat="value in item.data track by $index" ng-bind="(value | ktNumberLocate)"></td>
+                                        <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
                                     </tr>
                                     <tr class="text-right" ng-repeat="item in ageChart.list" ng-show="ageChart.menuData.index === 1">
                                         <th class="text-left" ng-bind="::item.name"></th>
-                                        <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
+                                        <td ng-repeat="value in item.data track by $index" ng-bind="value | number:2:'percent'"></td>
                                     </tr>
                                 </tr>
                             </tbody>
@@ -133,11 +133,11 @@
                                 <tr class="text-right">
                                     <tr class="text-right" ng-repeat="item in educationChart.list" ng-show="educationChart.menuData.index === 0">
                                         <th class="text-left" ng-bind="::item.name"></th>
-                                        <td ng-repeat="value in item.data track by $index" ng-bind="(value | ktNumberLocate)"></td>
+                                        <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
                                     </tr>
                                     <tr class="text-right" ng-repeat="item in educationChart.list" ng-show="educationChart.menuData.index === 1">
                                         <th class="text-left" ng-bind="::item.name"></th>
-                                        <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
+                                        <td ng-repeat="value in item.data track by $index" ng-bind="value | ktNumber:2:'percent'"></td>
                                     </tr>
                                 </tr>
                             </tbody>

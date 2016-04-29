@@ -54,7 +54,7 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-if="stat_by_project.length" ng-repeat="p in ::stat_by_project">
-                                <th class="text-left" ng-bind="p.name"></th>
+                                <th class="text-left" ng-bind="::p.name"></th>
                                 <td ng-bind="::p.loan_amnt | ktNumberLocate"></td>
                                 <td ng-bind="::((p.loan_count | number:0) + '笔')"></td>
                                 <td ng-bind="::((p.borrower_count | number:0) + '人')"></td>

@@ -60,8 +60,8 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="trend in data.overdue_trends">
-                                <th class="text-left" ng-bind="trend.name"></th>
-                                <td ng-repeat="value in trend.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
+                                <th class="text-left" ng-bind="::trend.name"></th>
+                                <td ng-repeat="value in trend.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -114,8 +114,8 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="item in data.migration_trends">
-                                <th class="text-left" ng-bind="item.name"></th>
-                                <td ng-repeat="value in item.data track by $index" ng-bind="(value * 100 | number:2) + '%'"></td>
+                                <th class="text-left" ng-bind="::item.name"></th>
+                                <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                             </tr>
                         </tbody>
                     </table>
