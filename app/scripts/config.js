@@ -95,17 +95,14 @@
                 rotate: true
             });
 
+            echarts.registerTheme('theme1', ktEchartTheme1) //echarts-3.x
 
             $rootScope.apiCode = Math.random().toString(16).slice(2); // ajax disable catch
-            // $rootScope.version = '1.0.33'; // html,image version
-
             $rootScope.ktS = ktS // 资源哈希表
 
             //常用资源文件
-            var resource = ktHomeResource.get($rootScope.version)
+            var resource = ktHomeResource.get()
             $.extend($rootScope, resource)
-
-            echarts.registerTheme('theme1', ktEchartTheme1) //echarts-3.x
 
             $rootScope.$state = $state
             $rootScope.back = function() {
