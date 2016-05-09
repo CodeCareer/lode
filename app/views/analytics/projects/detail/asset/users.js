@@ -81,7 +81,7 @@
                 var suffix
                 prefix = $scope[type].chartDimension === '时点余额' ? keys[0] : keys[1]
                 suffix = $scope[type].menuData.value === 'absolute' ? '' : '_percent'
-                // if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
+                    // if (type === 'locationChart') suffix = suffix + '_' + $scope.locationChart.topDimension.toLowerCase()
 
                 chartOptions = suffix === '_percent' ? {
                     tooltip: {

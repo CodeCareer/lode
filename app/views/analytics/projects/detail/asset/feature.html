@@ -208,7 +208,7 @@
                                         </tr>
                                         <tr class="text-right" ng-repeat="item in amountChart.list" ng-show="amountChart.menuData.index === 1">
                                             <th class="text-left" ng-bind="::item.name"></th>
-                                            <td ng-repeat="value in item.data track by $index" ng-bind="value | number:2:'percent'"></td>
+                                            <td ng-repeat="value in item.data track by $index" ng-bind="value | ktNumber:2:'percent'"></td>
                                         </tr>
                                     </tr>
                                 </tbody>
