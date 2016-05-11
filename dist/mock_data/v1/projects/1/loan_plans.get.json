@@ -1,0 +1,25 @@
+{
+    "loan_plans": [{
+        "id": 1,
+        "batch_no": "WMHZXM20160122D390",
+        "status": "issued",
+        "schedule_date": "2016-01-22",
+        "issue_time": "2016-01-22T16:36:53.000+08:00",
+        "created_at": "2016-01-22T16:36:42.000+08:00",
+        "updated_at": "2016-01-22T16:36:53.000+08:00",
+        "subproject_id": 1,
+        "subproject_name": "外贸合作项目",
+        "total_loan_amnt": 30000.0
+    }, {
+        "id": 4,
+        "batch_no": "WMHZXM20160202881A",
+        "status": "draft",
+        "schedule_date": "2016-02-02",
+        "issue_time": null,
+        "created_at": "2016-02-02T16:57:24.000+08:00",
+        "updated_at": "2016-02-02T16:57:24.000+08:00",
+        "subproject_id": 1,
+        "subproject_name": "外贸合作项目",
+        "total_loan_amnt": 30000.0
+    }]
+}

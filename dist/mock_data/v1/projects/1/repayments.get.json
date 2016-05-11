@@ -1,0 +1,26 @@
+{
+    "total_items": 2,
+    "repayments": [ {
+        "id": 2,
+        "repay_at": "2015-03-12",
+        "subproject_name": "15信而富02",
+        "number": "15XEF0202",
+        "stage": 2,
+        "status": "done",
+        "amount": 100000,
+        "should_people_amount": 100,
+        "normal_people_amount": 70,
+        "ahead_people_amount": 30
+    },{
+        "id": 1,
+        "repay_at": "2015-02-12",
+        "subproject_name": "15信而富01",
+        "number": "15XEF0201",
+        "stage": 1,
+        "status": "initial",
+        "amount": 100000,
+        "should_people_amount": 100,
+        "normal_people_amount": 80,
+        "ahead_people_amount": 20
+    }]
+}

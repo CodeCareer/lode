@@ -1,0 +1,13 @@
+{
+    "total_items": 1,
+    "accounts": [{
+        "id": 1,
+        "name": "张三",
+        "putin_amount": 10000000,
+        "remain_amount": 100000,
+        "transaction_amount": 10000000,
+        "total_revenue": 10000,
+        "institution_numbers": 10,
+        "nickname": "张三"
+    }]
+}

@@ -1,0 +1,40 @@
+{
+    "total_items": 3,
+    "number": "15XEF0201",
+    "status": "initial",
+    "name": "15信而富01",
+    "submit_at": "2015-02-28",
+    "id": "15XEF0201",
+    "summary": ["2015-03-09", 1000000, 100],
+    "borrowers": [{
+        "create_at": "2015-02-12",
+        "name": "张三",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0001",
+        "bank_info": "中国人民银行",
+        "repay_amount": 100000,
+        "repay_principal": 100000,
+        "repay_interest": 1000,
+        "repay_service": 100
+    },{
+        "create_at": "2015-02-12",
+        "name": "王二",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0002",
+        "bank_info": "中国人民银行",
+        "repay_amount": 200000,
+        "repay_principal": 200000,
+        "repay_interest": 2000,
+        "repay_service": 200
+    },{
+        "create_at": "2015-02-12",
+        "name": "李四",
+        "identity_num": "110200198711290918",
+        "bank_account": "62260 0000 0000 0003",
+        "bank_info": "中国人民银行",
+        "repay_amount": 300000,
+        "repay_principal": 300000,
+        "repay_interest": 3000,
+        "repay_service": 300
+    }]
+}

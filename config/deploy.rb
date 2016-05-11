@@ -83,10 +83,10 @@ task :deploy => :environment do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
     invoke :'git:clone'
-    invoke :'common_project:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bower:install'
-    invoke :'grunt:build'
+    # invoke :'common_project:clone'
+    # invoke :'deploy:link_shared_paths'
+    # invoke :'bower:install'
+    # invoke :'grunt:build'
     # invoke :'deploy:link_backend_assets'
     # invoke :'deploy:link_shared_uploads'
     # invoke :'rails:db_migrate'

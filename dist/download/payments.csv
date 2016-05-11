@@ -1,0 +1,3 @@
+contract_no,pymnt_amnt,pymnt_prncp,pymnt_int,pymnt_date,status,ovd_days
+C12345,1080.0,1000.0,80.0,2016-01-20,0,0
+C12346,1080.0,1000.0,80.0,2016-01-20,0,0

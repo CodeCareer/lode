@@ -1,0 +1,33 @@
+{
+    "status_code": null,
+    "message": null,
+    "total_items": 3,
+    "projects": [{
+        "id": 1,
+        "name": "信而富上海银行项目",
+        "credit_amnt": 10000.0,
+        "init_amnt": null,
+        "loan_amnt": 20000.0,
+        "ovd_rate": 0.0,
+        "np_rate": 0.0,
+        "total_revenue": 160.0
+    }, {
+        "id": 2,
+        "name": "xinerfu project",
+        "credit_amnt": null,
+        "init_amnt": null,
+        "loan_amnt": 20000.0,
+        "ovd_rate": 0.0,
+        "np_rate": 0.0,
+        "total_revenue": 160.0
+    }, {
+        "id": 3,
+        "name": "wzc测试项目",
+        "credit_amnt": null,
+        "init_amnt": null,
+        "loan_amnt": 0,
+        "ovd_rate": 0,
+        "np_rate": 0,
+        "total_revenue": 0
+    }]
+}

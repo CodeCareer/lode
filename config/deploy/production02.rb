@@ -5,4 +5,4 @@ set :port, '10080'     # SSH port number.
 set :link_backend_assets, '/home/deploy/apps/lode-backend/current/static/assets'
 set :shared_uploads, '/home/deploy/uploads'
 set :branch, 'feature/analytics'
-set :common_branch, 'test'
+set :common_branch, 'master'

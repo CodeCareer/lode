@@ -1,0 +1,51 @@
+{
+    "total_items": 2,
+    "results": [{
+        "name": "拒绝",
+        "value": "reject"
+    }, {
+        "name": "通过",
+        "value": "approved"
+    }],
+    "fields": [{
+        "name": "年龄",
+        "value": "age"
+    }, {
+        "name": "收入",
+        "value": "salary"
+    }, {
+        "name": "省市",
+        "value": "province"
+    }],
+    "conditions": [{
+        "name": "大于",
+        "value": "gt"
+    }, {
+        "name": "小于",
+        "value": "lt"
+    }, {
+        "name": "等于",
+        "value": "eq"
+    }, {
+        "name": "包含",
+        "value": "in"
+    }, {
+        "name": "不包含",
+        "value": "ex"
+    }],
+    "rules": [{
+        "id": 1,
+        "field": "age",
+        "condition": "lt",
+        "value": 19,
+        "result": "reject",
+        "name": "规则1"
+    }, {
+        "id": 2,
+        "field": "salary",
+        "condition": "gt",
+        "value": 10000,
+        "result": "approved",
+        "name": "规则2"
+    }]
+}
