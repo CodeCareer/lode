@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="pledgeChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="pledgeChart.chartOptions" style="height:400px;">
+                        <div kt-echart chart-options="pledgeChart.chartOptions" resize-by="pledgeChart.radioDataShowType" style="height:400px;">
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="pledgeChart.radioDataShowType == 'table'">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="timeLimitChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="timeLimitChart.chartOptions" style="height:400px;">
+                        <div kt-echart chart-options="timeLimitChart.chartOptions" resize-by="timeLimitChart.radioDataShowType" style="height:400px;">
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="timeLimitChart.radioDataShowType == 'table'">
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="amountChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="amountChart.chartOptions" style="height:400px;">
+                        <div kt-echart chart-options="amountChart.chartOptions" style="height:400px;" resize-by="amountChart.radioDataShowType">
                         </div>
                     </div>
                     <div class="chart-table-body" ng-show="amountChart.radioDataShowType == 'table'">

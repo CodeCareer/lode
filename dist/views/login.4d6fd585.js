@@ -1,1 +1,0 @@
-!function(){"use strict";angular.module("kt.lode").controller("ktLoginCtrl",["$scope","ktLoginService","ktLoginCommon",function(a,b,c){a.submitForm=function(){c(b,a)}}])}();

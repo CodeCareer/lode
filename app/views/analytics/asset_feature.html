@@ -42,7 +42,7 @@
                     <div class="f14 pl10">按贷款期限来分</div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'chart'">
-                    <div kt-echart chart-options="timelimitsChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="timelimitsChart.chartOptions" resize-by="radioDataShowType" style="height:400px;">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'table'">
@@ -75,7 +75,7 @@
                     <div class="f14 pl10">按单笔贷款额度分</div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'chart'">
-                    <div kt-echart chart-options="amountsChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="amountsChart.chartOptions" resize-by="radioDataShowType" style="height:400px;">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'table'">
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'chart'">
-                    <div kt-echart chart-options="educationsChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="educationsChart.chartOptions" resize-by="radioDataShowType" style="height:400px;">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'table'">
@@ -142,7 +142,7 @@
                     <div class="f14 pl10">贷款人年龄分布</div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'chart'">
-                    <div kt-echart chart-options="agesChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="agesChart.chartOptions" resize-by="radioDataShowType" style="height:400px;">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="radioDataShowType === 'table'">

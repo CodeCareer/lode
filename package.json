@@ -59,6 +59,7 @@
     "karma-jasmine": "^0.3.6",
     "load-grunt-configs": "^0.4.3",
     "load-grunt-tasks": "^0.6.0",
+    "readline-sync": "^1.4.2",
     "time-grunt": "^1.0.0"
   }
 }

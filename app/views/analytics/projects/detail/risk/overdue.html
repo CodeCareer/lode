@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="chart-table-body">
-                    <div id="overdueRateChart" kt-echart chart-options="overdueRateChart.chartOptions" style="height:400px;">
+                    <div id="overdueRateChart" kt-echart chart-options="overdueRateChart.chartOptions" resize-by="overdueRateChart.radioDataShowType" style="height:400px;">
                     </div>
                 </div>
             </div>
@@ -90,6 +90,7 @@
             <div class="chart-table" ng-show="migrateRateChart.radioDataShowType == 'chart'">
                 <div class="chart-table-heading clfix">
                     <div class="checkbox-group clfix">
+                        <!-- 逾期率图例控制组 -->
                         <div class="checkbox" ng-repeat="l in migrateRateChart.legend">
                             <input id="{{l.name}}" kt-echart-legend chart-id="migrateRateChart" name="{{l.name}}" type="checkbox" ng-model="l.value">
                             <label for="{{l.name}}" ng-bind="l.name">
@@ -99,7 +100,7 @@
                     </div>
                 </div>
                 <div class="chart-table-body">
-                    <div kt-echart id="migrateRateChart" chart-options="migrateRateChart.chartOptions" style="height:400px;">
+                    <div kt-echart id="migrateRateChart" chart-options="migrateRateChart.chartOptions" resize-by="migrateRateChart.radioDataShowType" style="height:400px;">
                     </div>
                 </div>
             </div>

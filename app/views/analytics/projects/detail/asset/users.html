@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="ageChart.radioDataShowType == 'chart'">
-                    <div kt-echart chart-options="ageChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="ageChart.chartOptions" style="height:400px;" resize-by="ageChart.radioDataShowType">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="ageChart.radioDataShowType == 'table'">
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="educationChart.radioDataShowType == 'chart'">
-                    <div kt-echart chart-options="educationChart.chartOptions" style="height:400px;">
+                    <div kt-echart chart-options="educationChart.chartOptions" resize-by="educationChart.radioDataShowType" style="height:400px;">
                     </div>
                 </div>
                 <div class="chart-table-body" ng-show="educationChart.radioDataShowType == 'table'">
