@@ -8,6 +8,10 @@
                 projectID: $stateParams.projectID
             })
 
+            $scope.datepickerSettings = {
+                triggerEvent: 'datepicker-change'
+            }
+
             var params = $scope.params = $.extend({
                 vintage_index: 'ovd_rate',
                 vintage_start_date: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),

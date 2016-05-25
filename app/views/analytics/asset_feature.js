@@ -132,6 +132,7 @@
                 endDate = datePeriod[1]
 
                 $scope.activeInstID = instID || 'all'
+                $scope.pendingRequests = true
 
                 ktStaticsReportService.get({
                     type: 'assets_features',
@@ -145,6 +146,7 @@
                     udpateData('amountsChart')
                     udpateData('educationsChart')
                     udpateData('agesChart')
+                    $scope.pendingRequests = false
                 })
             }
 
