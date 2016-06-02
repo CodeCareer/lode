@@ -68,7 +68,7 @@
     <!-- 资金平台-单个项目时候的主菜单 -->
     <!-- 资金平台-全部项目时候的主菜单 -->
     <ul ng-show="isAllProjectsPage()" class="nav main-name" id="side-menu">
-        <li ng-class="{active: $state.includes('analytics.reports.**')}">
+        <!-- <li ng-class="{active: $state.includes('analytics.reports.**')}">
             <a href="javascript:;" ng-click="updateSummaryMenu('reportsIsCollapsed')">
                 <i class="icon-lode icon-calc mr10 va-1"></i>数据报表
             </a>
@@ -80,17 +80,17 @@
                     <a ui-sref="analytics.reports.assetFeature">资产特征</a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <li ng-class="{active: $state.includes('analytics.projects.list.**') || $state.includes('analytics.projects.add')}">
             <a ng-click="stateGo('analytics.projects.list.table', 'updateSummaryMenu', 'projectsIsCollapsed')">
                 <i class="icon-lode icon-project mr10 va-1"></i>项目列表
             </a>
         </li>
-        <li ng-class="{active: $state.includes('analytics.institutions.**')}">
+        <!-- <li ng-class="{active: $state.includes('analytics.institutions.**')}">
             <a ng-click="stateGo('analytics.institutions.list.table', 'updateSummaryMenu', 'institutionsIsCollapsed')">
                 <i class="icon-lode icon-inst mr10 va-1"></i>机构列表
             </a>
-        </li>
+        </li> -->
     </ul>
     <!-- 资金平台-全部项目时候的主菜单 -->
     <div class="buttons text-left mt20 ml50 pl2" ng-show="!isAllProjectsPage()">

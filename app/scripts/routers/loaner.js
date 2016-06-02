@@ -27,7 +27,8 @@
                             // if ($rootScope.user) return true
                             var deferred = $q.defer()
                             ktUserService.get(function(res) {
-                                $rootScope.defaultRoute = 'analytics.reports.dashboard'
+                                // $rootScope.defaultRoute = 'analytics.reports.dashboard'
+                                $rootScope.defaultRoute = 'analytics.projects.list.table'
 
                                 deferred.resolve(res.account)
                             }, function() {
