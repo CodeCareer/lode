@@ -7,12 +7,12 @@
             <div class="dashboard-table">
                 <div class="row" ng-if="stat_summary">
                     <div class="td col-md-3 text-center">
-                        <h6>累计成交金额</h6>
+                        <h6>累计成交金额 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('add_up_amnt')}}" class="icon-lode icon-info f12 opacity-0_5"></i></h6>
                         <div class="f16 mt20 fb" ng-bind="stat_summary.loan_amnt | ktNumberLocate">
                         </div>
                     </div>
                     <div class="td col-md-3 text-center">
-                        <h6>累计成交笔数</h6>
+                        <h6>累计成交笔数 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('add_up_count')}}" class="icon-lode icon-info f12 opacity-0_5"></i></h6>
                         <div class="f16 mt20 fb" ng-bind="(stat_summary.loan_count | number:0) + '笔'">
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
-                        <h6>逾期率</h6>
+                        <h6>逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('ovd_rate')}}" class="icon-lode icon-info f12 opacity-0_5"></i></h6>
                         <div class="f16 mt20 fb" ng-bind="((stat_summary.ovd_rate * 100) | number:2)+ '%'">
                         </div>
                     </div>

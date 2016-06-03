@@ -121,6 +121,10 @@
                 } : {
                     tooltip: {
                         yAxisFormat: 'rmb'
+                    },
+                    yAxis: {
+                        interval: null,
+                        max: null,
                     }
                 }
 

@@ -28,7 +28,10 @@
     </div>
     <div class="hpanel">
         <div class="panel-heading clfix">
-            <h5 ng-bind="vintage_indexs.activeName()"></h5>
+            <h5>
+                <span ng-bind="vintage_indexs.activeName()"></span>
+                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{getToolTip(vintage_indexs.activeName())}}" class="icon-lode icon-info f12 opacity-0_5"></i>
+            </h5>
             <div class="actions fr">
                 <div class="btn-group btn-group-sm">
                     <label class="btn btn-dark" ng-model="vintageChart.radioDataShowType" uib-btn-radio="'table'">

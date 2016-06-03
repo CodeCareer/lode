@@ -31,14 +31,14 @@
                         <div class="checkbox">
                             <input id="overdueRate" kt-echart-legend chart-id="overdueRateChart" name="逾期率" type="checkbox" ng-model="overdueRateChart.overdueTab">
                             <label for="overdueRate">
-                                逾期率
+                                逾期率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('ovd_rate')}}" class="icon-lode icon-info f12 opacity-0_5"></i>
                             </label>
                             <div class="color-icon" style="background-color:{{chartColors[0]}};"></div>
                         </div>
                         <div class="checkbox">
                             <input id="badRate" kt-echart-legend chart-id="overdueRateChart" name="不良率" type="checkbox" ng-model="overdueRateChart.badTab">
                             <label for="badRate">
-                                不良率
+                                不良率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('np_rate')}}" class="icon-lode icon-info f12 opacity-0_5"></i>
                             </label>
                             <div class="color-icon" style="background-color:{{chartColors[1]}};"></div>
                         </div>
@@ -55,12 +55,15 @@
                         <thead>
                             <tr class="text-left">
                                 <th>指标</th>
-                                <th ng-repeat="date in data.dates" ng-bind="date"></th>
+                                <th ng-repeat="date in data.dates" ng-bind="::date"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="trend in data.overdue_trends">
-                                <th class="text-left" ng-bind="::trend.name"></th>
+                                <th class="text-left">
+                                    <span ng-bind="::trend.name"></span>
+                                    <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip(trend.name)}}" class="icon-lode icon-info f12 opacity-0_5"></i>
+                                </th>
                                 <td ng-repeat="value in trend.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                             </tr>
                         </tbody>

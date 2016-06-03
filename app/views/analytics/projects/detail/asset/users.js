@@ -94,6 +94,9 @@
                 } : {
                     tooltip: {
                         yAxisFormat: 'rmb'
+                    },
+                    yAxis: {
+                        max: null,
                     }
                 }
 
@@ -105,6 +108,7 @@
 
                 var listName = getDataKey(type)
                 $scope[type].list = data[listName]
+
                 $scope[type].chartOptions = $.extend(true, {}, chartOptions, {
                     legend: {
                         data: _.map(data[listName], 'name')
