@@ -61,23 +61,47 @@
             background: none;
         }
     }
-    .alert {
-        margin-bottom: 0;
-        border-radius: 0;
-        border: 1px solid @border-color;
-        border-bottom: none;
+    .file-cards {
+        background: white;
+        overflow: hidden;
+        .card {
+            width: 25%;
+            float: left;
+            padding: 5px;
+            text-align: center;
+            h4 {
+                font-size: 1.2rem;
+            }
+            .type-img {
+                border-radius: 2px;
+                background: @color-5;
+                height: 155px;
+                width: 155px;
+                display: inline-block;
+            }
+            .card-footer{
+                margin: 5px 0;
+                font-size: 1.2rem;
+            }
+        }
     }
 }
+
+.alert {
+    margin-bottom: 0;
+    border-radius: 0;
+    border: 1px solid @border-color;
+    border-bottom: none;
+}
+
 .page-small {
-    .hpanel{
+    .hpanel {
         margin: 10px 0;
     }
 }
-
 .panel-collapse .panel-body {
     border: none;
 }
-
 .panel-tools {
     display: inline-block;
     float: right;
@@ -85,106 +109,85 @@
     padding: 0;
     position: relative;
 }
-
 .panel-tools a {
     margin-left: 5px;
     color: lighten(@color-text, 20%);
     cursor: pointer;
 }
-
 .hpanel.hgreen .panel-body {
     border-top: 2px solid @color-green;
 }
-
 .hpanel.hblue .panel-body {
     border-top: 2px solid @color-blue;
 }
-
 .hpanel.hyellow .panel-body {
     border-top: 2px solid @color-yellow;
 }
-
 .hpanel.hviolet .panel-body {
     border-top: 2px solid @color-violet;
 }
-
 .hpanel.horange .panel-body {
     border-top: 2px solid @color-orange;
 }
-
 .hpanel.hred .panel-body {
     border-top: 2px solid @color-red;
 }
-
 .hpanel.hreddeep .panel-body {
     border-top: 2px solid @color-red-deep;
 }
-
 .hpanel.hnavyblue .panel-body {
     border-top: 2px solid @color-navy-blue;
 }
-
 .hpanel.hbggreen .panel-body {
     background: @color-green;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgblue .panel-body {
     background: @color-blue;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgyellow .panel-body {
     background: @color-yellow;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgviolet .panel-body {
     background: @color-violet;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgorange .panel-body {
     background: @color-orange;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgred .panel-body {
     background: @color-red;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgreddeep .panel-body {
     background: @color-red-deep;
     color: #fff;
     border: none;
 }
-
 .hpanel.hbgnavyblue .panel-body {
     background: @color-navy-blue;
     color: #fff;
     border: none;
 }
-
 .panel-group .panel-heading {
     background-color: @color-bright;
     border-radius: 4px;
 }
-
 .small-header .hpanel {
     margin-bottom: 0;
 }
-
 .small-header {
     padding: 0 !important;
 }
-
 .small-header .panel-body {
     padding: 15px 25px;
     border-right: none;
@@ -193,23 +196,19 @@
     border-radius: 0;
     //  background: @color-bright;
 }
-
 .panel-body h5,
 .panel-body h4 {
     font-weight: normal;
 }
-
 .small-header .panel-body h2 {
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     margin: 0 0 0 0;
 }
-
 .small-header .panel-body small {
     color: lighten(@color-text, 10%);
 }
-
 .hbreadcrumb {
     padding: 2px 0px;
     margin-top: 6px;
@@ -225,11 +224,16 @@
             // color: @color-navy-blue;
         }
     }
+
     > .active {
         color: lighten(@color-text, 20%);
     }
 }
-
 .wrapper {
     padding: 10px 20px;
+}
+.tab-panels {
+    .tabs {
+        margin: 0 14px -25px;
+    }
 }

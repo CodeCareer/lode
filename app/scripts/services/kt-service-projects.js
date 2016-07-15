@@ -8,8 +8,9 @@
 
     // 项目
     .factory('ktProjectsService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:subContent', {
+        return $resource('/ajax/' + ktApiVersion + '/projects/:projectID/:subContent/:subID', {
             projectID: '@projectID',
+            subID: '@subID',
             subContent: '@subContent',
         }, {
             'get': {
@@ -18,7 +19,6 @@
             }
         })
     })
-
 
     // 机构
     .factory('ktInstitutionsService', function($resource, ktApiVersion) {
@@ -61,7 +61,7 @@
 
     // 单个项目统计
     .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:dimention/:type/', {
+        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:dimention/:type', {
             projectID: '@projectID',
             dimention: '@dimention',
             type: '@type'

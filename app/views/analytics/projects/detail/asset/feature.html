@@ -8,15 +8,16 @@
         </div>
     </div>
     <div class="hpanels">
-        <div class="hpanel">
+        <!-- 遍历charts -->
+        <div class="hpanel" ng-repeat="c in charts">
             <div class="panel-heading clfix">
-                <h5>抵押率 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="初始借款金额与初始抵押物价值的比例" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
+                <h5><span ng-bind="c.name"></span>分布 <i ng-if="c.description" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.description}}" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
                 <div class="actions fr">
                     <div class="btn-group btn-group-sm">
-                        <label class="btn btn-dark" ng-model="pledgeChart.radioDataShowType" uib-btn-radio="'table'">
+                        <label class="btn btn-dark" ng-model="c.radioDataShowType" uib-btn-radio="'table'">
                             <i class="icon-lode">&#xe808;</i>
                         </label>
-                        <label class="btn btn-dark" ng-model="pledgeChart.radioDataShowType" uib-btn-radio="'chart'">
+                        <label class="btn btn-dark" ng-model="c.radioDataShowType" uib-btn-radio="'chart'">
                             <i class="icon-lode">&#xe806;</i>
                         </label>
                     </div>
@@ -30,189 +31,45 @@
                     <div class="chart-table-heading clfix">
                         <div class="dropdown fl" dropdown>
                             <div dropdown-toggle class="dropdown-toggle cp">
-                                <span ng-bind="pledgeChart.chartDimension || '时点余额'"></span>
-                                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{pledgeChart.chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
+                                <span ng-bind="c.chartDimension"></span>
+                                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
                                 <b class="icon-lode icon-arrow">&#xe805;</b>
                             </div>
                             <div class="dropdown-menu animated fadeIn m-t-xs">
                                 <ul>
-                                    <li ng-class="{active: pledgeChart.chartDimension == '时点余额'}"><a ng-click="pledgeChart.chartDimension = '时点余额'" title="时点余额">时点余额</a></li>
-                                    <li ng-class="{active: pledgeChart.chartDimension == '新增成交'}"><a ng-click="pledgeChart.chartDimension = '新增成交'" title="新增成交">新增成交</a></li>
+                                    <li ng-class="{active: c.chartDimension == '时点余额'}"><a ng-click=" c.dimentionChange('时点余额')" title="时点余额">时点余额</a></li>
+                                    <li ng-class="{active: c.chartDimension == '新增成交'}"><a ng-click="c.dimentionChange('新增成交')" title="新增成交">新增成交</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="chart-table-menu fr">
-                            <div kt-line-menu menu-data="pledgeChart.menuData">
-                                <a href="javascript:;" ng-class="{active: pledgeChart.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
-                                <a href="javascript:;" ng-class="{active: pledgeChart.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
+                            <div kt-line-menu menu-data="c.menuData">
+                                <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
+                                <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
                                 <span class="line"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="chart-table-body" ng-show="pledgeChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="pledgeChart.chartOptions" resize-by="pledgeChart.radioDataShowType" style="height:400px;">
+                    <div class="chart-table-body" ng-show="c.radioDataShowType == 'chart'">
+                        <div kt-echart id="c" chart-options="c.chartOptions" style="height:400px;" resize-by="c.radioDataShowType">
                         </div>
                     </div>
-                    <div class="chart-table-body" ng-show="pledgeChart.radioDataShowType == 'table'">
+                    <div class="chart-table-body" ng-show="c.radioDataShowType == 'table'">
                         <div class="table-responsive table-body">
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr class="text-left">
-                                        <th>抵押率</th>
+                                        <th ng-bind="c.name"></th>
                                         <th ng-repeat="date in data.dates" ng-bind="date"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="text-right">
-                                        <tr class="text-right" ng-repeat="item in pledgeChart.list" ng-show="pledgeChart.menuData.index === 0">
+                                        <tr class="text-right" ng-repeat="item in c.list" ng-show="c.menuData.index === 0">
                                             <th class="text-left" ng-bind="::item.name"></th>
                                             <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
                                         </tr>
-                                        <tr class="text-right" ng-repeat="item in pledgeChart.list" ng-show="pledgeChart.menuData.index === 1">
-                                            <th class="text-left" ng-bind="::item.name"></th>
-                                            <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
-                                        </tr>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hpanel">
-            <div class="panel-heading clfix">
-                <h5>期限分布 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="借款的初始期限" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
-                <div class="actions fr">
-                    <div class="btn-group btn-group-sm">
-                        <label class="btn btn-dark" ng-model="timeLimitChart.radioDataShowType" uib-btn-radio="'table'">
-                            <i class="icon-lode">&#xe808;</i>
-                        </label>
-                        <label class="btn btn-dark" ng-model="timeLimitChart.radioDataShowType" uib-btn-radio="'chart'">
-                            <i class="icon-lode">&#xe806;</i>
-                        </label>
-                    </div>
-                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
-                        <i class="glyphicon glyphicon-download-alt"></i>
-                    </a> -->
-                </div>
-            </div>
-            <div class="panel-body clfix pr ov-h">
-                <div class="chart-table">
-                    <div class="chart-table-heading clfix">
-                        <div class="dropdown fl" dropdown>
-                            <div dropdown-toggle class="dropdown-toggle cp">
-                                <span ng-bind="timeLimitChart.chartDimension || '时点余额'"></span>
-                                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{timeLimitChart.chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
-                                <b class="icon-lode icon-arrow">&#xe805;</b>
-                            </div>
-                            <div class="dropdown-menu animated fadeIn m-t-xs">
-                                <ul>
-                                    <li ng-class="{active: timeLimitChart.chartDimension == '时点余额'}"><a ng-click="timeLimitChart.chartDimension = '时点余额'" title="时点余额">时点余额</a></li>
-                                    <li ng-class="{active: timeLimitChart.chartDimension == '新增成交'}"><a ng-click="timeLimitChart.chartDimension = '新增成交'" title="新增成交">新增成交</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="chart-table-menu fr">
-                            <div kt-line-menu menu-data="timeLimitChart.menuData">
-                                <a href="javascript:;" ng-class="{active: timeLimitChart.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
-                                <a href="javascript:;" ng-class="{active: timeLimitChart.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-table-body" ng-show="timeLimitChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="timeLimitChart.chartOptions" resize-by="timeLimitChart.radioDataShowType" style="height:400px;">
-                        </div>
-                    </div>
-                    <div class="chart-table-body" ng-show="timeLimitChart.radioDataShowType == 'table'">
-                        <div class="table-responsive table-body">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr class="text-left">
-                                        <th>期限分布</th>
-                                        <th ng-repeat="date in data.dates" ng-bind="date"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-right">
-                                        <tr class="text-right" ng-repeat="item in timeLimitChart.list" ng-show="timeLimitChart.menuData.index === 0">
-                                            <th class="text-left" ng-bind="::item.name"></th>
-                                            <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
-                                        </tr>
-                                        <tr class="text-right" ng-repeat="item in timeLimitChart.list" ng-show="timeLimitChart.menuData.index === 1">
-                                            <th class="text-left" ng-bind="::item.name"></th>
-                                            <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
-                                        </tr>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hpanel">
-            <div class="panel-heading clfix">
-                <h5>额度分布</h5>
-                <div class="actions fr">
-                    <div class="btn-group btn-group-sm">
-                        <label class="btn btn-dark" ng-model="amountChart.radioDataShowType" uib-btn-radio="'table'">
-                            <i class="icon-lode">&#xe808;</i>
-                        </label>
-                        <label class="btn btn-dark" ng-model="amountChart.radioDataShowType" uib-btn-radio="'chart'">
-                            <i class="icon-lode">&#xe806;</i>
-                        </label>
-                    </div>
-                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
-                        <i class="glyphicon glyphicon-download-alt"></i>
-                    </a> -->
-                </div>
-            </div>
-            <div class="panel-body clfix pr ov-h">
-                <div class="chart-table">
-                    <div class="chart-table-heading clfix">
-                        <div class="dropdown fl" dropdown>
-                            <div dropdown-toggle class="dropdown-toggle cp">
-                                <span ng-bind="amountChart.chartDimension || '时点余额'"></span>
-                                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{amountChart.chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
-                                <b class="icon-lode icon-arrow">&#xe805;</b>
-                            </div>
-                            <div class="dropdown-menu animated fadeIn m-t-xs">
-                                <ul>
-                                    <li ng-class="{active: amountChart.chartDimension == '时点余额'}"><a ng-click="amountChart.chartDimension = '时点余额'" title="时点余额">时点余额</a></li>
-                                    <li ng-class="{active: amountChart.chartDimension == '新增成交'}"><a ng-click="amountChart.chartDimension = '新增成交'" title="新增成交">新增成交</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="chart-table-menu fr">
-                            <div kt-line-menu menu-data="amountChart.menuData">
-                                <a href="javascript:;" ng-class="{active: amountChart.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
-                                <a href="javascript:;" ng-class="{active: amountChart.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-table-body" ng-show="amountChart.radioDataShowType == 'chart'">
-                        <div kt-echart chart-options="amountChart.chartOptions" style="height:400px;" resize-by="amountChart.radioDataShowType">
-                        </div>
-                    </div>
-                    <div class="chart-table-body" ng-show="amountChart.radioDataShowType == 'table'">
-                        <div class="table-responsive table-body">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr class="text-left">
-                                        <th>额度</th>
-                                        <th ng-repeat="date in data.dates" ng-bind="date"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-right">
-                                        <tr class="text-right" ng-repeat="item in amountChart.list" ng-show="amountChart.menuData.index === 0">
-                                            <th class="text-left" ng-bind="::item.name"></th>
-                                            <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
-                                        </tr>
-                                        <tr class="text-right" ng-repeat="item in amountChart.list" ng-show="amountChart.menuData.index === 1">
+                                        <tr class="text-right" ng-repeat="item in c.list" ng-show="c.menuData.index === 1">
                                             <th class="text-left" ng-bind="::item.name"></th>
                                             <td ng-repeat="value in item.data track by $index" ng-bind="value | ktNumber:2:'percent'"></td>
                                         </tr>

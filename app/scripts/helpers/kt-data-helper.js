@@ -5,7 +5,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .factory('ktDataHelper', function() {
+        .factory('ktDataHelper', function($timeout, ktUri, ktFormValidator) {
             var educationList = [{
                 name: '博士',
                 index: 0,
@@ -29,7 +29,255 @@
             }]
 
             return {
-                filterStatus: function(arr) { //filter:{fn}
+                /**
+                 * [filterInit 筛选组件的初始化]
+                 * @param  {[Array]} filters [初始filters]
+                 * @param  {[Array]} options   [一个和filters 同长度的类型数组,用于不同的展示表现]
+                 * @return {[Function]}      [根据参数处理active状态的函数]
+                 */
+                filterInit: function(filters, options) {
+                    var _self = this
+                    if (!filters.hasAdapt) {
+                        _self._dataAdaptor(filters, options)
+                    }
+                    return function(params) {
+                        _self.filterUpdate(filters, params)
+                    }
+                },
+                filterUpdate: function(filters, params) { // 更新条件选中状态
+
+                    _.each(filters || [], function(v) {
+                        var customKey = v.field.replace('dstrbtn_', '')
+                        v.customOptionStart = ''
+                        v.customOptionEnd = ''
+
+                        if (v.perform_type === 'options') {
+                            if (params[v.field]) {
+                                _.each(v.options, function(o) {
+                                    /*eslint-disable*/
+                                    o.active = o.value == params[v.field]
+                                        /*eslint-enable*/
+                                })
+
+                            } else if (params[customKey]) { //说明是自定义参数
+                                _.each(v.options, function(o) {
+                                    /*eslint-disable*/
+                                    o.active = false
+                                        /*eslint-enable*/
+                                })
+
+                                var p = params[customKey].split('-')
+                                v.customOptionStart = p[0] || ''
+                                v.customOptionEnd = p[1] || ''
+
+                            } else { //默认是全部处于选中状态
+                                _.each(v.options, function(o, i) {
+                                    /*eslint-disable*/
+                                    o.active = i === 0
+                                        /*eslint-enable*/
+                                })
+                            }
+                        } else if (v.perform_type === 'search') {
+                            v.searchValue = params[customKey] || ''
+                        }
+                    })
+                },
+                decodeParams: function(params, decodeKeys) {
+                    var res = {}
+                    _.each(params, function(v, k) {
+                        if (_.includes(decodeKeys || [], k)) {
+                            $.extend(res, ktUri.decodeParams(v))
+                        }
+                    })
+                    return res
+                },
+                getEducationName: function(value) {
+                    var ed = _.find(educationList, function(v) {
+                        return v.value === value
+                    }) || {}
+                    return ed.name || '-'
+                },
+                // 去掉值是all的参数
+                pruneDirtyParams: function(params, search, list) {
+                    _.each(params, function(v, i) {
+                        //如果url地址中不包含则删除
+                        if (search) {
+                            var l = _.isArray(list) ? list : [list]
+                            if (list) { // 如果依据列表删除
+                                if (_.includes(l, i) && !search[i]) {
+                                    delete params[i]
+                                }
+                            } else if (!search[i]) { // 没依据则都删除
+                                delete params[i]
+                            }
+                        }
+                    })
+                },
+                //删除全部时候的参数，避免后台出错
+                cutDirtyParams: function(params, search, list) {
+                    var newParams = $.extend(true, {}, params)
+                    _.each(newParams, function(v, i) {
+                        if (newParams[i] === 'all') {
+                            delete newParams[i]
+                        }
+                    })
+
+                    this.pruneDirtyParams(newParams, search, list)
+
+                    return newParams
+                },
+                // 将后台取到的filters数据加工符合前端的数据-市场数据，产品信息，可预约产品页
+                _dataAdaptor: function(filters, options) {
+                    // var _self = this
+                    options = options || []
+
+                    // 将search类型的放到最后
+                    filters.sort(function(a, b) {
+                        if (a.perform_type > b.perform_type) {
+                            return 1
+                        } else if (a.perform_type < b.perform_type) {
+                            return -1
+                        }
+                        return 0
+                    })
+
+                    _.each(filters, function(v) {
+
+                        // 域的格式
+                        v.pattern = (function() {
+                            if (v.field_type === 'integer') {
+                                return '^\\d+$'
+                            } else if (v.field_type === 'float') {
+                                return '^\\d+(\\.\\d+)?$'
+                            }
+                            return '^.+$'
+                        })();
+
+                        if (_.includes(['integer', 'float'], v.field_type) && v.perform_type === 'options') { // 这两个类型才有自定义筛选范围
+                            v.customOptionVisible = true
+
+                            v.errors = { start: '', end: '' }
+                            v.validate = function() { // 做值得验证
+                                var customStart = ktFormValidator.validateInput('#custom_start_' + v.field, '.filter-box')
+                                var customEnd = ktFormValidator.validateInput('#custom_end_' + v.field, '.filter-box')
+                                var valid = false
+                                switch (true) {
+                                    case !customStart.valid:
+                                        v.errors.start = (v.field_type === 'integer') ? '请填写正整数' : '请填写正数'
+                                        v.errors.start_open = true
+                                        break
+                                    case !customEnd.valid:
+                                        v.errors.end = (v.field_type === 'integer') ? '请填写正整数' : '请填写正数'
+                                        v.errors.end_open = true
+                                        break
+                                    default:
+                                        valid = true
+                                        v.errors.start = ''
+                                        v.errors.start_open = false
+                                        v.errors.end = ''
+                                        v.errors.end_open = false
+                                }
+
+                                $timeout(function() {
+                                    v.errors.start_open = false
+                                    v.errors.end_open = false
+                                }, 2000)
+
+                                return valid
+                            }
+                        } else if (v.perform_type === 'search') {
+
+                            v.errors = { search: '' }
+                            v.validate = function() { // 做值得验证
+                                var search = ktFormValidator.validateInput('#search_' + v.field, '.filter-box')
+                                var valid = false
+                                switch (true) {
+                                    case !search.valid:
+                                        v.errors.search = '请正确填写'
+                                        v.errors.search_open = true
+                                        break
+                                    default:
+                                        valid = true
+                                        v.errors.search = ''
+                                        v.errors.search_open = false
+                                }
+
+                                $timeout(function() {
+                                    v.errors.search_open = false
+                                }, 2000)
+
+                                return valid
+                            }
+                        }
+
+                        if (v.perform_type === 'options') {
+                            v.options = _.map(v.options, function(o) {
+                                return {
+                                    name: o,
+                                    // visible: option && _.isNil(option.visible) ? option.visible : true,
+                                    value: o
+                                }
+                            })
+                            v.options.unshift({
+                                name: '全部',
+                                active: true,
+                                // visible: true,
+                                value: 'all'
+                            })
+                        }
+
+                        // var option = _.find(options, { value: v.value }) //自定义可见 option
+                        // v.type = (option && option.type) ? option.type : 'list'
+
+                        /*if (v.type === 'dropdown') {
+                            v.options.isOpen = false
+                        }*/
+
+                        /*v.toggleView = function($event) { //折叠切换
+                            v.collapsed = !v.collapsed
+                            var target = $($event.target)
+                            target = target.hasClass('icon-arrow') ? target.parent() : target
+                            target.toggleClass('expand', !v.collapsed)
+                        }*/
+
+                        // 用于过滤的函数
+                        /*v.filterFn = v.type === 'list' ?
+                            (function() {
+                                v.collapsed = _.isNil(v.collapsed) ? true : v.collapsed // 默认折叠
+                                return _self._optionsLengthLimit(v)
+                            })() : function() {
+                                return true
+                            }*/
+                    })
+
+                    filters.getByField = function(field) {
+                        return _.find(filters, { field: field })
+                    }
+
+                    filters.validateByField = function(field) {
+                        var filter = this.getByField(field)
+                        return filter.validate()
+                    }
+
+                    filters.hasAdapt = true // 打标识，避免重复数据处理
+                },
+                seperateTwoColumns: function(data, bound) {
+                    _.each(data, function(v, k) {
+                        if (v.length > bound) {
+                            var breakPoint = (function() {
+                                if (v.length > bound * 2) {
+                                    return Math.ceil(v.length / 2)
+                                }
+                                return bound
+                            })();
+                            data[k + '_second'] = _.remove(data[k], function(v2, i2) {
+                                return i2 >= breakPoint
+                            })
+                        }
+                    })
+                },
+
+                /*filterStatus: function(arr) { //filter:{fn}
                     return function(item) {
                         return _.includes(arr || [], item.value)
                     }
@@ -41,12 +289,6 @@
                 },
                 getEducationMap: function() {
                     return educationList
-                },
-                getEducationName: function(value) {
-                    var ed = _.find(educationList, function(v) {
-                        return v.value === value
-                    }) || {}
-                    return ed.name || '-'
                 },
                 getProjectStatusMap: function() {
                     return [{
@@ -194,7 +436,7 @@
                         }) || {}
                         return $scope.params.subproject_id ? subProject.name : '全部'
                     }
-                },
+                },*/
                 getStatByProject: function() {
                     return {
                         radioDataShowType: 'all', // all ,single

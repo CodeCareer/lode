@@ -19,7 +19,7 @@
         white-space: nowrap;
         border-top: 0;
         border-right: 1px solid @color-5;
-        &.va-m{
+        &.va-m {
             vertical-align: middle;
         }
         &:last-child {
@@ -46,13 +46,13 @@
     color: white;
     padding: 11px;
     text-align: center;
-    &.bb-0{
+    &.bb-0 {
         border-bottom: 0;
     }
-    &.br-1{
+    &.br-1 {
         border-right: 1px solid darken(@color-5, 20%);
     }
-    &.bb-1{
+    &.bb-1 {
         border-bottom: 1px solid darken(@color-5, 20%);
     }
     &:first-child {
@@ -159,5 +159,34 @@ table {
     margin: 10px 0;
     .td {
         border-right: 1px solid @color-8;
+    }
+}
+
+.simple-grid {
+    padding: 10px;
+    background: white;
+    font-size: 1.2rem;
+    .left {
+        float: left;
+        width: 50%;
+    }
+    .right {
+        float: right;
+        width: 50%;
+    }
+    .line {
+        line-height: 30px;
+        border-bottom: 1px solid @color-gray;
+        &:last-of-type{
+            border-bottom: 0;
+        }
+        .name {
+            float: left;
+            width: 110px;
+            text-align: right;
+        }
+        .value {
+            margin-left: 120px;
+        }
     }
 }

@@ -1,97 +1,22 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr class="text-left">
-            <th>购车人姓名</th>
-            <th>业务性质</th>
-            <th>经销商</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>学历</th>
-            <th>身份证号</th>
-            <th>身份证归属地</th>
-            <th>户籍</th>
-            <th>手机号</th>
-            <th>手机号归属地</th>
-            <th>婚否</th>
-            <th>参保</th>
-            <th>所属行业</th>
-            <th>所有权人</th>
-            <th>与购车人关系</th>
-            <th>公司名称</th>
-            <th>单位类别</th>
-            <th>职务</th>
-            <th>单位地址</th>
-            <th>经营期限</th>
-            <th>月收入</th>
-            <th>是否分期</th>
-            <th>保费</th>
-            <th>保费费率</th>
-            <th>综合累计收回</th>
-            <th>综合累计收益</th>
-            <th>车辆类型</th>
-            <th>产品类别</th>
-            <th>上牌地</th>
-            <th>行驶证车主</th>
-            <th>车价</th>
-            <th>二手车评估价值</th>
-            <th>已使用年限</th>
-            <th>销售价格</th>
-            <th>融资期限</th>
-            <th>首期比例</th>
-            <th>首期租金</th>
-            <th>融资比例</th>
-            <th>融资金额</th>
-            <th>月供金额</th>
-            <th>累计收益</th>
+            <th ng-repeat="f in fields" ng-bind="f.name"></th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
-        <tr class="text-right" ng-repeat="borrower in borrowers">
-            <th class="text-left" ng-bind="::borrower.name"></th>
-            <td ng-bind="::borrower.business_nature | ktNull"></td>
-            <td ng-bind="::borrower.dealer | ktNull"></td>
-            <td ng-bind="::(borrower.sex == 1 ? '女' : '男') | ktNull"></td>
-            <td ng-bind="::borrower.age | ktNull"></td>
-            <td ng-bind="::getEducationName(borrower.education) | ktNull"></td>
-            <td ng-bind="::borrower.id_no | ktNull"></td>
-            <td ng-bind="::borrower.id_attribution | ktNull"></td>
-            <td ng-bind="::borrower.census_addr | ktNull"></td>
-            <td ng-bind="::borrower.phone | ktNull"></td>
-            <td ng-bind="::borrower.phone_attribution | ktNull"></td>
-            <td ng-bind="::borrower.marital_status | ktNull"></td>
-            <td ng-bind="::borrower.insured | ktNull"></td>
-            <td ng-bind="::borrower.industry | ktNull"></td>
-            <td ng-bind="::borrower.car_owner | ktNull"></td>
-            <td ng-bind="::borrower.car_owner_relation | ktNull"></td>
-            <td ng-bind="::borrower.company | ktNull"></td>
-            <td ng-bind="::borrower.company_type | ktNull"></td>
-            <td ng-bind="::borrower.emp_title | ktNull"></td>
-            <td ng-bind="::borrower.company_addr | ktNull"></td>
-            <td ng-bind="::borrower.business_peroid | ktNull"></td>
-            <td ng-bind="::borrower.monthly_income | ktNumberLocate"></td>
-            <td ng-bind="::borrower.installment | ktNull"></td>
-            <td ng-bind="::borrower.premium | ktNumberLocate"></td>
-            <td ng-bind="::borrower.premium_rate | ktNumber:2:'percent2'"></td>
-            <td ng-bind="::borrower.comprehensive_recover | ktNumberLocate"></td>
-            <td ng-bind="::borrower.comprehensive_returns | ktNumberLocate"></td>
-            <td ng-bind="::borrower.car_type | ktNull"></td>
-            <td ng-bind="::borrower.product_type | ktNull"></td>
-            <td ng-bind="::borrower.car_registered_addr | ktNull"></td>
-            <td ng-bind="::borrower.car_license_owner"></td>
-            <td ng-bind="::borrower.car_price | ktNumberLocate"></td>
-            <td ng-bind="::borrower.used_car_appraisal | ktNumberLocate"></td>
-            <td ng-bind="::borrower.service_life | ktNull"></td>
-            <td ng-bind="::borrower.sale_car_price | ktNumberLocate"></td>
-            <td ng-bind="::borrower.terms | ktNull"></td>
-            <td ng-bind="::borrower.down_payment_rate | ktNumber:2:'percent2'"></td>
-            <td ng-bind="::borrower.down_payment | ktNumberLocate"></td>
-            <td ng-bind="::borrower.funding_rate | ktNumber:2:'percent2'"></td>
-            <td ng-bind="::borrower.loan_amnt | ktNumberLocate"></td>
-            <td ng-bind="::borrower.fund_raising_rate | ktNumberLocate"></td>
-            <td ng-bind="::borrower.accumulated_returns | ktNumberLocate"></td>
+        <tr class="text-right" ng-repeat="borrower in borrowers track by $index">
+            <td ng-repeat="f in fields track by $index" ng-class="{'text-left': $index === 0}">
+                <span ng-if="$index>0" ng-bind="borrower[f.field] | filterByFormat:getFormat($index)"></span>
+                <a ng-if="$index === 0" ng-bind="borrower[f.field] | filterByFormat:getFormat($index)" class="tu"  ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})"></a>
+            </td>
+            <td>
+                <a class="tu" ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})">查看</a>
+            </td>
         </tr>
-        <tr ng-if="!borrowers.length && !isLoading()">
-            <td colspan="42" class="text-info text-center">
+        <tr ng-if="!fields.length && !isLoading()">
+            <td colspan="fields.length+1" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

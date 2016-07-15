@@ -38,6 +38,7 @@ var appScripts = [
     'app/common/kt-common.js',
     'app/common/locale/angular-locale_zh-cn.js',
     'app/common/factories/kt-resource-assetmap.js',
+    'app/common/factories/kt-common-funcs.js',
     'app/common/providers/kt-resolve-provider.js',
     'app/common/helpers/kt-common-helpers.js',
     'app/common/factories/kt-alert.js',

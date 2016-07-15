@@ -7,11 +7,10 @@ var appConfig = {
 var port = 8000
 var livereloadPort = 35727
 
-var server = 'http://dev-lode.ktjr.com'
+// var server = 'http://dev-lode.ktjr.com'
 // var server = 'http://lode.ktjr.com'
-// var server = 'http://10.132.1.41:3000'
-    // var server = 'http://10.132.1.83:3000'
-    // var server = 'http://op-fame.ktjr.com'
+// var server = 'http://10.132.1.114:3000'
+var server = 'http://localhost:3000'
 
 var modRewriteUri = [
     // '^/mock_data/v\d{1,}/([^?]*).*$ /mock_data/$1 [L]',
@@ -20,53 +19,6 @@ var modRewriteUri = [
     '^/(.(?!\\.))*$ /index.html [L]',
 ]
 
-var sessionMidWare = function() {
-
-    return function(req, res, next) {
-        /*
-        if (req.method === 'POST' && req.url.match(/\/ajax\/v\d\/sessions/)) {
-            var resToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNTVhMWNhODY2OTVhMzJlYTUyMDAwMDAwIiwiZXhwIjoxNDM2NzU5NjA4fQ.2CwqRebKd8HPJlG0nAmYBal2eNgkbhgWLdw6Qp6Aix0'
-            req.session.token = resToken
-            res.end('{"token":"' + resToken + '"}')
-        } else if (req.method === 'GET' && req.url.match(/\/ajax\/v\d\/users/)) {
-            res.end('{"account":{"role": "admin","type": "loaner","name": "demo"}}')
-        }*/
-
-        var token = req.session.token
-
-        if ((!token || !req.headers.authorization) && req.url.match(/sessions\.post\.json\??.*/)) {
-
-            req.session.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNTVhMWNhODY2OTVhMzJlYTUyMDAwMDAwIiwiZXhwIjoxNDM2NzU5NjA4fQ.2CwqRebKd8HPJlG0nAmYBal2eNgkbhgWLdw6Qp6Aix0';
-
-        } else if (req.url.match(/news\.[^?#]*json/) || req.url.match(/users\.post\.json\??.*/) || req.url.match(/capcha\.get\.json\??.*/)) {
-
-            console.log('no need to authorize')
-
-        } else if (req.url.match(/\.json\??\.*/) && !req.session.token) {
-
-            res.writeHead(419, {
-                'Content-Type': 'application/json'
-            })
-
-            res.end('{"error":"session expired"}')
-
-        } else if (token && req.url.match(/\.json\??\.*/) && token !== req.headers.authorization) {
-
-            res.writeHead(401, {
-                'Content-Type': 'application/json'
-            })
-
-            res.end('{"error":"no token post"}')
-        }
-
-        // if (!req.url.match(/\.json\??|\/api\/v\d+|\/index\.html/g)) {
-        //     res.setHeader("Cache-Control", "max-age=6000")
-        // }
-
-        return next()
-    }
-
-}
 module.exports = {
     options: {
         port: port,
@@ -82,13 +34,13 @@ module.exports = {
 
                 return [
                     /**
-                     * @author luxueyan
+                     * @author luxueyan @deprecated
                      * 模拟服务器端环境，
                      * 1.第一次无token, session写入xsrf token 和用户登录状态
                      * 2.无token访问API接口 返回401错误
                      * 3.登录login过期以后返回419错误
                      */
-                    connect.cookieParser(),
+                    /*connect.cookieParser(),
                     connect.session({
                         secret: 'jiami',
                         cookie: {
@@ -96,7 +48,7 @@ module.exports = {
                         }
                     }),
 
-                    sessionMidWare(),
+                    sessionMidWare(),*/
 
                     //mock data API
                     modRewrite(modRewriteUri),

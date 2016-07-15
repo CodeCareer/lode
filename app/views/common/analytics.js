@@ -14,7 +14,7 @@
             }
 
             // 判断是否是全部项目页面
-            $scope.isAllProjectsPage = function () {
+            $scope.isAllProjectsPage = function() {
                 return $state.includes('analytics.projects.**') || $state.includes('analytics.reports.**') || $state.includes('analytics.institutions.**')
             }
 
@@ -146,8 +146,10 @@
                 $scope.menu[collapseName] = !$scope.menu[collapseName]
             }
 
-            $rootScope.$on('$stateChangeSuccess', function () {
-                $(window).scrollTop(0)
+            $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState) {
+                if (toState.name !== fromState.name) {
+                    $(window).scrollTop(0)
+                }
             })
 
         })

@@ -1,11 +1,67 @@
-<div id="borrowers"  kt-animate-panel child="hpanel">
+<div id="borrowers" kt-animate-panel child="hpanel">
+    <div class="hpanel">
+        <div class="panel-body">
+            <div class="filter-box">
+                <div class="filters-list">
+                    <div class="filter-line clfix" ng-repeat="filter in shared.filters" ng-show="shared.filters.length">
+                        <div class="name" ng-bind="::(filter.name + '：')"></div>
+                        <div class="options" ng-if="filter.perform_type === 'options'">
+                            <ul class="options-list">
+                                <li ng-class="{active: o.active}" ng-repeat="o in filter.options">
+                                    <a ng-click="goTo(filter.field, o.value)" ng-bind="::o.name"></a>
+                                </li>
+                                <li class="custom-option" ng-show="filter.customOptionVisible">
+                                    <input type="text" id="custom_start_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.start}}" tooltip-class="error" tooltip-is-open="filter.errors.start_open" ng-model="filter.customOptionStart">
+                                    <span>-</span>
+                                    <input type="text" id="custom_end_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.end}}" tooltip-class="error" tooltip-is-open="filter.errors.end_open" ng-model="filter.customOptionEnd">
+                                    <span class="unit" ng-bind="::filter.unit"></span>
+                                    <button class="btn btn-navy-blue btn-xs" ng-click="goTo(filter.field, filter.customOptionStart + '-' + filter.customOptionEnd, 'custom')">筛选</button>
+                                </li>
+                            </ul>
+                            <!--<div ng-if="!filter.filterFn.hidden" class="toggle-btn" ng-click="filter.toggleView($event)">
+                                <i class="fa fa-angle-right f1_8rem icon-arrow"></i>
+                            </div>-->
+                        </div>
+                        <div class="search-options" ng-if="filter.perform_type === 'search'">
+                            <input type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue">
+                            <button class="btn btn-navy-blue btn-xs" ng-click="goTo(filter.field, filter.searchValue, 'custom')">筛选</button>
+                        </div>
+                        <!--<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
+                            <div class="dropdown fl" dropdown>
+                                <div dropdown-toggle class="dropdown-toggle cp">
+                                    <span ng-bind="getConditionName(filter.value)"></span>
+                                    <b class="fa fa-angle-down icon-arrow fb f1_5rem"></b>
+                                </div>
+                                <div class="dropdown-menu animated fadeIn">
+                                    <ul>
+                                        <li ng-repeat="condition in filter.options" ng-class="{active: condition.active}">
+                                            <a ng-click="goTo(filter.value, condition.value)" title="{{condition.name}}" ng-bind="condition.name"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="filter-line" ng-if="getFParamsLength()">
+                        <div class="name">已选条件：</div>
+                        <div class="checkboxes clfix">
+                            <div class="checked-item" ng-repeat="(key, value) in shared.fParams">
+                                <span ng-bind="value"></span>
+                                <i class="pe-7s-close delete-item" ng-click="delFParams(key)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="hpanel">
         <div class="panel-body clfix">
             <div class="chart-table">
                 <div class="table-responsive table-body" ui-view>
                 </div>
             </div>
-            <uib-pagination total-items="params.totalItems" items-per-page="params.per_page" ng-change="pageChanged()" max-size="params.maxSize" ng-model="params.page" class="pagination-sm fr"></uib-pagination>
+            <uib-pagination total-items="shared._params.totalItems" items-per-page="shared.params.per_page" ng-change="pageChanged()" max-size="shared._params.maxSize" ng-model="shared.params.page" class="pagination-sm fr"></uib-pagination>
         </div>
     </div>
 </div>

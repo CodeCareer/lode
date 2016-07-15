@@ -10,7 +10,7 @@
                  *  微贷平台
                  */
                 'analytics': {
-                    url: '/analytics?apimock&role&inst_type', //父view的设置，通过ui-sref的跳转会将参数带到子view
+                    url: '/analytics?apimock', //父view的设置，通过ui-sref的跳转会将参数带到子view
                     abstract: true,
                     templateUrl: 'views/common/analytics.html',
                     data: {
@@ -212,13 +212,35 @@
                     }
                 },
                 'analytics.project.debtors.list.table': {
-                    url: '?page&per_page',
+                    url: '?page&per_page&filter',
                     templateUrl: 'views/analytics/projects/detail/debtors/debtor.html',
                     controller: 'ktDebtorTableCtrl',
                     data: {
                         breadcrumb: false,
                         breadcrumbTitle: '借款人列表',
                         pageTitle: '借款人列表'
+                    },
+                },
+                'analytics.project.debtors.detail': {
+                    url: '',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/debtors/detail_layout.html',
+                    controller: 'ktDebtorDetailLayoutCtrl',
+                    resolve: ktLazyResolve(['views/analytics/projects/detail/debtors/detail.js']),
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '借款人详情',
+                        pageTitle: '借款人详情'
+                    },
+                },
+                'analytics.project.debtors.detail.view': {
+                    url: '/:debtorID?tab',
+                    templateUrl: 'views/analytics/projects/detail/debtors/detail.html',
+                    controller: 'ktDebtorDetailCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '借款人详情',
+                        pageTitle: '借款人详情'
                     },
                 },
                 'analytics.project.asset': { //单个项目的资产特抽:页面
