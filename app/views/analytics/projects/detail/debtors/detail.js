@@ -3,24 +3,18 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktDebtorDetailLayoutCtrl', function($scope, $state) {
+    .controller('ktDebtorDetailLayoutCtrl', function($scope) {
         $scope.tabs = {
-            active1: false,
-            active2: false,
+            basic_info: true,
+            payments: false,
             active3: false
         }
-
-        $scope.goTo = function(tab) {
-            $state.go($state.current.name, {
-                tab: tab
-            })
-        }
+        $scope.shared = {}
     })
 
     .controller('ktDebtorDetailCtrl', function($scope, $state, $stateParams, ktProjectsService, ktDataHelper) {
 
-        var activeTab = $stateParams.tab || 'active1'
-        $scope.tabs[activeTab] = true
+        var activeTab = $stateParams.tab || 'basic_info'
 
         ktProjectsService.get({
             projectID: $stateParams.projectID,
@@ -29,18 +23,26 @@
             tab: activeTab
         }, function(data) {
             switch (activeTab) {
-                case 'active1':
-                    ktDataHelper.seperateTwoColumns(data.info, 7)
-                    $scope.info = data.info
+                case 'basic_info':
+                    ktDataHelper.seperateTwoColumns(data.basic, 7)
+                    $scope.info = data.basic
                     break
-                case 'active2':
-                    $scope.repayments = data.repayments
+                case 'payments':
+                    $scope.repayments = {}
+                    $scope.repayments.payments = data.payments
+                    $scope.repayments.loan_info = data.loan_info
                     break
                 case 'active3':
                     $scope.attachments = data.attachments
                     break
                 default:
                     console.error('tab no exist')
+            }
+
+            $scope.shared.goTo = function(tab) { // 第一次数据加载后再处理避免请求两次的bug,否则tab组件会默认触发一次select
+                $state.go($state.current.name, {
+                    tab: tab
+                })
             }
         })
     })

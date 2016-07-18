@@ -15,8 +15,8 @@
                 <a class="tu" ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})">查看</a>
             </td>
         </tr>
-        <tr ng-if="!fields.length && !isLoading()">
-            <td colspan="fields.length+1" class="text-info text-center">
+        <tr ng-if="!borrowers.length && !isLoading()">
+            <td colspan="borrowers.length+1" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

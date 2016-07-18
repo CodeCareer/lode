@@ -20,13 +20,13 @@
 
             $scope.vintage_indexs = [{
                 name: 'C-M1',
-                value: 'c_m1_rate'
+                value: 'C-M1'
             }, {
                 name: 'M1-C',
-                value: 'm1_c_rate'
+                value: 'M1-C'
             }, {
                 name: 'M1-M2',
-                value: 'm1_m2_rate'
+                value: 'M1-M2'
             }, {
                 name: '逾期率',
                 value: 'ovd_rate'

@@ -47,28 +47,29 @@
                 filterUpdate: function(filters, params) { // 更新条件选中状态
 
                     _.each(filters || [], function(v) {
-                        var customKey = v.field.replace('dstrbtn_', '')
+                        var dscrdField = 'discretized_' + v.field // 自定义的条件field 值不同
+                        var fromField = 'from_' + v.field
+                        var toField = 'to_' + v.field
                         v.customOptionStart = ''
                         v.customOptionEnd = ''
 
                         if (v.perform_type === 'options') {
-                            if (params[v.field]) {
+                            if (params[dscrdField]) {
                                 _.each(v.options, function(o) {
                                     /*eslint-disable*/
-                                    o.active = o.value == params[v.field]
+                                    o.active = o.value == params[dscrdField]
                                         /*eslint-enable*/
                                 })
 
-                            } else if (params[customKey]) { //说明是自定义参数
+                            } else if (params[fromField] || params[toField]) { //说明是自定义参数
                                 _.each(v.options, function(o) {
                                     /*eslint-disable*/
                                     o.active = false
                                         /*eslint-enable*/
                                 })
 
-                                var p = params[customKey].split('-')
-                                v.customOptionStart = p[0] || ''
-                                v.customOptionEnd = p[1] || ''
+                                v.customOptionStart = params[fromField] || ''
+                                v.customOptionEnd = params[toField] || ''
 
                             } else { //默认是全部处于选中状态
                                 _.each(v.options, function(o, i) {
@@ -78,7 +79,7 @@
                                 })
                             }
                         } else if (v.perform_type === 'search') {
-                            v.searchValue = params[customKey] || ''
+                            v.searchValue = params[v.field] || ''
                         }
                     })
                 },

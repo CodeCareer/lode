@@ -23,8 +23,8 @@
                             </div>-->
                         </div>
                         <div class="search-options" ng-if="filter.perform_type === 'search'">
-                            <input type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue">
-                            <button class="btn btn-navy-blue btn-xs" ng-click="goTo(filter.field, filter.searchValue, 'custom')">筛选</button>
+                            <input type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)">
+                            <button class="btn btn-navy-blue btn-xs ml5" ng-click="goTo(filter.field, filter.searchValue, 'search')">筛选</button>
                         </div>
                         <!--<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
                             <div class="dropdown fl" dropdown>
@@ -45,7 +45,7 @@
                     <div class="filter-line" ng-if="getFParamsLength()">
                         <div class="name">已选条件：</div>
                         <div class="checkboxes clfix">
-                            <div class="checked-item" ng-repeat="(key, value) in shared.fParams">
+                            <div class="checked-item" ng-repeat="(key, value) in shared.filterFParams()">
                                 <span ng-bind="value"></span>
                                 <i class="pe-7s-close delete-item" ng-click="delFParams(key)"></i>
                             </div>
@@ -61,7 +61,7 @@
                 <div class="table-responsive table-body" ui-view>
                 </div>
             </div>
-            <uib-pagination total-items="shared._params.totalItems" items-per-page="shared.params.per_page" ng-change="pageChanged()" max-size="shared._params.maxSize" ng-model="shared.params.page" class="pagination-sm fr"></uib-pagination>
+            <uib-pagination total-items="shared._params.totalItems" items-per-page="shared.params.per_page" ng-change="shared.pageChanged()" max-size="shared._params.maxSize" ng-model="shared.params.page" class="pagination-sm fr"></uib-pagination>
         </div>
     </div>
 </div>

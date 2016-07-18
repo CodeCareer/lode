@@ -1,5 +1,5 @@
-<section class="tab-1" ng-if="tabs.active1">
-    <div class="hpanel table-responsive">
+<section class="tab-1" ng-if="tabs.basic_info">
+    <div class="hpanel table-responsive" ng-show="info.basic_info.length">
         <div class="panel-heading clfix">
             <h5>基本信息</h5>
         </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="hpanel table-responsive">
+    <div class="hpanel table-responsive" ng-show="info.payments.length">
         <div class="panel-heading clfix">
             <h5>联系人信息</h5>
         </div>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="hpanel table-responsive">
+    <div class="hpanel table-responsive" ng-show="info.other_info.length">
         <div class="panel-heading clfix">
             <h5>其他信息</h5>
         </div>
@@ -69,7 +69,7 @@
         </div>
     </div>
 </section>
-<section ng-if="tabs.active2">
+<section ng-if="tabs.payments">
     <div class="hpanel table-responsive">
         <div class="panel-heading clfix">
             <h5>借款信息</h5>
@@ -138,7 +138,7 @@
                                 <td ng-bind="::p.pymnt_prncp | ktAppend:'元'"></td>
                                 <td ng-bind="::p.shed_prncp_balns | ktAppend:'元'"></td>
                                 <td ng-bind="::p.prncp_blans | ktAppend:'元'"></td>
-                                <td ng-bind="::p.overdue_status" ng-class="{'text-danger': p.overdue_status.indexOf('M') > -1}"></td>
+                                <td ng-bind="::p.overdue_status" ng-class="{'text-danger': p.overdue_status.toString().indexOf('M') > -1˜}"></td>
                             </tr>
                             <tr ng-if="!repayments.payments.length && !isLoading()">
                                 <td colspan="8" class="text-info text-center">

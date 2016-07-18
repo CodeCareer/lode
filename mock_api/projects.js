@@ -5,12 +5,12 @@ module.exports = function(app) {
     var apiPrefix = app.get('apiPrefix')
 
     // 借款人列表
-    app.get(apiPrefix + '/projects/:id/borrowers_settings', function(req, res, next) {
+    app.get(apiPrefix + '/projects/:id/filters', function(req, res, next) {
         var data = Mock.mock({
             'filters|4-8': [{
                 name: '@cword(3,5)',
                 'unit|1': ['元', '岁', '%', '个月'],
-                'field|+1': ['dstrbtn_key1', 'dstrbtn_key2', 'dstrbtn_key3', 'dstrbtn_key4', 'dstrbtn_key5', 'dstrbtn_key6', 'dstrbtn_key7', 'dstrbtn_key8'],
+                'field|+1': ['key1', 'key2', 'key3', 'key4', 'key5', 'key6', 'key7', 'key8'],
                 'field_type|1': ['string', 'integer', 'float', 'date'],
                 'perform_type|1': ['options', 'search'],
                 'options': ['1-2测试', '3-4测试', '4-5测试', '5-6测试', '6-7测试', '7-8测试', '8-9测试', '9+测试']
@@ -76,9 +76,9 @@ module.exports = function(app) {
                     "sched_int": 10,
                     "other_amnt": 10,
                     "pymnt_prncp": 50,
-                    "overdue_status": "M1",
                     "shed_prncp_balns": 90,
-                    "prncp_blans": 100
+                    "prncp_blans": 100,
+                    "overdue_status": "M1",
                 }]
             }
         })
