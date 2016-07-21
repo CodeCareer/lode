@@ -48,10 +48,10 @@
                                 index: 0,
                                 value: 'absolute'
                             },
-                            menuDataChange: function () {
+                            menuDataChange: function() {
                                 this.updateData()
                             },
-                            dimentionChange: function (value) {
+                            dimentionChange: function(value) {
                                 this.chartDimension = value
                                 this.updateData()
                             },
@@ -59,7 +59,7 @@
                                 var prefix
                                 var suffix
                                 var listName
-                                prefix = this.chartDimension === '时点余额' ? 'loan_amnt_incrmnt_by_' : 'mature_prncp_balns_by_'
+                                prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
                                 suffix = this.menuData.value === 'absolute' ? '' : '_percent'
                                 listName = prefix + this.key + suffix
 
