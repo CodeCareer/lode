@@ -8,15 +8,15 @@
     <tbody>
         <tr class="text-right" ng-repeat="borrower in borrowers track by $index">
             <td ng-repeat="f in fields track by $index" ng-class="{'text-left': $index === 0}">
-                <span ng-if="$index>0" ng-bind="borrower[f.field] | filterByFormat:getFormat($index)"></span>
-                <a ng-if="$index === 0" ng-bind="borrower[f.field] | filterByFormat:getFormat($index)" class="tu"  ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})"></a>
+                <span ng-if="$index>0" ng-bind="borrower[f.field]"></span>
+                <a ng-if="$index === 0" ng-bind="borrower[f.field]" class="tu"  ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})"></a>
             </td>
             <td>
                 <a class="tu" ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})">查看</a>
             </td>
         </tr>
         <tr ng-if="!borrowers.length && !isLoading()">
-            <td colspan="borrowers.length+1" class="text-info text-center">
+            <td colspan="{{fields.length+1}}" class="text-info text-center">
                 <i class="pe-7s-attention f20 mr5"></i>
                 <span class="f16">没有数据！</span>
             </td>

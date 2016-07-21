@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("kt.lode").controller("ktProjectInfoCtrl",["$scope","$stateParams","ktProjectsService",function(a,b,c){c.get({projectID:b.projectID},function(b){a.project=b.project})}])}();

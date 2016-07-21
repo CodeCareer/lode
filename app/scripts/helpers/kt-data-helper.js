@@ -6,7 +6,7 @@
     'use strict';
     angular.module('kt.lode')
         .factory('ktDataHelper', function($timeout, ktUri, ktFormValidator) {
-            var educationList = [{
+            /*var educationList = [{
                 name: '博士',
                 index: 0,
                 value: 'doctor'
@@ -26,7 +26,7 @@
                 name: '高中及以下',
                 index: 4,
                 value: 'high_school'
-            }]
+            }]*/
 
             return {
                 /**
@@ -92,12 +92,12 @@
                     })
                     return res
                 },
-                getEducationName: function(value) {
+               /* getEducationName: function(value) {
                     var ed = _.find(educationList, function(v) {
                         return v.value === value
                     }) || {}
                     return ed.name || '-'
-                },
+                },*/
                 // 去掉值是all的参数
                 pruneDirtyParams: function(params, search, list) {
                     _.each(params, function(v, i) {
@@ -150,6 +150,8 @@
                                 return '^\\d+$'
                             } else if (v.field_type === 'float') {
                                 return '^\\d+(\\.\\d+)?$'
+                            } else if (v.field_type === 'date') {
+                                return '^\\d{4}-\\d{2}-\\d{2}$'
                             }
                             return '^.+$'
                         })();

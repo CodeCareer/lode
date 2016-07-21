@@ -2,11 +2,11 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktDashboardCtrl', function($scope, $stateParams, ktStaticsReportService, ktDataHelper) {
+        .controller('ktDashboardCtrl', function($scope, ktStaticsReportService, ktDataHelper) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             $scope.statByProject = ktDataHelper.getStatByProject()
 

@@ -4,12 +4,11 @@
     angular.module('kt.lode')
         .controller('ktAssetFeatureCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             var params = $location.search() || {}
-
             ktDateHelper.initPeriod($scope, params)
 
             // 日期筛选
@@ -22,7 +21,6 @@
                     }))
                 }
             })
-
 
             // 默认图表列表
             $scope.charts = []

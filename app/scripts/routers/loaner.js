@@ -174,6 +174,12 @@
                     url: '/projects/:projectID',
                     abstract: true,
                     template: '<ui-view/>',
+                    controller: function($scope, $stateParams) {
+                        'ngInject';
+                        $scope.$emit('activeProjectChange', {
+                            projectID: $stateParams.projectID
+                        })
+                    },
                     data: {
                         breadcrumb: true,
                         breadcrumbState: 'analytics.project.dashboard',
@@ -204,7 +210,11 @@
                     abstract: true,
                     url: '',
                     templateUrl: 'views/analytics/projects/detail/debtors/debtor_layout.html',
-                    resolve: ktLazyResolve(['views/analytics/projects/detail/debtors/debtor.js']),
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/debtors/debtor.js',
+                        'common/directives/datepicker/directive.js',
+                        'common/directives/datepicker/theme/v2/style.css'
+                    ]),
                     controller: 'ktDebtorCtrl',
                     data: {
                         breadcrumb: false,

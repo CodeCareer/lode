@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="chart-table-menu fr">
-                        <div kt-line-menu menu-data="c.menuData">
+                        <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()">
                             <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
                             <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
                             <span class="line"></span>

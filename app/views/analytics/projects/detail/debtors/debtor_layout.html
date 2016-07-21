@@ -23,7 +23,8 @@
                             </div>-->
                         </div>
                         <div class="search-options" ng-if="filter.perform_type === 'search'">
-                            <input type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)">
+                            <input ng-if="filter.field_type !== 'date'" type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)">
+                            <input ng-if="filter.field_type === 'date'" readonly type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)" kt-date-picker datepicker-settings="datepickerSettings" single-date="true" single-month="true" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="true" show-shortcuts="false">
                             <button class="btn btn-navy-blue btn-xs ml5" ng-click="goTo(filter.field, filter.searchValue, 'search')">筛选</button>
                         </div>
                         <!--<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
@@ -45,9 +46,12 @@
                     <div class="filter-line" ng-if="getFParamsLength()">
                         <div class="name">已选条件：</div>
                         <div class="checkboxes clfix">
-                            <div class="checked-item" ng-repeat="(key, value) in shared.filterFParams()">
-                                <span ng-bind="value"></span>
-                                <i class="pe-7s-close delete-item" ng-click="delFParams(key)"></i>
+                            <div class="checked-item" ng-repeat="f in shared.filterFParams track by $index">
+                                <span ng-bind="f.name"></span>
+                                <i class="pe-7s-close delete-item" ng-click="delFParams(f.value)"></i>
+                            </div>
+                            <div class="buttons">
+                                <button class="btn btn-xs btn-navy-blue" ng-click="resetFParams()">全部清除</button>
                             </div>
                         </div>
                     </div>

@@ -25,13 +25,14 @@
 
     .controller('ktDebtorCtrl', function($scope, $location, $state, $stateParams, ktProjectsService) {
 
-        $scope.$emit('activeProjectChange', {
-            projectID: $stateParams.projectID
-        })
+        // $scope.$emit('activeProjectChange', {
+        //     projectID: $stateParams.projectID
+        // })
 
         $scope.shared = {}
         $scope.shared.filters = []
-        $scope.shared.search_filters = []
+        $scope.shared.filterFParams = []
+
         var params = $scope.shared.params = { // ajax 需要的参数
             page: 1,
             per_page: 10
@@ -39,19 +40,10 @@
 
         var _params = $scope.shared._params = { // ajax不需要的参数
             maxSize: 10,
-            totalItems: 10,
-            // subContent: 'borrowers',
-            // projectID: $stateParams.projectID
+            totalItems: 10
         }
 
-        // 过滤掉from_和to_开头的参数，这两个类型的只是传给后端的值
-        $scope.shared.filterFParams = function() {
-            return _.pickBy($scope.shared.fParams, function(value, key) {
-                return !key.startsWith('from_') && !key.startsWith('to_')
-            })
-        }
-
-        $scope.beginSearch = function (field, value) {
+        $scope.beginSearch = function(field, value) {
             $scope.goTo(field, value, 'search')
         }
 
@@ -97,11 +89,17 @@
             var fParams = $scope.shared.fParams
             delete fParams[field]
             if (field.indexOf('custom_for_show_') > -1) { // 如果是自定义的筛选项
-                var realField = field.split('_')[3]
+                var realField = field.replace('custom_for_show_', '')
                 delete fParams['from_' + realField]
                 delete fParams['to_' + realField]
             }
 
+            $scope.goTo()
+        }
+
+        $scope.resetFParams = function() {
+            $scope.shared.fParams = {}
+            $scope.shared.filterFParams = []
             $scope.goTo()
         }
 
@@ -115,7 +113,6 @@
             projectID: $stateParams.projectID
         }), function(data) {
             $scope.shared.filters = data.filters
-                // $scope.shared.search_filters = data.search_filters
             $scope.$broadcast('filtersReady')
         })
     })
@@ -132,9 +129,11 @@
 
         if (filters.length) {
             ktDataHelper.filterInit(filters)(fParams)
+            updateFilterFParams()
         } else {
             $scope.$on('filtersReady', function() {
                 ktDataHelper.filterInit($scope.shared.filters)(fParams)
+                updateFilterFParams()
             })
         }
 
@@ -142,7 +141,28 @@
             return $scope.fields[index].format
         }
 
-        // $scope.getEducationName = ktDataHelper.getEducationName
+        // 更新展示的选择条件，过滤掉from_和to_开头的参数，这两个类型的只是传给后端的值
+        function updateFilterFParams() {
+            var orderByList = _.map($scope.shared.filters, 'field')
+            var f = _.pickBy($scope.shared.fParams, function(value, key) {
+                return !key.startsWith('from_') && !key.startsWith('to_')
+            })
+
+            // 转换成数组方便排序
+            f = _.map(fParams, function(value, key) {
+                return {
+                    index: _.indexOf(orderByList, key.replace(/custom_for_show_|discretized_/g, '')),
+                    value: key,
+                    name: value
+                }
+            })
+
+            $scope.shared.filterFParams = f.sort(function(a, b) {
+                /*eslint-disable*/
+                return (a.index > b.index) ? 1 : ((a.index < b.index) ? -1 : 0)
+                /*eslint-enable*/
+            })
+        }
 
         ktProjectsService.get($.extend({
             subContent: 'borrowers',

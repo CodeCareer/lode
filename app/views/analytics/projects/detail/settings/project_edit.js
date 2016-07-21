@@ -4,9 +4,9 @@
     angular.module('kt.lode')
         .controller('ktProjectEditCtrl', function($scope, $state, $window, $stateParams, ktSweetAlert, ktProjectsService, ktInstitutionsService) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             $scope.datepickerSettings = {
                 singleDate: true,

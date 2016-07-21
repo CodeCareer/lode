@@ -4,9 +4,9 @@
     angular.module('kt.lode')
         .controller('ktVintageCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             $scope.datepickerSettings = {
                 triggerEvent: 'datepicker-change'

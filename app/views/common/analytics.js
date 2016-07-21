@@ -115,10 +115,26 @@
                 var stateName
                 var params
 
-                stateName = $state.includes('analytics.project.**') ? $state.current.name : 'analytics.project.dashboard'
+                stateName = (function () {
+
+                    // 如果是借款人列表详情页面要跳到列表页
+                    if ($state.includes('analytics.project.debtors.detail.**')) {
+                        return 'analytics.project.debtors.list.table'
+                    }
+
+                    return $state.includes('analytics.project.**') ? $state.current.name : 'analytics.project.dashboard'
+                })();
                 params = {
                     projectID: id
                 }
+
+                console.log($state, $stateParams)
+                // 切换项目重置所有参数
+                _.each($state.params, function(v, k) {
+                    if (k !== 'projectID') {
+                        params[k] = null
+                    }
+                })
 
                 $state.go(stateName, params)
             }

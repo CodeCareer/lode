@@ -15,6 +15,7 @@
     .controller('ktDebtorDetailCtrl', function($scope, $state, $stateParams, ktProjectsService, ktDataHelper) {
 
         var activeTab = $stateParams.tab || 'basic_info'
+        $scope.tabs[activeTab] = true
 
         ktProjectsService.get({
             projectID: $stateParams.projectID,

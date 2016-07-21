@@ -2,11 +2,11 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetFeatureCtrl', function($scope, $stateParams, ktStaticsReportService, ktInstitutionsService, ktDateHelper) {
+        .controller('ktAssetFeatureCtrl', function($scope, ktStaticsReportService, ktInstitutionsService, ktDateHelper) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             $scope.radioPeriod = 'all'
             $scope.radioPeriodCustom = 'custom'

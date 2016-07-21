@@ -4,9 +4,9 @@
     angular.module('kt.lode')
         .controller('ktUserFeatureCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
 
-            $scope.$emit('activeProjectChange', {
-                projectID: $stateParams.projectID
-            })
+            // $scope.$emit('activeProjectChange', {
+            //     projectID: $stateParams.projectID
+            // })
 
             var params = $location.search() || {}
             ktDateHelper.initPeriod($scope, params)

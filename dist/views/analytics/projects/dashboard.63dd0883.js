@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("kt.lode").controller("ktProjectDashboardCtrl",["$scope","$stateParams","ktProjectStaticsReportService","ktDataHelper",function(a,b,c,d){a.statByProject=d.getStatByProject(),c.get({type:"summary",projectID:b.projectID},function(b){$.extend(a,b)})}])}();
