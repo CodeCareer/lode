@@ -149,7 +149,7 @@
             })
 
             // 转换成数组方便排序
-            f = _.map(fParams, function(value, key) {
+            f = _.map(f, function(value, key) {
                 return {
                     index: _.indexOf(orderByList, key.replace(/custom_for_show_|discretized_/g, '')),
                     value: key,
