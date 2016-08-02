@@ -129,108 +129,139 @@
          </div>
      </div>
  </div> -->
- <!-- ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})" -->
-    <div class="sub clfix">
+    <div class="sub">
         <div class="sub-title">
-            <span>贷款金额</span>
-              <span class="span2"><a ui-sref="analytics.project.debtors.list.table">></a></span>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">单笔贷款最高金额</div>
-            <div class="span4-font">元</div>
-            <div class="sub-line-right" ng-bind="(loan_amnt_stat.max_loan_amnt | ktNumber:2)">
+            <div class="hh">
+                <span>贷款金额</span>
+                <span class="span2">
+                <a ui-sref="analytics.project.debtors.list.table">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </span>
             </div>
         </div>
-        <div class="sub-line">
-            <div class="sub-line-left">单笔贷款最少金额</div>
-            <div class="span4-font">元</div>
-            <div class="sub-line-right" ng-bind="(loan_amnt_stat.min_loan_amnt | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+        <div class="cont">
+            <div class="sub-line">
+                <div class="sub-line-left">单笔贷款最高金额</div>
+                <div class="span4-font">元</div>
+                <div class="sub-line-right" ng-bind="(loan_amnt_stat.max_loan_amnt | ktNumber:2)">
+                </div>
             </div>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">单笔贷款加权平均金额</div>
-            <div class="span4-font">元</div>
-            <div class="sub-line-right" ng-bind="(loan_amnt_stat.avg_loan_amnt | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+            <div class="sub-line">
+                <div class="sub-line-left">单笔贷款最少金额</div>
+                <div class="span4-font">元</div>
+                <div class="sub-line-right" ng-bind="(loan_amnt_stat.min_loan_amnt | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
+            </div>
+            <div class="sub-line">
+                <div class="sub-line-left">单笔贷款加权平均金额</div>
+                <div class="span4-font">元</div>
+                <div class="sub-line-right" ng-bind="(loan_amnt_stat.avg_loan_amnt | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
             </div>
         </div>
     </div>
-    <div class="sub clfix">
+    <div class="sub">
         <div class="sub-title">
-            <span>贷款利率</span>
-            <span class="span2"><a ui-sref="analytics.project.debtors.list.table">></a></span>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最低利率</div>
-            <div class="span4-font">%</div>
-            <div class="sub-line-right" ng-bind="(interest_rate_stat.min_interest_rate*100 |ktNumber:2)">
+            <div class="hh">
+                <span>贷款利率</span>
+                <span class="span2">
+                <a ui-sref="analytics.project.debtors.list.table">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </span>
             </div>
         </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最高利率</div>
-            <div class="span4-font">%</div>
-            <div class="sub-line-right" ng-bind="(interest_rate_stat.max_interest_rate*100 | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+        <div class="cont">
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最低利率</div>
+                <div class="span4-font">%</div>
+                <div class="sub-line-right" ng-bind="(interest_rate_stat.min_interest_rate*100 |ktNumber:2)">
+                </div>
             </div>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款加权平均利率</div>
-            <div class="span4-font">%</div>
-            <div class="sub-line-right" ng-bind="(interest_rate_stat.loan_amnt_weighted_avg_interest_rate*100 | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最高利率</div>
+                <div class="span4-font">%</div>
+                <div class="sub-line-right" ng-bind="(interest_rate_stat.max_interest_rate*100 | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
             </div>
-        </div>
-    </div>  
-    <div class="sub clfix">
-        <div class="sub-title">
-            <span>贷款期限</span>
-            <span class="span2"><a ui-sref="analytics.project.asset.feature">></a></span>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最短期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.min_term | number:0)">
-            </div>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最长期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.max_term | number:0)">
-                <!-- <span class="span4-font">%</span> -->
-            </div>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款加权平均期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.loan_amnt_weighted_avg_term| ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+            <div class="sub-line">
+                <div class="sub-line-left">贷款加权平均利率</div>
+                <div class="span4-font">%</div>
+                <div class="sub-line-right" ng-bind="(interest_rate_stat.loan_amnt_weighted_avg_interest_rate*100 | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
             </div>
         </div>
     </div>
-    <div class="sub clfix">
+    <div class="sub">
         <div class="sub-title">
-            <span>剩余期限</span>
-            <span class="span2"><a ui-sref="analytics.project.asset.feature">></a></span>
-        </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最短剩余期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.min_remaining_term | ktNumber:2)">
+            <div class="hh">
+                <span>贷款期限</span>
+                <span class="span2">
+                <a ui-sref="analytics.project.asset.feature">
+                     <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </span>
             </div>
         </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款最长剩余期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.max_remaining_term | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+        <div class="cont">
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最短期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.min_term | number:0)">
+                </div>
+            </div>
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最长期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.max_term | number:0)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
+            </div>
+            <div class="sub-line">
+                <div class="sub-line-left">贷款加权平均期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.loan_amnt_weighted_avg_term| ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
             </div>
         </div>
-        <div class="sub-line">
-            <div class="sub-line-left">贷款加权平均剩余期数</div>
-            <div class="span4-font">个月</div>
-            <div class="sub-line-right" ng-bind="(term_stat.prncp_balns_weighted_avg_remaining_term | ktNumber:2)">
-                <!-- <span class="span4-font">%</span> -->
+    </div>
+    <div class="sub">
+        <div class="sub-title">
+            <div class="hh">
+                <span>剩余期限</span>
+                <span class="span2">
+                <a ui-sref="analytics.project.asset.feature">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </span>
+            </div>
+        </div>
+        <div class="cont">
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最短剩余期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.min_remaining_term | ktNumber:2)">
+                </div>
+            </div>
+            <div class="sub-line">
+                <div class="sub-line-left">贷款最长剩余期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.max_remaining_term | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
+            </div>
+            <div class="sub-line">
+                <div class="sub-line-left">贷款加权平均剩余期数</div>
+                <div class="span4-font">个月</div>
+                <div class="sub-line-right" ng-bind="(term_stat.prncp_balns_weighted_avg_remaining_term | ktNumber:2)">
+                    <!-- <span class="span4-font">%</span> -->
+                </div>
             </div>
         </div>
     </div>
