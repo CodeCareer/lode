@@ -12,7 +12,7 @@
         $scope.shared = {}
     })
 
-    .controller('ktDebtorDetailCtrl', function($scope, $state, $stateParams, ktProjectsService, ktDataHelper) {
+    .controller('ktDebtorDetailCtrl', function($window, $rootScope, $scope, $state, $stateParams, ktProjectsService, ktDataHelper) {
 
         var activeTab = $stateParams.tab || 'basic_info'
         $scope.tabs[activeTab] = true
@@ -39,6 +39,9 @@
                 default:
                     console.error('tab no exist')
             }
+
+            $scope.token = encodeURIComponent($window.localStorage.token)
+            $scope.debtorID = $stateParams.debtorID
 
             $scope.shared.goTo = function(tab) { // 第一次数据加载后再处理避免请求两次的bug,否则tab组件会默认触发一次select
                 $state.go($state.current.name, {

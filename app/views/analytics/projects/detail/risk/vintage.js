@@ -35,7 +35,7 @@
                 value: 'np_rate'
             }]
 
-            $scope.vintageRange = (function () {
+            $scope.vintageRange = (function() {
                 if (params.vintage_start_date) {
                     return params.vintage_start_date + '~' + params.vintage_end_date
                 }

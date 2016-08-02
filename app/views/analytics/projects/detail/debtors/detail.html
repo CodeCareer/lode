@@ -154,22 +154,85 @@
     </div>
 </section>
 <section ng-if="tabs.active3">
-    <div class="hpanel table-responsive">
+
+  <div class="hpanel table-responsive">
         <div class="panel-heading clfix">
-            <h5>申请表及合同</h5>
+            <div class="panel-heading-borrow clfix">
+                <h5>借款信息</h5> 
+                <div class="dowonload"><a ng-href="/ajax/v1/projects/{{projectID}}/borrowers/{{debtorID}}/attachments/download?au={{token}}" target='_blank'>全部下载</a></div>
+            </div>
+            
         </div>
         <div class="panel-body clfix pr ov-h">
-            <div class="file-cards">
-                <div class="card">
-                    <h4>申请表：</h4>
-                    <div class="type-img">
-                        <img src="" alt="">
+            <div class="dashboard-table">
+                <div class="row">
+                    <div class="td col-md-3 text-center">
+                        <h6>客户身份信息：</h6>
+                        <div class="f16 mt20 fb">IDcard.jpg
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="">下载</a>
+                    <div class="td col-md-3 text-center">
+                        <h6>委托书：</h6>
+                        <div class="f16 mt20 fb">划款授权委托书.pdf
+                        </div>
+                    </div>
+                    <div class="td col-md-3 text-center">
+                        <h6>服务合同：</h6>
+                        <div class="f16 mt20 fb"> 借款服务合同.pdf 
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h6>申请表：</h6>
+                        <div class="f16 mt20 fb">借款申请表.pdf
+                        </div>
                     </div>
                 </div>
-                <div class="card">
+            </div>
+        </div>
+    </div>
+
+<!--   <div class="hpanel table-responsive">
+     <div class="panel-heading clfix">
+         <h5>借款信息</h5>
+     </div>
+     <div class="panel-body clfix pr ov-h">
+         <div class="simple-grid">
+             <div class="line clfix">
+                 <div class="name"></div>
+                 <div class="value"></div>
+             </div>
+             <div class="line clfix">
+                 <div class="left">
+                     <div class="name">客户身份信息：</div>
+                     <div class="value">IDcard.jpg</div>
+                 </div>            
+             </div>
+             <div class="line clfix">
+                 <div class="left">
+                     <div class="name">委托书：</div>
+                     <div class="value">划款授权委托书.pdf</div>
+                 </div>
+             </div>
+                <div class="line clfix">
+                 <div class="left">
+                     <div class="name">服务合同：</div>
+                     <div class="value">借款服务合同.pdf</div>
+                 </div>
+             </div>
+                <div class="line clfix">
+                 <div class="left">
+                     <div class="name">申请表：</div>
+                     <div class="value">借款申请表.pdf</div>
+                 </div>
+             </div>
+ 
+         </div>
+     </div>
+     <div class="card-footer">
+         <a href="">全部下载</a>
+     </div>
+ </div> -->
+              <!--   <div class="card">
                     <h4>申请表2：</h4>
                     <div class="type-img">
                         <img src="" alt="">
@@ -177,11 +240,9 @@
                     <div class="card-footer">
                         <a href="">下载</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="hpanel table-responsive">
+                </div> -->
+
+  <!--   <div class="hpanel table-responsive">
         <div class="panel-heading clfix">
             <h5>财产证明</h5>
         </div>
@@ -234,5 +295,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </section>

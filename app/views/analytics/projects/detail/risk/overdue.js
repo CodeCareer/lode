@@ -3,7 +3,6 @@
     'use strict';
     angular.module('kt.lode')
         .controller('ktOverdueCtrl', function($scope, $location, $stateParams, ktProjectStaticsReportService, ktDateHelper) {
-
             // $scope.$emit('activeProjectChange', {
             //     projectID: $stateParams.projectID
             // })

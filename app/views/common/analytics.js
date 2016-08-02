@@ -101,6 +101,7 @@
                 debtorsIsCollapsed: !$state.includes('analytics.project.debtors.**'),
                 assetPerformanceIsCollapsed: !$state.includes('analytics.project.asset.**'),
                 riskIsCollapsed: !$state.includes('analytics.project.risk.**'),
+                cashIsCollapsed: !$state.includes('analytics.project.cash.**'),
                 settingsIsCollapsed: !$state.includes('analytics.project.settings.**'),
             }
 
