@@ -49,28 +49,28 @@
 */
     // 全部项目统计
     .factory('ktStaticsReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/statistics/:type', {
-            type: '@type',
-        }, {
-            'get': {
-                method: 'GET',
-                cache: false
-            }
+            return $resource('/ajax/' + ktApiVersion + '/statistics/:type', {
+                type: '@type',
+            }, {
+                'get': {
+                    method: 'GET',
+                    cache: false
+                }
+            })
         })
-    })
-
-    // 单个项目统计
-    .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {
-        return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:dimention/:type', {
-            projectID: '@projectID',
-            dimention: '@dimention',
-            type: '@type'
-        }, {
-            'get': {
-                method: 'GET',
-                cache: false
-            }
+        //get /ajax/api/v1/statistics/projects/:project_id/dashboard
+        // 单个项目统计
+        .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {
+            return $resource('/ajax/' + ktApiVersion + '/statistics/projects/:projectID/:dimention/:type', {
+                projectID: '@projectID',
+                dimention: '@dimention',
+                type: '@type'
+            }, {
+                'get': {
+                    method: 'GET',
+                    cache: false
+                }
+            })
         })
-    })
 
 })();

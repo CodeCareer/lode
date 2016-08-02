@@ -67,7 +67,7 @@
                     }
                 },
                 // 数据报表-总览
-                'analytics.reports.dashboard': {
+                'analytics.reports.it': {
                     url: '/dashboard',
                     templateUrl: 'views/analytics/dashboard.html',
                     resolve: ktLazyResolve(['views/analytics/dashboard.js']),
@@ -331,6 +331,34 @@
                     data: {
                         breadcrumbTitle: 'Vintage',
                         pageTitle: '风险分析-Vintage',
+                    }
+                },
+                'analytics.project.risk.assetRisk': {
+                    url: '/asset_risk?dimension&risk_index&start_date&end_date',
+                    templateUrl: 'views/analytics/projects/detail/risk/asset_risk.html',
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/risk/asset_risk.js',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
+                    controller: 'ktAssetRiskCtrl',
+                    data: {
+                        breadcrumbTitle: '资产风险分析',
+                        pageTitle: '风险分析-资产风险分析',
+                    }
+                },
+                //cash
+                'analytics.project.cash': {
+                    url: '/cash',
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/cash_forecast.html',
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/cash_forecast/cash_forecast.js',
+                        'common/directives/datepicker/directive.js',
+                        'common/directives/datepicker/theme/v2/style.css',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
+                    controller: 'ktCashCtrl',
+                    data: {
+                        pageTitle: '现金流预测',
                     }
                 },
                 // 项目设置
