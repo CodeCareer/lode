@@ -4,8 +4,8 @@
             <div class="filter-box">
                 <div class="filters-list">
                     <div class="filter-line clfix">
-                        <div class="search-options">
-                            <span>开始时间：</span>
+                        <div class="search-options" style="padding-left:0;">
+                            <span class="time">开始时间：</span>
                             <input class="title" placeholder="年/月/日" readonly type="text" pattern="{{filter.pattern}}" type="text" ng-model="params.start_date" kt-date-picker datepicker-settings="datepickerSettings" single-date="true" single-month="true" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="true" show-shortcuts="false">
                             <span> 违约率：</span>
                             <input type="text" placeholder="2.2" tooltip-class="error" ng-model="params.default_rate">

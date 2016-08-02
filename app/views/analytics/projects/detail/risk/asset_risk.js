@@ -43,15 +43,6 @@
 
             $scope.dimensions = []
 
-
-            $scope.risk_indexs.activeName = function() {
-                var d = _.find($scope.risk_indexs, function(v) {
-                    return v.value === params.risk_index
-                }) || $scope.risk_indexs[0]
-                return d.name
-            }
-
-
             ktDateHelper.initPeriod($scope, params)
 
             $scope.data = {}
@@ -87,6 +78,13 @@
                 chartOptions: {}
             }
 
+            $scope.dimensionsActiveName = function() {
+                var d = _.find($scope.dimensions, function(v) {
+                    return v.key === $scope.params.dimension
+                }) || $scope.dimensions[0]
+                return d ? d.name : ''
+            }
+
             var chartOptions = {
                 tooltip: {
                     axisPointer: {
@@ -96,6 +94,13 @@
                 }
             }
 
+            $scope.risk_indexs.activeName = function() {
+                      var d = _.find($scope.risk_indexs, function(v) {
+                          return v.value === params.risk_index
+                      }) || $scope.risk_indexs[0]
+                      return d.name
+                  }
+
             function getData() {
                 var startDate
                 var endDate
@@ -104,7 +109,8 @@
                 datePeriod = datePeriod.split('~')
                 startDate = datePeriod[0]
                 endDate = datePeriod[1]
-//获取combox的数据
+
+                //获取combox的数据
                 ktProjectsService.get($.extend({
                     projectID: $stateParams.projectID,
                     subContent: 'discretized_dimensions',
@@ -113,19 +119,14 @@
                 }, params), function(data) {
 
                     $scope.dimensions = data.dimensions
-                    $scope.params.dimension = data.dimensions[0].key
-                    $scope.dimensionsActiveName = function() {
-                        var d = _.find($scope.dimensions, function(v) {
-                            return v.key === params.dimension
-                        }) || $scope.dimensions[0]
-                        return d.name
-                    }
-                /*    $scope.discriptionTool = function() {
-                        var d = _.find($scope.dimensions, function(v) {
-                            return v.key === params.dimension
-                        }) || $scope.dimensions[0]
-                        return d.description
-                    }*/
+                    $scope.params.dimension = $scope.params.dimension || data.dimensions[0].key
+
+                    /*    $scope.discriptionTool = function() {
+                            var d = _.find($scope.dimensions, function(v) {
+                                return v.key === params.dimension
+                            }) || $scope.dimensions[0]
+                            return d.description
+                        }*/
 
 
                     // $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
@@ -145,7 +146,8 @@
 
 
                 })
-//画图表取得数据
+
+                //画图表取得数据
                 ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     dimention: 'risk',
