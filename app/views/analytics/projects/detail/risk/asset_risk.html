@@ -75,7 +75,7 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="item in data.trends">
-                                <th class="text-left" ng-bind="::item.name"></th>
+                                <th class="text-center" ng-bind="::item.name"></th>
                                 <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                             </tr>
                         </tbody>

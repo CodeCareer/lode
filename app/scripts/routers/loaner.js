@@ -45,10 +45,12 @@
                     template: '',
                     resolve: {
                         // 需要等待
-                        waitUser: function($rootScope, $state, user) {
+                        waitUser: function($rootScope, $state, $timeout, user) {
                             'ngInject';
                             if (user) {
-                                $state.go($rootScope.defaultRoute, $state.params)
+                                $timeout(function() {
+                                    $state.go($rootScope.defaultRoute, $state.params)
+                                }, 100)
                             } else {
                                 $state.go('account.login')
                             }
@@ -253,7 +255,7 @@
                         pageTitle: '借款人详情'
                     },
                 },
-                'analytics.project.asset': { //单个项目的资产特抽:页面
+        /*        'analytics.project.asset': { //单个项目的资产特抽:页面
                     url: '/asset?start_date&end_date',
                     abstract: true,
                     template: '<ui-view/>',
@@ -263,7 +265,20 @@
                     ]),
                     data: {
                         breadcrumbState: 'analytics.project.asset.feature',
-                        pageTitle: '资产表现',
+                        pageTitle: '资产分布',
+                    }
+                },*/
+                     'analytics.project.asset': { //单个项目的资产特抽:页面
+                    url: '/asset?start_date&end_date',
+                    abstract: true,
+                    template: '<ui-view/>',
+                    resolve: ktLazyResolve([
+                        'common/directives/datepicker/directive.js',
+                        'common/directives/datepicker/theme/v2/style.css'
+                    ]),
+                    data: {
+                        breadcrumbState: 'analytics.project.asset.users',
+                        pageTitle: '资产分布',
                     }
                 },
                 'analytics.project.asset.feature': {
@@ -277,7 +292,7 @@
                     controller: 'ktAssetFeatureCtrl',
                     data: {
                         breadcrumbTitle: '资产分析',
-                        pageTitle: '资产表现-资产分析',
+                        pageTitle: '资产分布-资产分析',
                     }
                 },
                 'analytics.project.asset.users': {
@@ -291,7 +306,7 @@
                     controller: 'ktUserFeatureCtrl',
                     data: {
                         breadcrumbTitle: '人群特征',
-                        pageTitle: '资产表现-人群特征',
+                        pageTitle: '资产分布-人群特征',
                     }
                 },
                 'analytics.project.risk': { //单个项目的资产特抽:页面
@@ -316,8 +331,8 @@
                     ]),
                     controller: 'ktOverdueCtrl',
                     data: {
-                        breadcrumbTitle: '趋势解析',
-                        pageTitle: '风险分析-趋势解析',
+                        breadcrumbTitle: '趋势分析',
+                        pageTitle: '风险分析-趋势分析',
                     }
                 },
                 'analytics.project.risk.vintage': {

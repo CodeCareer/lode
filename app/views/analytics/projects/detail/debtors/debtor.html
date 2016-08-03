@@ -7,7 +7,7 @@
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="borrower in borrowers track by $index">
-            <td ng-repeat="f in fields track by $index" ng-class="{'text-left': $index === 0}">
+            <td ng-repeat="f in fields track by $index" ng-class="{'text-center': $index === 0}">
                 <span ng-if="$index>0" ng-bind="borrower[f.field]"></span>
                 <a ng-if="$index === 0" ng-bind="borrower[f.field]" class="tu"  ui-sref="analytics.project.debtors.detail.view({debtorID: borrower.id})"></a>
             </td>

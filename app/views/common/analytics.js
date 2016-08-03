@@ -7,6 +7,7 @@
             // 初始化从路由获取id
             $scope.projectID = 'all'
             $rootScope.user = user
+            $rootScope.data_import_date = ''
 
             // 面包屑过滤器
             $scope.breadcrumbFilter = function(item) {
@@ -41,12 +42,22 @@
                 return f ? f.name : '全部项目'
             }
 
+            function getProjectDate() {
+                var f = getProject({
+                    id: $scope.projectID
+                })
+                return f ? f.data_import_date : ''
+            }
+
+
             // 添加或更新项目
             function updateProject(project) {
                 var f = getProject(project)
                 if (f) {
                     $.extend(f, project)
-                    $scope.activeProjectName = data.name
+                    $scope.activeProjectName = f.name
+                        // $rootScope.data_import_date = f.data_import_date
+
                 } else {
                     $scope.projects.push(project)
                 }
@@ -71,6 +82,7 @@
                 })
                 $rootScope.projects = $scope.projects = data.projects
                 $scope.activeProjectName = getProjectName()
+                $rootScope.data_import_date = getProjectDate()
                 updatePageTitle()
 
             })
@@ -80,6 +92,7 @@
                 if ($scope.projectID === data.projectID) return
                 $scope.projectID = data.projectID || 'all'
                 $scope.activeProjectName = getProjectName()
+                $rootScope.data_import_date = getProjectDate()
                 updatePageTitle()
             })
 
@@ -116,7 +129,7 @@
                 var stateName
                 var params
 
-                stateName = (function () {
+                stateName = (function() {
 
                     // 如果是借款人列表详情页面要跳到列表页
                     if ($state.includes('analytics.project.debtors.detail.**')) {
@@ -130,7 +143,7 @@
                 }
 
                 console.log($state, $stateParams)
-                // 切换项目重置所有参数
+                    // 切换项目重置所有参数
                 _.each($state.params, function(v, k) {
                     if (k !== 'projectID') {
                         params[k] = null

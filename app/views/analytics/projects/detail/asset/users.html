@@ -65,11 +65,11 @@
                             <tbody>
                                 <tr class="text-right">
                                     <tr class="text-right" ng-repeat="item in c.list" ng-show="c.menuData.index === 0">
-                                        <th class="text-left" ng-bind="::item.name"></th>
+                                        <th class="text-center" ng-bind="::item.name"></th>
                                         <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumberLocate"></td>
                                     </tr>
                                     <tr class="text-right" ng-repeat="item in c.list" ng-show="c.menuData.index === 1">
-                                        <th class="text-left" ng-bind="::item.name"></th>
+                                        <th class="text-center" ng-bind="::item.name"></th>
                                         <td ng-repeat="value in item.data track by $index" ng-bind="value | ktNumber:2:'percent'"></td>
                                     </tr>
                                 </tr>
