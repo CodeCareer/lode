@@ -305,8 +305,8 @@
                     ]),
                     controller: 'ktUserFeatureCtrl',
                     data: {
-                        breadcrumbTitle: '人群特征',
-                        pageTitle: '资产分布-人群特征',
+                        breadcrumbTitle: '人群分析',
+                        pageTitle: '资产分布-人群分析',
                     }
                 },
                 'analytics.project.risk': { //单个项目的资产特抽:页面
