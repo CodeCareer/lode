@@ -95,11 +95,11 @@
             }
 
             $scope.risk_indexs.activeName = function() {
-                      var d = _.find($scope.risk_indexs, function(v) {
-                          return v.value === params.risk_index
-                      }) || $scope.risk_indexs[0]
-                      return d.name
-                  }
+                var d = _.find($scope.risk_indexs, function(v) {
+                    return v.value === params.risk_index
+                }) || $scope.risk_indexs[0]
+                return d.name
+            }
 
             function getData() {
                 var startDate
@@ -162,7 +162,10 @@
                         },
                         xAxis: {
                             type: 'category',
-                            data: data.dates
+                            data: data.dates,
+                        },
+                        yAxis: {
+                            name: '百分比(%)'
                         },
 
                         series: _.map(data.trends, function(v) {

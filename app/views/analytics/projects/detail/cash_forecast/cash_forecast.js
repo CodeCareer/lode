@@ -82,10 +82,13 @@
                         xAxis: {
                             type: 'category',
                             data: data.dates,
-                            name: '月份'
+                            // name: '月份',
                         },
+                  /*      axisLabel: {
+                            interval: 0
+                        },*/
                         yAxis: {
-                            name: '万元'
+                            name: '万元',
                         },
                         series: _.map(data.trends, function(v) {
                             v.type = 'line'

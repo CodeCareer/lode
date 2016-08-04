@@ -357,8 +357,8 @@
                     ]),
                     controller: 'ktAssetRiskCtrl',
                     data: {
-                        breadcrumbTitle: '多维度风险分析',
-                        pageTitle: '风险分析-多维度风险分析',
+                        breadcrumbTitle: '多维分析',
+                        pageTitle: '风险分析-多维分析',
                     }
                 },
                 //cash
