@@ -60,7 +60,7 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="trend in data.overdue_trends">
-                                <th class="text-left">
+                                <th class="text-center">
                                     <span ng-bind="::trend.name"></span>
                                     <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip(trend.name)}}" class="icon-lode icon-info f12 opacity-0_5"></i>
                                 </th>
@@ -118,7 +118,7 @@
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="item in data.migration_trends">
-                                <th class="text-left" ng-bind="::item.name"></th>
+                                <th class="text-center" ng-bind="::item.name"></th>
                                 <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                             </tr>
                         </tbody>
