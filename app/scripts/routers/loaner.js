@@ -255,20 +255,20 @@
                         pageTitle: '借款人详情'
                     },
                 },
-        /*        'analytics.project.asset': { //单个项目的资产特抽:页面
-                    url: '/asset?start_date&end_date',
-                    abstract: true,
-                    template: '<ui-view/>',
-                    resolve: ktLazyResolve([
-                        'common/directives/datepicker/directive.js',
-                        'common/directives/datepicker/theme/v2/style.css'
-                    ]),
-                    data: {
-                        breadcrumbState: 'analytics.project.asset.feature',
-                        pageTitle: '资产分布',
-                    }
-                },*/
-                     'analytics.project.asset': { //单个项目的资产特抽:页面
+                /*        'analytics.project.asset': { //单个项目的资产特抽:页面
+                            url: '/asset?start_date&end_date',
+                            abstract: true,
+                            template: '<ui-view/>',
+                            resolve: ktLazyResolve([
+                                'common/directives/datepicker/directive.js',
+                                'common/directives/datepicker/theme/v2/style.css'
+                            ]),
+                            data: {
+                                breadcrumbState: 'analytics.project.asset.feature',
+                                pageTitle: '资产分布',
+                            }
+                        },*/
+                'analytics.project.asset': { //单个项目的资产特抽:页面
                     url: '/asset?start_date&end_date',
                     abstract: true,
                     template: '<ui-view/>',
@@ -363,7 +363,7 @@
                 },
                 //cash
                 'analytics.project.cash': {
-                    url: '/cash',
+                    url: '/cash?start_date&default_rate&prepayment_rate',
                     templateUrl: 'views/analytics/projects/detail/cash_forecast/cash_forecast.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/cash_forecast/cash_forecast.js',

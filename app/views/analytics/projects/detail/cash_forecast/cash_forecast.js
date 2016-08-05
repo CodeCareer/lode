@@ -49,7 +49,7 @@
                     });
                     return;
                 }
-                getData();
+                $location.search(params)
 
             }
 
