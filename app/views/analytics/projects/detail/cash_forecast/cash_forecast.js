@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktCashCtrl', function($scope, $location, $stateParams, ktProjectsService, ktSweetAlert) {
+        .controller('ktCashCtrl', function($scope, $location, $stateParams, $window, ktProjectsService, ktSweetAlert) {
 
             // $scope.$emit('activeProjectChange', {
             //     projectID: $stateParams.projectID
@@ -32,11 +32,13 @@
             //         $location.search($.extend(params, p))
             //     }
 
+            var cache = JSON.parse($window.sessionStorage.cashForest || '{}')
+
             var params = $scope.params = $.extend({
                 start_date: null,
                 default_rate: null,
                 prepayment_rate: null,
-            }, $location.search() || {})
+            }, cache, $location.search() || {})
 
             $scope.goTo = function() {
                 if (!params.default_rate || !params.default_rate || !params.prepayment_rate) {
@@ -68,6 +70,8 @@
 
             function getData() {
 
+                $window.sessionStorage.cashForest = JSON.stringify(params)
+
                 ktProjectsService.get($.extend({
                     subContent: 'cashflow',
                     projectID: $stateParams.projectID,
@@ -82,10 +86,13 @@
                         xAxis: {
                             type: 'category',
                             data: data.dates,
-                            name: '月份'
+                            // name: '月份',
                         },
+                        /*      axisLabel: {
+                                  interval: 0
+                              },*/
                         yAxis: {
-                            name: '万元'
+                            name: '万元',
                         },
                         series: _.map(data.trends, function(v) {
                             v.type = 'line'
@@ -94,8 +101,11 @@
                     })
                 })
             }
+
             // 初始加载数据
-            // getData()
+            if (params.start_date && params.default_rate && params.prepayment_rate) {
+                getData()
+            }
 
         })
 })();
