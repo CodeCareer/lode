@@ -14,7 +14,7 @@
                     abstract: true,
                     templateUrl: 'views/common/analytics.html',
                     data: {
-                        breadcrumb: true,
+                        breadcrumb: false,
                         breadcrumbState: 'analytics.home',
                         pageTitle: '微贷平台',
                         permit: ['login'],

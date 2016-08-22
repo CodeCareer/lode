@@ -39,8 +39,10 @@
 
             var chartOptions = {
                 tooltip: {
+                    // reverse: true,
                     axisPointer: {
                         type: 'line',
+
                     },
                     yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
                 }
@@ -63,19 +65,31 @@
                     end_date: endDate
                 }, params), function(data) {
                     $scope.data = data
+                        //filter overdue_trends
+                        /*    var overdueTrends = data.overdue_trends.reverse().filter(function(v) {
+                                return !_.includes(['逾期率', '不良率'], v.name)
+                            })*/
 
                     // 逾期率趋势图表
                     $scope.overdueRateChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {
-                            data: _.map(data.overdue_trends, 'name')
+                            data: _.map(data.overdue_trends.reverse().filter(function(v) {
+                                return !_.includes(['逾期率', '不良率'], v.name)
+                            }), 'name')
                         },
+
                         xAxis: {
                             type: 'category',
                             data: data.dates
                         },
 
-                        series: _.map(data.overdue_trends, function(v) {
+                        series: _.map(data.overdue_trends.reverse().filter(function(v) {
+                            return !_.includes(['逾期率', '不良率'], v.name)
+                        }), function(v) {
                             v.type = 'line'
+                            v.stack = 'bar'
+                            v.smooth = true
+                            v.itemStyle = { normal: { areaStyle: { type: 'default' } } }
                             return v
                         })
                     })
@@ -95,7 +109,16 @@
                             type: 'category',
                             data: data.dates
                         },
-
+                        /*           toolbox: {
+                                       show: true,
+                                       feature: {
+                                           mark: { show: true },
+                                           dataView: { show: true, readOnly: false },
+                                           magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+                                           restore: { show: true },
+                                           saveAsImage: { show: true }
+                                       }
+                                   },*/
                         series: _.map(data.migration_trends, function(v) {
                             v.type = 'line'
                             return v

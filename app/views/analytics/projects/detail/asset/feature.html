@@ -12,19 +12,25 @@
         <div class="hpanel" ng-repeat="c in charts">
             <div class="panel-heading clfix">
                 <h5><span ng-bind="c.name"></span>分布 <i ng-if="c.description" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.description}}" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
-                <div class="actions fr">
-                    <div class="btn-group btn-group-sm">
-                        <label class="btn btn-dark" ng-model="c.radioDataShowType" uib-btn-radio="'table'">
-                            <i class="icon-lode">&#xe808;</i>
-                        </label>
-                        <label class="btn btn-dark" ng-model="c.radioDataShowType" uib-btn-radio="'chart'">
-                            <i class="icon-lode">&#xe806;</i>
-                        </label>
-                    </div>
-                    <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
+            <div class="user-r">
+                <!-- <div class="u-download fr"> -->
+                    <a class="download-data f18 ml5 pr10 pl10 va-2 da fr">
                         <i class="glyphicon glyphicon-download-alt"></i>
-                    </a> -->
+                    </a>
+                <!-- </div> -->
+                <div class="chart-table chart-table-menu fr">
+                    <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()" class="m1">
+                        <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child" menu-value="absolute">数值</a>
+                        <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child" menu-value="percent">比例</a>
+                    </div>
                 </div>
+                <div class="chart-table chart-table-menu fr">
+                    <div class="m1">
+                        <a href="javascript:;" class="child-1" uib-btn-radio="'table'" ng-model="c.radioDataShowType">表</a>
+                        <a href="javascript:;" class="child-1" uib-btn-radio="'chart'" ng-model="c.radioDataShowType">图</a>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="panel-body clfix pr ov-h">
                 <div class="chart-table">
@@ -42,13 +48,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="chart-table-menu fr">
+ <!--                        <div class="chart-table-menu fr">
                             <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()">
                                 <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child" menu-value="absolute">绝对值</a>
                                 <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child" menu-value="percent">百分比</a>
                                 <span class="line"></span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="chart-table-body" ng-show="c.radioDataShowType == 'chart'">
                         <div kt-echart id="c" chart-options="c.chartOptions" style="height:400px;" resize-by="c.radioDataShowType">

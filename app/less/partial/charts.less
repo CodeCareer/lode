@@ -1,41 +1,43 @@
 .chart-table {
     background: white;
-    margin: 10px 0;
-    &.bg-none{
+    // margin: 10px 0;
+    // margin: 0 0 10px 0; //我去的
+    &.bg-none {
         background: transparent;
     }
-    .br{
+    .br {
         border-right: 1px solid @color-8;
     }
-    .dashboard-list{
+    .dashboard-list {
         // padding: 10px 0;
-        .tier-list{
+        .tier-list {
             list-style-type: none;
         }
-        li{
+        li {
             color: #696c84;
             height: 2.5em;
             line-height: 2.5em;
             background: white;
-            &:nth-of-type(2n){
+            &:nth-of-type(2n) {
                 background: #e7eaf1;
             }
-            .key-name,.value {
+            .key-name,
+            .value {
                 float: left;
             }
-            .key-name{
+            .key-name {
                 margin-right: 15px;
             }
-            &.item-l1{
+            &.item-l1 {
                 padding-left: 10px;
-                .key-name{
+                .key-name {
                     // font-size: 1.3em;
                 }
             }
-            &.item-l2{
+            &.item-l2 {
                 padding-left: 2.7em;
             }
-            &.item-l3{
+            &.item-l3 {
                 padding-left: 4.7em;
             }
         }
@@ -70,9 +72,13 @@
         line-height: 40px;
         font-size: 12px;
         border-bottom: 1px solid @color-8;
-        &.tab-like{
+        &.chart-header {
+            height: 0;
+            line-height: 40px;
+        }
+        &.tab-like {
             border-bottom: none;
-            .tab{
+            .tab {
                 background: white;
             }
         }
@@ -105,7 +111,7 @@
                     border: 1px solid #ababab;
                     border-radius: 0;
                 }
-                &:after{
+                &:after {
                     top: -2px;
                     margin-left: -19px;
                     color: @color-orange;
@@ -134,15 +140,19 @@
             left: 47px;
             top: 30px;
         }
-        .input-group{
+        .input-group {
             max-width: 200px;
-            .form-control{
+            .form-control {
                 float: none;
             }
         }
         .chart-table-menu {
             position: relative;
-            overflow: hidden;
+            // overflow: hidden;
+            background: #f3f5f8;
+            border-radius: 1px solid #ffffff;
+            width: 100px;
+            height: 100%;
             a {
                 float: left;
                 margin-right: 20px;
@@ -162,12 +172,53 @@
             }
         }
     }
+    .child {
+        font-size: 13px;
+        background: #f3f5f8;
+        padding: 5px 14px;
+        border-radius: 2px;
+        &.active {
+            background: #3ebfff;
+            color: #ffffff;
+        }
+        &.month-label {
+            margin: 3px 9px;
+            font-weight: normal;
+        }
+        &.first-month{
+            margin-left:26px;
+        }
+    }
+    .child-1 {
+        font-size: 13px;
+        background: #2fcba9;
+        padding: 5px 14px;
+        border-radius: 2px;
+        &.active {
+            background: #2fcba9;
+            color: #ffffff;
+        }
+    }
+    .m1 {
+
+        text-align: center;
+        height: 30px;
+        // padding:6px 12px;
+        margin-top: 5px;
+        a {
+            display: inline;
+            background: #f3f5f8;
+            padding: 6px 12px;
+            margin-left: -3.5px;
+            border-radius: 3px;
+        }
+    }
     // .chart-table-body {
     //     .chart {
     //         padding: 10px 0;
     //     }
     // }
-    .chart-table-footer{
+    .chart-table-footer {
         color: @color-3;
         height: 40px;
         line-height: 40px;

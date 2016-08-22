@@ -89,7 +89,6 @@
                                         type: 'category',
                                         data: data.dates
                                     },
-
                                     series: _.map(data[listName], function(v2) {
                                         v2.type = 'bar'
                                         v2.stack = '堆积组'

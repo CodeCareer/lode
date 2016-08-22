@@ -12,10 +12,22 @@
                 triggerEvent: 'datepicker-change'
             }
 
+            // console.log(moment().format('YYYY-MM-DD')); //2016-08-22
+            // // console.log(moment().date(2)); //2016-08-22
+            // console.log(moment().date(1).format('YYYY-MM-DD'));// vintage.js:15 2016-08-01
+            // console.log(moment().date(0).format('YYYY-MM-DD'));// vintage.js:16 2016-07-31
+            // console.log(moment().date(2).format('YYYY-MM-DD'));// vintage.js:16 2016-07-31
+            // console.log(moment().date(3).format('YYYY-MM-DD'));// vintage.js:16 2016-07-31
+            // var d = "2016-08-22"
+            // console.log(moment(d).subtract(6, 'months').format('YYYY-MM-DD'))
+
             var params = $scope.params = $.extend({
                 vintage_index: 'ovd_rate',
-                vintage_start_date: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),
-                vintage_end_date: moment().date(0).format('YYYY-MM-DD'),
+                // vintage_start_date: moment().date(1).subtract(6, 'months').format('YYYY-MM-DD'),
+                // vintage_end_date: moment().date(0).format('YYYY-MM-DD'),
+                vintage_start_date: null,
+                vintage_end_date: null,
+
             }, $location.search() || {})
 
             $scope.vintage_indexs = [{
@@ -36,9 +48,8 @@
             }]
 
             $scope.vintageRange = (function() {
-                if (params.vintage_start_date) {
-                    return params.vintage_start_date + '~' + params.vintage_end_date
-                }
+
+                return params.vintage_start_date + '~' + params.vintage_end_date
             })();
 
             $scope.vintage_indexs.activeName = function() {
@@ -51,17 +62,21 @@
             ktDateHelper.initPeriod($scope, params)
 
             $scope.data = {}
-            $scope.$watch('radioPeriod', function(newValue, oldvalue) {
-                if (newValue !== oldvalue && newValue !== 'custom') {
-                    var dates = newValue.split('~')
-                    $location.search($.extend(params, {
-                        start_date: dates[0] || null,
-                        end_date: dates[1] || null
-                    }))
-                }
-            })
+                // $scope.$watch('radioPeriod', function(newValue, oldvalue) {
+                //     if (newValue !== oldvalue && newValue !== 'custom') {
+                //         var dates = newValue.split('~')
+                //         $location.search($.extend(params, {
+                //             start_date: dates[0] || null,
+                //             end_date: dates[1] || null
+                //         }))
+                //     }
+                // })
 
             $scope.$watch('vintageRange', function(newValue, oldvalue) {
+                // console.log(newValue) undefined
+                //  console.log(oldvalue)
+                // if(newValue&&oldvalue)
+
                 if (newValue !== oldvalue) {
                     var dates = newValue.split('~')
                     $location.search($.extend(params, {
@@ -93,22 +108,24 @@
             }
 
             function getData() {
-                var startDate
-                var endDate
-                var datePeriod
-                datePeriod = $scope.radioPeriod
-                datePeriod = datePeriod.split('~')
-                startDate = datePeriod[0]
-                endDate = datePeriod[1]
+                // var startDate
+                // var endDate
+                // var datePeriod
+                // datePeriod = $scope.radioPeriod
+                // datePeriod = datePeriod.split('~')
+                // startDate = datePeriod[0]
+                // endDate = datePeriod[1]
 
                 ktProjectStaticsReportService.get($.extend({
                     projectID: $stateParams.projectID,
                     type: 'vintages',
                     dimention: 'risk',
-                    start_date: startDate,
-                    end_date: endDate
+                    vintage_start_date: params.vintage_start_date,
+                    vintage_end_date: params.vintage_end_date
                 }, params), function(data) {
                     $scope.data = data
+                    $.extend($scope.params, data.params || {})
+                    $scope.vintageRange = data.params.vintage_start_date + '~' + params.vintage_end_date
 
                     $scope.vintageChart.chartOptions = $.extend(true, {}, chartOptions, {
                         legend: {

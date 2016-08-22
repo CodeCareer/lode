@@ -2,7 +2,6 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        // .controller('ktProjectDashboardCtrl', function($scope, $stateParams, ktProjectStaticsReportService, ktDataHelper) {
         .controller('ktProjectDashboardCtrl', function($scope, $stateParams, ktProjectStaticsReportService, ktDataHelper) {
 
             // $scope.$emit('activeProjectChange', {
@@ -19,7 +18,7 @@
                 $.extend($scope, data)
             })
         })
-})();
+})();//this is real dashboard
 /*;
 (function() {
     'use strict';
