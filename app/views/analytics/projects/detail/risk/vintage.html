@@ -1,58 +1,83 @@
-<div kt-animate-panel child="hpanel">
-    <div class="content-header clfix">
-        <div class="filter fl mr20">
-            指标：
-            <div dropdown class="ib vm">
-                <div dropdown-toggle class="cp">
-                    <span ng-bind="vintage_indexs.activeName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
-                </div>
-                <div dropdown-menu class="animated fadeIn m-t-xs">
-                    <ul>
-                        <li ng-repeat="d in vintage_indexs" ng-class="{active: d.value == params.vintage_index}">
-                            <a ng-click="goTo('vintage_index', d.value)" title="{{::d.name}}" ng-bind="::d.name"></a>
-                        </li>
-                    </ul>
+<div child="hpanel">
+    <!-- <div kt-animate-panel child="hpanel"> -->
+    <!--    <div class="content-header clfix">
+     <div class="filter fl mr20">
+         指标：
+         <div dropdown class="ib vm">
+             <div dropdown-toggle class="cp">
+                 <span ng-bind="vintage_indexs.activeName()"></span><b class="icon-lode icon-arrow">&#xe805;</b>
+             </div>
+             <div dropdown-menu class="animated fadeIn m-t-xs">
+                 <ul>
+                     <li ng-repeat="d in vintage_indexs" ng-class="{active: d.value == params.vintage_index}">
+                         <a ng-click="goTo('vintage_index', d.value)" title="{{::d.name}}" ng-bind="::d.name"></a>
+                     </li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+     <div class="filter fl">
+         日期
+         Vintage：
+         <input readonly type="text" ng-model="vintageRange" kt-date-picker datepicker-settings="datepickerSettings" batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">
+     </div>
+     <div class="btn-group btn-group-sm fr">
+         <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
+         <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">过去三月</label>
+         <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">过去六月</label>
+         <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
+     </div>
+ </div> -->
+
+    <div class="hpanel">
+        <div class="panel-body">
+            <div class="filter-box vintage-filter">
+                <div class="filters-list">
+                    <div class="filter-line clfix">
+                    <div class="name">指标：</div>
+                        <div class="options">
+                            <ul class="options-list">
+                                <li class="vintage-li" ng-repeat="d in vintage_indexs" ng-class="{active: d.value == params.vintage_index}">
+                                    <a class="vintage-a" ng-click="goTo('vintage_index', d.value)" ng-bind="::d.name"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="filter-line vintage-name clfix">
+                    <div class="name">Vintage：</div>
+                        <div>
+                            <input readonly type="text" ng-model="vintageRange" kt-date-picker datepicker-settings="datepickerSettings" batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="filter fl">
-        <!-- 日期 -->
-            Vintage：
-            <input readonly type="text" ng-model="vintageRange" kt-date-picker datepicker-settings="datepickerSettings" batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">
-        </div>
-        <div class="btn-group btn-group-sm fr">
-            <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
-            <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">过去三月</label>
-            <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">过去六月</label>
-            <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
         </div>
     </div>
     <div class="hpanel">
         <div class="panel-heading clfix">
-            <h5>
+            <h5 class="margin-h5">
                 <span ng-bind="vintage_indexs.activeName()"></span>
                 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{getToolTip(vintage_indexs.activeName())}}" class="icon-lode icon-info f12 opacity-0_5"></i>
             </h5>
-            <div class="actions fr">
-                <div class="btn-group btn-group-sm">
-                    <label class="btn btn-dark" ng-model="vintageChart.radioDataShowType" uib-btn-radio="'table'">
-                        <i class="icon-lode">&#xe808;</i>
-                    </label>
-                    <label class="btn btn-dark" ng-model="vintageChart.radioDataShowType" uib-btn-radio="'chart'">
-                        <i class="icon-lode">&#xe806;</i>
-                    </label>
-                </div>
-                <!-- <a class="download-data f18 ml5 pr10 pl10 va-2">
+            <div class="user-r">
+                <a class="download-data f18 ml5 pr10 pl10 va-2 da fr">
                     <i class="glyphicon glyphicon-download-alt"></i>
-                </a> -->
+                </a>
+                <div class="chart-table chart-table-menu fr">
+                    <div class="m1">
+                        <a href="javascript:;" class="child-1" uib-btn-radio="'table'" ng-model="vintageChart.radioDataShowType">表</a>
+                        <a href="javascript:;" class="child-1" uib-btn-radio="'chart'" ng-model="vintageChart.radioDataShowType">图</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="panel-body clfix pr ov-h">
+
             <div class="chart-table" ng-show="vintageChart.radioDataShowType == 'chart'">
-                <!-- <div class="chart-table-heading clfix">
-                </div> -->
+                <div class="chart-table-heading chart-header clfix">
+                </div>
                 <div class="chart-table-body">
-                    <div id="vintageChart" kt-echart chart-options="vintageChart.chartOptions" resize-by="vintageChart.radioDataShowType"  style="height:400px;">
+                    <div id="vintageChart" kt-echart chart-options="vintageChart.chartOptions" resize-by="vintageChart.radioDataShowType" style="height:400px;">
                     </div>
                 </div>
             </div>

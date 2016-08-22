@@ -4,6 +4,9 @@
     padding: 10px 25px;
     font-size: 1.2rem;
     margin-bottom: 20px;
+    &.vintage-filter {
+        padding: 0;
+    }
     @media(max-width: 768px) {
         padding: 8px 15px;
     }
@@ -156,6 +159,19 @@
         border-bottom: 1px solid @color-gray;
         position: relative;
         user-select: none;
+        &.vintage-name {
+            margin-top: 1px;
+            margin-bottom: -17px;
+        }
+        &.assetRisk-name{
+             margin-bottom: -30px;
+        }
+        &.asset-filter{
+            height:60px;
+        }
+        .name {
+            font-size: 13px;
+        }
         // line-height: 25px;
         &.no-bd {
             border: 0;
@@ -259,6 +275,15 @@
                     border-right: 1px solid @border-color;
                 }
             }
+            &.vintage-li {
+                &:first-of-type {
+                    margin-right: 0;
+                    padding: 0 0 0 15px;
+                    &:after {
+                        border-right: none;
+                    }
+                }
+            }
             a {
                 padding: 2px 5px;
                 user-select: none;
@@ -270,6 +295,10 @@
                     border-radius: 2px;
                     background-color: @color-blue;
                     // text-decoration: underline;
+                }
+                &.vintage-a {
+                    padding: 4px 11px;
+                    font-size: 13px;
                 }
             }
             &.active a {

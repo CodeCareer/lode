@@ -79,11 +79,14 @@
             }
 
             $scope.dimensionsActiveName = function() {
-                var d = _.find($scope.dimensions, function(v) {
-                    return v.key === $scope.params.dimension
-                }) || $scope.dimensions[0]
-                return d ? d.name : ''
-            }
+                    var d = _.find($scope.dimensions, function(v) {
+                        return v.key === $scope.params.dimension
+                    }) || $scope.dimensions[0]
+                    return d ? d.name : ''
+                }
+                // $scope.getdate=function(){
+
+            // }
 
             var chartOptions = {
                 tooltip: {
@@ -100,15 +103,30 @@
                 }) || $scope.risk_indexs[0]
                 return d.name
             }
+            $scope.sdate = [];
 
             function getData() {
-                var startDate
-                var endDate
-                var datePeriod
+                var startDate = null
+                var endDate = null
+                var datePeriod = null
+                    // $scope.sdate=null
+
+
                 datePeriod = $scope.radioPeriod
                 datePeriod = datePeriod.split('~')
                 startDate = datePeriod[0]
                 endDate = datePeriod[1]
+
+                // $scope.sdate =datePeriod
+
+                console.log(startDate)
+                console.log(endDate)
+                var s = startDate + '~' + endDate
+                console.log(s)
+                $scope.sdate = s
+                    // var s=datePeriod.join('~');
+                    // console.log(s)
+
 
                 //获取combox的数据
                 ktProjectsService.get($.extend({
@@ -121,13 +139,12 @@
                     $scope.dimensions = data.dimensions
                     $scope.params.dimension = $scope.params.dimension || data.dimensions[0].key
 
-                    /*    $scope.discriptionTool = function() {
-                            var d = _.find($scope.dimensions, function(v) {
-                                return v.key === params.dimension
-                            }) || $scope.dimensions[0]
-                            return d.description
-                        }*/
-
+                    $scope.discriptionTool = function() {
+                        var d = _.find($scope.dimensions, function(v) {
+                            return v.key === params.dimension
+                        }) || $scope.dimensions[0]
+                        return d.description
+                    }
 
                     // $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
                     //     legend: {

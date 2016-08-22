@@ -536,7 +536,7 @@ fieldset[disabled] .btn-red-deep.active {
 
 .btn-dark {
     background-color: @color-2;
-    border-color: @color-2;
+    // border-color: @color-2;
     color: #FFFFFF;
 }
 
@@ -546,8 +546,24 @@ fieldset[disabled] .btn-red-deep.active {
 .btn-dark.active,
 .open .dropdown-toggle.btn-dark {
     background-color: lighten(@color-2, 6%);
-    border-color: lighten(@color-2, 6%);
+    // border-color: lighten(@color-2, 6%);
     color: @color-green;
+    background: white;
+}
+
+.btn-dark1:hover,
+.btn-dark1:focus,
+.btn-dark1:active,
+.btn-dark1.active,
+.open .dropdown-toggle.btn-dark1 {
+    background-color: lighten(@color-2, 6%);
+    // border-color: lighten(@color-2, 6%);
+    // color: @color-green;
+    background: #2fcba9;
+    span {
+        font-size: 13px;
+        font-weight: bold;
+    }
 }
 
 .btn-dark:active,
@@ -666,10 +682,17 @@ button[disabled] {
     pointer-events: auto!important;
 }
 
+.btn-group-sm {
+    margin-right: 20px;
+    &.tc {
+        margin-top: 6px;
+    }
+}
 
-/*.btn-sm, .btn-group-sm > .btn {
+.btn-sm,
+.btn-group-sm > .btn {
     padding: 5px 10px;
-}*/
+}
 
 .input-group-xs {
     & > .form-control,
@@ -681,7 +704,7 @@ button[disabled] {
         line-height: 1.5;
         border-radius: 3px;
     }
-    & > .input-group-btn > .btn{
+    & > .input-group-btn > .btn {
         border-radius: 0 3px 3px 0;
     }
 }
