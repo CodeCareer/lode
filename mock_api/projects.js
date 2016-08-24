@@ -373,8 +373,8 @@ module.exports = function(app) {
                 'field|+1': ['key1', 'key2', 'key3', 'key4', 'key5', 'key6', 'key7', 'key8'],
                 'field_type|1': ['string', 'integer', 'float', 'date'],
                 // 'field_type|1': ['string', 'integer', 'float', 'date'],
-                'perform_type|1': ['search'],
-                // 'perform_type|1': ['options', 'search'],
+                // 'perform_type|1': ['search'],
+                'perform_type|1': ['options', 'search'],
                 'options': ['1-2测试', '3-4测试', '4-5测试', '5-6测试', '6-7测试', '7-8测试', '8-9测试', '9+测试']
             }]
         })

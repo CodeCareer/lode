@@ -12,7 +12,7 @@
             <!-- </div> -->
         </div>
     </div>
-    <div class="hpanel">
+    <div class="hpanel dash-padding">
         <div class="panel-heading clfix">
             <h5 class="margin-h5">逾期率趋势</h5>
             <div class="user-r">
@@ -21,8 +21,8 @@
                 </a>
                 <div class="chart-table chart-table-menu fr">
                     <div class="m1">
-                        <a href="javascript:;" class="child-1" uib-btn-radio="'table'" ng-model="overdueRateChart.radioDataShowType">表</a>
-                        <a href="javascript:;" class="child-1" uib-btn-radio="'chart'" ng-model="overdueRateChart.radioDataShowType">图</a>
+                        <a href="javascript:;" class="child-1 border-lf" uib-btn-radio="'table'" ng-model="overdueRateChart.radioDataShowType">表</a>
+                        <a href="javascript:;" class="child-1 border-rt" uib-btn-radio="'chart'" ng-model="overdueRateChart.radioDataShowType">图</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="hpanel">
+    <div class="hpanel dash-padding">
         <div class="panel-heading clfix">
             <h5 class="margin-h5">迁徙率趋势 <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="A-B的迁徙率表示一个月内借款从状态A变成状态B的比例。比如C-M1表示上月正常还款（C）的借款中本月变成逾期一个月(M1)的比例" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
             <div class="user-r">
@@ -67,9 +67,9 @@
                     <i class="glyphicon glyphicon-download-alt"></i>
                 </a>
                 <div class="chart-table chart-table-menu fr">
-                    <div class="m1">
-                        <a href="javascript:;" class="child-1" uib-btn-radio="'table'" ng-model="migrateRateChart.radioDataShowType">表</a>
-                        <a href="javascript:;" class="child-1" uib-btn-radio="'chart'" ng-model="migrateRateChart.radioDataShowType">图</a>
+                    <div class="m1 table-chart">
+                        <a href="javascript:;" class="child-1 border-lf" uib-btn-radio="'table'" ng-model="migrateRateChart.radioDataShowType">表</a>
+                        <a href="javascript:;" class="child-1 border-rt" uib-btn-radio="'chart'" ng-model="migrateRateChart.radioDataShowType">图</a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,20 @@
 .chart-table {
     background: white;
-    // margin: 10px 0;
+    &.projects-margin {
+        margin: 10px 0;
+    }
     // margin: 0 0 10px 0; //我去的
     &.bg-none {
         background: transparent;
+    }
+    &.chart-month {
+        margin-top: 4px;
+        &.month-risk{
+            margin-left:-34px;
+        }
+    }
+    &.table-margin {
+        margin: 0;
     }
     .br {
         border-right: 1px solid @color-8;
@@ -176,42 +187,87 @@
         font-size: 13px;
         background: #f3f5f8;
         padding: 5px 14px;
-        border-radius: 2px;
+        // border-radius: 2px;
+        cursor: pointer;
         &.active {
             background: #3ebfff;
             color: #ffffff;
         }
         &.month-label {
-            margin: 3px 9px;
+            margin: 3px 5px;
             font-weight: normal;
+            border-radius: 2px;
+            padding: 3px 9px;
+            font-size: 13px;
+            &:visited,
+            &:hover,
+            &:active {
+                background: #3ebfff;
+                color: #ffffff;
+            }
         }
-        &.first-month{
-            margin-left:26px;
+        // :active {
+        //     background: #3ebfff;
+        //     color: #ffffff;
+        // }
+        &.first-month {
+            margin-left: 26px;
+        }
+        &.border-lf {
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        &.border-rt {
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
         }
     }
     .child-1 {
         font-size: 13px;
-        background: #2fcba9;
+        background: #3ebfff;
         padding: 5px 14px;
-        border-radius: 2px;
+        // border-radius: 2px;
         &.active {
-            background: #2fcba9;
+            background: #3ebfff;
             color: #ffffff;
+        }
+        &.border-lf {
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        &.border-rt {
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
         }
     }
     .m1 {
-
         text-align: center;
-        height: 30px;
+        // height: 30px;
         // padding:6px 12px;
         margin-top: 5px;
         a {
             display: inline;
             background: #f3f5f8;
-            padding: 6px 12px;
+            padding: 5px 11px;
             margin-left: -3.5px;
-            border-radius: 3px;
+            // border-radius: 3px;
         }
+        // &.table-chart {
+        //     a:visited,
+        //     a:hover,
+        //     a:active {
+        //         background: #2fcba9;
+        //         color: #ffffff;
+        //     }
+        // }
+        // &.num-per {
+        //     a:visited,
+        //     a:hover,
+        //     a:active {
+        //         background: #3ebfff;
+        //         color: #ffffff;
+        //     }
+        // }
     }
     // .chart-table-body {
     //     .chart {
