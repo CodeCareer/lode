@@ -127,11 +127,26 @@
                 var o = _.find(filters, function(v) {
                     return v.field === 'dimension'
                 }).options[0] || {}
-                return o.value || ''
+                return o.value || null
             })(),
             risk_index: 'ovd_rate',
             date: ktDateHelper.getDate('last6Month')
         }, ktDataHelper.cutDirtyParams(ktDataHelper.decodeParams(params, ['filter'])))
+
+        // 维度名称更新
+        // var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
+        // var riskFilter = _.find($scope.shared.filters, { field: 'risk_index' })
+        $scope.riskIndexName = function() {
+            return $scope.shared.filterFParams ? _.find($scope.shared.filterFParams, { value: 'risk_index' }).name : ''
+                // var dimension = _.find(dimensionFilter.options, { value: $scope.shared.fParams.dimension }) || dimensionFilter.options[0]
+                // return dimension.name || '未知'
+        }
+
+        $scope.dimensionName = function() {
+            return $scope.shared.filterFParams ? _.find($scope.shared.filterFParams, { value: 'dimension' }).name : ''
+                // var dimension = _.find(dimensionFilter.options, { value: $scope.shared.fParams.dimension }) || dimensionFilter.options[0]
+                // return dimension.name || '未知'
+        }
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
