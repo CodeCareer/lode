@@ -1,5 +1,6 @@
-{ 
+{
   "extends": "airbnb/legacy",
+  root: true,
   "env": {
     "browser": true,
     // "node": true,
@@ -44,5 +45,5 @@
     //   moduleDirectory: ["node_modules", "src"]
     // }
   }
-  
+
 }

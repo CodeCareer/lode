@@ -1,7 +1,8 @@
 <div id="borrowers" kt-animate-panel child="hpanel">
     <div class="hpanel">
         <div class="panel-body">
-            <div class="filter-box">
+            <kt-filter-box shared="shared"></kt-filter-box>
+            <!--<div class="filter-box">
                 <div class="filters-list">
                     <div class="filter-line clfix" ng-repeat="filter in shared.filters" ng-show="shared.filters.length">
                         <div class="name" ng-bind="::(filter.name + '：')"></div>
@@ -18,16 +19,16 @@
                                     <button class="btn btn-navy-blue btn-xs" ng-click="goTo(filter.field, filter.customOptionStart + '-' + filter.customOptionEnd, 'custom')">筛选</button>
                                 </li>
                             </ul>
-                            <!--<div ng-if="!filter.filterFn.hidden" class="toggle-btn" ng-click="filter.toggleView($event)">
+                            <!~~<div ng-if="!filter.filterFn.hidden" class="toggle-btn" ng-click="filter.toggleView($event)">
                                 <i class="fa fa-angle-right f1_8rem icon-arrow"></i>
-                            </div>-->
+                            </div>~~>
                         </div>
                         <div class="search-options" ng-if="filter.perform_type === 'search'">
                             <input ng-if="filter.field_type !== 'date'" type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)">
                             <input ng-if="filter.field_type === 'date'" readonly type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)" kt-date-picker datepicker-settings="datepickerSettings" single-date="true" single-month="true" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="true" show-shortcuts="false">
                             <button class="btn btn-navy-blue btn-xs ml5" ng-click="goTo(filter.field, filter.searchValue, 'search')">筛选</button>
                         </div>
-                        <!--<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
+                        <!~~<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
                             <div class="dropdown fl" dropdown>
                                 <div dropdown-toggle class="dropdown-toggle cp">
                                     <span ng-bind="getConditionName(filter.value)"></span>
@@ -41,7 +42,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>~~>
                     </div>
                     <div class="filter-line" ng-if="getFParamsLength()">
                         <div class="name">已选条件：</div>
@@ -56,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="hpanel">

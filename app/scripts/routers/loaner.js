@@ -69,7 +69,7 @@
                     }
                 },
                 // 数据报表-总览
-                'analytics.reports.it': {
+                'analytics.reports.dashboard': {
                     url: '/dashboard',
                     templateUrl: 'views/analytics/dashboard.html',
                     resolve: ktLazyResolve(['views/analytics/dashboard.js']),
@@ -214,6 +214,8 @@
                     templateUrl: 'views/analytics/projects/detail/debtors/debtor_layout.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/debtors/debtor.js',
+                        'scripts/directives/filters/index.js',
+                        'scripts/directives/filters/index.css',
                         'common/directives/datepicker/directive.js',
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
@@ -314,6 +316,8 @@
                     abstract: true,
                     template: '<ui-view/>',
                     resolve: ktLazyResolve([
+                        'scripts/directives/filters/index.js',
+                        'scripts/directives/filters/index.css',
                         'common/directives/datepicker/directive.js',
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
@@ -349,14 +353,30 @@
                     }
                 },
                 'analytics.project.risk.assetRisk': {
-                    url: '/asset_risk?dimension&risk_index&start_date&end_date',
-                    templateUrl: 'views/analytics/projects/detail/risk/asset_risk.html',
+                    url: '/asset_risk',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/risk/asset_risk_layout.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/risk/asset_risk.js',
                         'common/directives/kt-echart3-directive.js'
                     ]),
+                    controller: 'ktAssetRiskLayoutCtrl',
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '多维分析',
+                        pageTitle: '风险分析-多维分析',
+                    }
+                },
+                'analytics.project.risk.assetRisk.index': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/risk/asset_risk.html',
+                    // resolve: ktLazyResolve([
+                    //     'views/analytics/projects/detail/risk/asset_risk.js',
+                    //     'common/directives/kt-echart3-directive.js'
+                    // ]),
                     controller: 'ktAssetRiskCtrl',
                     data: {
+                        breadcrumb: true,
                         breadcrumbTitle: '多维分析',
                         pageTitle: '风险分析-多维分析',
                     }

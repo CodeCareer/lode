@@ -2,23 +2,62 @@
 (function() {
     'use strict';
     angular.module('kt.lode')
-        .controller('ktAssetRiskCtrl', function($scope, $location, $stateParams, ktProjectsService, ktProjectStaticsReportService, ktDateHelper) {
 
-            // $scope.$emit('activeProjectChange', {
-            //     projectID: $stateParams.projectID
-            // })
+    .controller('ktAssetRiskLayoutCtrl', function($scope, $state, $stateParams, $location, ktProjectsService, ktDateHelper) {
+        $scope.shared = {}
 
-            // $scope.datepickerSettings = {
-            //     triggerEvent: 'datepicker-change'
-            // }
+        var params = $scope.shared.params = $.extend({
+            filter: ''
+        }, $location.search() || {})
 
-            var params = $scope.params = $.extend({
-                dimension: null,
-                risk_index: 'ovd_rate',
-            }, $location.search() || {})
+        // 单独提出来的筛选条件，方便后面直接引用
+        $scope.dateOptions = {
+            field: 'date',
+            field_type: 'date',
+            name: '期限',
+            options: [{
+                name: '上月',
+                // tip: '这是提示',
+                value: ktDateHelper.getDate('lastMonth')
+            }, {
+                name: '近三月',
+                value: ktDateHelper.getDate('last3Month')
+            }, {
+                name: '近六个月',
+                value: ktDateHelper.getDate('last6Month')
+            }, {
+                name: '自定义',
+                type: 'datepicker',
+                onUpdate: function(value) {
+                    this.name = this.value = value
+                    $state.go($state.current.name, {
+                        filter: $.param($.extend({}, $scope.shared.fParams, {
+                            date: value,
+                        }))
+                    })
+                },
+                value: ''
+            }],
+            perform_type: 'options',
+            option_type: 'object',
+            no_discretized: true, // 区分离散化（主要是借款人清单页）的动态筛选
+            unit: ''
+        }
 
-
-            $scope.risk_indexs = [{
+        $scope.shared.filters = [{
+            field: 'dimension',
+            field_type: 'string',
+            name: '维度',
+            options: [],
+            perform_type: 'options',
+            option_type: 'object', // object类型的避开重新组建options内容
+            no_discretized: true, // 区分离散化（主要是借款人清单页）的动态筛选
+            unit: ''
+        }, {
+            field: 'risk_index',
+            field_type: 'string',
+            name: '指标',
+            options: [{
                 name: 'C-M1',
                 value: 'C-M1'
             }, {
@@ -33,167 +72,137 @@
             }, {
                 name: '不良率',
                 value: 'np_rate'
-            }]
+            }],
+            perform_type: 'options',
+            option_type: 'object',
+            no_discretized: true, // 区分离散化（主要是借款人清单页）的动态筛选
+            unit: ''
+        }, $scope.dateOptions]
 
-            $scope.vintageRange = (function() {
-                if (params.vintage_start_date) {
-                    return params.vintage_start_date + '~' + params.vintage_end_date
-                }
-            })();
+        // $scope.shared.filters.hideFParams = false // true 可以隐藏已选条件
 
-            $scope.dimensions = []
+        $scope.shared.filters.cannotDelete = true // 已选条件不显示清除功能
 
-            ktDateHelper.initPeriod($scope, params)
+        //获取维度列表
+        ktProjectsService.get($.extend({
+            projectID: $stateParams.projectID,
+            subContent: 'discretized_dimensions'
+        }, params), function(data) {
 
-            $scope.data = {}
-            $scope.$watch('radioPeriod', function(newValue, oldvalue) {
-                if (newValue !== oldvalue && newValue !== 'custom') {
-                    var dates = newValue.split('~')
-                    $location.search($.extend(params, {
-                        start_date: dates[0] || null,
-                        end_date: dates[1] || null
-                    }))
+            // 维度条件是异步获取后初始化
+            var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
+            dimensionFilter.options = _.map(data.dimensions, function(v) {
+                return {
+                    name: v.name,
+                    value: v.key,
+                    description: v.description
                 }
             })
 
-            // $scope.$watch('vintageRange', function(newValue, oldvalue) {
-            //     if (newValue !== oldvalue) {
-            //         var dates = newValue.split('~')
-            //         $location.search($.extend(params, {
-            //             vintage_start_date: dates[0] || null,
-            //             vintage_end_date: dates[1] || null
-            //         }))
-            //     }
-
-            // });
-
-            $scope.goTo = function(k, v) {
-                var p = {}
-                p[k] = v
-                $location.search($.extend(params, p))
-            }
-
-            $scope.assetRiskChart = {
-                radioDataShowType: 'chart',
-                chartOptions: {}
-            }
-
-            $scope.dimensionsActiveName = function() {
-                    var d = _.find($scope.dimensions, function(v) {
-                        return v.key === $scope.params.dimension
-                    }) || $scope.dimensions[0]
-                    return d ? d.name : ''
-                }
-                // $scope.getdate=function(){
-
-            // }
-
-            var chartOptions = {
-                tooltip: {
-                    axisPointer: {
-                        type: 'line',
-                    },
-                    yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
-                }
-            }
-
-            $scope.risk_indexs.activeName = function() {
-                var d = _.find($scope.risk_indexs, function(v) {
-                    return v.value === params.risk_index
-                }) || $scope.risk_indexs[0]
-                return d.name
-            }
-            $scope.sdate = [];
-
-            function getData() {
-                var startDate = null
-                var endDate = null
-                var datePeriod = null
-                    // $scope.sdate=null
-
-
-                datePeriod = $scope.radioPeriod
-                datePeriod = datePeriod.split('~')
-                startDate = datePeriod[0]
-                endDate = datePeriod[1]
-
-                // $scope.sdate =datePeriod
-
-                console.log(startDate)
-                console.log(endDate)
-                var s = startDate + '~' + endDate
-                console.log(s)
-                $scope.sdate = s
-                    // var s=datePeriod.join('~');
-                    // console.log(s)
-
-
-                //获取combox的数据
-                ktProjectsService.get($.extend({
-                    projectID: $stateParams.projectID,
-                    subContent: 'discretized_dimensions',
-                    // start_date: startDate,
-                    // end_date: endDate
-                }, params), function(data) {
-
-                    $scope.dimensions = data.dimensions
-                    $scope.params.dimension = $scope.params.dimension || data.dimensions[0].key
-
-                    $scope.discriptionTool = function() {
-                        var d = _.find($scope.dimensions, function(v) {
-                            return v.key === params.dimension
-                        }) || $scope.dimensions[0]
-                        return d.description
-                    }
-
-                    // $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
-                    //     legend: {
-                    //         data: _.map(data.trends, 'name')
-                    //     },
-                    //     xAxis: {
-                    //         type: 'category',
-                    //         data: data.dates
-                    //     },
-
-                    //     series: _.map(data.trends, function(v) {
-                    //         v.type = 'line'
-                    //         return v
-                    //     })
-                    // })
-
-
-                })
-
-                //画图表取得数据
-                ktProjectStaticsReportService.get($.extend({
-                    projectID: $stateParams.projectID,
-                    dimention: 'risk',
-                    type: 'asset',
-                    start_date: startDate,
-                    end_date: endDate
-                }, params), function(data) {
-                    $scope.data = data
-                    $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
-                        legend: {
-                            data: _.map(data.trends, 'name')
-                        },
-                        xAxis: {
-                            type: 'category',
-                            data: data.dates,
-                        },
-                        yAxis: {
-                            name: '百分比(%)'
-                        },
-
-                        series: _.map(data.trends, function(v) {
-                            v.type = 'line'
-                            return v
-                        })
-                    })
-                })
-            }
-            // 初始加载数据
-            getData()
+            $scope.$broadcast('filterReady')
 
         })
+    })
+
+    .controller('ktAssetRiskCtrl', function($scope, $location, $stateParams, $timeout, ktProjectsService, ktProjectStaticsReportService, ktDataHelper, ktDateHelper) {
+        var search = $location.search()
+        var params = $scope.shared.params
+        var filters = $scope.shared.filters
+        $.extend(params, search)
+        ktDataHelper.pruneDirtyParams(params, search, ['filter'])
+
+        $scope.$on('filterReady', function() {
+
+            if (!$scope.shared.fParams.dimension) {
+                var d = _.find(filters, function(v) {
+                    return v.field === 'dimension'
+                })
+                $scope.shared.fParams.dimension = d.options[0].value
+            }
+        })
+
+        // 从filter内提取的真实的参数
+        $scope.shared.fParams = $.extend({
+            dimension: (function() {
+                var o = _.find(filters, function(v) {
+                    return v.field === 'dimension'
+                }).options[0] || {}
+                return o.value || ''
+            })(),
+            risk_index: 'ovd_rate',
+            date: ktDateHelper.getDate('last6Month')
+        }, ktDataHelper.cutDirtyParams(ktDataHelper.decodeParams(params, ['filter'])))
+
+        // 看是否匹配固定的值，否则是自定义日期
+        var initDate = _.find($scope.dateOptions.options, function(v) {
+            return $scope.shared.fParams.date === v.value
+        })
+
+        if (!initDate) {
+            var customDate = _.last($scope.dateOptions.options)
+            customDate.value = customDate.name = $scope.shared.fParams.date
+        }
+
+        // 更新显示的已选条件
+        if ($scope.shared.updateFilterFParams) {
+            ktDataHelper.filterInit(filters)($scope.shared.fParams)
+            $scope.shared.updateFilterFParams()
+        } else {
+            $timeout(function() {
+                ktDataHelper.filterInit(filters)($scope.shared.fParams)
+                $scope.shared.updateFilterFParams()
+            }, 1000)
+        }
+
+        $scope.assetRiskChart = {
+            radioDataShowType: 'chart',
+            chartOptions: {}
+        }
+
+        var chartOptions = {
+            tooltip: {
+                axisPointer: {
+                    type: 'line',
+                },
+                yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
+            }
+        }
+
+        function getData() {
+            var ajaxParams = _.cloneDeep($scope.shared.fParams)
+            var dates = ajaxParams.date.split('~')
+            ajaxParams.start_date = dates[0]
+            ajaxParams.end_date = dates[1]
+            delete ajaxParams.date
+
+            //画图表取得数据
+            ktProjectStaticsReportService.get($.extend({
+                projectID: $stateParams.projectID,
+                type: 'asset',
+                dimention: 'risk'
+            }, ajaxParams), function(data) {
+                $scope.data = data
+                $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    legend: {
+                        data: _.map(data.trends, 'name')
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: data.dates,
+                    },
+                    yAxis: {
+                        name: '百分比(%)'
+                    },
+
+                    series: _.map(data.trends, function(v) {
+                        v.type = 'line'
+                        return v
+                    })
+                })
+            })
+        }
+
+        // 初始加载数据
+        getData()
+    })
 })();
