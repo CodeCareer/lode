@@ -38,7 +38,7 @@
                 filterInit: function(filters, options) {
                     var _self = this
                     if (!filters.hasAdapt) {
-                        _self._dataAdaptor(filters, options)
+                        _self._filterAdaptor(filters, options)
                     }
                     return function(params) {
                         _self.filterUpdate(filters, params)
@@ -54,29 +54,45 @@
                         v.customOptionEnd = ''
 
                         if (v.perform_type === 'options') {
-                            if (params[dscrdField]) {
-                                _.each(v.options, function(o) {
-                                    /*eslint-disable*/
-                                    o.active = o.value == params[dscrdField]
-                                        /*eslint-enable*/
-                                })
+                            if (!v.no_discretized) { // 为了兼容非离散化的筛选项（非借款人清单页）
+                                if (params[dscrdField]) {
+                                    _.each(v.options, function(o) {
+                                        /*eslint-disable*/
+                                        o.active = o.value == params[dscrdField]
+                                            /*eslint-enable*/
+                                    })
 
-                            } else if (params[fromField] || params[toField]) { //说明是自定义参数
-                                _.each(v.options, function(o) {
-                                    /*eslint-disable*/
-                                    o.active = false
-                                        /*eslint-enable*/
-                                })
+                                } else if (params[fromField] || params[toField]) { //说明是自定义参数
+                                    _.each(v.options, function(o) {
+                                        /*eslint-disable*/
+                                        o.active = false
+                                            /*eslint-enable*/
+                                    })
 
-                                v.customOptionStart = params[fromField] || ''
-                                v.customOptionEnd = params[toField] || ''
+                                    v.customOptionStart = params[fromField] || ''
+                                    v.customOptionEnd = params[toField] || ''
 
-                            } else { //默认是全部处于选中状态
-                                _.each(v.options, function(o, i) {
-                                    /*eslint-disable*/
-                                    o.active = i === 0
-                                        /*eslint-enable*/
-                                })
+                                } else { //默认是全部处于选中状态
+                                    _.each(v.options, function(o, i) {
+                                        /*eslint-disable*/
+                                        o.active = i === 0
+                                            /*eslint-enable*/
+                                    })
+                                }
+                            } else {
+                                if (params[v.field]) {
+                                    _.each(v.options, function(o) {
+                                        /*eslint-disable*/
+                                        o.active = o.value == params[v.field]
+                                            /*eslint-enable*/
+                                    })
+                                } else {
+                                    _.each(v.options, function(o, i) {
+                                        /*eslint-disable*/
+                                        o.active = i === 0
+                                            /*eslint-enable*/
+                                    })
+                                }
                             }
                         } else if (v.perform_type === 'search') {
                             v.searchValue = params[v.field] || ''
@@ -92,12 +108,12 @@
                     })
                     return res
                 },
-               /* getEducationName: function(value) {
-                    var ed = _.find(educationList, function(v) {
-                        return v.value === value
-                    }) || {}
-                    return ed.name || '-'
-                },*/
+                /* getEducationName: function(value) {
+                     var ed = _.find(educationList, function(v) {
+                         return v.value === value
+                     }) || {}
+                     return ed.name || '-'
+                 },*/
                 // 去掉值是all的参数
                 pruneDirtyParams: function(params, search, list) {
                     _.each(params, function(v, i) {
@@ -128,7 +144,7 @@
                     return newParams
                 },
                 // 将后台取到的filters数据加工符合前端的数据-市场数据，产品信息，可预约产品页
-                _dataAdaptor: function(filters, options) {
+                _filterAdaptor: function(filters, options) {
                     // var _self = this
                     options = options || []
 
@@ -213,7 +229,7 @@
                             }
                         }
 
-                        if (v.perform_type === 'options') {
+                        if (v.perform_type === 'options' && v.option_type !== 'object') {
                             v.options = _.map(v.options, function(o) {
                                 return {
                                     name: o,

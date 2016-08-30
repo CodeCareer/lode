@@ -43,7 +43,7 @@
             totalItems: 10
         }
 
-        $scope.beginSearch = function(field, value) {
+        /*$scope.beginSearch = function(field, value) {
             $scope.goTo(field, value, 'search')
         }
 
@@ -106,7 +106,7 @@
         // filter 参数的长度
         $scope.getFParamsLength = function() {
             return _.keys($scope.shared.fParams).length
-        }
+        }*/
 
         ktProjectsService.get($.extend({}, _params, params, {
             subContent: 'filters',
@@ -129,39 +129,16 @@
 
         if (filters.length) {
             ktDataHelper.filterInit(filters)(fParams)
-            updateFilterFParams()
+            $scope.shared.updateFilterFParams()
         } else {
             $scope.$on('filtersReady', function() {
                 ktDataHelper.filterInit($scope.shared.filters)(fParams)
-                updateFilterFParams()
+                $scope.shared.updateFilterFParams()
             })
         }
 
         $scope.getFormat = function(index) {
             return $scope.fields[index].format
-        }
-
-        // 更新展示的选择条件，过滤掉from_和to_开头的参数，这两个类型的只是传给后端的值
-        function updateFilterFParams() {
-            var orderByList = _.map($scope.shared.filters, 'field')
-            var f = _.pickBy($scope.shared.fParams, function(value, key) {
-                return !key.startsWith('from_') && !key.startsWith('to_')
-            })
-
-            // 转换成数组方便排序
-            f = _.map(f, function(value, key) {
-                return {
-                    index: _.indexOf(orderByList, key.replace(/custom_for_show_|discretized_/g, '')),
-                    value: key,
-                    name: value
-                }
-            })
-
-            $scope.shared.filterFParams = f.sort(function(a, b) {
-                /*eslint-disable*/
-                return (a.index > b.index) ? 1 : ((a.index < b.index) ? -1 : 0)
-                /*eslint-enable*/
-            })
         }
 
         ktProjectsService.get($.extend({
