@@ -7,7 +7,7 @@
             <label class="btn btn-default" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
         </div>
     </div> -->
-    <div class="hpanel">
+ <!--    <div class="hpanel">
         <div class="panel-body">
             <div class="chart-table chart-table-menu">
                 <label class="child month-label" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
@@ -20,7 +20,7 @@
                 <label class="child month-label" ng-class="{active: c.chartDimension == '新增成交'}" ng-click="charts[0].dimentionChange('新增成交')" title="新增成交">新增成交</label><i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{charts[0].chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- <div class="hpanels"> -->
     <!-- 遍历charts -->
     <div class="hpanel dash-padding" ng-repeat="c in charts">
@@ -28,7 +28,7 @@
             <h5 class="margin-h5"><span ng-bind="c.name"></span>分布 <i ng-if="c.description" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.description}}" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
             <div class="user-r">
                 <a class="download-data f18 ml5 pr10 pl10 va-2 da fr">
-                    <i class="glyphicon glyphicon-download-alt"></i>
+                    <i class="icon-lode icon-download2"></i>
                 </a>
                 <div class="chart-table chart-table-menu fr">
                     <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()" class="m1 num-per">
@@ -62,6 +62,8 @@
                       </div>
                   </div> -->
                 <div class="chart-table-body" ng-show="c.radioDataShowType == 'chart'">
+                    <div class="chart-table-heading chart-header clfix">
+                    </div>
                     <div kt-echart id="c" chart-options="c.chartOptions" style="height:400px;" resize-by="c.radioDataShowType">
                     </div>
                 </div>

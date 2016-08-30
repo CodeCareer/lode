@@ -6,7 +6,7 @@
     .controller('ktAssetRiskLayoutCtrl', function($scope, $state, $stateParams, $location, ktProjectsService, ktDateHelper) {
         $scope.shared = {}
 
-        var params = $scope.shared.params = $.extend({
+       $scope.shared.params = $.extend({
             filter: ''
         }, $location.search() || {})
 
@@ -64,9 +64,6 @@
                 name: 'M1-C',
                 value: 'M1-C'
             }, {
-                name: 'M1-M2',
-                value: 'M1-M2'
-            }, {
                 name: '逾期率',
                 value: 'ovd_rate'
             }, {
@@ -87,10 +84,11 @@
         ktProjectsService.get($.extend({
             projectID: $stateParams.projectID,
             subContent: 'discretized_dimensions'
-        }, params), function(data) {
+    }, params), function(data) {
 
             // 维度条件是异步获取后初始化
             var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
+                //data.dimensions 是后天获取的
             dimensionFilter.options = _.map(data.dimensions, function(v) {
                 return {
                     name: v.name,
@@ -104,7 +102,7 @@
         })
     })
 
-    .controller('ktAssetRiskCtrl', function($scope, $location, $stateParams, $timeout, ktProjectsService, ktProjectStaticsReportService, ktDataHelper, ktDateHelper) {
+    .controller('ktAssetRiskCtrl', function($scope, $timeout, $rootScope, $location, $stateParams, ktProjectsService, ktProjectStaticsReportService, ktDataHelper, ktDateHelper) {
         var search = $location.search()
         var params = $scope.shared.params
         var filters = $scope.shared.filters
@@ -163,6 +161,10 @@
             ktDataHelper.filterInit(filters)($scope.shared.fParams)
             $scope.shared.updateFilterFParams()
         } else {
+            // $rootScope.$on('filterInitDone', function() {
+            //     ktDataHelper.filterInit(filters)($scope.shared.fParams)
+            //     $scope.shared.updateFilterFParams()
+            // })
             $timeout(function() {
                 ktDataHelper.filterInit(filters)($scope.shared.fParams)
                 $scope.shared.updateFilterFParams()

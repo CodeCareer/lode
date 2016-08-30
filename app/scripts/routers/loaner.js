@@ -275,6 +275,8 @@
                     abstract: true,
                     template: '<ui-view/>',
                     resolve: ktLazyResolve([
+                        'scripts/directives/filters/index.js',
+                        'scripts/directives/filters/index.css',
                         'common/directives/datepicker/directive.js',
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
@@ -283,7 +285,7 @@
                         pageTitle: '资产分布',
                     }
                 },
-                'analytics.project.asset.feature': {
+             /*   'analytics.project.asset.feature': {
                     url: '/feature',
                     templateUrl: 'views/analytics/projects/detail/asset/feature.html',
                     resolve: ktLazyResolve([
@@ -296,21 +298,83 @@
                         breadcrumbTitle: '资产分析',
                         pageTitle: '资产分布-资产分析',
                     }
+                },*/
+                    'analytics.project.asset.feature': {
+                     url: '/feature',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/asset/feature_layout.html',
+                    resolve: ktLazyResolve([
+                         'views/analytics/projects/detail/asset/feature.js',
+                        'common/directives/kt-echart3-directive.js',
+                        'common/directives/kt-linemenu-directive.js'
+                    ]),
+                    controller: 'ktAssetFeatureLayoutCtrl',
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '资产分析',
+                        pageTitle: '资产分布-资产分析',
+                    }
                 },
+                'analytics.project.asset.feature.AssetFeature': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/asset/feature.html',
+                    // resolve: ktLazyResolve([
+                    //     'views/analytics/projects/detail/risk/asset_risk.js',
+                    //     'common/directives/kt-echart3-directive.js'
+                    // ]),
+                    controller: 'ktAssetFeatureCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '资产分析',
+                        pageTitle: '资产分布-资产分析',
+                    }
+                },
+                // 'analytics.project.asset.users': {
+                //     url: '/users',
+                //     templateUrl: 'views/analytics/projects/detail/asset/users.html',
+                //     resolve: ktLazyResolve([
+                //         'views/analytics/projects/detail/asset/users.js',
+                //         'common/directives/kt-echart3-directive.js',
+                //         'common/directives/kt-linemenu-directive.js'
+                //     ]),
+                //     controller: 'ktUserFeatureCtrl',
+                //     data: {
+                //         breadcrumbTitle: '人群分析',
+                //         pageTitle: '资产分布-人群分析',
+                //     }
+                // },
                 'analytics.project.asset.users': {
                     url: '/users',
-                    templateUrl: 'views/analytics/projects/detail/asset/users.html',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/asset/users_layout.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/asset/users.js',
                         'common/directives/kt-echart3-directive.js',
                         'common/directives/kt-linemenu-directive.js'
                     ]),
-                    controller: 'ktUserFeatureCtrl',
+                    controller: 'ktUserFeatureLayoutCtrl',
                     data: {
+                        breadcrumb: false,
                         breadcrumbTitle: '人群分析',
                         pageTitle: '资产分布-人群分析',
                     }
                 },
+                'analytics.project.asset.users.usersFeature': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/asset/users.html',
+                    // resolve: ktLazyResolve([
+                    //     'views/analytics/projects/detail/risk/asset_risk.js',
+                    //     'common/directives/kt-echart3-directive.js'
+                    // ]),
+                    controller: 'ktUserFeatureCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '人群分析',
+                        pageTitle: '资产分布-人群分析',
+                    }
+                },
+
+
                 'analytics.project.risk': { //单个项目的资产特抽:页面
                     url: '/risk?start_date&end_date',
                     abstract: true,
@@ -326,32 +390,92 @@
                         pageTitle: '风险分析',
                     }
                 },
+                // 'analytics.project.risk.overdue': {
+                //     url: '/overdue',
+                //     templateUrl: 'views/analytics/projects/detail/risk/overdue.html',
+                //     resolve: ktLazyResolve([
+                //         'views/analytics/projects/detail/risk/overdue.js',
+                //         'common/directives/kt-echart3-directive.js'
+                //     ]),
+                //     controller: 'ktOverdueCtrl',
+                //     data: {
+                //         breadcrumbTitle: '趋势分析',
+                //         pageTitle: '风险分析-趋势分析',
+                //     }
+                // // },
+                // 'analytics.project.risk.vintage': {
+                //     url: '/vintage?vintage_start_date&vintage_end_date&vintage_index',
+                //     templateUrl: 'views/analytics/projects/detail/risk/vintage.html',
+                //     resolve: ktLazyResolve([
+                //         'views/analytics/projects/detail/risk/vintage.js',
+                //         'common/directives/kt-echart3-directive.js'
+                //     ]),
+                //     controller: 'ktVintageCtrl',
+                //     data: {
+                //         breadcrumbTitle: 'Vintage',
+                //         pageTitle: '风险分析-Vintage',
+                //     }
+                // },
                 'analytics.project.risk.overdue': {
                     url: '/overdue',
-                    templateUrl: 'views/analytics/projects/detail/risk/overdue.html',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/risk/overdue_layout.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/risk/overdue.js',
                         'common/directives/kt-echart3-directive.js'
                     ]),
+                    controller: 'ktOverdueLayoutCtrl',
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '趋势分析',
+                        pageTitle: '风险分析-趋势分析',
+                    }
+                },
+                'analytics.project.risk.overdue.overdueIndex': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/risk/overdue.html',
+                    // resolve: ktLazyResolve([
+                    //     'views/analytics/projects/detail/risk/asset_risk.js',
+                    //     'common/directives/kt-echart3-directive.js'
+                    // ]),
                     controller: 'ktOverdueCtrl',
                     data: {
+                        breadcrumb: true,
                         breadcrumbTitle: '趋势分析',
                         pageTitle: '风险分析-趋势分析',
                     }
                 },
                 'analytics.project.risk.vintage': {
-                    url: '/vintage?vintage_start_date&vintage_end_date&vintage_index',
-                    templateUrl: 'views/analytics/projects/detail/risk/vintage.html',
+                    // url: '/vintage',
+                    url: '/vintage',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/risk/vintage_layout.html',
                     resolve: ktLazyResolve([
                         'views/analytics/projects/detail/risk/vintage.js',
                         'common/directives/kt-echart3-directive.js'
                     ]),
-                    controller: 'ktVintageCtrl',
+                    controller: 'ktVintageLayoutCtrl',
                     data: {
+                        breadcrumb: false,
                         breadcrumbTitle: 'Vintage',
                         pageTitle: '风险分析-Vintage',
                     }
                 },
+                'analytics.project.risk.vintage.vintageIndex': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/risk/vintage.html',
+                    // resolve: ktLazyResolve([
+                    //     'views/analytics/projects/detail/risk/asset_risk.js',
+                    //     'common/directives/kt-echart3-directive.js'
+                    // ]),
+                    controller: 'ktVintageCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: 'Vintage',
+                        pageTitle: '风险分析-Vintage',
+                    }
+                },
+
                 'analytics.project.risk.assetRisk': {
                     url: '/asset_risk',
                     abstract: true,

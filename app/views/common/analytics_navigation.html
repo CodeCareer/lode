@@ -32,11 +32,14 @@
                 <i class="icon-lode icon-report mr10 va-1"></i>资产分布
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.assetPerformanceIsCollapsed" ng-class="{in: !menu.assetPerformanceIsCollapsed}">
-                <li ui-sref-active="active">
+               <!--  <li ui-sref-active="active">
                     <a ui-sref="analytics.project.asset.users">人群分析</a>
+                </li> -->
+                 <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.asset.users.usersFeature">人群分析</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="analytics.project.asset.feature">资产分析</a>
+                    <a ui-sref="analytics.project.asset.feature.AssetFeature">资产分析</a>
                 </li>
             </ul>
         </li>
@@ -44,11 +47,17 @@
             <a href="javascript:;" ng-click="updateMenu('riskIsCollapsed')"><i class="icon-lode icon-risk mr10 va-1"></i>风险分析
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.riskIsCollapsed" ng-class="{in: !menu.riskIsCollapsed}">
-                <li ui-sref-active="active">
+                <!--   <li ui-sref-active="active">
                     <a ui-sref="analytics.project.risk.overdue">趋势分析</a>
-                </li>
+                </li> -->
                 <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.risk.overdue.overdueIndex">趋势分析</a>
+                </li>
+                <!--     <li ui-sref-active="active">
                     <a ui-sref="analytics.project.risk.vintage">Vintage</a>
+                </li> -->
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.risk.vintage.vintageIndex">Vintage</a>
                 </li>
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.project.risk.assetRisk.index">多维分析</a>
@@ -65,7 +74,7 @@
                <i class="icon-lode icon-trend mr10 va-1"></i>现金流预测
            </a>
        </li> -->
-    <!--     <li ng-class="{active: $state.includes('analytics.project.settings.**')}">
+        <!--     <li ng-class="{active: $state.includes('analytics.project.settings.**')}">
         <a href="javascript:;" ng-click="updateMenu('settingsIsCollapsed')">
             <i class="icon-lode icon-set mr10 va-1"></i>项目设置
         </a>
@@ -105,7 +114,7 @@
     </ul>
     <!-- 资金平台-全部项目时候的主菜单 -->
     <!-- <delete add projects> -->
- <!--    <div class="buttons text-left mt20 ml50 pl2" ng-show="!isAllProjectsPage()">
+    <!--    <div class="buttons text-left mt20 ml50 pl2" ng-show="!isAllProjectsPage()">
         <a ui-sref="analytics.project.settings.add" class="btn btn-dark btn-sm">添加项目</a>
     </div>
     <div class="buttons text-left mt20 ml50 pl2" ng-show="isAllProjectsPage()">
