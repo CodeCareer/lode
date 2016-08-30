@@ -285,26 +285,26 @@
                         pageTitle: '资产分布',
                     }
                 },
-             /*   'analytics.project.asset.feature': {
+                /*   'analytics.project.asset.feature': {
+                       url: '/feature',
+                       templateUrl: 'views/analytics/projects/detail/asset/feature.html',
+                       resolve: ktLazyResolve([
+                           'views/analytics/projects/detail/asset/feature.js',
+                           'common/directives/kt-echart3-directive.js',
+                           'common/directives/kt-linemenu-directive.js'
+                       ]),
+                       controller: 'ktAssetFeatureCtrl',
+                       data: {
+                           breadcrumbTitle: '资产分析',
+                           pageTitle: '资产分布-资产分析',
+                       }
+                   },*/
+                'analytics.project.asset.feature': {
                     url: '/feature',
-                    templateUrl: 'views/analytics/projects/detail/asset/feature.html',
-                    resolve: ktLazyResolve([
-                        'views/analytics/projects/detail/asset/feature.js',
-                        'common/directives/kt-echart3-directive.js',
-                        'common/directives/kt-linemenu-directive.js'
-                    ]),
-                    controller: 'ktAssetFeatureCtrl',
-                    data: {
-                        breadcrumbTitle: '资产分析',
-                        pageTitle: '资产分布-资产分析',
-                    }
-                },*/
-                    'analytics.project.asset.feature': {
-                     url: '/feature',
                     abstract: true,
                     templateUrl: 'views/analytics/projects/detail/asset/feature_layout.html',
                     resolve: ktLazyResolve([
-                         'views/analytics/projects/detail/asset/feature.js',
+                        'views/analytics/projects/detail/asset/feature.js',
                         'common/directives/kt-echart3-directive.js',
                         'common/directives/kt-linemenu-directive.js'
                     ]),
@@ -386,7 +386,7 @@
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
                     data: {
-                        breadcrumbState: 'analytics.project.risk.overdue',
+                        breadcrumbState: 'analytics.project.risk.overdue.overdueIndex',
                         pageTitle: '风险分析',
                     }
                 },

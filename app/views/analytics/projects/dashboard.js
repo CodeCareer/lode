@@ -8,7 +8,6 @@
             //     projectID: $stateParams.projectID
             // })
 
-
             $scope.statByProject = ktDataHelper.getStatByProject()
 
             ktProjectStaticsReportService.get({
@@ -18,7 +17,7 @@
                 $.extend($scope, data)
             })
         })
-})();//this is real dashboard
+})(); //this is real dashboard
 /*;
 (function() {
     'use strict';
