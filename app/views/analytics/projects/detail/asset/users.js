@@ -6,7 +6,7 @@
     .controller('ktUserFeatureLayoutCtrl', function($scope, $state, $stateParams, $location, ktProjectsService, ktDateHelper) {
         $scope.shared = {}
 
-       $scope.shared.params = $.extend({
+        $scope.shared.params = $.extend({
             filter: ''
         }, $location.search() || {})
 
@@ -76,15 +76,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-        $scope.$on('filterReady', function() {
-
-            // if (!$scope.shared.fParams.dimension) {
-            //     var d = _.find(filters, function(v) {
-            //         return v.field === 'dimension'
-            //     })
-            //     $scope.shared.fParams.dimension = d.options[0].value
-            // }
-        })
 
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
@@ -150,9 +141,8 @@
                             var prefix
                             var suffix
                             var listName
-                                prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
-                                // prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
-                            // prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
+                                // prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
+                            prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
                             suffix = this.menuData.value === 'absolute' ? '' : '_percent'
                             listName = prefix + this.key + suffix
 

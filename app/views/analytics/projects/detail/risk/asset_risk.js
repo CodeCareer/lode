@@ -6,7 +6,7 @@
     .controller('ktAssetRiskLayoutCtrl', function($scope, $state, $stateParams, $location, ktProjectsService, ktDateHelper) {
         $scope.shared = {}
 
-       $scope.shared.params = $.extend({
+        var params = $scope.shared.params = $.extend({
             filter: ''
         }, $location.search() || {})
 
@@ -84,7 +84,7 @@
         ktProjectsService.get($.extend({
             projectID: $stateParams.projectID,
             subContent: 'discretized_dimensions'
-    }, params), function(data) {
+        }, params), function(data) {
 
             // 维度条件是异步获取后初始化
             var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
@@ -109,6 +109,14 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
+        function updateFParams() {
+            // 更新显示的已选条件
+            if ($scope.shared.updateFilterFParams) {
+                ktDataHelper.filterInit(filters)($scope.shared.fParams)
+                $scope.shared.updateFilterFParams()
+            }
+        }
+
         $scope.$on('filterReady', function() {
 
             if (!$scope.shared.fParams.dimension) {
@@ -117,7 +125,10 @@
                 })
                 $scope.shared.fParams.dimension = d.options[0].value
             }
+
+            updateFParams()
         })
+
 
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
@@ -131,19 +142,14 @@
             date: ktDateHelper.getDate('last6Month')
         }, ktDataHelper.cutDirtyParams(ktDataHelper.decodeParams(params, ['filter'])))
 
-        // 维度名称更新
-        // var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
-        // var riskFilter = _.find($scope.shared.filters, { field: 'risk_index' })
         $scope.riskIndexName = function() {
             return $scope.shared.filterFParams ? _.find($scope.shared.filterFParams, { value: 'risk_index' }).name : ''
-                // var dimension = _.find(dimensionFilter.options, { value: $scope.shared.fParams.dimension }) || dimensionFilter.options[0]
-                // return dimension.name || '未知'
+
         }
 
         $scope.dimensionName = function() {
             return $scope.shared.filterFParams ? _.find($scope.shared.filterFParams, { value: 'dimension' }).name : ''
-                // var dimension = _.find(dimensionFilter.options, { value: $scope.shared.fParams.dimension }) || dimensionFilter.options[0]
-                // return dimension.name || '未知'
+
         }
 
         // 看是否匹配固定的值，否则是自定义日期
@@ -156,20 +162,7 @@
             customDate.value = customDate.name = $scope.shared.fParams.date
         }
 
-        // 更新显示的已选条件
-        if ($scope.shared.updateFilterFParams) {
-            ktDataHelper.filterInit(filters)($scope.shared.fParams)
-            $scope.shared.updateFilterFParams()
-        } else {
-            // $rootScope.$on('filterInitDone', function() {
-            //     ktDataHelper.filterInit(filters)($scope.shared.fParams)
-            //     $scope.shared.updateFilterFParams()
-            // })
-            $timeout(function() {
-                ktDataHelper.filterInit(filters)($scope.shared.fParams)
-                $scope.shared.updateFilterFParams()
-            }, 1000)
-        }
+        updateFParams()
 
         $scope.assetRiskChart = {
             radioDataShowType: 'chart',

@@ -15,32 +15,19 @@
             field: 'date',
             field_type: 'date',
             name: 'Vintage',
-            options: [
-                // {
-                //     name: '上月',
-                //     // tip: '这是提示',
-                //     value: ktDateHelper.getDate('lastMonth')
-                // }, {
-                //     name: '近三月',
-                //     value: ktDateHelper.getDate('last3Month')
-                // }, {
-                //     name: '近六个月',
-                //     value: ktDateHelper.getDate('last6Month')
-                // },
-                {
-                    name: '自定义',
-                    type: 'datepicker',
-                    onUpdate: function(value) {
-                        this.name = this.value = value
-                        $state.go($state.current.name, {
-                            filter: $.param($.extend({}, $scope.shared.fParams, {
-                                date: value,
-                            }))
-                        })
-                    },
-                    value: ''
-                }
-            ],
+            options: [{
+                name: '自定义',
+                type: 'datepicker',
+                onUpdate: function(value) {
+                    this.name = this.value = value
+                    $state.go($state.current.name, {
+                        filter: $.param($.extend({}, $scope.shared.fParams, {
+                            date: value,
+                        }))
+                    })
+                },
+                value: ''
+            }],
             perform_type: 'options',
             option_type: 'object',
             no_discretized: true, // 区分离散化（主要是借款人清单页）的动态筛选
@@ -98,15 +85,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-        $scope.$on('filterReady', function() {
-
-            // if (!$scope.shared.fParams.dimension) {
-            //     var d = _.find(filters, function(v) {
-            //         return v.field === 'dimension'
-            //     })
-            //     $scope.shared.fParams.dimension = d.options[0].value
-            // }
-        })
 
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
@@ -114,14 +92,9 @@
             date: ''
         }, ktDataHelper.cutDirtyParams(ktDataHelper.decodeParams(params, ['filter'])))
 
-        // 维度名称更新
-        // var dimensionFilter = _.find($scope.shared.filters, { field: 'dimension' })
-        // var riskFilter = _.find($scope.shared.filters, { field: 'vintage_index' })
-        // vintage_indexs.activeName()
         $scope.vintageIndexName = function() {
             return $scope.shared.filterFParams ? _.find($scope.shared.filterFParams, { value: 'vintage_index' }).name : ''
-                // var dimension = _.find(dimensionFilter.options, { value: $scope.shared.fParams.dimension }) || dimensionFilter.options[0]
-                // return dimension.name || '未知'
+
         }
 
         $scope.vintageChart = {

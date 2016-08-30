@@ -59,15 +59,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-        $scope.$on('filterReady', function() {
-
-            // if (!$scope.shared.fParams.dimension) {
-            //     var d = _.find(filters, function(v) {
-            //         return v.field === 'dimension'
-            //     })
-            //     $scope.shared.fParams.dimension = d.options[0].value
-            // }
-        })
 
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
@@ -136,8 +127,6 @@
                 projectID: $stateParams.projectID,
                 type: 'trends',
                 dimention: 'risk',
-                // start_date: startDate,
-                // end_date: endDate
             }, ajaxParams), function(data) {
                 $scope.data = data
                     //filter overdue_trends

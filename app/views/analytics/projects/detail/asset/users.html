@@ -1,20 +1,5 @@
 <!-- <div kt-animate-panel child="hpanel"> -->
 <div child="hpanel">
-   <!--  <div class="hpanel" kt-fixed>
-        <div class="panel-body">
-            <div class="chart-table chart-table-menu">
-                <label class="child month-label" ng-model="radioPeriod" uib-btn-radio="radioPeriodLastMonth">上月</label>
-                <label class="child month-label" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast3Month">近三月</label>
-                <label class="child month-label" ng-model="radioPeriod" uib-btn-radio="radioPeriodLast6Month">近六月</label>
-                <label class="child month-label" ng-model="radioPeriod" uib-btn-radio="radioPeriodCustom" kt-date-picker batch-mode="month-range" single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false">任意</label>
-            </div>
-            <div class="chart-table chart-table-menu">
-                <label class="child month-label" ng-click="charts[0].dimentionChange('时点余额')" title="时点余额">时点余额</label><i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{charts[0].chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
-                <label class="child month-label" ng-click="charts[0].dimentionChange('新增成交')" title="新增成交">新增成交</label>
-                <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{charts[0].chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
-            </div>
-        </div>
-    </div> -->
     <!-- 遍历charts -->
     <div class="hpanel dash-padding" ng-repeat="c in charts">
         <div class="panel-heading clfix">
@@ -37,54 +22,8 @@
                 </div>
             </div>
         </div>
-        <!--             <div class="btn-right">
-    <a class="download-data f18 ml5 pr10 pl10 va-2 fr">
-        <i class="glyphicon glyphicon-download-alt"></i>
-    </a>
-    <div class="chart-table">
-        <div class="chart-table-menu fr">
-            <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()">
-                <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child" menu-value="absolute">数值</a>
-                <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child" menu-value="percent">比例</a>
-                <span class="line"></span>
-            </div>
-        </div>
-    </div>
-    <div class="btn-group btn-group-sm tc fr">
-        <label class="btn btn-dark1" ng-model="c.radioDataShowType" uib-btn-radio="'table'">
-            <span>表</span>
-        </label>
-        <label class="btn btn-dark1" ng-model="c.radioDataShowType" uib-btn-radio="'chart'">
-            <span>图</span>
-        </label>
-    </div>
-</div> -->
         <div class="panel-body clfix pr ov-h">
             <div class="chart-table">
-                <!--                 <div class="chart-table-heading clfix">
-                    <div class="dropdown fl" dropdown>
-                        <div dropdown-toggle class="dropdown-toggle cp">
-                            <span ng-bind="c.chartDimension"></span>
-                            <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.chartDimension === '时点余额' ? '时点余额：截止某月的借款余额' : '新增成交：当月新发行的借款金额'}}" class="icon-lode icon-info f12 opacity-0_5"></i>
-                            <b class="icon-lode icon-arrow">&#xe805;</b>
-                        </div>
-                        <div class="dropdown-menu animated fadeIn m-t-xs">
-                            <ul>
-                                <li ng-class="{active: c.chartDimension == '时点余额'}"><a ng-click=" c.dimentionChange('时点余额')" title="时点余额">时点余额</a></li>
-                                <li ng-class="{active: c.chartDimension == '新增成交'}"><a ng-click="c.dimentionChange('新增成交')" title="新增成交">新增成交</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div> -->
-                <!--     <div class="chart-table" ng-show="vintageChart.radioDataShowType == 'chart'">
-                <div class="chart-table-heading chart-header clfix">
-                </div>
-                <div class="chart-table-body">
-                    <div id="vintageChart" kt-echart chart-options="vintageChart.chartOptions" resize-by="vintageChart.radioDataShowType" style="height:400px;">
-                    </div>
-                </div>
-            </div> -->
                 <div class="chart-table-body" ng-show="c.radioDataShowType == 'chart'">
                     <div class="chart-table-heading chart-header clfix">
                     </div>
