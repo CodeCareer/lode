@@ -1,0 +1,89 @@
+;
+(function() {
+    'use strict';
+    angular.module('kt.lode')
+
+    .controller('ktCashForecastLayoutCtrl', function($scope, $location, $stateParams, $window) {
+
+        $scope.data = {}
+        $scope.shared = {}
+        $scope.shared.tabs = {
+            forecastResult: true,
+            reForecast: false
+        }
+
+        var cache = JSON.parse($window.localStorage.cashForecast || '{}')
+
+        $scope.shared.params = cache
+
+        $scope.shared.goTo = function(tab) {
+            $location.search({
+                tab: tab
+            })
+        }
+    })
+
+    .controller('ktCashForecastCtrl', function($scope, $location, $window, $stateParams, ktProjectsService) {
+        var params = $scope.shared.params
+
+        $scope.subTab = 'cashflow'
+        $scope.shared.tabs.forecastResult = params.tab === 'forecastResult'
+        $scope.shared.tabs.reForecast = params.tab === 'reForecast'
+
+        $scope.cashForecastChart = {
+            radioDataShowType: 'chart',
+            chartOptions: {}
+        }
+
+        var chartOptions = {
+            tooltip: {
+                axisPointer: {
+                    type: 'line',
+                    valueType: 'rmb'
+                },
+                yAxisFormat: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
+            }
+        }
+
+        function getData() {
+
+            $window.localStorage.cashForecast = JSON.stringify(params)
+
+            ktProjectsService.get($.extend({
+                subContent: 'cashflow',
+                projectID: $stateParams.projectID,
+
+            }, params), function(data) {
+                if (!params.start_date) {
+                    $.extend(params, data.params)
+                }
+
+                $scope.data = data
+                $scope.cashForecastChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    legend: {
+                        // data: _.map(data.trends, 'name')
+                        data: _.map(data.trends, 'name')
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: data.dates,
+                        // name: '月份',
+                    },
+                    /*      axisLabel: {
+                              interval: 0
+                          },*/
+                    yAxis: {
+                        name: '万元',
+                    },
+                    series: _.map(data.trends, function(v) {
+                        v.type = 'line'
+                        return v
+                    })
+                })
+            })
+        }
+
+        // 初始加载数据
+        getData()
+    })
+})();

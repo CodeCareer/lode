@@ -1,0 +1,55 @@
+<div class="hpanel" ng-if="shared.tabs.forecastResult">
+    <div class="panel-heading clfix">
+        <div class="btn-tabs">
+            <label class="item" ng-model="subTab" uib-btn-radio="'cashflow'">现金流</label>
+            <label class="item" ng-model="subTab" uib-btn-radio="'addCashflow'">累计现金流与余额</label>
+            <label class="item" ng-model="subTab" uib-btn-radio="'prncpAndLose'">本金偿还与损失</label>
+        </div>
+    </div>
+    <div class="panel-body clfix pr ov-h">
+        <div class="chart-table" ng-show="cashForecastChart.radioDataShowType == 'chart'">
+            <div class="chart-table-body">
+                <div id="cashForecastChart" kt-echart chart-options="cashForecastChart.chartOptions" resize-by="cashForecastChart.radioDataShowType" style="height:400px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hpanel" ng-if="shared.tabs.reForecast">
+    <div class="panel-heading clfix">
+        <div class="filter clfix">
+            <dl style="margin-left: 18px;">
+                <dt>回测时间：</dt>
+                <dd>
+                    <div class="dropdown fl" dropdown>
+                        <div dropdown-toggle class="dropdown-toggle cp">
+                            <span ng-bind="getReForecastDate()"></span>
+                            <b class="fa fa-angle-down icon-arrow fb f1_5rem"></b>
+                        </div>
+                        <div class="dropdown-menu animated fadeIn">
+                            <ul>
+                                <li ng-repeat="opt in filter.options" ng-class="{active: opt.active}">
+                                    <a ng-click="goTo(filter.value, opt.value)" title="{{opt.name}}" ng-bind="opt.name"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>回测期数：</dt>
+                <dd>
+                    <em>28</em>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="panel-body clfix pr ov-h">
+        <div class="chart-table" ng-show="cashForecastChart.radioDataShowType == 'chart'">
+            <div class="chart-table-body">
+                <div id="cashForecastChart" kt-echart chart-options="cashForecastChart.chartOptions" resize-by="cashForecastChart.radioDataShowType" style="height:400px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

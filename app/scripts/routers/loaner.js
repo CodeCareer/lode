@@ -285,26 +285,27 @@
                         pageTitle: '资产分布',
                     }
                 },
-             /*   'analytics.project.asset.feature': {
+                /*   'analytics.project.asset.feature': {
+                       url: '/feature',
+                       templateUrl: 'views/analytics/projects/detail/asset/feature.html',
+                       resolve: ktLazyResolve([
+                           'views/analytics/projects/detail/asset/feature.js',
+                           'common/directives/kt-echart3-directive.js',
+                           'common/directives/kt-linemenu-directive.js'
+                       ]),
+                       controller: 'ktAssetFeatureCtrl',
+                       data: {
+                           breadcrumbTitle: '资产分析',
+                           pageTitle: '资产分布-资产分析',
+                       }
+                   },*/
+
+                'analytics.project.asset.feature': {
                     url: '/feature',
-                    templateUrl: 'views/analytics/projects/detail/asset/feature.html',
-                    resolve: ktLazyResolve([
-                        'views/analytics/projects/detail/asset/feature.js',
-                        'common/directives/kt-echart3-directive.js',
-                        'common/directives/kt-linemenu-directive.js'
-                    ]),
-                    controller: 'ktAssetFeatureCtrl',
-                    data: {
-                        breadcrumbTitle: '资产分析',
-                        pageTitle: '资产分布-资产分析',
-                    }
-                },*/
-                    'analytics.project.asset.feature': {
-                     url: '/feature',
                     abstract: true,
                     templateUrl: 'views/analytics/projects/detail/asset/feature_layout.html',
                     resolve: ktLazyResolve([
-                         'views/analytics/projects/detail/asset/feature.js',
+                        'views/analytics/projects/detail/asset/feature.js',
                         'common/directives/kt-echart3-directive.js',
                         'common/directives/kt-linemenu-directive.js'
                     ]),
@@ -373,7 +374,6 @@
                         pageTitle: '资产分布-人群分析',
                     }
                 },
-
 
                 'analytics.project.risk': { //单个项目的资产特抽:页面
                     url: '/risk?start_date&end_date',
@@ -506,18 +506,53 @@
                     }
                 },
                 //cash
-                'analytics.project.cash': {
-                    url: '/cash?start_date&default_rate&prepayment_rate',
-                    templateUrl: 'views/analytics/projects/detail/cash_forecast/cash_forecast.html',
+                'analytics.project.cash': { //单个项目的资产特抽:页面
+                    url: '/cash',
+                    abstract: true,
+                    template: '<ui-view/>',
                     resolve: ktLazyResolve([
-                        'views/analytics/projects/detail/cash_forecast/cash_forecast.js',
+                        'scripts/directives/filters/index.css',
                         'common/directives/datepicker/directive.js',
-                        'common/directives/datepicker/theme/v2/style.css',
+                        'common/directives/datepicker/theme/v2/style.css'
+                    ]),
+                    data: {
+                        breadcrumbState: 'analytics.project.cash.forecast',
+                        pageTitle: '现金流预算',
+                    }
+                },
+                'analytics.project.cash.forecast': {
+                    url: '/forecast',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/forecast_layout.html',
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/cash_forecast/forecast.js',
                         'common/directives/kt-echart3-directive.js'
                     ]),
-                    controller: 'ktCashCtrl',
+                    controller: 'ktCashForecastLayoutCtrl',
                     data: {
-                        pageTitle: '现金流预测',
+                        breadcrumb: false,
+                        pageTitle: '现金流预算-现金流预测',
+                    }
+                },
+                'analytics.project.cash.forecast.index': {
+                    url: '?tab',
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/forecast.html',
+                    controller: 'ktCashForecastCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '现金流预测',
+                        pageTitle: '现金流预算-现金流预测'
+                    }
+                },
+                'analytics.project.cash.settings': {
+                    url: '/settings',
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/settings.html',
+                    controller: 'ktCashSettingsCtrl',
+                    resolve: ktLazyResolve(['views/analytics/projects/detail/cash_forecast/settings.js']),
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '参数设置',
+                        pageTitle: '现金流预算-参数设置'
                     }
                 },
                 // 项目设置
