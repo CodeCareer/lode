@@ -65,8 +65,8 @@
 </div>
 <div child="hpanel" class="hpanel-withtabs">
     <uib-tabset class="tabs">
-        <uib-tab active="tabs.forecastResult" select="shared.goTo('forecastResult')" heading="预测结果"></uib-tab>
-        <uib-tab active="tabs.reForecast" select="shared.goTo('reForecast')" heading="参数回测"></uib-tab>
+        <uib-tab active="shared.tabs.forecastResult" select="shared.goTo('cashForecastChart')" heading="预测结果"></uib-tab>
+        <uib-tab active="shared.tabs.reForecast" select="shared.goTo('reForecastChart')" heading="参数回测"></uib-tab>
     </uib-tabset>
     <div ui-view></div>
 </div>

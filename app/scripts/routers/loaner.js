@@ -535,7 +535,7 @@
                     }
                 },
                 'analytics.project.cash.forecast.index': {
-                    url: '?tab',
+                    url: '',
                     templateUrl: 'views/analytics/projects/detail/cash_forecast/forecast.html',
                     controller: 'ktCashForecastCtrl',
                     data: {

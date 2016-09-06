@@ -128,7 +128,7 @@
                 if (hasntCache) {
                     $scope.params.start_date = project.periods[validPeriods.length]
                 }
-                validPeriods.push($scope.params.start_date)
+                validPeriods.push(project.periods[validPeriods.length])
             }
             $scope.project.validPeriods = validPeriods
 
