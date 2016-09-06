@@ -14,7 +14,9 @@
         }
 
         var cache = JSON.parse($window.localStorage.cashForecast || '{}')
-        var hasCache = _.isEmpty(cache)
+        var hasntCache = _.isEmpty(cache)
+
+        // 基本参数初始化
         $scope.params = $.extend({
             start_date: moment().format('YYYY年MM月'),
             periods: 0,
@@ -24,6 +26,7 @@
             no_repay_rate: 0,
         }, cache)
 
+        // 参数选取默认列表
         $scope.paramsList = [{
             name: '平均',
             value: 'average'
@@ -41,16 +44,19 @@
             value: 'custom'
         }]
 
+        // 选取预测时间时候触发
         $scope.changeStartDate = function(value) {
             $scope.params.start_date = value
             updateParams()
         }
 
+        // 参数选取的时候触发
         $scope.updateActiveParam = function(value) {
             $scope.params.active_param = value
             updateParams()
         }
 
+        // 自定义的时候错误提示和内容校验
         $scope.customParams = {
             prepayment_rate: {
                 errors: '年化早偿率填写错误',
@@ -97,6 +103,7 @@
             }
         }
 
+        // 应用
         $scope.applySettings = function() {
             // $window.sessionStorage
             if ($scope.params.active_param === 'custom' && !$scope.customParams.validate()) {
@@ -108,24 +115,34 @@
 
         }
 
+        // 获取项目的期数等基本信息
         ktProjectsService.get({
             projectID: $stateParams.projectID,
             subContent: 'detail'
         }, function(data) {
             var project = $scope.project = data.project
-            $scope.params.start_date = project.periods[project.history_params.dates.length] || $scope.params.start_date
 
             // 获取可选的期限列表
-            $scope.project.validPeriods = _.chain(project.periods).filter(function(v) {
-                return !_.includes(project.history_params.dates, v)
-            }).value()
+            var validPeriods = _.clone(project.history_params.dates)
+            if (validPeriods.length < project.periods.length) {
+                if (hasntCache) {
+                    $scope.params.start_date = project.periods[validPeriods.length]
+                }
+                validPeriods.push($scope.params.start_date)
+            }
+            $scope.project.validPeriods = validPeriods
 
-            if (!hasCache) {
+            /*$scope.project.validPeriods = _.chain(project.periods).filter(function(v) {
+                return !_.includes(project.history_params.dates, v)
+            }).value()*/
+
+            if (hasntCache) {
+                // $scope.params.start_date = project.periods[project.history_params.dates.length] || $scope.params.start_date
                 updateParams()
             }
         })
 
-        // 更新参数
+        // 更新参数-基于已有项目信息计算
         function updateParams() {
             var params = $scope.params
             var project = $scope.project
@@ -165,7 +182,6 @@
                     break
             }
         }
-
     })
 
 })();

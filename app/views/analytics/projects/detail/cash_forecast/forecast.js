@@ -3,7 +3,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktCashForecastLayoutCtrl', function($scope, $location, $stateParams, $window) {
+    .controller('ktCashForecastLayoutCtrl', function($scope, $window) {
 
         $scope.data = {}
         $scope.shared = {}
@@ -16,19 +16,27 @@
 
         $scope.shared.params = cache
 
-        $scope.shared.goTo = function(tab) {
-            $location.search({
-                tab: tab
-            })
-        }
     })
 
     .controller('ktCashForecastCtrl', function($scope, $location, $window, $stateParams, ktProjectsService) {
         var params = $scope.shared.params
+        var activeTab = $location.search().tab || 'forecastResult'
 
         $scope.subTab = 'cashflow'
-        $scope.shared.tabs.forecastResult = params.tab === 'forecastResult'
-        $scope.shared.tabs.reForecast = params.tab === 'reForecast'
+        $scope.shared.tabs.forecastResult = activeTab === 'forecastResult'
+        $scope.shared.tabs.reForecast = activeTab === 'reForecast'
+        $scope.project = {}
+
+        // 参数回测
+        $scope.reForecast = {
+            periods: 0,
+            activePeriod: ''
+        }
+
+        $scope.updatePeriod = function(value, index) {
+            $scope.reForecast.activePeriod = value
+            $scope.reForecast.periods = $scope.project.validPeriods.length - index
+        }
 
         $scope.cashForecastChart = {
             radioDataShowType: 'chart',
@@ -47,7 +55,7 @@
 
         function getData() {
 
-            $window.localStorage.cashForecast = JSON.stringify(params)
+            // $window.localStorage.cashForecast = JSON.stringify(params)
 
             ktProjectsService.get($.extend({
                 subContent: 'cashflow',
@@ -80,6 +88,32 @@
                         return v
                     })
                 })
+
+                // 避免第一次跳转
+                $scope.shared.goTo = function(tab) {
+                    $location.search({
+                        tab: tab
+                    })
+                }
+            })
+
+            // 获取项目的期数等基本信息
+            ktProjectsService.get({
+                projectID: $stateParams.projectID,
+                subContent: 'detail'
+            }, function(data) {
+                var project = $scope.project = data.project
+
+                // 获取可选的期限列表
+                var validPeriods = $scope.project.validPeriods = _.clone(project.history_params.dates)
+
+                if (_.indexOf(project.periods, params.start_date) >= validPeriods.length) {
+                    $scope.reForecast.activePeriod = validPeriods.slice(-6, 1)
+                    $scope.reForecast.periods = validPeriods.slice(-6).length
+                } else {
+                    $scope.reForecast.activePeriod = params.start_date
+                    $scope.reForecast.periods = validPeriods.length - _.indexOf(validPeriods, params.start_date)
+                }
             })
         }
 

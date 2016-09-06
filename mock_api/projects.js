@@ -470,6 +470,29 @@ module.exports = function(app) {
         res.json(data)
     })
 
+    app.get(apiPrefix + '/projects/:id/cashflow', function(req, res, next) {
+        var data = Mock.mock({
+            project: {
+                periods: ['2015年01月', '2015年02月', '2015年03月', '2015年04月', '2015年05月', '2015年06月', '2015年07月', '2015年08月', '2015年09月', '2015年10月', '2015年11月', '2015年12月'],
+                history_params: {
+                    'dates': ['2015年01月', '2015年02月', '2015年03月', '2015年04月'],
+                    trends: [{
+                        name: '早偿率',
+                        'data|4': ['@float(0,0,2,2)']
+                    }, {
+                        name: '违约率',
+                        'data|4': ['@float(0,0,2,2)']
+                    }, {
+                        name: '未还款率',
+                        'data|4': ['@float(0,0,2,2)']
+                    }]
+                }
+            }
+        })
+
+        res.json(data)
+    })
+
     app.get(apiPrefix + '/projects', proxyMidWare)
     app.get(apiPrefix + '/projects/:id', proxyMidWare)
     app.get(apiPrefix + '/projects/:id/:dimention', proxyMidWare)

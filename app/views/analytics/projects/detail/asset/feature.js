@@ -139,7 +139,7 @@
                             var suffix
                             var listName
                             // prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
-                                prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
+                            prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
                             suffix = this.menuData.value === 'absolute' ? '' : '_percent'
                             listName = prefix + this.key + suffix
 

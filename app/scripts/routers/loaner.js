@@ -386,7 +386,7 @@
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
                     data: {
-                        breadcrumbState: 'analytics.project.risk.overdue',
+                        breadcrumbState: 'analytics.project.risk.overdue.overdueIndex',
                         pageTitle: '风险分析',
                     }
                 },
@@ -516,7 +516,7 @@
                         'common/directives/datepicker/theme/v2/style.css'
                     ]),
                     data: {
-                        breadcrumbState: 'analytics.project.cash.forecast',
+                        breadcrumbState: 'analytics.project.cash.forecast.index',
                         pageTitle: '现金流预算',
                     }
                 },

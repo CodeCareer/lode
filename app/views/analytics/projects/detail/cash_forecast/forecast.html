@@ -23,13 +23,13 @@
                 <dd>
                     <div class="dropdown fl" dropdown>
                         <div dropdown-toggle class="dropdown-toggle cp">
-                            <span ng-bind="getReForecastDate()"></span>
+                            <span ng-bind="reForecast.activePeriod"></span>
                             <b class="fa fa-angle-down icon-arrow fb f1_5rem"></b>
                         </div>
                         <div class="dropdown-menu animated fadeIn">
                             <ul>
-                                <li ng-repeat="opt in filter.options" ng-class="{active: opt.active}">
-                                    <a ng-click="goTo(filter.value, opt.value)" title="{{opt.name}}" ng-bind="opt.name"></a>
+                                <li ng-repeat="period in project.validPeriods track by $index" ng-class="{active: period === reForecast.activePeriod}">
+                                    <a ng-click="updatePeriod(period, $index)" title="{{period}}" ng-bind="period"></a>
                                 </li>
                             </ul>
                         </div>
@@ -39,7 +39,7 @@
             <dl>
                 <dt>回测期数：</dt>
                 <dd>
-                    <em>28</em>
+                    <em ng-bind="reForecast.periods"></em>
                 </dd>
             </dl>
         </div>

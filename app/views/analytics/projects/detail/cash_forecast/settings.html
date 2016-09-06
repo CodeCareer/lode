@@ -52,7 +52,7 @@
                                 <dd>
                                     <span class="sub-title">年化早偿率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.prepayment_rate"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.prepayment_rate" id="prepayment_rate" pattern="^(0\.[1-9]{1,2})$|^(0\.[1-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.prepayment_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.prepayment_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.prepayment_rate" id="prepayment_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.prepayment_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.prepayment_rate.open">
                                 </dd>
                             </dl>
                             <dl ng-class="{'input-visible': params.active_param === 'custom'}">
@@ -60,7 +60,7 @@
                                 <dd>
                                     <span class="sub-title">年化违约率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.default_rate"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.default_rate" id="default_rate" pattern="^(0\.[1-9]{1,2})$|^(0\.[1-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.default_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.default_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.default_rate" id="default_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.default_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.default_rate.open">
                                 </dd>
                             </dl>
                             <dl ng-class="{'input-visible': params.active_param === 'custom'}">
@@ -68,7 +68,7 @@
                                 <dd>
                                     <span class="sub-title">未还款率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.no_repay_rate"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.no_repay_rate" id="no_repay_rate" pattern="^(0\.[1-9]{1,2})$|^(0\.[1-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.no_repay_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.no_repay_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.no_repay_rate" id="no_repay_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.no_repay_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.no_repay_rate.open">
                                 </dd>
                             </dl>
                             <div class="cls comment" ng-if="params.active_param ==='custom'">
@@ -92,13 +92,13 @@
                         <thead>
                             <tr class="text-left">
                                 <th>结果取值</th>
-                                <th ng-repeat="date in project.history_params.dates" ng-bind="date"></th>
+                                <th ng-repeat="date in project.history_params.dates | reverse" ng-bind="date"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="item in project.history_params.trends">
                                 <th class="text-center" ng-bind="::item.name"></th>
-                                <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2"></td>
+                                <td ng-repeat="value in item.data | reverse track by $index " ng-bind="::value | ktNumber:2"></td>
                             </tr>
                         </tbody>
                     </table>
