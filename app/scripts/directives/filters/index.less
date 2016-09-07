@@ -8,16 +8,16 @@
     &.cash-filter {
         .filter-line {
             padding: 9px 0 7px;
-            .dropdown{
+            .dropdown {
                 margin-top: -3px;
             }
-            input{
+            input {
                 width: 90px;
             }
         }
-        ul.options-list{
+        ul.options-list {
             margin-top: 3px;
-            li{
+            li {
                 margin-bottom: 0;
             }
         }
@@ -28,10 +28,10 @@
     @media(max-width: 480px) {
         padding: 0;
     }
-    .comment{
+    .comment {
         color: #b4b4b4;
         padding: 8px 8px 0 8px;
-        p{
+        p {
             margin-bottom: 0;
         }
     }
@@ -186,7 +186,7 @@
             padding: 0 8px;
             margin-right: 90px;
             margin-bottom: 0;
-            &.input-visible{
+            &.input-visible {
                 margin-right: 23px;
             }
             &:last-of-type {
@@ -201,7 +201,7 @@
         }
         dd {
             font-size: 12px;
-            span.sub-title{
+            span.sub-title {
                 margin-right: 10px;
             }
             em {
@@ -278,13 +278,13 @@
             padding-left: 140px;
         }
         input {
-            width: 150px;
+            width: 100px;
             height: 20px;
             border: 0;
             background: @color-gray-light;
             // border: 1px solid #d6d6d6;
             border-radius: 3px;
-            text-indent: .3em;
+            text-indent: .333em;
             // margin-bottom: 8px;
         }
         .search-options {
@@ -293,7 +293,7 @@
             input {
                 width: 150px;
                 height: 23px;
-                border: 1px solid #d6d6d6;
+                // border: 1px solid #d6d6d6;
                 border-radius: 3px;
                 margin-bottom: 8px;
             }
@@ -307,7 +307,7 @@
         margin: -3px 0 0 10px;
         input {
             width: 60px;
-            border: 1px solid #d6d6d6;
+            // border: 1px solid #d6d6d6;
             border-radius: 3px;
         }
         button {
@@ -373,7 +373,8 @@
             //         }
             //     }
             // }
-            a {
+            a,
+            .option-datepicker {
                 padding: 2px 5px 1px;
                 user-select: none;
                 -webkit-user-select: none;
@@ -389,12 +390,31 @@
                     padding: 3px 9px;
                     font-size: 13px;
                 }
+                &.disabled {
+                    cursor: not-allowed;
+                    color: silver;
+                    pointer-events: auto;
+                    &:hover {
+                        background: none;
+                    }
+                }
             }
-            &.active a {
-                color: white;
-                border-radius: 2px;
-                // text-decoration: underline;
-                background-color: @color-blue;
+            .option-datepicker {
+                text-indent: 0;
+                background: none;
+                &:hover {
+                    background: @color-blue;
+                    color: white;
+                }
+            }
+            &.active {
+                a,
+                .option-datepicker {
+                    color: white;
+                    border-radius: 2px;
+                    // text-decoration: underline;
+                    background-color: @color-blue;
+                }
             }
         }
     }

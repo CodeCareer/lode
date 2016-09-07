@@ -37,7 +37,7 @@
                         <div class="options">
                             <ul class="options-list">
                                 <li class="custom-option" ng-repeat="o in paramsList" ng-class="{active: params.active_param === o.value}">
-                                    <a ng-click="updateActiveParam(o.value)">
+                                    <a ng-click="updateActiveParam(o.value)" ng-class="{'disabled': params.customOnly && o.value !== 'custom'}">
                                         <span ng-bind="::o.name"></span>
                                     </a>
                                 </li>
@@ -92,16 +92,20 @@
                         <thead>
                             <tr class="text-left">
                                 <th>结果取值</th>
-                                <th ng-repeat="date in project.history_params.dates | reverse" ng-bind="date"></th>
+                                <th ng-repeat="date in project.history_params.dates | reverse track by $index" ng-class="{em: $index < params.startIndex}" ng-bind="date"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-right" ng-repeat="item in project.history_params.trends">
                                 <th class="text-center" ng-bind="::item.name"></th>
-                                <td ng-repeat="value in item.data | reverse track by $index " ng-bind="::value | ktNumber:2"></td>
+                                <td ng-repeat="value in item.data | reverse track by $index" ng-bind="::value | ktNumber:2"></td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-center" ng-if="!project.history_params.dates.length && !isLoading()">
+                        <i class="pe-7s-attention f20 mr5"></i>
+                        <span class="f16">没有数据！</span>
+                    </div>
                 </div>
             </div>
         </div>

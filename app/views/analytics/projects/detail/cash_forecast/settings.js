@@ -20,6 +20,8 @@
         $scope.params = $.extend({
             start_date: moment().format('YYYY年MM月'),
             periods: 0,
+            customOnly: false,
+            startIndex: 0,
             active_param: 'average',
             prepayment_rate: 0,
             default_rate: 0,
@@ -52,6 +54,7 @@
 
         // 参数选取的时候触发
         $scope.updateActiveParam = function(value) {
+            if ($scope.customOnly) return
             $scope.params.active_param = value
             updateParams()
         }
@@ -132,12 +135,7 @@
             }
             $scope.project.validPeriods = validPeriods
 
-            /*$scope.project.validPeriods = _.chain(project.periods).filter(function(v) {
-                return !_.includes(project.history_params.dates, v)
-            }).value()*/
-
             if (hasntCache) {
-                // $scope.params.start_date = project.periods[project.history_params.dates.length] || $scope.params.start_date
                 updateParams()
             }
         })
@@ -147,15 +145,21 @@
             var params = $scope.params
             var project = $scope.project
 
-            var startIndex = _.indexOf(project.periods, params.start_date)
-            if (startIndex < 1) return
-
+            var startIndex = params.startIndex = _.indexOf(project.periods, params.start_date)
+            params.customOnly = false
             params.periods = project.periods.length - startIndex
 
+            if (startIndex === 0) {
+                params.customOnly = true
+                params.active_param = 'custom'
+                return
+            }
+
+
             var trends = project.history_params.trends
-            var referList0 = trends[0].data.slice(-6)
-            var referList1 = trends[1].data.slice(-6)
-            var referList2 = trends[2].data.slice(-6)
+            var referList0 = trends[0].data.slice(-6, startIndex)
+            var referList1 = trends[1].data.slice(-6, startIndex)
+            var referList2 = trends[2].data.slice(-6, startIndex)
 
             switch (params.active_param) {
                 case 'average':

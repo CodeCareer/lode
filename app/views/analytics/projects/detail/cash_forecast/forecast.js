@@ -39,7 +39,6 @@
         }
 
         $scope.$watch('result.subTab', function(newValue, oldValue) {
-
             if (newValue !== oldValue) {
                 $scope.cashForecastChart.updateChartView()
             }
@@ -59,7 +58,7 @@
         $scope.cashForecastChart = {
             radioDataShowType: 'chart',
             tableData: [],
-            initDone: false,
+            initDone: false, // 用于判断是否需要重新加载数据
             getData: function() {
                 var _self = this
                 ktProjectsService.get($.extend({
@@ -112,6 +111,7 @@
                     return assert
                 })
 
+                // 分割线位置
                 var seperateIndex = _.indexOf(data.dates, params.start_date)
                 var yMax = 0
 
@@ -140,7 +140,7 @@
                 }
 
                 var intervalCount = 5
-                var interval = yMax / (10000 * intervalCount) | 0
+                var interval = _.ceil(yMax / (10000 * intervalCount))
                 interval = _.ceil(interval, 1 - _.toString(interval).length)
                 yMax = interval * intervalCount * 10000
 
@@ -151,8 +151,7 @@
                     xAxis: {
                         type: 'category',
                         data: data.dates,
-                        boundaryGap: false,
-                        // name: '月份',
+                        boundaryGap: false
                     },
                     tooltip: {
                         reverse: $scope.result.subTab !== 'addup_cashflow_trends'
@@ -256,24 +255,10 @@
             updateChartView: function() {
                 var data = this.data
                 var commonChartOptions = {
-                    /*legend: {
-                        data: _.map(trends, 'name')
-                    },*/
                     xAxis: {
                         type: 'category',
                         data: data.dates,
-                        // boundaryGap: false,
-                        // name: '月份',
-                    },
-                    /*tooltip: {
-                        reverse: $scope.result.subTab !== 'addup_cashflow_trends'
-                    },*/
-                    /*      axisLabel: {
-                              interval: 0
-                          },*/
-                    /*yAxis: {
-                        name: '万元'
-                    }*/
+                    }
                 }
 
                 this.chart1 = $.extend(true, {}, chartOptions, commonChartOptions, {
@@ -334,7 +319,6 @@
                     })
                 })
             },
-            // chartOptions: {},
             chart1: {},
             chart2: {},
             chart3: {},
@@ -360,9 +344,8 @@
             }
         })
 
-        // 初始加载数据
+        // 预测结果加载
         $scope.cashForecastChart.getData()
-            // $scope.reForecastChart.getData()
 
     })
 })();

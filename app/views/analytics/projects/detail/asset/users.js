@@ -76,7 +76,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
             risk_index: 'prncp_balns',
@@ -88,9 +87,11 @@
             return $scope.shared.fParams.date === v.value
         })
 
+        var customDate = _.last($scope.dateOptions.options)
         if (!initDate) {
-            var customDate = _.last($scope.dateOptions.options)
             customDate.value = customDate.name = $scope.shared.fParams.date
+        } else if (initDate.type !== 'datepicker') {
+            customDate.value = customDate.name = ''
         }
 
         // 更新显示的已选条件
@@ -187,7 +188,6 @@
                 }
             })
         }
-
 
         function getData() {
             var ajaxParams = _.cloneDeep($scope.shared.fParams)

@@ -85,7 +85,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
             vintage_index: 'ovd_rate',
@@ -135,9 +134,11 @@
                     return $scope.shared.fParams.date === v.value
                 })
 
+                var customDate = _.last($scope.dateOptions.options)
                 if (!initDate) {
-                    var customDate = _.last($scope.dateOptions.options)
                     customDate.value = customDate.name = $scope.shared.fParams.date
+                } else if (initDate.type !== 'datepicker') {
+                    customDate.value = customDate.name = ''
                 }
 
                 // 更新显示的已选条件

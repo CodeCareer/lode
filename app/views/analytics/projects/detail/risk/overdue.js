@@ -59,21 +59,21 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
             date: ktDateHelper.getDate('last6Month')
         }, ktDataHelper.cutDirtyParams(ktDataHelper.decodeParams(params, ['filter'])))
-
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
             return $scope.shared.fParams.date === v.value
         })
 
+        var customDate = _.last($scope.dateOptions.options)
         if (!initDate) {
-            var customDate = _.last($scope.dateOptions.options)
             customDate.value = customDate.name = $scope.shared.fParams.date
+        } else if (initDate.type !== 'datepicker') {
+            customDate.value = customDate.name = ''
         }
 
         // 更新显示的已选条件
@@ -86,7 +86,6 @@
                 $scope.shared.updateFilterFParams()
             })
         }
-
 
         $scope.overdueRateChart = {
             overdueTab: true,
@@ -101,7 +100,6 @@
             chartDimension: '逾期率',
             chartOptions: {}
         }
-
 
         var chartOptions = {
             tooltip: {
