@@ -166,10 +166,10 @@
                     series: _.map(trends, function(v, i) {
                         if (i === 0) {
                             v.markLine = {
-                                animation: false,
+                                // animation: false,
                                 label: {
                                     normal: {
-                                        formatter: '真实 | 预测',
+                                        formatter: '预测起始点',
                                         textStyle: {
                                             align: 'center'
                                         }
