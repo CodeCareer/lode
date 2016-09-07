@@ -58,6 +58,7 @@
                 }
             })
         })
+          //GET /ajax/v1/statistics/projects/:project_id/repayments
         //get /ajax/api/v1/statistics/projects/:project_id/dashboard
         // 单个项目统计
         .factory('ktProjectStaticsReportService', function($resource, ktApiVersion) {

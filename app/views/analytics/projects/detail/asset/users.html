@@ -1,14 +1,14 @@
 <!-- <div kt-animate-panel child="hpanel"> -->
 <div child="hpanel">
     <!-- 遍历charts -->
-    <div class="hpanel" ng-repeat="c in charts">
+    <div class="hpanel hpanel-padding" ng-repeat="c in charts">
         <div class="panel-heading clfix">
             <h5 class="margin-h5"><span ng-bind="c.name"></span>分布 <i ng-if="c.description" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.description}}" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
             <div class="user-r">
-                <a class="download-data f18 ml5 pr10 pl10 va-2 da fr">
+                <a class="download-data f18 va-2 da fr">
                     <i class="icon-lode icon-download2"></i>
                 </a>
-                <div class="chart-table chart-table-menu fr">
+                <div class="chart-table chart-table-menu margin-l fr">
                     <div kt-line-menu menu-data="c.menuData" menu-change="c.menuDataChange()" class="m1 num-per">
                         <a href="javascript:;" ng-class="{active: c.menuData.index == 0}" class="child border-lf" menu-value="absolute">数值</a>
                         <a href="javascript:;" ng-class="{active: c.menuData.index == 1}" class="child border-rt" menu-value="percent">比例</a>

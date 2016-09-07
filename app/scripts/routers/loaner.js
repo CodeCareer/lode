@@ -511,6 +511,11 @@
                     abstract: true,
                     template: '<ui-view/>',
                     resolve: ktLazyResolve([
+                        // 'scripts/directives/filters/index.css',
+                        // 'common/directives/datepicker/directive.js',
+                        // 'common/directives/datepicker/theme/v2/style.css',
+
+                        'scripts/directives/filters/index.js',
                         'scripts/directives/filters/index.css',
                         'common/directives/datepicker/directive.js',
                         'common/directives/datepicker/theme/v2/style.css'
@@ -542,6 +547,31 @@
                         breadcrumb: true,
                         breadcrumbTitle: '现金流预测',
                         pageTitle: '现金流预算-现金流预测'
+                    }
+                },
+                'analytics.project.cash.repayments': {
+                    url: '/repayments',
+                    abstract: true,
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments_layout.html',
+                    resolve: ktLazyResolve([
+                        'views/analytics/projects/detail/cash_forecast/repayments.js',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
+                    controller: 'ktRepaymentsLayoutCtrl',
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '还款分析',
+                        pageTitle: '现金流预算-还款分析',
+                    }
+                },
+                'analytics.project.cash.repayments.index': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments.html',
+                    controller: 'ktRepaymentsCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '还款分析',
+                        pageTitle: '现金流预算-还款分析'
                     }
                 },
                 'analytics.project.cash.settings': {

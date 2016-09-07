@@ -96,7 +96,7 @@
                 var trends = this.tableData = data[$scope.result.subTab]
 
                 // 过滤掉图表不展示的字段
-                trends = trends.filter(function(v) {
+                trends = _.filter(trends, function(v) {
                     var assert = false
                     switch ($scope.result.subTab) {
                         case 'addup_cashflow_trends':

@@ -1,7 +1,7 @@
 <section class="tab-1" ng-if="tabs.basic_info">
-    <div class="hpanel table-responsive" ng-show="info.basic_info.length">
+    <div class="hpanel hpanel-padding table-responsive" ng-show="info.basic_info.length">
         <div class="panel-heading debator-borrow clfix">
-            <h5>基本信息</h5>
+            <h5 class="user-detail">基本信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="simple-grid">
@@ -22,9 +22,9 @@
             </div>
         </div>
     </div>
-    <div class="hpanel table-responsive" ng-show="info.contact_info.length">
+    <div class="hpanel hpanel-padding table-responsive" ng-show="info.contact_info.length">
         <div class="panel-heading debator-borrow clfix">
-            <h5>联系人信息</h5>
+            <h5  class="user-detail">联系人信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="simple-grid">
@@ -45,9 +45,9 @@
             </div>
         </div>
     </div>
-    <div class="hpanel table-responsive" ng-show="info.others_info.length">
+    <div class="hpanel hpanel-padding table-responsive" ng-show="info.others_info.length">
         <div class="panel-heading debator-borrow clfix">
-            <h5>其他信息</h5>
+            <h5  class="user-detail">其他信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="simple-grid">
@@ -70,9 +70,9 @@
     </div>
 </section>
 <section ng-if="tabs.payments">
-    <div class="hpanel table-responsive">
+    <div class="hpanel hpanel-padding table-responsive">
         <div class="panel-heading debator-borrow clfix">
-            <h5>借款信息</h5>
+            <h5  class="user-detail">借款信息</h5>
         </div>
         <!--         <div class="panel-body clfix pr ov-h">
     <div class="dashboard-table">
@@ -132,9 +132,9 @@
             </div>
         </div>
     </div>
-    <div class="hpanel dash-padding table-responsive">
+    <div class="hpanel hpanel-padding table-responsive">
         <div class="panel-heading clfix">
-            <h5>实际还款计划</h5>
+            <h5 class="margin-h5">实际还款计划</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="chart-table">
@@ -183,10 +183,10 @@
     </div>
 </section>
 <section ng-if="tabs.active3">
-    <div class="hpanel table-responsive">
+    <div class="hpanel hpanel-padding table-responsive">
         <div class="panel-heading debator-borrow clfix">
             <div class="panel-heading-borrow clfix">
-                <h5>借款信息 
+                <h5  class="user-detail">借款信息 
                <div class="dowonload"><a ng-href="/ajax/v1/projects/{{projectID}}/borrowers/{{debtorID}}/attachments/download?au={{token}}" target='_blank'>全部下载</a></div> 
                <!--  <div class="btn btn-blue"><a ng-href="/ajax/v1/projects/{{projectID}}/borrowers/{{debtorID}}/attachments/download?au={{token}}" target='_blank'>全部下载</a></div> -->
                 </h5>

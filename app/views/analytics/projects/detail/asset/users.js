@@ -29,6 +29,7 @@
                 name: '自定义',
                 type: 'datepicker',
                 onUpdate: function(value) {
+                    // this.name==='自定义日期'? value:''
                     this.name = this.value = value
                     $state.go($state.current.name, {
                         filter: $.param($.extend({}, $scope.shared.fParams, {
@@ -36,7 +37,7 @@
                         }))
                     })
                 },
-                value: ''
+                value: '',
             }],
             perform_type: 'options',
             option_type: 'object',
@@ -84,14 +85,13 @@
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
+            $scope.dateOptions.options[3].value = ''
             return $scope.shared.fParams.date === v.value
         })
 
-        var customDate = _.last($scope.dateOptions.options)
         if (!initDate) {
+            var customDate = _.last($scope.dateOptions.options)
             customDate.value = customDate.name = $scope.shared.fParams.date
-        } else if (initDate.type !== 'datepicker') {
-            customDate.value = customDate.name = ''
         }
 
         // 更新显示的已选条件

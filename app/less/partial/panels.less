@@ -4,7 +4,7 @@
     .hpanel {
         margin-top: 0;
         // padding: 15px;
-        &>.panel-heading{
+        &>.panel-heading {
             height: auto;
             background: none;
         }
@@ -27,6 +27,27 @@
     background: #888eae;
     .btn-right {
         line-height: 40px;
+    }
+    .panel-box {
+        display: inline-block;
+        vertical-align: middle;
+        color: #ffffff;
+        // font-size: 15px;
+        // line-height: 40px;
+        padding: 0 10px;
+        height: 40px;
+        &.box-first {
+            line-height: 40px;
+            margin-left: 5px;
+        }
+        &.box-border {
+            border-right: 1px solid #cfd6e4;
+        }
+        .dp {
+            float: none;
+            margin-top: 9px;
+            margin-left:-3px;
+        }
     }
     h5 {
         font-size: 15px;
@@ -69,6 +90,25 @@
     }
     .margin-h5 {
         margin: 0 0 0 15px;
+        .overdue {
+            a {
+                font-size: 23px;
+                color: #ffffff;
+            }
+            a:hover {
+                color: #3ebfff;
+            }
+        }
+        .right-line {
+            border-right: 1px solid #f0f0f0;
+            margin-right: 10px;
+            div {
+                display: inline-block;
+            }
+        }
+    }
+    .user-detail {
+        margin: 0;
     }
     .filter {
         font-size: 13px;
@@ -83,7 +123,7 @@
             display: inline-block;
             vertical-align: middle;
         }
-        em{
+        em {
             color: @color-blue;
             font-style: normal;
         }
@@ -96,12 +136,16 @@
         font-size: 13px;
         min-width: 120px;
         height: 22px;
+        &.drop-margin {
+            margin-top: 24px;
+            margin-left: 85px;
+        }
     }
-    .dropdown-menu{
+    .dropdown-menu {
         left: 0;
         right: 0;
         min-width: auto;
-        &:before{
+        &:before {
             left: auto;
             right: 6px;
         }
@@ -156,6 +200,9 @@
     background-color: #ffffff;
     border-radius: 3px;
     padding: 15px;
+    &.hpanel-padding {
+        padding: 0;
+    }
     border: none;
     box-shadow: none;
     &.dash-padding {
@@ -183,6 +230,9 @@
         padding: 0;
         // border: 1px solid @border-color;
         position: relative;
+        &.title-margin {
+            margin: -14px 0;
+        }
     }
     &.td-hpanel {
         margin-bottom: 0;
@@ -254,7 +304,7 @@
     margin-top: -35px;
     .da {
         margin-top: 3px;
-        margin-right: 15px;
+        margin-right: 46px;
         margin-left: 16px;
         color: #ffffff;
     }
@@ -264,13 +314,16 @@
 }
 
 .user-r >div {
-    margin-left: 20px;
+    // margin: 0 10px;
     a {
         color: #626472;
     }
     a:active {
         color: white;
         // padding:6px 12px;
+    }
+    .dash {
+        margin-right: 5px;
     }
 }
 
@@ -501,11 +554,12 @@
 .hbreadcrumb {
     padding: 2px 0px;
     margin-top: 6px;
+    margin-left: 15px;
     margin-bottom: 0px;
     list-style: none;
-    background-color: #fff;
+    background-color: #edf0f5;
     border-radius: #fff;
-    font-size: 11px;
+    font-size: 12px;
     > li {
         display: inline-block;
         + li:before {
@@ -514,7 +568,21 @@
         }
     }
     > .active {
-        color: lighten(@color-text, 20%);
+        //color: lighten(@color-text, 20%);
+        color: #4cc5b4;
+    }
+    a.disabled,
+    a[disabled] {
+        cursor: not-allowed;
+        pointer-events: none;
+        color: #4cc5b4;
+        &:hover,
+        &:active,
+        &:visited,
+        &:focus {
+            // color: silver!important;
+            color: #4cc5b4!important;
+        }
     }
 }
 

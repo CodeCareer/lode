@@ -21,7 +21,8 @@
     & > td {
         white-space: nowrap;
         border-top: 0;
-        border-right: 1px solid @color-5;
+        // border-right: 1px solid @color-5;
+        border-right: 1px solid #f0f0f0;
         &.va-m {
             vertical-align: middle;
         }
@@ -48,12 +49,12 @@
     // background: @color-3;
     // color: white;
     background: #e4e8f0;
-    .dash-th {
-        background: @color-3;
-        color: white;
-    }
     padding: 11px;
     text-align: center;
+    &.dash-th {
+        background: #6b708f;
+        color: #ffffff;
+    }
     &.bb-0 {
         border-bottom: 0;
     }
@@ -77,7 +78,6 @@
         text-align: right;
     }
 }
-
 
 .table > tbody > tr {
     &> td {
@@ -106,8 +106,12 @@
             font-size: 14px;
             color: #626472;
         }
-        &.dash-title {
-            border-bottom: none;
+    }
+    &.dash-title {
+        border-bottom: none;
+        th {
+            background: #6b708f;
+            color: #ffffff;
         }
     }
     & > th {
@@ -139,7 +143,7 @@
 
 .table > tbody > tr {
     background-color: white;
-    border-bottom: 1px solid #cfd6e4;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .table-hover > tbody > tr {
@@ -148,8 +152,9 @@
         background-color: #f5f5f5;
     }
 }
-.dash-border{
-    border:1px solid #cfd6e4;
+
+.dash-border {
+    border: 1px solid #f0f0f0;
 }
 
 table {

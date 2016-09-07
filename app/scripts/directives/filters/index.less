@@ -281,8 +281,8 @@
             width: 100px;
             height: 20px;
             border: 0;
-            background: @color-gray-light;
-            // border: 1px solid #d6d6d6;
+           // background: @color-gray-light;
+            border: 1px solid #d6d6d6;
             border-radius: 3px;
             text-indent: .333em;
             // margin-bottom: 8px;
@@ -305,9 +305,10 @@
     }
     .custom-option {
         margin: -3px 0 0 10px;
+
+
         input {
             width: 60px;
-            // border: 1px solid #d6d6d6;
             border-radius: 3px;
         }
         button {
@@ -415,6 +416,20 @@
                     // text-decoration: underline;
                     background-color: @color-blue;
                 }
+            }
+            input {
+                &:hover {
+                    color: @color-text;
+                    border-radius: 2px;
+                    // text-decoration: underline;
+                    border-color: @color-blue;
+                }
+            }
+            &.active input {
+                color: @color-text;
+                border-radius: 2px;
+                // text-decoration: underline;
+                border-color: @color-blue;
             }
         }
     }
