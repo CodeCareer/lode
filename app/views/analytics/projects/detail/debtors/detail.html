@@ -1,6 +1,6 @@
 <section class="tab-1" ng-if="tabs.basic_info">
-    <div class="hpanel hpanel-padding table-responsive" ng-show="info.basic_info.length">
-        <div class="panel-heading debator-borrow clfix">
+    <div class="hpanel hpanel-padding-user table-responsive" ng-show="info.basic_info.length">
+        <div class="panel-heading  user-panel-title clfix">
             <h5 class="user-detail">基本信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
@@ -22,9 +22,9 @@
             </div>
         </div>
     </div>
-    <div class="hpanel hpanel-padding table-responsive" ng-show="info.contact_info.length">
-        <div class="panel-heading debator-borrow clfix">
-            <h5  class="user-detail">联系人信息</h5>
+    <div class="hpanel hpanel-padding-user table-responsive" ng-show="info.contact_info.length">
+        <div class="panel-heading hpanel-padding-user user-panel-title clfix">
+            <h5 class="user-detail">联系人信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="simple-grid">
@@ -45,9 +45,9 @@
             </div>
         </div>
     </div>
-    <div class="hpanel hpanel-padding table-responsive" ng-show="info.others_info.length">
-        <div class="panel-heading debator-borrow clfix">
-            <h5  class="user-detail">其他信息</h5>
+    <div class="hpanel hpanel-padding-user table-responsive" ng-show="info.others_info.length">
+        <div class="panel-heading  user-panel-title clfix">
+            <h5 class="user-detail">其他信息</h5>
         </div>
         <div class="panel-body clfix pr ov-h">
             <div class="simple-grid">
@@ -70,9 +70,9 @@
     </div>
 </section>
 <section ng-if="tabs.payments">
-    <div class="hpanel hpanel-padding table-responsive">
-        <div class="panel-heading debator-borrow clfix">
-            <h5  class="user-detail">借款信息</h5>
+    <div class="hpanel hpanel-padding-user table-responsive">
+        <div class="panel-heading  user-panel-title clfix">
+            <h5 class="user-detail">借款信息</h5>
         </div>
         <!--         <div class="panel-body clfix pr ov-h">
     <div class="dashboard-table">
@@ -106,10 +106,11 @@
             <div class="table-responsive table-body">
                 <table class="table" cellpadding="0">
                     <tbody>
+                        <!--  <td ng-repeat="value in trend.data track by $index" ng-bind="(value | number:2 | ktAppend:'元')"></td> -->
                         <!-- <td class="f16 mt20 fb" ng-bind="(summary_stat.sum_prncp_balns | number:0) + ' 元'"></td> -->
                         <tr class="dashfont" ng-if="repayments.loan_info">
                             <td class="fb">借贷本金：
-                                <span class="fn" ng-bind="(repayments.loan_info.loan_amnt |number:0)+'元'"></span>
+                                <span class="fn" ng-bind="(repayments.loan_info.loan_amnt | number:2 | ktAppend:'元')"></span>
                             </td>
                             <td class="fb">期限：
                                 <span class="fn" ng-bind="repayments.loan_info.term | ktAppend:'个月'"></span>
@@ -117,7 +118,8 @@
                             <td class="fb">产品类型：
                                 <span class="fn" ng-bind="repayments.loan_info.product_type"></span>
                             </td>
-                            <td class="fb">利率：<!-- <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('ovd_rate')}}" class="icon-lode icon-info f12 opacity-0_5"> -->
+                            <td class="fb">利率：
+                                <!-- <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip('ovd_rate')}}" class="icon-lode icon-info f12 opacity-0_5"> -->
                                 <span class="fn" ng-bind="repayments.loan_info.interest_rate | ktNumber:'percent'"></span>
                             </td>
                         </tr>
@@ -183,10 +185,10 @@
     </div>
 </section>
 <section ng-if="tabs.active3">
-    <div class="hpanel hpanel-padding table-responsive">
-        <div class="panel-heading debator-borrow clfix">
+    <div class="hpanel hpanel-padding-user table-responsive">
+        <div class="panel-heading user-panel-title clfix">
             <div class="panel-heading-borrow clfix">
-                <h5  class="user-detail">借款信息 
+                <h5 class="user-detail">借款信息 
                <div class="dowonload"><a ng-href="/ajax/v1/projects/{{projectID}}/borrowers/{{debtorID}}/attachments/download?au={{token}}" target='_blank'>全部下载</a></div> 
                <!--  <div class="btn btn-blue"><a ng-href="/ajax/v1/projects/{{projectID}}/borrowers/{{debtorID}}/attachments/download?au={{token}}" target='_blank'>全部下载</a></div> -->
                 </h5>

@@ -554,12 +554,12 @@ module.exports = function(app) {
         res.json(data)
     })*/
 
-    app.get(apiPrefix + '/projects/:id/detail', function(req, res, next) {
+    app.get(apiPrefix + '/projects/:id/cashflows/history_factors', function(req, res, next) {
         var data = Mock.mock({
             project: {
                 periods: ['2015年01月', '2015年02月', '2015年03月', '2015年04月', '2015年05月', '2015年06月', '2015年07月', '2015年08月', '2015年09月', '2015年10月', '2015年11月', '2015年12月'],
                 history_params: {
-                    'dates': ['2015年01月', '2015年02月', '2015年03月', '2015年04月'],
+                    'dates': ['2015年01月', '2015年02月', '2015年03月', '2015年04月','2015年05月','2015年06月'],
                     trends: [{
                         name: '早偿率',
                         'data|4': ['@float(0,0,2,2)']
@@ -580,6 +580,16 @@ module.exports = function(app) {
     app.get(apiPrefix + '/projects/:id/cashflow', function(req, res, next) {
         var data = Mock.mock({
             dates: ['2015年01月', '2015年02月', '2015年03月', '2015年04月', '2015年05月', '2015年06月', '2015年07月', '2015年08月', '2015年09月', '2015年10月', '2015年11月', '2015年12月'],
+            asset_cashflow_trends: [{
+                name: '本金还款',
+                'data|12': ['@integer(1000,1000000)']
+            }, {
+                name: '利息还款',
+                'data|12': ['@integer(1000,1000000)']
+            }, {
+                name: '总现金流',
+                'data|12': ['@integer(1000,1000000)']
+            }],
             addup_cashflow_trends: [{
                 name: '余额',
                 'data|12': ['@integer(1000,1000000)']
@@ -593,29 +603,26 @@ module.exports = function(app) {
                 name: '累计现金流',
                 'data|12': ['@integer(1000,1000000)']
             }],
-            asset_cashflow_trends: [{
-                name: '本金还款',
-                'data|12': ['@integer(1000,1000000)']
-            }, {
-                name: '利息还款',
-                'data|12': ['@integer(1000,1000000)']
-            }, {
-                name: '总现金流',
-                'data|12': ['@integer(1000,1000000)']
-            }],
-            prncp_lose_trends: [{
-                name: '损失余额',
+            loss_cashflow_trends: [{
+                name: '损失金额',
                 'data|12': ['@integer(1000,1000000)']
             }, {
                 name: '正常余额',
                 'data|12': ['@integer(1000,1000000)']
             }, {
-                name: '累计本金还款（正常）',
+                name: '累计本金还款',
                 'data|12': ['@integer(1000,1000000)']
             }, {
                 name: '累计早偿金额',
                 'data|12': ['@integer(1000,1000000)']
             }],
+            params: {
+                start_date: '2015年06月',
+                // periods: '11',
+                prepayment_rate: '0.35',
+                default_rate: '0.36',
+                pending_rate: '0.43'
+            }
 
         })
 
@@ -660,6 +667,7 @@ module.exports = function(app) {
     app.get(apiPrefix + '/projects', proxyMidWare)
     app.get(apiPrefix + '/projects/:id', proxyMidWare)
     app.get(apiPrefix + '/projects/:id/:dimention', proxyMidWare)
+    app.get(apiPrefix + '/projects/:id/:dimention/:type', proxyMidWare)
     app.get(apiPrefix + '/statistics/projects/:id', proxyMidWare)
     app.get(apiPrefix + '/statistics/projects/:id/:dimention', proxyMidWare)
     app.get(apiPrefix + '/statistics/projects/:id/:dimention/:type', proxyMidWare)

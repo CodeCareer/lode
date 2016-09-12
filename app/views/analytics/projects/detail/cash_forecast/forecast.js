@@ -3,7 +3,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktCashForecastLayoutCtrl', function($scope, $window) {
+    .controller('ktCashForecastLayoutCtrl', function($scope, $window, $stateParams) {
 
         $scope.data = {}
         $scope.shared = {}
@@ -12,7 +12,7 @@
             reForecast: false
         }
 
-        var cache = JSON.parse($window.localStorage.cashForecast || '{}')
+        var cache = JSON.parse($window.localStorage.getItem($stateParams.projectID + '.cashForecast') || '{}')
 
         $scope.shared.params = cache
 
@@ -20,6 +20,7 @@
 
     .controller('ktCashForecastCtrl', function($scope, $timeout, $location, $window, $stateParams, ktProjectsService) {
         var params = $scope.shared.params
+
         var activeTab = $location.search().tab || 'forecastResult'
         var loadingSettings = { // 设置图表异步加载的样式
             text: '努力加载中...',
@@ -27,7 +28,8 @@
             textColor: '#3d4351',
         }
 
-        $scope.result = { subTab: 'addup_cashflow_trends' } // 包一层保证双向绑定
+        // $scope.result = { subTab: 'addup_cashflow_trends' } // 包一层保证双向绑定
+        $scope.result = { subTab: 'asset_cashflow_trends' } // 包一层保证双向绑定
         $scope.shared.tabs.forecastResult = activeTab === 'forecastResult'
         $scope.shared.tabs.reForecast = activeTab === 'reForecast'
         $scope.project = {}
@@ -66,9 +68,28 @@
                     projectID: $stateParams.projectID,
 
                 }, params), function(data) {
+                    //初始 undefined
+                    // console.log(params.start_date)
+                    $scope.data = data;
+
                     if (!params.start_date) {
                         $.extend(params, data.params)
                     }
+
+                    var startIndex = params.startIndex = _.indexOf(data.dates, params.start_date)
+
+                    params.periods = data.dates.length - startIndex
+
+                    // params.periods = project.periods.length - startIndex
+                    // console.log(params.start_date)
+                    // else{
+                    //          $scope.data = data
+                    // $scope.shared.params.start_date = data.params.start_date
+                    // $scope.shared.params.periods = data.params.periods
+                    // $scope.shared.params.prepayment_rate = data.params.prepayment_rate
+                    // $scope.shared.params.default_rate = data.params.default_rate
+                    // $scope.shared.params.no_repay_rate = data.params.no_repay_rate
+                    // }
 
                     _self.initDone = true
                     _self.data = data
@@ -113,6 +134,8 @@
 
                 // 分割线位置
                 var seperateIndex = _.indexOf(data.dates, params.start_date)
+                    // var dataDatesLen = data.dates.length;
+
                 var yMax = 0
 
                 // 依据不同的tab算取不同的最大值
@@ -123,7 +146,7 @@
                         }).max().value()
                         break
                     case 'asset_cashflow_trends':
-                    case 'prncp_lose_trends':
+                    case 'loss_cashflow_trends':
                         var dataArr = _.chain(trends).map('data').value()
                         var sumArr = []
                         _.each(dataArr[0], function(v, i) {
@@ -136,7 +159,7 @@
                         yMax = _.max(sumArr)
                         break
                     default:
-                        yMax = Math.power(10, 10)
+                        yMax = Math.pow(10, 10)
                 }
 
                 var intervalCount = 5
@@ -163,6 +186,7 @@
                         max: yMax
                     },
                     series: _.map(trends, function(v, i) {
+
                         if (i === 0) {
                             v.markLine = {
                                 // animation: false,
@@ -305,7 +329,7 @@
 
                 this.chart4 = $.extend(true, {}, chartOptions, commonChartOptions, {
                     legend: {
-                        data: _.map(data.lose_rate_trends, 'name')
+                        data: _.map(data.loss_rate_trends, 'name')
                     },
                     tooltip: {
                         yAxisFormat: 'percent'
@@ -313,7 +337,7 @@
                     yAxis: {
                         name: '%'
                     },
-                    series: _.map(data.lose_rate_trends, function(v) {
+                    series: _.map(data.loss_rate_trends, function(v) {
                         v.type = 'line'
                         return v
                     })
@@ -328,11 +352,12 @@
         // 获取项目的期数等基本信息
         ktProjectsService.get({
             projectID: $stateParams.projectID,
-            subContent: 'detail'
+            subContent: 'cashflows',
+            subID: 'history_factors'
         }, function(data) {
-            var project = $scope.project = data.project
 
-            // 获取可选的期限列表
+            var project = $scope.project = data.project
+                // 获取可选的期限列表
             var validPeriods = $scope.project.validPeriods = _.clone(project.history_params.dates)
 
             if (_.indexOf(project.periods, params.start_date) >= validPeriods.length) {

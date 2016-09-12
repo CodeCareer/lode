@@ -1,9 +1,12 @@
 <div class="hpanel" ng-if="shared.tabs.forecastResult">
     <div class="panel-heading clfix">
         <div class="btn-tabs">
-            <label class="item" ng-model="result.subTab" uib-btn-radio="'addup_cashflow_trends'">现金流</label>
+            <label class="item" ng-model="result.subTab" uib-btn-radio="'asset_cashflow_trends'">现金流</label>
+            <label class="item" ng-model="result.subTab" uib-btn-radio="'addup_cashflow_trends'">累计现金流与余额</label>
+            <label class="item" ng-model="result.subTab" uib-btn-radio="'loss_cashflow_trends'">本金偿还与损失</label>
+            <!--  <label class="item" ng-model="result.subTab" uib-btn-radio="'addup_cashflow_trends'">现金流</label>
             <label class="item" ng-model="result.subTab" uib-btn-radio="'asset_cashflow_trends'">累计现金流与余额</label>
-            <label class="item" ng-model="result.subTab" uib-btn-radio="'prncp_lose_trends'">本金偿还与损失</label>
+            <label class="item" ng-model="result.subTab" uib-btn-radio="'loss_cashflow_trends'">本金偿还与损失</label> -->
         </div>
     </div>
     <div class="panel-body clfix pr ov-h">
@@ -40,7 +43,7 @@
         </div>
     </div>
 </div>
-<div class="hpanel" ng-if="shared.tabs.reForecast">
+<!-- <div class="hpanel" ng-if="shared.tabs.reForecast">
     <div class="panel-heading clfix">
         <div class="filter clfix">
             <dl style="margin-left: 18px;">
@@ -83,4 +86,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

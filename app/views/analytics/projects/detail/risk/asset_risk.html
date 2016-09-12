@@ -37,6 +37,12 @@
                         <th class="text-center" ng-bind="::item.name"></th>
                         <td ng-repeat="value in item.data track by $index" ng-bind="::value | ktNumber:2:'percent'"></td>
                     </tr>
+                    <tr class="dash-title" ng-if="!data && !isLoading()">
+                        <td colspan="5" class="text-info text-center">
+                            <i class="pe-7s-attention f20 mr5"></i>
+                            <span class="f16">没有数据！</span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

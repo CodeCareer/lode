@@ -29,7 +29,6 @@
                 name: '自定义',
                 type: 'datepicker',
                 onUpdate: function(value) {
-                    // this.name==='自定义日期'? value:''
                     this.name = this.value = value
                     $state.go($state.current.name, {
                         filter: $.param($.extend({}, $scope.shared.fParams, {

@@ -2,7 +2,7 @@
     <thead>
         <tr class="text-left">
             <th>项目名称</th>
-            <th>助贷机构</th>
+          <!--   <th>助贷机构</th> -->
             <th>项目描述</th>
             <th>开始时间</th>
             <th>结束时间</th>
@@ -11,10 +11,10 @@
     </thead>
     <tbody>
         <tr class="text-right" ng-repeat="project in projects">
-            <th class="text-left">
+            <th class="text-center">
                 <a class="tu" ui-sref="analytics.project.dashboard({projectID: project.id})" ng-bind="::project.name | ktNull"></a>
             </th>
-            <td ng-bind="::project.inst_name | ktNull"></td>
+            <!-- <td ng-bind="::project.inst_name | ktNull"></td> -->
             <td ng-bind="::project.desc | ktNull"></td>
             <td ng-bind="::project.start_at | date:'yyyy-MM-dd'"></td>
             <td ng-bind="::project.end_at | date:'yyyy-MM-dd'"></td>

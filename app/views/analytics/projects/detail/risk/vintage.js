@@ -113,8 +113,8 @@
         function getData() {
             var ajaxParams = _.cloneDeep($scope.shared.fParams)
             var dates = ajaxParams.date.split('~')
-            ajaxParams.vintage_start_date = dates[0] || null
-            ajaxParams.vintage_end_date = dates[1] || null
+            ajaxParams.vintage_start_date1 = dates[0] || null
+            ajaxParams.vintage_end_date1 = dates[1] || null
 
             delete ajaxParams.date
 
@@ -122,8 +122,8 @@
                 projectID: $stateParams.projectID,
                 type: 'vintages',
                 dimention: 'risk',
-                vintage_start_date: ajaxParams.vintage_start_date,
-                vintage_end_date: ajaxParams.vintage_end_date
+                vintage_start_date: ajaxParams.vintage_start_date1,
+                vintage_end_date: ajaxParams.vintage_end_date1
             }, ajaxParams), function(data) {
                 $scope.data = data
 
