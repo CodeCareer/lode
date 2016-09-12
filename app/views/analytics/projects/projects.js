@@ -5,9 +5,9 @@
 
     .controller('ktProjectsCtrl', function($scope, $location, $stateParams, ktInstitutionsService) {
 
-        // $scope.$emit('activeProjectChange', {
-        //     projectID: $stateParams.projectID
-        // })
+        $scope.$emit('activeProjectChange', {
+            projectID: $stateParams.projectID
+        })
 
         $scope.params = {
             maxSize: 5,

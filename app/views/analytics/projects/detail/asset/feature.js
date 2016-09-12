@@ -82,6 +82,7 @@
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
+            $scope.dateOptions.options[3].value = ''
             return $scope.shared.fParams.date === v.value
         })
 
@@ -138,8 +139,8 @@
                             var prefix
                             var suffix
                             var listName
-                            // prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
-                                prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
+                                // prefix = this.chartDimension === '时点余额' ? 'mature_prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
+                            prefix = this.chartDimension === '时点余额' ? 'prncp_balns_by_' : 'loan_amnt_incrmnt_by_'
                             suffix = this.menuData.value === 'absolute' ? '' : '_percent'
                             listName = prefix + this.key + suffix
 

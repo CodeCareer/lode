@@ -1,16 +1,16 @@
 .chart-table {
-    background: white;
-    &.projects-margin {
-        margin: 10px 0;
-    }
+    // background: white;
+    // &.projects-margin {
+    //     margin: 10px 0;
+    // }
     // margin: 0 0 10px 0; //我去的
     &.bg-none {
         background: transparent;
     }
     &.chart-month {
         margin-top: 4px;
-        &.month-risk{
-            margin-left:-34px;
+        &.month-risk {
+            margin-left: -34px;
         }
     }
     &.table-margin {
@@ -18,6 +18,9 @@
     }
     .br {
         border-right: 1px solid @color-8;
+    }
+    &.margin-l{
+        margin-left:20px;
     }
     .dashboard-list {
         // padding: 10px 0;
@@ -241,15 +244,15 @@
         }
     }
     .m1 {
-        text-align: center;
+        // text-align: center;
         // height: 30px;
         // padding:6px 12px;
-        margin-top: 5px;
+        margin-top: 3px;
         a {
-            display: inline;
+            display: inline-block;
             background: #f3f5f8;
-            padding: 5px 11px;
-            margin-left: -3.5px;
+            padding: 3px 11px;
+            margin-left: -4px;
             // border-radius: 3px;
         }
         // &.table-chart {
@@ -269,11 +272,17 @@
         //     }
         // }
     }
-    // .chart-table-body {
-    //     .chart {
-    //         padding: 10px 0;
-    //     }
-    // }
+    .chart-table-body {
+        .chart-half {
+            // box-shadow: 0 0 5px @color-background;
+            float: left;
+            width: 50%;
+            padding: 10px;
+            // &>div {
+            //     border: 1px solid @color-gray;
+            // }
+        }
+    }
     .chart-table-footer {
         color: @color-3;
         height: 40px;

@@ -36,7 +36,7 @@
                         }))
                     })
                 },
-                value: ''
+                value: '',
             }],
             perform_type: 'options',
             option_type: 'object',
@@ -76,7 +76,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
             risk_index: 'prncp_balns',
@@ -85,6 +84,7 @@
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
+            $scope.dateOptions.options[3].value = ''
             return $scope.shared.fParams.date === v.value
         })
 
@@ -187,7 +187,6 @@
                 }
             })
         }
-
 
         function getData() {
             var ajaxParams = _.cloneDeep($scope.shared.fParams)

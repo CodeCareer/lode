@@ -3,10 +3,13 @@
 #side-menu-dropdown {
     &:before {
         margin-left: -3px;
+        left: 50%;
+        right: auto;
     }
     left: 100px!important;
     position: fixed;
     top: 100px!important;
+    min-width: 160px;
     box-shadow: 0 0 6px 0px rgba(0, 0, 0, .50);
 }
 
@@ -45,7 +48,8 @@
 
 #side-menu li .nav-second-level li.active a,
 #side-menu li .nav-second-level li:hover a {
-    color: @color-blue;
+    // color: @color-blue;
+    color:#26e6bb;
 }
 
 #side-menu.nav > li > a:hover,

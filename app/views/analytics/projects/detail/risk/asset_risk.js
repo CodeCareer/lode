@@ -154,8 +154,10 @@
 
         // 看是否匹配固定的值，否则是自定义日期
         var initDate = _.find($scope.dateOptions.options, function(v) {
+            $scope.dateOptions.options[3].value = ''
             return $scope.shared.fParams.date === v.value
         })
+
 
         if (!initDate) {
             var customDate = _.last($scope.dateOptions.options)

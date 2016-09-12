@@ -5,14 +5,35 @@
     // padding: 10px 25px;
     font-size: 1.2rem;
     // margin-bottom: 20px;
-    &.vintage-filter {
-        padding: 0;
+    &.cash-filter {
+        .filter-line {
+            padding: 9px 0 7px;
+            .dropdown {
+                margin-top: -3px;
+            }
+            input {
+                width: 90px;
+            }
+        }
+        ul.options-list {
+            margin-top: 3px;
+            li {
+                margin-bottom: 0;
+            }
+        }
     }
     @media(max-width: 768px) {
         padding: 8px 15px;
     }
     @media(max-width: 480px) {
         padding: 0;
+    }
+    .comment {
+        color: #b4b4b4;
+        padding: 8px 8px 0 8px;
+        p {
+            margin-bottom: 0;
+        }
     }
     .dropdown-menu {
         .btn-confirm-filter {
@@ -160,6 +181,34 @@
         border-bottom: 1px solid @color-gray;
         position: relative;
         user-select: none;
+        dl {
+            float: left;
+            padding: 0 8px;
+            margin-right: 90px;
+            margin-bottom: 0;
+            &.input-visible {
+                margin-right: 23px;
+            }
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+        dt,
+        dd {
+            display: inline-block;
+            font-weight: normal;
+            font-size: 13px;
+        }
+        dd {
+            font-size: 12px;
+            span.sub-title {
+                margin-right: 10px;
+            }
+            em {
+                font-style: normal;
+                color: #3ebfff;
+            }
+        }
         .fm-left {
             margin-left: -43px;
         }
@@ -229,10 +278,13 @@
             padding-left: 140px;
         }
         input {
-            width: 150px;
-            height: 23px;
+            width: 100px;
+            height: 20px;
+            border: 0;
+            // background: @color-gray-light;
             border: 1px solid #d6d6d6;
             border-radius: 3px;
+            text-indent: .333em;
             // margin-bottom: 8px;
         }
         .search-options {
@@ -241,7 +293,7 @@
             input {
                 width: 150px;
                 height: 23px;
-                border: 1px solid #d6d6d6;
+                // border: 1px solid #d6d6d6;
                 border-radius: 3px;
                 margin-bottom: 8px;
             }
@@ -255,13 +307,12 @@
         margin: -3px 0 0 10px;
         input {
             width: 60px;
-            border: 1px solid #d6d6d6;
             border-radius: 3px;
         }
         button {
             margin: -2px 0 0 10px;
             &.btn-xs {
-                padding: 1px 7px 0;
+                padding: 1px 12px 0;
             }
         }
     }
@@ -272,7 +323,7 @@
         }
         .filter-line {
             .options {
-                padding-left: 0;
+                padding-left: 85px;
             }
         }
         ul.options-list {
@@ -321,8 +372,9 @@
             //         }
             //     }
             // }
-            a {
-                padding: 2px 5px;
+            a,
+            .option-datepicker {
+                padding: 2px 5px 1px;
                 user-select: none;
                 -webkit-user-select: none;
                 color: @color-text;
@@ -337,12 +389,45 @@
                     padding: 3px 9px;
                     font-size: 13px;
                 }
+                &.disabled {
+                    cursor: not-allowed;
+                    color: silver;
+                    pointer-events: auto;
+                    &:hover {
+                        background: none;
+                    }
+                }
             }
-            &.active a {
-                color: white;
+            .option-datepicker {
+                text-indent: 0;
+                background: none;
+                &:hover {
+                    background: @color-blue;
+                    color: white;
+                }
+            }
+            &.active {
+                a,
+                .option-datepicker {
+                    color: white;
+                    border-radius: 2px;
+                    // text-decoration: underline;
+                    background-color: @color-blue;
+                }
+            }
+            input {
+                &:hover {
+                    color: @color-text;
+                    border-radius: 2px;
+                    // text-decoration: underline;
+                    border-color: @color-blue;
+                }
+            }
+            &.active input {
+                color: @color-text;
                 border-radius: 2px;
                 // text-decoration: underline;
-                background-color: @color-blue;
+                border-color: @color-blue;
             }
         }
     }

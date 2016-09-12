@@ -128,6 +128,10 @@
     color: @color-navy-blue;
 }
 
+.btn-primary.btn-outline {
+    color: @color-primary;
+}
+
 .btn-violet.btn-outline {
     color: @color-violet;
 }
@@ -156,7 +160,13 @@
     color: @color-red-deep;
 }
 
+.btn-navy-blue.btn-outline:hover,
 .btn-primary.btn-outline:hover,
+.btn-orange.btn-outline:hover,
+.btn-red.btn-outline:hover,
+.btn-red-deep.btn-outline:hover,
+.btn-yellow.btn-outline:hover,
+.btn-violet.btn-outline:hover,
 .btn-green.btn-outline:hover,
 .btn-blue.btn-outline:hover,
 .btn-warning.btn-outline:hover,
@@ -203,6 +213,47 @@ fieldset[disabled] .btn-navy-blue:active,
 fieldset[disabled] .btn-navy-blue.active {
     background-color: darken(@color-navy-blue, 6%);
     border-color: darken(@color-navy-blue, 6%);
+}
+
+.btn-primary {
+    background-color: @color-primary;
+    border-color: @color-primary;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-color: lighten(@color-primary, 6%);
+    border-color: lighten(@color-primary, 6%);
+    color: #FFFFFF;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary.disabled:hover,
+.btn-primary.disabled:focus,
+.btn-primary.disabled:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary[disabled]:active,
+.btn-primary.active[disabled],
+fieldset[disabled] .btn-primary,
+fieldset[disabled] .btn-primary:hover,
+fieldset[disabled] .btn-primary:focus,
+fieldset[disabled] .btn-primary:active,
+fieldset[disabled] .btn-primary.active {
+    background-color: darken(@color-primary, 6%);
+    border-color: darken(@color-primary, 6%);
 }
 
 .btn-violet {
@@ -689,9 +740,44 @@ button[disabled] {
     }
 }
 
+.btn-xs {
+    line-height: 1.4;
+    padding: 1px 12px;
+}
+
 .btn-sm,
 .btn-group-sm > .btn {
     padding: 5px 10px;
+}
+
+.btn-tabs {
+    line-height: 25px;
+    height: 25px;
+    font-size: 13px;
+    .item {
+        font-weight: normal;
+        font-size: inherit;
+        padding: 0 12px;
+        color: #626472;
+        border-right: 1px solid white;
+        background: @color-gray;
+        float: left;
+        cursor: pointer;
+        &:last-of-type {
+            border: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        &:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+        &:hover {
+            background: darken(@color-gray, 5%);
+        }
+        &.active {
+            color: white;
+            background: @color-blue;
+        }
+    }
 }
 
 .input-group-xs {

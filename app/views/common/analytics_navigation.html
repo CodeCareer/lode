@@ -32,10 +32,10 @@
                 <i class="icon-lode icon-report mr10 va-1"></i>资产分布
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.assetPerformanceIsCollapsed" ng-class="{in: !menu.assetPerformanceIsCollapsed}">
-               <!--  <li ui-sref-active="active">
+                <!--  <li ui-sref-active="active">
                     <a ui-sref="analytics.project.asset.users">人群分析</a>
                 </li> -->
-                 <li ui-sref-active="active">
+                <li ui-sref-active="active">
                     <a ui-sref="analytics.project.asset.users.usersFeature">人群分析</a>
                 </li>
                 <li ui-sref-active="active">
@@ -64,10 +64,21 @@
                 </li>
             </ul>
         </li>
-        <li ng-class="{active:$state.current.name =='analytics.project.cash'}">
-            <a ng-click="stateGo('analytics.project.cash', 'updateMenu', 'cashIsCollapsed')">
-                <i class="icon-lode icon-trend mr10 va-1"></i>现金流预测
+        <li ng-class="{active: $state.includes('analytics.project.cash.**')}">
+            <a href="javascript:;" ng-click="updateMenu('cashIsCollapsed')">
+                <i class="icon-lode icon-trend mr10 va-1"></i>现金流预算
             </a>
+            <ul class="nav nav-second-level" uib-collapse="menu.cashIsCollapsed" ng-class="{in: !menu.cashIsCollapsed}">
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.cash.forecast.index">现金流预测</a>
+                </li>
+                 <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.cash.repayments.index">还款分析</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="analytics.project.cash.settings">参数设置</a>
+                </li>
+            </ul>
         </li>
         <!--  <li ng-class="{active: $state.includes('analytics.project.cash')}">
            <a href="javascript:;" ng-click="updateMenu('cashIsCollapsed')">

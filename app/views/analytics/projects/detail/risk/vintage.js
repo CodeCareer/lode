@@ -85,7 +85,6 @@
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
-
         // 从filter内提取的真实的参数
         $scope.shared.fParams = $.extend({
             vintage_index: 'ovd_rate',
@@ -114,8 +113,8 @@
         function getData() {
             var ajaxParams = _.cloneDeep($scope.shared.fParams)
             var dates = ajaxParams.date.split('~')
-            ajaxParams.vintage_start_date = dates[0] || null
-            ajaxParams.vintage_end_date = dates[1] || null
+            ajaxParams.vintage_start_date1 = dates[0] || null
+            ajaxParams.vintage_end_date1 = dates[1] || null
 
             delete ajaxParams.date
 
@@ -123,8 +122,8 @@
                 projectID: $stateParams.projectID,
                 type: 'vintages',
                 dimention: 'risk',
-                vintage_start_date: ajaxParams.vintage_start_date,
-                vintage_end_date: ajaxParams.vintage_end_date
+                vintage_start_date: ajaxParams.vintage_start_date1,
+                vintage_end_date: ajaxParams.vintage_end_date1
             }, ajaxParams), function(data) {
                 $scope.data = data
 
@@ -135,9 +134,11 @@
                     return $scope.shared.fParams.date === v.value
                 })
 
+                var customDate = _.last($scope.dateOptions.options)
                 if (!initDate) {
-                    var customDate = _.last($scope.dateOptions.options)
                     customDate.value = customDate.name = $scope.shared.fParams.date
+                } else if (initDate.type !== 'datepicker') {
+                    customDate.value = customDate.name = ''
                 }
 
                 // 更新显示的已选条件

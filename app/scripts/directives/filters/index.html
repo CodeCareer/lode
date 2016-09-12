@@ -10,14 +10,14 @@
                             <i ng-if="o.tip" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{o.tip}}" class="icon-lode icon-info f12 opacity-0_5"></i>
                         </a>
 
-                        <input ng-if="o.type === 'datepicker'" placeholder="自定义日期" class="text-center m-t-n-sm" readonly type="text" id="datepicker_{{filter.field}}_{{$index}}" pattern="{{filter.pattern}}" type="text" kt-date-picker datepicker-settings="o.datepickerSettings" single-date="false" batch-mode="month-range"  single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false" ng-model="o.value" on-update="o.onUpdate(value)">
+                        <span ng-if="o.type === 'datepicker'" placeholder="自定义" class="text-center m-t-n-sm option-datepicker" readonly type="text" id="datepicker_{{filter.field}}_{{$index}}" pattern="{{filter.pattern}}" type="text" kt-date-picker datepicker-settings="o.datepickerSettings" single-date="false" batch-mode="month-range"  single-month="false" extra-class="date-picker-analytics-top" show-week-numbers="true" auto-close="false" show-shortcuts="false"  on-update="o.onUpdate(value)" ng-bind="o.value || '自定义'" open-type="span"></span>
                     </li>
                     <li class="custom-option" ng-show="filter.customOptionVisible">
                         <input type="text" id="custom_start_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.start}}" tooltip-class="error" tooltip-is-open="filter.errors.start_open" ng-model="filter.customOptionStart">
                         <span>-</span>
                         <input type="text" id="custom_end_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.end}}" tooltip-class="error" tooltip-is-open="filter.errors.end_open" ng-model="filter.customOptionEnd">
                         <span class="unit" ng-bind="::filter.unit"></span>
-                        <button class="btn btn-navy-blue btn-xs" ng-click="goTo(filter.field, filter.customOptionStart + '-' + filter.customOptionEnd, 'custom')">筛选</button>
+                        <button class="btn btn-primary btn-xs" ng-click="goTo(filter.field, filter.customOptionStart + '-' + filter.customOptionEnd, 'custom')">筛选</button>
                     </li>
                 </ul>
                 <!--<div ng-if="!filter.filterFn.hidden" class="toggle-btn" ng-click="filter.toggleView($event)">
@@ -27,7 +27,7 @@
             <div class="search-options" ng-if="filter.perform_type === 'search'">
                 <input ng-if="filter.field_type !== 'date'" type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)">
                 <input ng-if="filter.field_type === 'date'" readonly type="text" id="search_{{filter.field}}" pattern="{{filter.pattern}}" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{filter.errors.search}}" tooltip-class="error" tooltip-is-open="filter.errors.search_open" ng-model="filter.searchValue" kt-enter="beginSearch(filter.field, filter.searchValue)" kt-date-picker datepicker-settings="field.datepickerSettings" single-date="true" single-month="true" extra-class="date-picker-analytics-top" show-week-numbers="false" auto-close="true" show-shortcuts="false">
-                <button class="btn btn-navy-blue btn-xs ml5" ng-click="goTo(filter.field, filter.searchValue, 'search')">筛选</button>
+                <button class="btn btn-primary btn-xs ml5" ng-click="goTo(filter.field, filter.searchValue, 'search')">筛选</button>
             </div>
             <!--<div class="dropdowns clfix" ng-if="filter.type === 'dropdown'">
                             <div class="dropdown fl" dropdown>
@@ -53,7 +53,7 @@
                     <i ng-if="!shared.filters.cannotDelete" class="pe-7s-close delete-item" ng-click="delFParams(f.value)"></i>
                 </div>
                 <div class="buttons">
-                    <button ng-if="!shared.filters.cannotDelete" class="btn btn-xs btn-navy-blue" ng-click="resetFParams()">全部清除</button>
+                    <button ng-if="!shared.filters.cannotDelete" class="btn btn-xs btn-primary" ng-click="resetFParams()">全部清除</button>
                 </div>
             </div>
         </div>

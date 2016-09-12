@@ -6,13 +6,16 @@
 }
 
 .dropdown {
-    min-width: 100px;
-    height: 30px;
-    line-height: 30px;
-    // display: inline-block;
-    // vertical-align: middle;
-    border: 1px solid @color-7;
-    border-radius: 3px;
+    // min-width: 100px;
+    // height: 30px;
+    line-height: 22px;
+    border: 0;
+    background: @color-gray-light;
+    border-radius: 2px;
+    color: @color-3;
+    font-size: 13px;
+    min-width: 120px;
+    height: 22px;
     .dropdown-toggle {
         cursor: pointer;
         text-indent: .5em;
@@ -50,6 +53,9 @@
     border-radius: 2px;
     border: none;
     font-size: 13px;
+    left: 0;
+    right: 0;
+    min-width: auto;
     &:before {
         content: "";
         display: block;
@@ -58,7 +64,8 @@
         border-width: 5px 5px;
         border-color: transparent transparent white;
         border-style: solid;
-        left: 50%;
+        left: auto;
+        right: 6px;
         margin-left: -1px;
     }
     ul {
