@@ -29,7 +29,7 @@
         // 基本参数初始化
         $scope.params = $.extend({
             // start_date: moment().format('YYYY年MM月'),
-              start_date: '',
+            start_date: '',
             periods: 0,
             customOnly: false,
             startIndex: 0,
