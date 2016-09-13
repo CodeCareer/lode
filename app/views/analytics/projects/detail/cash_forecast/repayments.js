@@ -154,7 +154,7 @@
                         }
                     }, {
                         type: 'value',
-                        name: '百分比',
+                        name: '百分比(%)',
                         position: 'right',
                         axisLabel: {
                             formatter: function(value) {
@@ -212,6 +212,9 @@
                     xAxis: {
                         type: 'category',
                         data: data.dates
+                    },
+                    yAxis: {
+                        name: '百分比(%)'
                     },
                     series: _.map(data.drate, function(v) {
                         v.type = 'line'

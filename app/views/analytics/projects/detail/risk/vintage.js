@@ -160,6 +160,9 @@
                         type: 'category',
                         data: data.dates
                     },
+                      yAxis: {
+                        name: '百分比(%)'
+                    },
 
                     series: _.map(data.trends, function(v) {
                         v.type = 'line'

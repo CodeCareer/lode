@@ -144,6 +144,9 @@
                         type: 'category',
                         data: data.dates
                     },
+                    yAxis: {
+                        name: '百分比(%)'
+                    },
 
                     series: _.map(data.overdue_trends.reverse().filter(function(v) {
                         return !_.includes(['逾期率', '不良率'], v.name)
@@ -171,6 +174,9 @@
                     xAxis: {
                         type: 'category',
                         data: data.dates
+                    },
+                    yAxis: {
+                        name: '百分比(%)'
                     },
                     series: _.map(data.migration_trends, function(v) {
                         v.type = 'line'

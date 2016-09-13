@@ -152,7 +152,8 @@
                                 },
                                 yAxis: {
                                     max: 1,
-                                    min: 0
+                                    min: 0,
+                                    name: '百分比(%)'
                                 }
                             } : {
                                 tooltip: {
