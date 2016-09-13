@@ -58,8 +58,10 @@
 
         // 选取预测时间时候触发
         $scope.changeStartDate = function(value) {
+
             $scope.params.start_date = value
             updateParams()
+
         }
 
         // 参数选取的时候触发
@@ -149,7 +151,7 @@
                 }
                 validPeriods.push(project.periods[validPeriods.length])
             } else {
-                $scope.params.start_date = project.periods[project.periods.length - 1]
+                if (hasntCache) $scope.params.start_date = project.periods[project.periods.length - 1]
             }
 
             $scope.project.validPeriods = validPeriods

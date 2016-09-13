@@ -78,7 +78,7 @@
 
                     var startIndex = params.startIndex = _.indexOf(data.dates, params.start_date)
 
-                    params.periods = data.dates.length - startIndex - 1
+                    params.periods = data.dates.length - startIndex
 
                     // params.periods = project.periods.length - startIndex
                     // console.log(params.start_date)
