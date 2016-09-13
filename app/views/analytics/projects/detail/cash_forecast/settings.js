@@ -13,6 +13,16 @@
             periods: []
         }
 
+        $scope.isReferPeriod = function(index) {
+            var reverseIndex = $scope.project.history_params.dates.length - index - 1
+            var pIndex = $scope.params.startIndex
+
+            /*eslint-disable*/
+            return reverseIndex < pIndex && pIndex - reverseIndex <= 6
+                /*eslint-enable*/
+        }
+
+
         var cache = JSON.parse($window.localStorage.getItem($stateParams.projectID + '.cashForecast') || '{}')
         var hasntCache = _.isEmpty(cache)
 
@@ -23,9 +33,9 @@
             customOnly: false,
             startIndex: 0,
             active_param: 'average',
-            prepayment_rate: 0,
-            default_rate: 0,
-            pending_rate: 0,
+            prepayment_rate: 0.0,
+            default_rate: 0.0,
+            pending_rate: 0.0,
         }, cache)
 
         // 参数选取默认列表
@@ -62,15 +72,15 @@
         // 自定义的时候错误提示和内容校验
         $scope.customParams = {
             prepayment_rate: {
-                errors: '年化早偿率填写错误',
+                errors: '年化早偿率填写错误，标点符号请在英文半角下输入，最多两位小数',
                 open: false
             },
             default_rate: {
-                errors: '年化违约率填写错误',
+                errors: '年化违约率填写错误，标点符号请在英文半角下输入，最多两位小数',
                 open: false
             },
             pending_rate: {
-                errors: '未还款率填写错误',
+                errors: '未还款率填写错误，标点符号请在英文半角下输入，最多两位小数',
                 open: false
             },
             validate: function() { // 做值得验证
@@ -132,12 +142,16 @@
 
             // 获取可选的期限列表
             var validPeriods = _.clone(project.history_params.dates)
+
             if (validPeriods.length < project.periods.length) {
                 if (hasntCache) {
                     $scope.params.start_date = project.periods[validPeriods.length]
                 }
                 validPeriods.push(project.periods[validPeriods.length])
+            } else {
+                $scope.params.start_date = project.periods[project.periods.length - 1]
             }
+
             $scope.project.validPeriods = validPeriods
 
             if (hasntCache) {

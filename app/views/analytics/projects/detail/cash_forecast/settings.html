@@ -52,7 +52,7 @@
                                 <dd>
                                     <span class="sub-title">年化早偿率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.prepayment_rate| ktNumber:2"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.prepayment_rate" id="prepayment_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.prepayment_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.prepayment_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.prepayment_rate" id="prepayment_rate" pattern="^(0(\.[0-9]{1,2})?)$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.prepayment_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.prepayment_rate.open">
                                 </dd>
                             </dl>
                             <dl ng-class="{'input-visible': params.active_param === 'custom'}">
@@ -60,7 +60,7 @@
                                 <dd>
                                     <span class="sub-title">年化违约率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.default_rate| ktNumber:2"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.default_rate" id="default_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.default_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.default_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.default_rate" id="default_rate" pattern="^(0(\.[0-9]{1,2})?)$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.default_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.default_rate.open">
                                 </dd>
                             </dl>
                             <dl ng-class="{'input-visible': params.active_param === 'custom'}">
@@ -68,7 +68,7 @@
                                 <dd>
                                     <span class="sub-title">未还款率</span>
                                     <em ng-if="params.active_param !== 'custom'" ng-bind="params.pending_rate| ktNumber:2"></em>
-                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.pending_rate" id="pending_rate" pattern="^(0\.[0-9]{1,2})$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.pending_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.pending_rate.open">
+                                    <input ng-if="params.active_param === 'custom'" type="text" ng-model="params.pending_rate" id="pending_rate" pattern="^(0(\.[0-9]{1,2})?)$|^(0\.[0-9]{1,2}\*\d+,?)+$" type="text" tooltip-append-to-body="true" tooltip-trigger="none" tooltip-placement="top" uib-tooltip="{{customParams.pending_rate.errors}}" tooltip-class="error" tooltip-is-open="customParams.pending_rate.open">
                                 </dd>
                             </dl>
                             <div class="cls comment" ng-if="params.active_param ==='custom'">
@@ -96,7 +96,7 @@
                         <thead>
                             <tr class="text-left">
                                 <th>结果取值</th>
-                                <th ng-repeat="date in project.history_params.dates | reverse track by $index" ng-class="{em: project.history_params.dates.length - $index - 1 <  params.startIndex}">
+                                <th ng-repeat="date in project.history_params.dates | reverse track by $index" ng-class="{em: isReferPeriod($index)}">
                                     <span>{{date}}</span>
                                 </th>
                             </tr>

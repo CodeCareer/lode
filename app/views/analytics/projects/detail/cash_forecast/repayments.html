@@ -1,7 +1,7 @@
 <!-- <div kt-animate-panel child="hpanel"> -->
 <div child="hpanel">
     <div class="hpanel hpanel-padding">
-          <div class="panel-heading clfix">
+        <div class="panel-heading clfix">
             <h5 class="margin-h5">实还情况</h5>
             <div class="user-r">
                 <a class="download-data f18 va-2 da fr">
@@ -34,14 +34,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-right" ng-repeat="trend in data.repay">
+                            <tr class="text-right" ng-repeat="trend in data.repay" ng-if="trend.name!='实还/计划'">
                                 <th class="text-center">
-                                    <span ng-bind="::trend.name"></span>
-                                 <!--    <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{::getToolTip(trend.name)}}" class="icon-lode icon-info f12 opacity-0_5"></i> -->
-                                </th><!-- (summary_stat.sum_prncp_balns | number:0) + ' 元'" -->
-                                <!-- <td ng-repeat="value in trend.data track by $index" ng-bind="(value| number:2) + ' 元'" ></td> -->
-                                 <td ng-repeat="value in trend.data track by $index" ng-bind="(value | number:2 | ktAppend:'元')"></td>
-
+                                    <span ng-bind="trend.name"></span>
+                                </th>
+                                <td ng-repeat="value in trend.data track by $index" ng-bind="(value | number:2 | ktAppend:'元')"></td>
+                            </tr>
+                            <tr class="text-right" ng-repeat="trend in data.repay" ng-if="trend.name='实还/计划'">
+                                <th class="text-center">
+                                    <span ng-bind="trend.name"></span>
+                                </th>
+                                <td ng-repeat="value in trend.data track by $index" ng-bind="(value | number:2 |ktNumber:2:'percent')"></td>
                             </tr>
                         </tbody>
                     </table>
