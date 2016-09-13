@@ -52,7 +52,7 @@
 
     })
 
-    .controller('ktRepaymentsCtrl', function($scope, $rootScope, $location, $stateParams, ktProjectsService, ktProjectStaticsReportService, ktDataHelper, ktDateHelper) {
+    .controller('ktRepaymentsCtrl', function($scope, $rootScope, $location, $stateParams, ktProjectsService, ktProjectStaticsReportService, ktValueFactory, ktDataHelper, ktDateHelper) {
         var search = $location.search()
         var params = $scope.shared.params
         var filters = $scope.shared.filters
@@ -133,6 +133,9 @@
 
                 // 实还情况
                 $scope.realPayChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    grid: {
+                        right: 50
+                    },
                     legend: {
                         data: _.map(data.repay, 'name')
                     },
@@ -141,22 +144,58 @@
                         type: 'category',
                         data: data.dates
                     },
+                    yAxis: [{
+                        type: 'value',
+                        name: '万元',
+                        axisLabel: {
+                            formatter: function(value) {
+                                return ktValueFactory(value, 'rmb').replace('万元', '')
+                            }
+                        }
+                    }, {
+                        type: 'value',
+                        name: '百分比',
+                        position: 'right',
+                        axisLabel: {
+                            formatter: function(value) {
+                                return ktValueFactory(value, 'percent').replace('%', '')
+                            }
+                        }
+                    }],
                     tooltip: {
                         // reverse: true,
                         axisPointer: {
                             type: 'line',
 
                         },
-                        yAxisFormat: 'rmb' //自定义属性，tooltip标示，决定是否显示百分比数值
+                        yAxisFormat: 'rmb{0,1}|percent{2,3}' //自定义属性，tooltip标示，决定是否显示百分比数值
                     },
-                    series: _.map(data.repay, function(v) {
-                        v.type = 'line'
-                            // v.stack = 'stack'
-                            // v.stack = 'bar'
-                            // v.smooth = true
-                            // v.itemStyle = { normal: { areaStyle: { type: 'default' } } }
-                        return v
-                    })
+                    series: [{
+                            name: data.repay[0].name,
+
+                            type: 'line',
+                            yAxisIndex: 0,
+                            data: data.repay[0].data
+                        }, {
+                            name: data.repay[1].name,
+
+                            type: 'line',
+                            yAxisIndex: 0,
+                            data: data.repay[1].data
+                        }, {
+                            name: data.repay[2].name,
+                            type: 'line',
+                            yAxisIndex: 1,
+                            data: data.repay[2].data
+                        }]
+                        /*  series: _.map(data.repay, function(v) {
+                              v.type = 'line'
+                                  // v.stack = 'stack'
+                                  // v.stack = 'bar'
+                                  // v.smooth = true
+                                  // v.itemStyle = { normal: { areaStyle: { type: 'default' } } }
+                              return v
+                          }),*/
                 })
 
                 $scope.drateRateChart.legend = _.chain(data.drate).map(function(v) {

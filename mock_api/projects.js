@@ -604,7 +604,7 @@ module.exports = function(app) {
                 'data|12': ['@integer(1000,1000000)']
             }],
             loss_cashflow_trends: [{
-                name: '损失金额',
+                name: '累计损失额',
                 'data|12': ['@integer(1000,1000000)']
             }, {
                 name: '正常余额',

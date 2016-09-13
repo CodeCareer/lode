@@ -78,7 +78,7 @@
 
                     var startIndex = params.startIndex = _.indexOf(data.dates, params.start_date)
 
-                    params.periods = data.dates.length - startIndex
+                    params.periods = data.dates.length - startIndex - 1
 
                     // params.periods = project.periods.length - startIndex
                     // console.log(params.start_date)
@@ -141,9 +141,15 @@
                 // 依据不同的tab算取不同的最大值
                 switch ($scope.result.subTab) {
                     case 'addup_cashflow_trends':
-                        yMax = _.chain(trends).filter({ name: '余额' }).map(function(v) {
+                        var yMax1 = _.chain(trends).filter({ name: '余额' }).map(function(v) {
                             return _.max(v.data)
                         }).max().value()
+
+                        var yMax2 = _.chain(trends).filter({ name: '累计本金' }).map(function(v) {
+                            return _.max(v.data)
+                        }).max().value()
+
+                        yMax = Math.max(yMax1, yMax2)
                         break
                     case 'asset_cashflow_trends':
                     case 'loss_cashflow_trends':
