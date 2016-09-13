@@ -3,7 +3,7 @@ module.exports = {
         options: {
             collapseWhitespace: true,
             collapseInlineTagWhitespace: false,
-            conservativeCollapse: false,
+            conservativeCollapse: true,
             collapseBooleanAttributes: true,
             removeCommentsFromCDATA: true,
             removeComments: true,
