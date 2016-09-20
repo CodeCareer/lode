@@ -14,12 +14,17 @@
         }
 
         $scope.isReferPeriod = function(index) {
+            // console.log("history " + $scope.project.history_params.dates.length);
+            // console.log("index " + index);
             var reverseIndex = $scope.project.history_params.dates.length - index - 1
+                // console.log("reverse " + reverseIndex);
             var pIndex = $scope.params.startIndex
+                // console.log(pIndex);
 
             /*eslint-disable*/
             return reverseIndex < pIndex && pIndex - reverseIndex <= 6
                 /*eslint-enable*/
+
         }
 
 
@@ -137,19 +142,21 @@
             projectID: $stateParams.projectID,
             subContent: 'cashflows',
             subID: 'history_factors',
-            // prepayment_rate: ajaxParams.prepayment_rate,
-            // default_rate: ajaxParams.default_rate,
-            // pending_rate:ajaxParams.ajaxParams
         }, function(data) {
             var project = $scope.project = data.project
 
             // 获取可选的期限列表
             var validPeriods = _.clone(project.history_params.dates)
+                // console.log("history " + project.history_params.dates.length)
+                // console.log("valid " + validPeriods.length)
+                // console.log(project.periods.length)
 
             if (validPeriods.length < project.periods.length) {
                 if (hasntCache) {
                     $scope.params.start_date = project.periods[validPeriods.length]
+                        // console.log($scope.params.start_date)
                 }
+                // console.log(hasntCache)
                 validPeriods.push(project.periods[validPeriods.length])
             } else {
                 if (hasntCache) $scope.params.start_date = project.periods[project.periods.length - 1]
