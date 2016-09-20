@@ -80,16 +80,6 @@
 
                     params.periods = data.dates.length - startIndex
 
-                    // params.periods = project.periods.length - startIndex
-                    // console.log(params.start_date)
-                    // else{
-                    //          $scope.data = data
-                    // $scope.shared.params.start_date = data.params.start_date
-                    // $scope.shared.params.periods = data.params.periods
-                    // $scope.shared.params.prepayment_rate = data.params.prepayment_rate
-                    // $scope.shared.params.default_rate = data.params.default_rate
-                    // $scope.shared.params.no_repay_rate = data.params.no_repay_rate
-                    // }
 
                     _self.initDone = true
                     _self.data = data
@@ -191,9 +181,9 @@
                         interval: interval * 10000,
                         max: yMax
                     },
-                    series: _.map(trends, function(v, i) {
+                    series: _.map(trends, function(v) {
 
-                        if (i === 0) {
+                        // if (i === 0) {
                             v.markLine = {
                                 // animation: false,
                                 label: {
@@ -223,7 +213,7 @@
                                     }]
                                 ]
                             }
-                        }
+                        // }
                         v.type = 'line'
                         if ($scope.result.subTab !== 'addup_cashflow_trends') {
                             v.stack = '堆积'

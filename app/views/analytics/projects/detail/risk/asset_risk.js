@@ -201,6 +201,10 @@
                     xAxis: {
                         type: 'category',
                         data: data.dates,
+                        axisLabel: {
+                            interval: 0
+                        }
+
                     },
                     yAxis: {
                         name: '百分比(%)'
