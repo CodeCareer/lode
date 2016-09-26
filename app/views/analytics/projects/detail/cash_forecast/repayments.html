@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="panel-body clfix pr ov-h">
-            <div class="chart-table" ng-show="realPayChart.radioDataShowType == 'chart'">
+            <div class="chart-table" table-border-radious ng-show="realPayChart.radioDataShowType == 'chart'">
                 <div class="chart-table-heading chart-header clfix">
                 </div>
                 <div class="chart-table-body">
@@ -34,14 +34,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-right" ng-repeat="trend in data.repay" >
+                            <tr class="text-right" ng-repeat="trend in data.repay">
                                 <th class="text-center">
                                     <span ng-bind="trend.name"></span>
                                 </th>
                                 <td ng-if="trend.name!='实还/计划'" ng-repeat="value in trend.data track by $index" ng-bind="(value | number:0 | ktAppend:' 元')"></td>
-                                <td ng-if="trend.name=='实还/计划'"  ng-repeat="value in trend.data track by $index" ng-bind="(value | number:2 |ktNumber:2:'percent')"></td>
+                                <td ng-if="trend.name=='实还/计划'" ng-repeat="value in trend.data track by $index" ng-bind="(value |ktNumber:2:'percent')"></td>
                             </tr>
-                            
                         </tbody>
                     </table>
                 </div>

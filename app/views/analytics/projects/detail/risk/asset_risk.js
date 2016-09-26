@@ -194,6 +194,11 @@
                 dimention: 'risk'
             }, ajaxParams), function(data) {
                 $scope.data = data
+
+                data.trends[0].data = _.map(data.trends[0].data, function(v) {
+                    return v || ''
+                })
+
                 $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
                     legend: {
                         data: _.map(data.trends, 'name')
@@ -201,6 +206,10 @@
                     xAxis: {
                         type: 'category',
                         data: data.dates,
+                        axisLabel: {
+                            interval: 0
+                        }
+
                     },
                     yAxis: {
                         name: '百分比(%)'
