@@ -75,10 +75,15 @@
                 <li ui-sref-active="active">
                     <a ui-sref="analytics.project.cash.settings">参数设置</a>
                 </li>
-                <li ui-sref-active="active">
+                <!-- <li ui-sref-active="active">
                     <a ui-sref="analytics.project.cash.repayments.index">还款分析</a>
-                </li>
+                </li> -->
             </ul>
+        </li>
+        <li ng-class="{active: $state.includes('analytics.project.repayments.**')}">
+            <a  ng-click="stateGo('analytics.project.repayments.index', 'updateMenu', 'repaymentsIsCollapsed')">
+                <i class="icon-lode icon-analysis mr10 va-1"></i>还款分析
+            </a>
         </li>
         <!--  <li ng-class="{active: $state.includes('analytics.project.cash')}">
            <a href="javascript:;" ng-click="updateMenu('cashIsCollapsed')">

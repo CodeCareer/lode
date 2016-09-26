@@ -116,6 +116,7 @@
                 riskIsCollapsed: !$state.includes('analytics.project.risk.**'),
                 cashIsCollapsed: !$state.includes('analytics.project.cash.**'),
                 settingsIsCollapsed: !$state.includes('analytics.project.settings.**'),
+                repaymentsIsCollapsed: !$state.includes('analytics.project.repayments.**'),
             }
 
             // 保证在子项目内当前路由切换项目

@@ -549,31 +549,31 @@
                         pageTitle: '现金流测算-现金流预测'
                     }
                 },
-                'analytics.project.cash.repayments': {
-                    url: '/repayments',
-                    abstract: true,
-                    templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments_layout.html',
-                    resolve: ktLazyResolve([
-                        'views/analytics/projects/detail/cash_forecast/repayments.js',
-                        'common/directives/kt-echart3-directive.js'
-                    ]),
-                    controller: 'ktRepaymentsLayoutCtrl',
-                    data: {
-                        breadcrumb: false,
-                        breadcrumbTitle: '还款分析',
-                        pageTitle: '现金流测算-还款分析',
-                    }
-                },
-                'analytics.project.cash.repayments.index': {
-                    url: '?filter',
-                    templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments.html',
-                    controller: 'ktRepaymentsCtrl',
-                    data: {
-                        breadcrumb: true,
-                        breadcrumbTitle: '还款分析',
-                        pageTitle: '现金流测算-还款分析'
-                    }
-                },
+                // 'analytics.project.cash.repayments': {
+                //     url: '/repayments',
+                //     abstract: true,
+                //     templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments_layout.html',
+                //     resolve: ktLazyResolve([
+                //         'views/analytics/projects/detail/cash_forecast/repayments.js',
+                //         'common/directives/kt-echart3-directive.js'
+                //     ]),
+                //     controller: 'ktRepaymentsLayoutCtrl',
+                //     data: {
+                //         breadcrumb: false,
+                //         breadcrumbTitle: '还款分析',
+                //         pageTitle: '现金流测算-还款分析',
+                //     }
+                // },
+                // 'analytics.project.cash.repayments.index': {
+                //     url: '?filter',
+                //     templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments.html',
+                //     controller: 'ktRepaymentsCtrl',
+                //     data: {
+                //         breadcrumb: true,
+                //         breadcrumbTitle: '还款分析',
+                //         pageTitle: '现金流测算-还款分析'
+                //     }
+                // },
                 'analytics.project.cash.settings': {
                     url: '/settings',
                     templateUrl: 'views/analytics/projects/detail/cash_forecast/settings.html',
@@ -583,6 +583,34 @@
                         breadcrumb: true,
                         breadcrumbTitle: '参数设置',
                         pageTitle: '现金流测算-参数设置'
+                    }
+                },
+                //还款分析
+                'analytics.project.repayments': {
+                    abstract: true,
+                    url: '/repayments',
+                    templateUrl: 'views/analytics/projects/detail/analyze/repayments_layout.html',
+                    resolve: ktLazyResolve([
+                        'scripts/directives/filters/index.js',
+                        'scripts/directives/filters/index.css',
+                        'views/analytics/projects/detail/analyze/repayments.js',
+                        'common/directives/kt-echart3-directive.js'
+                    ]),
+                    controller: 'ktRepaymentsLayoutCtrl',
+                    data: {
+                        breadcrumb: false,
+                        breadcrumbTitle: '还款分析',
+                        pageTitle: '现金流测算－还款分析',
+                    }
+                },
+                'analytics.project.repayments.index': {
+                    url: '?filter',
+                    templateUrl: 'views/analytics/projects/detail/cash_forecast/repayments.html',
+                    controller: 'ktRepaymentsCtrl',
+                    data: {
+                        breadcrumb: true,
+                        breadcrumbTitle: '还款分析',
+                        pageTitle: '现金流测算-还款分析'
                     }
                 },
                 // 项目设置
