@@ -14,6 +14,10 @@
                 dimention: 'dashboard',
                 projectID: $stateParams.projectID,
             }, function(data) {
+                if ($stateParams.projectID === '57d7e4c0395d051449d21510') {
+                    data.summary_stat.sum_prncp_balns = 197330259
+                }
+
                 $.extend($scope, data)
             })
         })
