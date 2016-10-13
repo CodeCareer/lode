@@ -3,7 +3,7 @@
     'use strict';
     angular.module('kt.lode')
 
-    .controller('ktProjectsCtrl', function($scope, $location, $stateParams, ktInstitutionsService) {
+    .controller('ktProjectsCtrl', function($scope, $location, $stateParams) {
 
         $scope.$emit('activeProjectChange', {
             projectID: $stateParams.projectID
@@ -17,38 +17,38 @@
             account_id: 'all',
         }
 
-        ktInstitutionsService.get({
-            inst_type: 'zhudai'
-        }, function(data) {
-            data.institutions.unshift({
-                id: 'all',
-                name: '全部机构'
-            })
+        // ktInstitutionsService.get({
+        //     inst_type: 'zhudai'
+        // }, function(data) {
+        //     data.institutions.unshift({
+        //         id: 'all',
+        //         name: '全部机构'
+        //     })
 
-            $scope.institutions = data.institutions
-        })
+        //     $scope.institutions = data.institutions
+        // })
 
-        $scope.getInstitutionName = function() {
-            var inst = _.find($scope.institutions, function(v) {
-                /*eslint-disable*/
-                return v.id == $scope.params.zhudai_id
-                /*eslint-enable*/
-            }) || {}
-            return inst.name
-        }
+        // $scope.getInstitutionName = function() {
+        //     var inst = _.find($scope.institutions, function(v) {
+        //         /*eslint-disable*/
+        //         return v.id == $scope.params.zhudai_id
+        //         /*eslint-enable*/
+        //     }) || {}
+        //     return inst.name
+        // }
 
         $scope.pageChanged = function() {
             $location.search('page', $scope.params.page)
         }
 
-        $scope.institutionChanged = function(id) {
-            // $scope.institutionName = getInstitutionName(id)
-            $location.search($.extend($location.search(), {
-                zhudai_id: id || null,
-                page: 1,
-                per_page: 10
-            }))
-        }
+        // $scope.institutionChanged = function(id) {
+        //     // $scope.institutionName = getInstitutionName(id)
+        //     $location.search($.extend($location.search(), {
+        //         zhudai_id: id || null,
+        //         page: 1,
+        //         per_page: 10
+        //     }))
+        // }
 
         $scope.stateChanged = function() {
             $location.search($.extend($location.search(), {

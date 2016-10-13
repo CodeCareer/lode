@@ -90,6 +90,14 @@
             // 切换不同的路由，更新当前项目ID，每个页面级controller会fire这个事件，保证路由的同步
             $scope.$on('activeProjectChange', function(e, data) {
                 if ($scope.projectID === data.projectID) return
+
+                //指定id隐藏部分菜单
+                if (data.projectID === '57fb46694ac74b4ba72ceadf') {
+                    $scope.isyqb = true;
+                } else {
+                    $scope.isyqb = false;
+                }
+
                 $scope.projectID = data.projectID || 'all'
                 $scope.activeProjectName = getProjectName()
                 $rootScope.data_import_date = getProjectDate()
@@ -126,6 +134,7 @@
                     $state.go($rootScope.defaultRoute)
                     return
                 }
+
 
                 var stateName
                 var params
