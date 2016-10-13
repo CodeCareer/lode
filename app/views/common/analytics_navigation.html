@@ -43,7 +43,7 @@
                 </li>
             </ul>
         </li>
-        <li ng-class="{active: $state.includes('analytics.project.risk.**')}">
+        <li ng-class="{active: $state.includes('analytics.project.risk.**')}" ng-hide="isyqb">
             <a href="javascript:;" ng-click="updateMenu('riskIsCollapsed')"><i class="icon-lode icon-risk mr10 va-1"></i>风险分析
             </a>
             <ul class="nav nav-second-level" uib-collapse="menu.riskIsCollapsed" ng-class="{in: !menu.riskIsCollapsed}">
@@ -64,7 +64,7 @@
                 </li>
             </ul>
         </li>
-        <li ng-class="{active: $state.includes('analytics.project.cash.**')}">
+        <li ng-class="{active: $state.includes('analytics.project.cash.**')}" ng-hide="isyqb">
             <a href="javascript:;" ng-click="updateMenu('cashIsCollapsed')">
                 <i class="icon-lode icon-trend mr10 va-1"></i>现金流测算
             </a>
