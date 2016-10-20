@@ -63,8 +63,6 @@
             scope: {
                 table: '@',
                 download: '@'
-
-
             },
             link: function(scope, ele) {
                 ele.on('click', function() {
@@ -77,6 +75,5 @@
             }
         }
     })
-
 
 })();
