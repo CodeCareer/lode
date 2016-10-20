@@ -102,6 +102,16 @@
         }
 
         var chartOptions = {
+            toolbox: {
+                show: true,
+                feature: {
+                saveAsImage: {
+                    name: $scope.activeProjectName + '-' + '迁徙率趋势' + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+                            }
+                        },
+                x: 'right',
+                y: '6%',
+            },
             tooltip: {
                 // reverse: true,
                 axisPointer: {
@@ -134,6 +144,16 @@
 
                 // 逾期率趋势图表
                 $scope.overdueRateChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    toolbox: {
+                                    show: true,
+                                    feature: {
+                                        saveAsImage: {
+                                            name: $scope.activeProjectName + '-' + '逾期率趋势' + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+                                        }
+                                    },
+                                    x: 'right',
+                                    y: '6%',
+                                },
                     legend: {
                         data: _.map(data.overdue_trends.reverse().filter(function(v) {
                             return !_.includes(['逾期率', '不良率'], v.name)

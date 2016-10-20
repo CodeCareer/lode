@@ -68,6 +68,7 @@
     })
 
     .controller('ktAssetFeatureCtrl', function($scope, $rootScope, $location, $stateParams, ktProjectsService, ktProjectStaticsReportService, ktDataHelper, ktDateHelper) {
+
         var search = $location.search()
         var params = $scope.shared.params
         var filters = $scope.shared.filters
@@ -154,6 +155,16 @@
                                     name: '百分比(%)'
                                 }
                             } : {
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        saveAsImage: {
+                                            name: $scope.activeProjectName + '-' + v.name + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+                                        }
+                                    },
+                                    x: 'right',
+                                    y: '6%',
+                                },
                                 tooltip: {
                                     yAxisFormat: 'rmb'
                                 },

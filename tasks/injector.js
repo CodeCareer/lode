@@ -28,6 +28,7 @@ var commonScripts = [
     // 'bower_components/metisMenu/dist/metisMenu.min.js',
     'bower_components/sweetalert/dist/sweetalert.min.js',
     'bower_components/angular-apimock/dist/angular-apimock.min.js',
+    'bower_components/excellentexport/excellentexport.js',
     // 'bower_components/echarts/build/dist/echarts.js',
 ];
 

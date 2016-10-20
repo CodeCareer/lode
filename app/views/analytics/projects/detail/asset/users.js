@@ -148,8 +148,9 @@
 
                             var chartOptions = suffix === '_percent' ? {
                                 tooltip: {
-                                    yAxisFormat: 'percent' //自定义属性，tooltip标示，决定是否显示百分比数值
+                                    yAxisFormat: 'percent', //自定义属性，tooltip标示，决定是否显示百分比数值
                                 },
+
                                 yAxis: {
                                     max: 1,
                                     min: 0,
@@ -166,6 +167,16 @@
 
                             this.list = data[listName]
                             this.chartOptions = $.extend(true, {}, chartOptions, {
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        saveAsImage: {
+                                            name: $scope.activeProjectName + '-' + v.name + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+                                        }
+                                    },
+                                    x: 'right',
+                                    y: '6%',
+                                },
                                 legend: {
                                     data: _.map(data[listName], 'name')
                                 },

@@ -106,6 +106,7 @@
         var search = $location.search()
         var params = $scope.shared.params
         var filters = $scope.shared.filters
+
         $.extend(params, search)
         ktDataHelper.pruneDirtyParams(params, search, ['filter'])
 
@@ -200,6 +201,17 @@
                 })
 
                 $scope.assetRiskChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                name: $scope.activeProjectName + '-' + $scope.riskIndexName() + '(按' + $scope.dimensionName() + '的细分)' + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+
+                            }
+                        },
+                        x: 'right',
+                        y: '6%',
+                    },
                     legend: {
                         data: _.map(data.trends, 'name')
                     },

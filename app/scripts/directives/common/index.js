@@ -56,4 +56,27 @@
         }
     })
 
+    //导出table为xls格式
+    .directive('ktExportTable', function() {
+        return {
+            restrict: 'AE',
+            scope: {
+                table: '@',
+                download: '@'
+
+
+            },
+            link: function(scope, ele) {
+                ele.on('click', function() {
+                    var oldDownload = ele.attr('download')
+                    var newDownload = oldDownload.replace('@time@', moment().format('YYYY年MM月DD日HH时mm分ss秒'))
+                    ele.attr('download', newDownload)
+
+                    return ExcellentExport.excel(ele[0], scope.table, newDownload.replace('.xls', ''));
+                })
+            }
+        }
+    })
+
+
 })();

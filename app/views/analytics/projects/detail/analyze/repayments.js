@@ -134,10 +134,13 @@
                 // 实还情况
                 $scope.realPayChart.chartOptions = $.extend(true, {}, chartOptions, {
                     grid: {
-                        right: 50
+
+                        width: '85%'
+
                     },
                     legend: {
                         data: _.map(data.repay, 'name')
+
                     },
 
                     xAxis: {
@@ -162,6 +165,17 @@
                             }
                         }
                     }],
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                name: $scope.activeProjectName + '-' + '实还情况' + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+
+                            }
+                        },
+                        x: '97%',
+                        y: '6%',
+                    },
                     tooltip: {
                         // reverse: true,
                         axisPointer: {
@@ -206,6 +220,16 @@
                 }).value()
 
                 $scope.drateRateChart.chartOptions = $.extend(true, {}, chartOptions, {
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                name: $scope.activeProjectName + '-' + '扣款成功率' + '-' + moment().format('YYYY年MM月DD日HH时mm分ss秒')
+                            }
+                        },
+                        x: 'right',
+                        y: '6%',
+                    },
                     legend: {
                         data: _.map(data.drate, 'name')
                     },

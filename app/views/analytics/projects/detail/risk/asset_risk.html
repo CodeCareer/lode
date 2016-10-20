@@ -4,7 +4,7 @@
        <!--   <i tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{discriptionTool(dimensionsActiveName())}}" class="icon-lode icon-info f12 opacity-0_5"></i> -->
     </h5>
     <div class="user-r">
-        <a class="download-data f18 va-2 da fr">
+        <a class="download-data f18 va-2 da fr" kt-export-table table="export{{$index}}" download="{{activeProjectName}}-(按{{riskIndexName()}}{{dimensionName()}}的细分)-@time@.xls" title="导出表">
             <i class="icon-lode icon-download2"></i>
         </a>
         <div class="chart-table chart-table-menu chart-bg fr">
@@ -25,7 +25,7 @@
     </div>
     <div class="chart-table" ng-show="assetRiskChart.radioDataShowType == 'table'">
         <div class="table-responsive table-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="export{{$index}}">
                 <thead>
                     <tr class="text-left">
                         <th ng-bind="riskIndexName()"></th>
