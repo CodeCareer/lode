@@ -5,7 +5,7 @@
         <div class="panel-heading clfix">
             <h5 class="margin-h5"><span ng-bind="c.name"></span>分布 <i ng-if="c.description" tooltip-append-to-body="true" tooltip-placement="top" uib-tooltip="{{c.description}}" class="icon-lode icon-info f12 opacity-0_5"></i></h5>
             <div class="user-r">
-                <a class="download-data f18 va-2 da fr" kt-export-table table="export{{$index}}" download="{{activeProjectName}}-{{c.name}}-@time@.xls" title="导出表">
+                <a class="download-data f18 va-2 da fr" kt-export-table table="export{{$index}}" download="{{activeProjectName}}-{{c.name}}-@time@.csv" title="导出表">
                     <i class="icon-lode icon-download2"></i>
                 </a>
                 <div class="chart-table chart-table-menu margin-l fr">

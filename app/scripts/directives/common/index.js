@@ -70,7 +70,7 @@
                     var newDownload = oldDownload.replace('@time@', moment().format('YYYY年MM月DD日HH时mm分ss秒'))
                     ele.attr('download', newDownload)
 
-                    return ExcellentExport.excel(ele[0], scope.table, newDownload.replace('.xls', ''));
+                    return ExcellentExport.csv(ele[0], scope.table);
                 })
             }
         }
